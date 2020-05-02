@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    emailTest();
+    //emailTest();
 
 });
 
