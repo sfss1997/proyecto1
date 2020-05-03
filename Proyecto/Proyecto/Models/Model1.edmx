@@ -1,0 +1,1101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IF4101PICESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicDegree">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="10" />
+          <Property Name="StudentId" Type="varchar" MaxLength="10" />
+          <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Accepted" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProvinceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="Credits" Type="int" Nullable="false" />
+          <Property Name="Cycle" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CantonId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="CantonId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+        </EntityType>
+        <EntityType Name="PrivateMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="10" />
+          <Property Name="StudentId" Type="varchar" MaxLength="10" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Professor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="AcademicDegreeId" Type="int" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="SocialNetWorkId" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAdministrator" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProfessorCourse">
+          <Key>
+            <PropertyRef Name="ProfessorId" />
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="ProfessorId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublicConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="10" />
+          <Property Name="StudentId" Type="varchar" MaxLength="10" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialNetworks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="IsAdministrator" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="100" />
+          <Property Name="SocialNetWorkId" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="StudentCourse">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="StudentId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Appointme__Cours__245D67DE">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Appointme__Stude__236943A5">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canton__Province__3C69FB99">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__District__Canton__3F466844">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="CantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Canton__76969D2E">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Distri__778AC167">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Provin__75A278F5">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrivateMe__Cours__282DF8C2">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessage">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrivateMe__Stude__2739D489">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessage">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Acade__02084FDA">
+          <End Role="AcademicDegree" Type="Self.AcademicDegree" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicDegree">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="AcademicDegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Cours__0D7A0286">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Locat__03F0984C">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Profe__0C85DE4D">
+          <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+          <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorCourse">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Socia__02FC7413">
+          <End Role="SocialNetworks" Type="Self.SocialNetworks" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialNetworks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="SocialNetWorkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicCon__Cours__2BFE89A6">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PublicConsultation">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicCon__Stude__2B0A656D">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PublicConsultation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Locatio__1CBC4616">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__SocialN__1BC821DD">
+          <End Role="SocialNetworks" Type="Self.SocialNetworks" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialNetworks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="SocialNetWorkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Cours__208CD6FA">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Stude__1F98B2C1">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IF4101PICESModelStoreContainer">
+          <EntitySet Name="AcademicDegree" EntityType="Self.AcademicDegree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrivateMessage" EntityType="Self.PrivateMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Professor" EntityType="Self.Professor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfessorCourse" EntityType="Self.ProfessorCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialNetworks" EntityType="Self.SocialNetworks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Appointme__Cours__245D67DE" Association="Self.FK__Appointme__Cours__245D67DE">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Appointme__Stude__236943A5" Association="Self.FK__Appointme__Stude__236943A5">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canton__Province__3C69FB99" Association="Self.FK__Canton__Province__3C69FB99">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__District__Canton__3F466844" Association="Self.FK__District__Canton__3F466844">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Canton__76969D2E" Association="Self.FK__Location__Canton__76969D2E">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Distri__778AC167" Association="Self.FK__Location__Distri__778AC167">
+            <End Role="District" EntitySet="District" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Provin__75A278F5" Association="Self.FK__Location__Provin__75A278F5">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrivateMe__Cours__282DF8C2" Association="Self.FK__PrivateMe__Cours__282DF8C2">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrivateMe__Stude__2739D489" Association="Self.FK__PrivateMe__Stude__2739D489">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Acade__02084FDA" Association="Self.FK__Professor__Acade__02084FDA">
+            <End Role="AcademicDegree" EntitySet="AcademicDegree" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Cours__0D7A0286" Association="Self.FK__Professor__Cours__0D7A0286">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Locat__03F0984C" Association="Self.FK__Professor__Locat__03F0984C">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Profe__0C85DE4D" Association="Self.FK__Professor__Profe__0C85DE4D">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Socia__02FC7413" Association="Self.FK__Professor__Socia__02FC7413">
+            <End Role="SocialNetworks" EntitySet="SocialNetworks" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicCon__Cours__2BFE89A6" Association="Self.FK__PublicCon__Cours__2BFE89A6">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicCon__Stude__2B0A656D" Association="Self.FK__PublicCon__Stude__2B0A656D">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Locatio__1CBC4616" Association="Self.FK__Student__Locatio__1CBC4616">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__SocialN__1BC821DD" Association="Self.FK__Student__SocialN__1BC821DD">
+            <End Role="SocialNetworks" EntitySet="SocialNetworks" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Cours__208CD6FA" Association="Self.FK__StudentCo__Cours__208CD6FA">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Stude__1F98B2C1" Association="Self.FK__StudentCo__Stude__1F98B2C1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IF4101PICESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicDegree">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__Acade__02084FDA" FromRole="AcademicDegree" ToRole="Professor" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Accepted" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Appointme__Cours__245D67DE" FromRole="Appointment" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Appointme__Stude__236943A5" FromRole="Appointment" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Province" Relationship="Self.FK__Canton__Province__3C69FB99" FromRole="Canton" ToRole="Province" />
+          <NavigationProperty Name="District" Relationship="Self.FK__District__Canton__3F466844" FromRole="Canton" ToRole="District" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Location__Canton__76969D2E" FromRole="Canton" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="Credits" Type="Int32" Nullable="false" />
+          <Property Name="Cycle" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Cours__245D67DE" FromRole="Course" ToRole="Appointment" />
+          <NavigationProperty Name="PrivateMessage" Relationship="Self.FK__PrivateMe__Cours__282DF8C2" FromRole="Course" ToRole="PrivateMessage" />
+          <NavigationProperty Name="PublicConsultation" Relationship="Self.FK__PublicCon__Cours__2BFE89A6" FromRole="Course" ToRole="PublicConsultation" />
+          <NavigationProperty Name="Professor" Relationship="Self.ProfessorCourse" FromRole="Course" ToRole="Professor" />
+          <NavigationProperty Name="Student" Relationship="Self.StudentCourse" FromRole="Course" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CantonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK__District__Canton__3F466844" FromRole="District" ToRole="Canton" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Location__Distri__778AC167" FromRole="District" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="CantonId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK__Location__Canton__76969D2E" FromRole="Location" ToRole="Canton" />
+          <NavigationProperty Name="District" Relationship="Self.FK__Location__Distri__778AC167" FromRole="Location" ToRole="District" />
+          <NavigationProperty Name="Province" Relationship="Self.FK__Location__Provin__75A278F5" FromRole="Location" ToRole="Province" />
+          <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__Locat__03F0984C" FromRole="Location" ToRole="Professor" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Student__Locatio__1CBC4616" FromRole="Location" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="PrivateMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__PrivateMe__Cours__282DF8C2" FromRole="PrivateMessage" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__PrivateMe__Stude__2739D489" FromRole="PrivateMessage" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Professor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AcademicDegreeId" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SocialNetWorkId" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsAdministrator" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="AcademicDegree" Relationship="Self.FK__Professor__Acade__02084FDA" FromRole="Professor" ToRole="AcademicDegree" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Professor__Locat__03F0984C" FromRole="Professor" ToRole="Location" />
+          <NavigationProperty Name="SocialNetworks" Relationship="Self.FK__Professor__Socia__02FC7413" FromRole="Professor" ToRole="SocialNetworks" />
+          <NavigationProperty Name="Course" Relationship="Self.ProfessorCourse" FromRole="Professor" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK__Canton__Province__3C69FB99" FromRole="Province" ToRole="Canton" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Location__Provin__75A278F5" FromRole="Province" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="PublicConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__PublicCon__Cours__2BFE89A6" FromRole="PublicConsultation" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__PublicCon__Stude__2B0A656D" FromRole="PublicConsultation" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="SocialNetworks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__Socia__02FC7413" FromRole="SocialNetworks" ToRole="Professor" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Student__SocialN__1BC821DD" FromRole="SocialNetworks" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdministrator" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SocialNetWorkId" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Stude__236943A5" FromRole="Student" ToRole="Appointment" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Student__Locatio__1CBC4616" FromRole="Student" ToRole="Location" />
+          <NavigationProperty Name="PrivateMessage" Relationship="Self.FK__PrivateMe__Stude__2739D489" FromRole="Student" ToRole="PrivateMessage" />
+          <NavigationProperty Name="PublicConsultation" Relationship="Self.FK__PublicCon__Stude__2B0A656D" FromRole="Student" ToRole="PublicConsultation" />
+          <NavigationProperty Name="SocialNetworks" Relationship="Self.FK__Student__SocialN__1BC821DD" FromRole="Student" ToRole="SocialNetworks" />
+          <NavigationProperty Name="Course" Relationship="Self.StudentCourse" FromRole="Student" ToRole="Course" />
+        </EntityType>
+        <Association Name="FK__Professor__Acade__02084FDA">
+          <End Role="AcademicDegree" Type="Self.AcademicDegree" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicDegree">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="AcademicDegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Appointme__Cours__245D67DE">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Appointme__Stude__236943A5">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Canton__Province__3C69FB99">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__District__Canton__3F466844">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="CantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Canton__76969D2E">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrivateMe__Cours__282DF8C2">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessage">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicCon__Cours__2BFE89A6">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PublicConsultation">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Distri__778AC167">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Provin__75A278F5">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Locat__03F0984C">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Locatio__1CBC4616">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrivateMe__Stude__2739D489">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessage">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Socia__02FC7413">
+          <End Role="SocialNetworks" Type="Self.SocialNetworks" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialNetworks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="SocialNetWorkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicCon__Stude__2B0A656D">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PublicConsultation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__SocialN__1BC821DD">
+          <End Role="SocialNetworks" Type="Self.SocialNetworks" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialNetworks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="SocialNetWorkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProfessorCourse">
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+        </Association>
+        <Association Name="StudentCourse">
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicDegree" EntityType="Self.AcademicDegree" />
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+          <EntitySet Name="Canton" EntityType="Self.Canton" />
+          <EntitySet Name="Course" EntityType="Self.Course" />
+          <EntitySet Name="District" EntityType="Self.District" />
+          <EntitySet Name="Location" EntityType="Self.Location" />
+          <EntitySet Name="PrivateMessage" EntityType="Self.PrivateMessage" />
+          <EntitySet Name="Professor" EntityType="Self.Professor" />
+          <EntitySet Name="Province" EntityType="Self.Province" />
+          <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" />
+          <EntitySet Name="SocialNetworks" EntityType="Self.SocialNetworks" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <AssociationSet Name="FK__Professor__Acade__02084FDA" Association="Self.FK__Professor__Acade__02084FDA">
+            <End Role="AcademicDegree" EntitySet="AcademicDegree" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Appointme__Cours__245D67DE" Association="Self.FK__Appointme__Cours__245D67DE">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Appointme__Stude__236943A5" Association="Self.FK__Appointme__Stude__236943A5">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Canton__Province__3C69FB99" Association="Self.FK__Canton__Province__3C69FB99">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__District__Canton__3F466844" Association="Self.FK__District__Canton__3F466844">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Canton__76969D2E" Association="Self.FK__Location__Canton__76969D2E">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrivateMe__Cours__282DF8C2" Association="Self.FK__PrivateMe__Cours__282DF8C2">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicCon__Cours__2BFE89A6" Association="Self.FK__PublicCon__Cours__2BFE89A6">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Distri__778AC167" Association="Self.FK__Location__Distri__778AC167">
+            <End Role="District" EntitySet="District" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Provin__75A278F5" Association="Self.FK__Location__Provin__75A278F5">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Locat__03F0984C" Association="Self.FK__Professor__Locat__03F0984C">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Locatio__1CBC4616" Association="Self.FK__Student__Locatio__1CBC4616">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrivateMe__Stude__2739D489" Association="Self.FK__PrivateMe__Stude__2739D489">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Socia__02FC7413" Association="Self.FK__Professor__Socia__02FC7413">
+            <End Role="SocialNetworks" EntitySet="SocialNetworks" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicCon__Stude__2B0A656D" Association="Self.FK__PublicCon__Stude__2B0A656D">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__SocialN__1BC821DD" Association="Self.FK__Student__SocialN__1BC821DD">
+            <End Role="SocialNetworks" EntitySet="SocialNetworks" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="ProfessorCourse" Association="Self.ProfessorCourse">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="StudentCourse" Association="Self.StudentCourse">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IF4101PICESModelStoreContainer" CdmEntityContainer="Entities1">
+          <EntitySetMapping Name="AcademicDegree">
+            <EntityTypeMapping TypeName="IF4101PICESModel.AcademicDegree">
+              <MappingFragment StoreEntitySet="AcademicDegree">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appointment">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Canton">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Canton">
+              <MappingFragment StoreEntitySet="Canton">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="District">
+            <EntityTypeMapping TypeName="IF4101PICESModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrivateMessage">
+            <EntityTypeMapping TypeName="IF4101PICESModel.PrivateMessage">
+              <MappingFragment StoreEntitySet="PrivateMessage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professor">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Professor">
+              <MappingFragment StoreEntitySet="Professor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="AcademicDegreeId" ColumnName="AcademicDegreeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="SocialNetWorkId" ColumnName="SocialNetWorkId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Province">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublicConsultation">
+            <EntityTypeMapping TypeName="IF4101PICESModel.PublicConsultation">
+              <MappingFragment StoreEntitySet="PublicConsultation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialNetworks">
+            <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworks">
+              <MappingFragment StoreEntitySet="SocialNetworks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="SocialNetWorkId" ColumnName="SocialNetWorkId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProfessorCourse" TypeName="IF4101PICESModel.ProfessorCourse" StoreEntitySet="ProfessorCourse">
+            <EndProperty Name="Course">
+              <ScalarProperty Name="Id" ColumnName="CourseId" />
+            </EndProperty>
+            <EndProperty Name="Professor">
+              <ScalarProperty Name="Id" ColumnName="ProfessorId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="StudentCourse" TypeName="IF4101PICESModel.StudentCourse" StoreEntitySet="StudentCourse">
+            <EndProperty Name="Course">
+              <ScalarProperty Name="Id" ColumnName="CourseId" />
+            </EndProperty>
+            <EndProperty Name="Student">
+              <ScalarProperty Name="Id" ColumnName="StudentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

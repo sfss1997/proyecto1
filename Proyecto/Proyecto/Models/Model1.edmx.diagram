@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15df3d4c69a34cfe81e3faa06388d456" Name="Diagram1">
+        <EntityTypeShape EntityType="IF4101PICESModel.AcademicDegree" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Appointment" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Canton" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Course" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.District" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Location" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.PrivateMessage" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Professor" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Province" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.PublicConsultation" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.SocialNetworks" Width="1.5" PointX="3.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Student" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Acade__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Cours__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Stude__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Canton__Province__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__District__Canton__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Canton__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Cours__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Cours__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Distri__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Provin__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Locat__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Locatio__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Stude__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Socia__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Stude__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__SocialN__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.ProfessorCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.StudentCourse" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
