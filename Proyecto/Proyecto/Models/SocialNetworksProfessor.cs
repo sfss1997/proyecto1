@@ -12,24 +12,17 @@ namespace Proyecto.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AcademicDegree
+    public partial class SocialNetworksProfessor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AcademicDegree()
-        {
-            this.Professor = new HashSet<Professor>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string Id { get; set; }
+        public string Url { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
+        public virtual Professor Professor { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Professor> Professor { get; set; }
     }
 }

@@ -26,14 +26,11 @@ namespace Proyecto.Models
         public string Id { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public System.DateTime Birthday { get; set; }
         public string Mail { get; set; }
-        public int IsAdministrator { get; set; }
         public string Image { get; set; }
-        public Nullable<int> SocialNetWorkId { get; set; }
-        public string Password { get; set; }
         public Nullable<int> LocationId { get; set; }
-        public string Status { get; set; }
+        public string RegistrationStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }
@@ -42,7 +39,8 @@ namespace Proyecto.Models
         public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PublicConsultation> PublicConsultation { get; set; }
-        public virtual SocialNetworks SocialNetworks { get; set; }
+        public virtual SocialNetworksStudent SocialNetworksStudent { get; set; }
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Course { get; set; }
     }

@@ -23,8 +23,14 @@ namespace Proyecto.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int CantonId { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreateAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         public virtual Canton Canton { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Location> Location { get; set; }
     }
