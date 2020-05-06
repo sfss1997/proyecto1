@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="~/Content/owl.carousel.css">
     <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
 
+    <link rel="stylesheet" type="text/css" href="~/Content/Style.css">
+
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="~/Content/templatemo-style.css">
 
@@ -62,8 +64,8 @@
                     <li><a href="#contact" class="smoothScroll">Contact</a></li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-light">Sing in</button>
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <button type="button" id="btnLog" data-toggle="modal" data-target="#myModal" class="btn">Sing in</button>
                 </ul>
             </div>
 
@@ -137,7 +139,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();" data-dismiss="modal">Add</button>
                     <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none" onclick="Update();">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
 
                 </div>
             </div>

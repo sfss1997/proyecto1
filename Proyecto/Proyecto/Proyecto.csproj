@@ -299,6 +299,7 @@
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\Student.js" />
+    <Content Include="Content\Style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
