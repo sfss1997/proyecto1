@@ -66,6 +66,17 @@ namespace Proyecto.Models
             }
         }
 
+        public GetStudentById_Result GetStudentById(String id)
+        {
+            using (var context = new Entities1())
+            {
+                var student = context.GetStudentById(id).Single();
+
+                return student;
+
+            }
+        }
+
         public List<GetProvinces_Result> ListAllProvinces()
         {
             using (var context = new Entities1())

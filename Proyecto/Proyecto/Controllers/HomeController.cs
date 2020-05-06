@@ -49,6 +49,7 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
+            SendEmail(student.Mail, "New user", student.StudentName + ", you have been successfully added, pending approval");
             return Json(StudentDataEF.Add(student,location,user), JsonRequestBehavior.AllowGet);
         }
 
@@ -59,7 +60,7 @@ namespace Proyecto.Controllers
 
         public JsonResult GetById(String id)
         {
-            var student = StudentDataEF.ListAllStudents().Find(s => s.Id.Equals(id));
+            var student = StudentDataEF.GetStudentById(id);
 
             return Json(student, JsonRequestBehavior.AllowGet);
         }
@@ -94,7 +95,8 @@ namespace Proyecto.Controllers
 
         public JsonResult UpdateStudentStatus(String id, String status)
         {
-         
+            var student = StudentDataEF.GetStudentById(id);
+            SendEmail(student.Mail,"Status Update",student.Name+ ", you have been "+status);
             return Json(StudentDataEF.UpdateStudentStatus(id,status), JsonRequestBehavior.AllowGet);
         }
 
