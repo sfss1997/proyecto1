@@ -252,5 +252,24 @@ namespace Proyecto.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStatusStudent", idParameter, registrationStatusParameter);
         }
+    
+        public virtual ObjectResult<GetProvinces_Result> GetProvinces()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("GetProvinces");
+        }
+    
+        public virtual ObjectResult<GetStudentById_Result> GetStudentById(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetProvinces_Result> SPGetProvinces()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("SPGetProvinces");
+        }
     }
 }

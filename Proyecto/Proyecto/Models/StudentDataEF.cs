@@ -66,21 +66,12 @@ namespace Proyecto.Models
             }
         }
 
-        public List<Province> ListAllProvinces()
+        public List<GetProvinces_Result> ListAllProvinces()
         {
-            List<Province> provinces = null;
-
             using (var context = new Entities1())
             {
-                provinces = context.Province.Select(ProvinceItem => new Province()
-                {
-                    Id = ProvinceItem.Id,
-                    Name = ProvinceItem.Name
-
-                }).ToList<Province>();
+                return context.SPGetProvinces().ToList();
             }
-
-            return provinces;
         }
 
         public List<GetCantonsByIdProvince_Result> ListCantonsByIdProvince(int id)

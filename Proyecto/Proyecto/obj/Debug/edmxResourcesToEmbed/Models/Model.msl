@@ -266,5 +266,37 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="IF4101PICESModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="IF4101PICESModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="UpdateStatusStudent" FunctionName="IF4101PICESModel.Store.UpdateStatusStudent" />
+    <FunctionImportMapping FunctionImportName="GetProvinces" FunctionName="IF4101PICESModel.Store.GetProvinces">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Name1" ColumnName="Name1" />
+          <ScalarProperty Name="Name2" ColumnName="Name2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetProvinces" FunctionName="IF4101PICESModel.Store.GetProvinces">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
