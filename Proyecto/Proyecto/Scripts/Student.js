@@ -80,6 +80,14 @@ function Add() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
+    var user = {
+
+        Id: $('#StudentId').val(),
+        Password: $('#Password').val(),
+        IsAdministrator: 0,
+        Status: "Activo"
+    };
+
     var student = {
 
         Id: $('#StudentId').val(),
@@ -97,15 +105,33 @@ function Add() {
         Province: province.Id,
         Canton: canton.Id,
         District: district.Id
-    };
+    };   
 
-    var user = {
+    $.ajax({
+        url: "/Home/Add",
+        data: JSON.stringify(user),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 
-        Id: $('#StudentId').val(),
-        Password: $('#Password').val(),
-        IsAdministrator: 0,
-        Status: "Activo"
-    };
+    $.ajax({
+        url: "/Home/Add",
+        data: JSON.stringify(location),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 
     $.ajax({
         url: "/Home/Add",

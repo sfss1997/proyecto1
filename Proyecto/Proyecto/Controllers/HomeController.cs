@@ -49,7 +49,7 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
-            SendEmail(student.Mail, "New user", student.StudentName + ", you have been successfully added, pending approval");
+            //SendEmail(student.Mail, "New user", student.StudentName + ", you have been successfully added, pending approval");
             return Json(StudentDataEF.Add(student,location,user), JsonRequestBehavior.AllowGet);
         }
 
