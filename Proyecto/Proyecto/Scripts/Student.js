@@ -80,58 +80,21 @@ function Add() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
-    var user = {
-
-        Id: $('#StudentId').val(),
-        Password: $('#Password').val(),
-        IsAdministrator: 0,
-        Status: "Activo"
-    };
-
     var student = {
-
         Id: $('#StudentId').val(),
         StudentName: $('#Name').val(),
         LastName: $('#LastName').val(),
         Birthday: $('#Birthday').val(),
         Mail: $('#Mail').val(),
         Image: "En espera",
-        RegistrationStatus: "En espera"
-        
-       
+        RegistrationStatus: "En espera",
+        Password: $('#Password').val(),
+        IsAdministrator: 0,
+        Status: "Activo",
+        ProvinceId: province.Id,
+        CantonId: canton.Id,
+        DistrictId: district.Id
     };
-
-    var location = {
-        Province: province.Id,
-        Canton: canton.Id,
-        District: district.Id
-    };   
-
-    $.ajax({
-        url: "/Home/Add",
-        data: JSON.stringify(user),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-        },
-        error: function (errorMessage) {
-            alert(errorMessage.responseText);
-        }
-    });
-
-    $.ajax({
-        url: "/Home/Add",
-        data: JSON.stringify(location),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-        },
-        error: function (errorMessage) {
-            alert(errorMessage.responseText);
-        }
-    });
 
     $.ajax({
         url: "/Home/Add",

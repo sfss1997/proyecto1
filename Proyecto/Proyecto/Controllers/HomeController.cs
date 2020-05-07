@@ -16,7 +16,7 @@ namespace Proyecto.Controllers
             return View();
         }
        
-        public void SendEmail(String to,String subject,String body)
+        public void SendEmail(String to, String subject, String body)
         {
             System.Net.Mail.MailMessage mmsg = new System.Net.Mail.MailMessage();
             mmsg.To.Add(to);
@@ -49,8 +49,8 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
-            //SendEmail(student.Mail, "New user", student.StudentName + ", you have been successfully added, pending approval");
-            return Json(StudentDataEF.Add(student,location,user), JsonRequestBehavior.AllowGet);
+            SendEmail(student.Mail, "New user", student.StudentName + ", you have been successfully added, pending approval");
+            return Json(StudentDataEF.Add(student, location, user), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Update(Student student, Location location, Users user)
@@ -97,7 +97,7 @@ namespace Proyecto.Controllers
         {
             var student = StudentDataEF.GetStudentById(id);
             SendEmail(student.Mail,"Status Update",student.Name+ ", you have been "+status);
-            return Json(StudentDataEF.UpdateStudentStatus(id,status), JsonRequestBehavior.AllowGet);
+            return Json(StudentDataEF.UpdateStudentStatus(id, status), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteStudent(String id)
