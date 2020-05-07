@@ -116,10 +116,10 @@ function Add() {
         ProvinceId: province.Id,
         CantonId: canton.Id,
         DistrictId: district.Id,
-        Image: "En espera",
-        RegistrationStatus: "En espera",
+        Image: $('#Image').val(),
+        RegistrationStatus: "Waiting approval",
         IsAdministrator: 0,
-        Status: "Activo",
+        Status: "Active",
     };
     var isValid = Validate();
 
@@ -192,6 +192,13 @@ function Validate() {
     else {
         $('#Mail').css('border-color', 'lightgrey');
 
+    } if ($('#Image').val().trim() == "") {
+        $('#Image').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Mail').css('border-color', 'lightgrey');
+
     }
     if ($('#Password').val().trim() == "") {
         $('#Password').css('border-color', 'Red');
@@ -225,5 +232,38 @@ function Validate() {
     return isValid;
 }
 
+function loadData() {
+    $.ajax({
+        url: "/Home/List",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            var html = '';
+            $.each(result, function (key, item) {
 
+                data = [
+                    item.StudentId,
+                    item.Name,
+                    item.Age,
+                    item.NationalityName,
+                    item.MajorName,
+                    '<td><a href="#" onclick="return GetById(' + item.StudentId + ')">Edit</a> | <a href="#" onclick="Delete(' + item.StudentId + ')">Delete</a></td>'
+                ];
+
+                dataSet.push(data);
+            });
+            $('#table').DataTable({
+                "searching": true,
+                data: dataSet,
+                "bDestroy": true
+            });
+
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
+}
 

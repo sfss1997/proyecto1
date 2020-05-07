@@ -941,6 +941,8 @@
       <Parameter Name="Id" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
+    <FunctionImport Name="SelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
+    <FunctionImport Name="SPSelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -988,5 +990,11 @@
     <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Name1" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Name2" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SelectStudentApproval_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

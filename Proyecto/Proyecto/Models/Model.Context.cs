@@ -271,5 +271,15 @@ namespace Proyecto.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("SPGetProvinces");
         }
+    
+        public virtual ObjectResult<SelectStudentApproval_Result> SelectStudentApproval()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentApproval_Result>("SelectStudentApproval");
+        }
+    
+        public virtual ObjectResult<SelectStudentApproval_Result> SPSelectStudentApproval()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentApproval_Result>("SPSelectStudentApproval");
+        }
     }
 }

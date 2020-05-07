@@ -695,6 +695,7 @@
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStudentApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1846,9 +1847,11 @@
           </FunctionImport>
           <FunctionImport Name="GetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
           <FunctionImport Name="GetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
-            <Parameter Name="Id" Mode="In" Type="String" />
+          <Parameter Name="Id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
+          <FunctionImport Name="SelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
+          <FunctionImport Name="SPSelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1896,6 +1899,12 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name1" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name2" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectStudentApproval_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2197,6 +2206,26 @@
               <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStudentApproval" FunctionName="IF4101PICESModel.Store.SelectStudentApproval">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudentApproval_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectStudentApproval" FunctionName="IF4101PICESModel.Store.SelectStudentApproval">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudentApproval_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

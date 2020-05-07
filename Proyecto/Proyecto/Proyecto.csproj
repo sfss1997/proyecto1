@@ -193,6 +193,9 @@
     <Compile Include="Models\PublicConsultation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SelectStudentApproval_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SelectStudent_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
