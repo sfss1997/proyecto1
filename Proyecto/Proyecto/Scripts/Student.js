@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     loadLocation();
+    loadData();
 });
 
 function clearTextBox() {
@@ -234,36 +235,41 @@ function Validate() {
 
 function loadData() {
     $.ajax({
-        url: "/Home/List",
+        url: "/Home/ListStudentApproval",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            dataSet = new Array();
             var html = '';
             $.each(result, function (key, item) {
-
-                data = [
-                    item.StudentId,
-                    item.Name,
-                    item.Age,
-                    item.NationalityName,
-                    item.MajorName,
-                    '<td><a href="#" onclick="return GetById(' + item.StudentId + ')">Edit</a> | <a href="#" onclick="Delete(' + item.StudentId + ')">Delete</a></td>'
-                ];
-
-                dataSet.push(data);
+                html += '<tr>';
+                html += '<td>' + item.Id + '</td>';
+                html += '<td>' + item.StudentName + '</td>';
+                html += '<td>' + item.LastName + '</td>';
+                html += '<td>' + item.Mail + '</td>';
+                html += '<td><a href="#" onclick="Update(' + item.Id + ');">Approval</a> | <a href="#" onclick="Delele(' + item.StudentId + ')">Deny</a></td>';
             });
-            $('#table').DataTable({
-                "searching": true,
-                data: dataSet,
-                "bDestroy": true
-            });
-
+            $('.tbody').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
         }
     })
 }
+
+function Update(Id) {
+
+    $.ajax({
+        url: "/Home/UpdateStudentStatus/" + Id,
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
 

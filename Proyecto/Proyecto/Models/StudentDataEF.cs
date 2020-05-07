@@ -85,6 +85,14 @@ namespace Proyecto.Models
             }
         }
 
+        public List<SelectStudentApproval_Result> ListStudentApproval()
+        {
+            using (var context = new Entities1())
+            {
+                return context.SPSelectStudentApproval().ToList();
+            }
+        }
+
         public List<GetCantonsByIdProvince_Result> ListCantonsByIdProvince(int id)
         {
 

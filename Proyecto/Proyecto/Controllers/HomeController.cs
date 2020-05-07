@@ -79,6 +79,13 @@ namespace Proyecto.Controllers
             return Json(provinces, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ListStudentApproval()
+        {
+            var students = StudentDataEF.ListStudentApproval();
+
+            return Json(students, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult ListCantonsByIdProvince(int id)
         {
             var cantons = StudentDataEF.ListCantonsByIdProvince(id);
@@ -96,7 +103,7 @@ namespace Proyecto.Controllers
         public JsonResult UpdateStudentStatus(String id, String status)
         {
             var student = StudentDataEF.GetStudentById(id);
-            SendEmail(student.Mail,"Status Update",student.Name+ ", you have been "+status);
+            SendEmail(student.Mail, "Status Update", student.Name+ ", you have been "+status);
             return Json(StudentDataEF.UpdateStudentStatus(id, status), JsonRequestBehavior.AllowGet);
         }
 
