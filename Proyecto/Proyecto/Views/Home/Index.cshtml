@@ -65,7 +65,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right pull-right">
-                    <button type="button" id="btnLog" data-toggle="modal" data-target="#myModal" class="btn">Sing in</button>
+                    <button type="button" id="btnLog" data-toggle="modal" data-target="#myModal" class="btn" onclick="clearTextBox();">Sign in</button>
+
                 </ul>
             </div>
 
@@ -97,7 +98,7 @@
 
                         <div class="form-group">
                             <label for="Name">Name</label>
-                            <input type="text" class="form-control" id="Name" placeholder="Name" value"reset">
+                            <input type="text" class="form-control" id="Name" placeholder="Name" autocomplete="off">
                         </div>
 
 
@@ -108,7 +109,7 @@
 
                         <div class="form-group">
                             <label for="Birthday">Birthday</label>
-                            <input type="text" class="form-control" id="Birthday" placeholder="Birthday">
+                            <input type="date" class="form-control" id="Birthday" placeholder="Birthday">
                         </div>
 
                         <div class="form-group">
@@ -120,7 +121,7 @@
 
                         <div class="form-group">
                             <label for="Password">Password</label>
-                            <input type="text" class="form-control" id="Password" placeholder="Password">
+                            <input type="password" class="form-control" id="Password" placeholder="Password">
                         </div>
 
                         <div class="form-group">
@@ -142,7 +143,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();" data-dismiss="modal">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
                     <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none" onclick="Update();">Update</button>
                     <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
 
@@ -199,6 +200,7 @@
 
 
     <!-- FEATURE -->
+    <!--
     <section id="feature">
         <div class="container">
             <div class="row">
@@ -230,9 +232,9 @@
             </div>
         </div>
     </section>
-
-
+        -->
     <!-- ABOUT -->
+    <!---
     <section id="about">
         <div class="container">
             <div class="row">
@@ -285,9 +287,9 @@
             </div>
         </div>
     </section>
-
-
+        -->
     <!-- TEAM -->
+    <!--
     <section id="team">
         <div class="container">
             <div class="row">
@@ -391,9 +393,9 @@
             </div>
         </div>
     </section>
-
-
+        -->
     <!-- Courses -->
+    <!--
     <section id="courses">
         <div class="container">
             <div class="row">
@@ -719,9 +721,9 @@
                 </div>
             </div>
     </section>
-
-
+    -->
     <!-- TESTIMONIAL -->
+    <!--
     <section id="testimonial">
         <div class="container">
             <div class="row">
@@ -794,9 +796,9 @@
                 </div>
             </div>
     </section>
-
-
+        -->
     <!-- CONTACT -->
+    <!--
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -831,80 +833,79 @@
             </div>
         </div>
     </section>
-
-
+        --->
     <!-- FOOTER -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
+    <!--
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
 
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>UCR Recinto Paraíso</h2>
-                        </div>
-                        <address>
-                            <p>Paraíso, Cartago, Costa Rica</p>
-                        </address>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-info">
+                            <div class="section-title">
+                                <h2>UCR Recinto Paraíso</h2>
+                            </div>
+                            <address>
+                                <p>Paraíso, Cartago, Costa Rica</p>
+                            </address>
 
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2020 Recinto Paraíso</p>
-
-                            <p>Design: TemplateMo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>Contact Info</h2>
-                        </div>
-                        <address>
-                            <p>+506 2511 7550</p>
-                            <p><a href="mailto:youremail.co">computing@ucr.ac.cr</a></p>
-                        </address>
-
-                        <div class="footer_menu">
-                            <h2>Quick Links</h2>
-                            <ul>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Investor</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Refund Policy</a></li>
+                            <ul class="social-icon">
+                                <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-instagram"></a></li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4 col-sm-12">
-                    <div class="footer-info newsletter-form">
-                        <div class="section-title">
-                            <h2>Newsletter Signup</h2>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <form action="#" method="get">
-                                    <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
-                                    <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                </form>
-                                <span><sup>*</sup> Please note - we do not spam your email.</span>
+                            <div class="copyright-text">
+                                <p>Copyright &copy; 2020 Recinto Paraíso</p>
+
+                                <p>Design: TemplateMo</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-info">
+                            <div class="section-title">
+                                <h2>Contact Info</h2>
+                            </div>
+                            <address>
+                                <p>+506 2511 7550</p>
+                                <p><a href="mailto:youremail.co">computing@ucr.ac.cr</a></p>
+                            </address>
+
+                            <div class="footer_menu">
+                                <h2>Quick Links</h2>
+                                <ul>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">Investor</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Refund Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="footer-info newsletter-form">
+                            <div class="section-title">
+                                <h2>Newsletter Signup</h2>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <form action="#" method="get">
+                                        <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
+                                        <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
+                                    </form>
+                                    <span><sup>*</sup> Please note - we do not spam your email.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-    </footer>
-
-
+        </footer>
+    -->
     <!-- SCRIPTS -->
     <script src="~/Scripts/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
