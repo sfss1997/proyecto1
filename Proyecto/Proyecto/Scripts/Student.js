@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
-
     loadLocation();
-
 });
 
 function clearTextBox() {
@@ -24,11 +22,10 @@ function clearTextBox() {
     $('#LastName').css('border-color', 'lightgrey');
     $('#Birthday').css('border-color', 'lightgrey');
     $('#Password').css('border-color', 'lightgrey');
+    $('#Mail').css('border-color', 'lightgrey');
     $('#ProvinceDropdown').css('border-color', 'lightgrey');
     $('#CantonDropdown').css('border-color', 'lightgrey');
     $('#DistrictDropdown').css('border-color', 'lightgrey');
-
-
 }
 
 function loadLocation() {
@@ -148,20 +145,18 @@ function Validate() {
     var isValid = true;
 
     var province = {
-        Province: $("#ProvinceDropdown option:selected").val()
+        Id: $("#ProvinceDropdown option:selected").val()
     };
 
     var canton = {
-        Canton: $("#CantonDropdown option:selected").val()
+        Id: $("#CantonDropdown option:selected").val()
     };
 
     var district = {
-        District: $("#DistrictDropdown option:selected").val()
+        Id: $("#DistrictDropdown option:selected").val()
     };
 
-    var Id = $('#StudentId').val();
-
-    if (Id.trim() == "") {
+    if ($('#StudentId').val().trim() == "") {
         $('#StudentId').css('border-color', 'Red');
         isValid = false;
     }
