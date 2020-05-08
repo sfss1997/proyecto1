@@ -26,6 +26,12 @@
     <Property Name="DateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Course" Relationship="Self.FK__Appointme__Cours__4A4E069C" FromRole="Appointment" ToRole="Course" />
     <NavigationProperty Name="Student" Relationship="Self.FK__Appointme__Stude__4959E263" FromRole="Appointment" ToRole="Student" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreateAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="IF4101PICESModel.FK__Appointme__Creat__5629CD9C" FromRole="Appointment" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__Appointme__Updat__571DF1D5" FromRole="Appointment" ToRole="Users" />
   </EntityType>
   <EntityType Name="Canton">
     <Key>
@@ -112,6 +118,12 @@
     <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="Self.FK__PrivateMe__Cours__4E1E9780" FromRole="PrivateMessage" ToRole="Course" />
     <NavigationProperty Name="Student" Relationship="Self.FK__PrivateMe__Stude__4D2A7347" FromRole="PrivateMessage" ToRole="Student" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreateAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="IF4101PICESModel.FK__PrivateMe__Creat__5FB337D6" FromRole="PrivateMessage" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__PrivateMe__Updat__60A75C0F" FromRole="PrivateMessage" ToRole="Users" />
   </EntityType>
   <EntityType Name="Professor">
     <Key>
@@ -178,6 +190,12 @@
     <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="Self.FK__PublicCon__Cours__51EF2864" FromRole="PublicConsultation" ToRole="Course" />
     <NavigationProperty Name="Student" Relationship="Self.FK__PublicCon__Stude__50FB042B" FromRole="PublicConsultation" ToRole="Student" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreateAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="IF4101PICESModel.FK__PublicCon__Creat__6754599E" FromRole="PublicConsultation" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__PublicCon__Updat__68487DD7" FromRole="PublicConsultation" ToRole="Users" />
   </EntityType>
   <EntityType Name="SocialNetworksProfessor">
     <Key>
@@ -200,6 +218,12 @@
     <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Student" Relationship="Self.FK__SocialNetwor__Id__42ACE4D4" FromRole="SocialNetworksStudent" ToRole="Student" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreateAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="IF4101PICESModel.FK__SocialNet__Creat__6B24EA82" FromRole="SocialNetworksStudent" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__SocialNet__Updat__6C190EBB" FromRole="SocialNetworksStudent" ToRole="Users" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -220,6 +244,12 @@
     <NavigationProperty Name="SocialNetworksStudent" Relationship="Self.FK__SocialNetwor__Id__42ACE4D4" FromRole="Student" ToRole="SocialNetworksStudent" />
     <NavigationProperty Name="Users" Relationship="Self.FK__Student__Id__3FD07829" FromRole="Student" ToRole="Users" />
     <NavigationProperty Name="Course" Relationship="Self.StudentCourse" FromRole="Student" ToRole="Course" />
+    <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CreateAt" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__Student__Created__6D0D32F4" FromRole="Student" ToRole="Users" />
+    <NavigationProperty Name="Users2" Relationship="IF4101PICESModel.FK__Student__Updated__6E01572D" FromRole="Student" ToRole="Users" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -258,6 +288,16 @@
     <NavigationProperty Name="SocialNetworksProfessor" Relationship="Self.FK__SocialNet__Creat__345EC57D" FromRole="Users" ToRole="SocialNetworksProfessor" />
     <NavigationProperty Name="SocialNetworksProfessor1" Relationship="Self.FK__SocialNet__Updat__3552E9B6" FromRole="Users" ToRole="SocialNetworksProfessor" />
     <NavigationProperty Name="Student" Relationship="Self.FK__Student__Id__3FD07829" FromRole="Users" ToRole="Student" />
+    <NavigationProperty Name="Appointment" Relationship="IF4101PICESModel.FK__Appointme__Creat__5629CD9C" FromRole="Users" ToRole="Appointment" />
+    <NavigationProperty Name="Appointment1" Relationship="IF4101PICESModel.FK__Appointme__Updat__571DF1D5" FromRole="Users" ToRole="Appointment" />
+    <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__PrivateMe__Creat__5FB337D6" FromRole="Users" ToRole="PrivateMessage" />
+    <NavigationProperty Name="PrivateMessage1" Relationship="IF4101PICESModel.FK__PrivateMe__Updat__60A75C0F" FromRole="Users" ToRole="PrivateMessage" />
+    <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Creat__6754599E" FromRole="Users" ToRole="PublicConsultation" />
+    <NavigationProperty Name="PublicConsultation1" Relationship="IF4101PICESModel.FK__PublicCon__Updat__68487DD7" FromRole="Users" ToRole="PublicConsultation" />
+    <NavigationProperty Name="SocialNetworksStudent" Relationship="IF4101PICESModel.FK__SocialNet__Creat__6B24EA82" FromRole="Users" ToRole="SocialNetworksStudent" />
+    <NavigationProperty Name="SocialNetworksStudent1" Relationship="IF4101PICESModel.FK__SocialNet__Updat__6C190EBB" FromRole="Users" ToRole="SocialNetworksStudent" />
+    <NavigationProperty Name="Student1" Relationship="IF4101PICESModel.FK__Student__Created__6D0D32F4" FromRole="Users" ToRole="Student" />
+    <NavigationProperty Name="Student2" Relationship="IF4101PICESModel.FK__Student__Updated__6E01572D" FromRole="Users" ToRole="Student" />
   </EntityType>
   <Association Name="FK__AcademicD__Creat__1E6F845E">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -943,6 +983,46 @@
     <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
     <FunctionImport Name="SelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
     <FunctionImport Name="SPSelectStudentApproval" ReturnType="Collection(IF4101PICESModel.SelectStudentApproval_Result)" />
+    <AssociationSet Name="FK__Appointme__Creat__5629CD9C" Association="IF4101PICESModel.FK__Appointme__Creat__5629CD9C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Updat__571DF1D5" Association="IF4101PICESModel.FK__Appointme__Updat__571DF1D5">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PrivateMe__Creat__5FB337D6" Association="IF4101PICESModel.FK__PrivateMe__Creat__5FB337D6">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PrivateMe__Updat__60A75C0F" Association="IF4101PICESModel.FK__PrivateMe__Updat__60A75C0F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PublicCon__Creat__6754599E" Association="IF4101PICESModel.FK__PublicCon__Creat__6754599E">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PublicCon__Updat__68487DD7" Association="IF4101PICESModel.FK__PublicCon__Updat__68487DD7">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Creat__6B24EA82" Association="IF4101PICESModel.FK__SocialNet__Creat__6B24EA82">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Updat__6C190EBB" Association="IF4101PICESModel.FK__SocialNet__Updat__6C190EBB">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__Created__6D0D32F4" Association="IF4101PICESModel.FK__Student__Created__6D0D32F4">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__Updated__6E01572D" Association="IF4101PICESModel.FK__Student__Updated__6E01572D">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -997,4 +1077,124 @@
     <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
   </ComplexType>
+  <Association Name="FK__Appointme__Creat__5629CD9C">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Updat__571DF1D5">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PrivateMe__Creat__5FB337D6">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrivateMessage">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PrivateMe__Updat__60A75C0F">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrivateMessage">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PublicCon__Creat__6754599E">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PublicConsultation" Role="PublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PublicConsultation">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PublicCon__Updat__68487DD7">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PublicConsultation" Role="PublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PublicConsultation">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Creat__6B24EA82">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksStudent" Role="SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Updat__6C190EBB">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksStudent" Role="SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__Created__6D0D32F4">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__Updated__6E01572D">
+    <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

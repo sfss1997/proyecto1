@@ -31,6 +31,10 @@ namespace Proyecto.Models
         public string Image { get; set; }
         public Nullable<int> LocationId { get; set; }
         public string RegistrationStatus { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreateAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }
@@ -43,5 +47,7 @@ namespace Proyecto.Models
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Course { get; set; }
+        public virtual Users Users1 { get; set; }
+        public virtual Users Users2 { get; set; }
     }
 }

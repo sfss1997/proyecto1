@@ -59,6 +59,16 @@
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNetwor__Id__42ACE4D4" ManuallyRouted="false" />
         <AssociationConnector Association="IF4101PICESModel.FK__Student__Id__3FD07829" ManuallyRouted="false" />
         <AssociationConnector Association="IF4101PICESModel.StudentCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Creat__5629CD9C" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Updat__571DF1D5" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Creat__5FB337D6" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Updat__60A75C0F" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Creat__6754599E" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Updat__68487DD7" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__6B24EA82" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__6C190EBB" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Created__6D0D32F4" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Updated__6E01572D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

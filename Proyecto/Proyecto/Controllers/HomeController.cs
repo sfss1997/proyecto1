@@ -103,8 +103,8 @@ namespace Proyecto.Controllers
         public JsonResult UpdateStudentStatus(String id, String status)
         {
             var student = StudentDataEF.GetStudentById(id);
-            SendEmail(student.Mail, "Status Update", student.Name+ ", you have been "+status);
-            return Json(StudentDataEF.UpdateStudentStatus(id, status), JsonRequestBehavior.AllowGet);
+            SendEmail(student.Mail, "Status Update", student.Name + ", you have been "+status);
+            return Json(StudentDataEF.UpdateStudentStatus(id, "Approved"), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteStudent(String id)

@@ -24,6 +24,7 @@ function clearTextBox() {
     $('#Birthday').css('border-color', 'lightgrey');
     $('#Password').css('border-color', 'lightgrey');
     $('#Mail').css('border-color', 'lightgrey');
+    $('#Image').css('border-color', 'lightgrey');
     $('#ProvinceDropdown').css('border-color', 'lightgrey');
     $('#CantonDropdown').css('border-color', 'lightgrey');
     $('#DistrictDropdown').css('border-color', 'lightgrey');
@@ -240,6 +241,7 @@ function loadData() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            dataSet = new Array();
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
@@ -247,7 +249,7 @@ function loadData() {
                 html += '<td>' + item.StudentName + '</td>';
                 html += '<td>' + item.LastName + '</td>';
                 html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="Update(' + item.Id + ');">Approval</a> | <a href="#" onclick="Delele(' + item.StudentId + ')">Deny</a></td>';
+                html += '<td><a href="#" onclick="UpdateStatus(' + item.Id + ')">Approval</a> | <a href="#" onclick="UpdateStatus(' + item.Id + ')">Deny</a></td>';
             });
             $('.tbody').html(html);
         },
@@ -257,10 +259,10 @@ function loadData() {
     })
 }
 
-function Update(Id) {
+function UpdateStatus(id) {
 
     $.ajax({
-        url: "/Home/UpdateStudentStatus/" + Id,
+        url: "/Home/UpdateStudentStatus/" + id,
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",

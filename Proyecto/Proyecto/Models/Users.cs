@@ -35,6 +35,16 @@ namespace Proyecto.Models
             this.Province1 = new HashSet<Province>();
             this.SocialNetworksProfessor = new HashSet<SocialNetworksProfessor>();
             this.SocialNetworksProfessor1 = new HashSet<SocialNetworksProfessor>();
+            this.Appointment = new HashSet<Appointment>();
+            this.Appointment1 = new HashSet<Appointment>();
+            this.PrivateMessage = new HashSet<PrivateMessage>();
+            this.PrivateMessage1 = new HashSet<PrivateMessage>();
+            this.PublicConsultation = new HashSet<PublicConsultation>();
+            this.PublicConsultation1 = new HashSet<PublicConsultation>();
+            this.SocialNetworksStudent = new HashSet<SocialNetworksStudent>();
+            this.SocialNetworksStudent1 = new HashSet<SocialNetworksStudent>();
+            this.Student1 = new HashSet<Student>();
+            this.Student2 = new HashSet<Student>();
         }
     
         public string Id { get; set; }
@@ -79,5 +89,25 @@ namespace Proyecto.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocialNetworksProfessor> SocialNetworksProfessor1 { get; set; }
         public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointment1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrivateMessage> PrivateMessage1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PublicConsultation> PublicConsultation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PublicConsultation> PublicConsultation1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SocialNetworksStudent> SocialNetworksStudent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SocialNetworksStudent> SocialNetworksStudent1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student2 { get; set; }
     }
 }
