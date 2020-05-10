@@ -20,10 +20,11 @@ namespace Proyecto.Models
             this.Appointment = new HashSet<Appointment>();
             this.PrivateMessage = new HashSet<PrivateMessage>();
             this.PublicConsultation = new HashSet<PublicConsultation>();
-            this.Course = new HashSet<Course>();
+            this.StudentCourse = new HashSet<StudentCourse>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
         public System.DateTime Birthday { get; set; }
@@ -31,9 +32,9 @@ namespace Proyecto.Models
         public string Image { get; set; }
         public Nullable<int> LocationId { get; set; }
         public string RegistrationStatus { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,9 +46,9 @@ namespace Proyecto.Models
         public virtual ICollection<PublicConsultation> PublicConsultation { get; set; }
         public virtual SocialNetworksStudent SocialNetworksStudent { get; set; }
         public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Course { get; set; }
         public virtual Users Users1 { get; set; }
         public virtual Users Users2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentCourse> StudentCourse { get; set; }
     }
 }

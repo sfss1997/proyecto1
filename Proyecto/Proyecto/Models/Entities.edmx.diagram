@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23891414d1904d30b8c99b3808eeb399" Name="Diagram1">
+        <EntityTypeShape EntityType="IF4101PICESModel.AcademicDegree" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Appointment" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Canton" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Course" Width="1.5" PointX="3" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.District" Width="1.5" PointX="10.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Location" Width="1.5" PointX="12.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.PrivateMessage" Width="1.5" PointX="17.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Professor" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.ProfessorCourse" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Province" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.PublicConsultation" Width="1.5" PointX="20.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.SocialNetworksProfessor" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.SocialNetworksStudent" Width="1.5" PointX="17.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Student" Width="1.5" PointX="15" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.StudentCourse" Width="1.5" PointX="17.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101PICESModel.Users" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="IF4101PICESModel.FK__AcademicD__Creat__1975C517" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__AcademicD__Updat__1A69E950" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Acade__7EC1CEDB" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Cours__10E07F16" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Creat__1B5E0D89" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Stude__0FEC5ADD" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Updat__1C5231C2" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Canton__CreatedB__1D4655FB" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Canton__Province__69C6B1F5" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Canton__UpdatedB__1E3A7A34" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__District__Canton__6CA31EA0" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Canton__7073AF84" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Course__CreatedB__1F2E9E6D" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Course__UpdatedB__2022C2A6" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Cours__14B10FFA" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Cours__0D0FEE32" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Cours__1881A0DE" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__StudentCo__Cours__093F5D4E" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__District__Create__2116E6DF" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__District__Update__220B0B18" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Distri__7167D3BD" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Create__22FF2F51" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Provin__6F7F8B4B" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Location__Update__23F3538A" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Locat__7FB5F314" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Locatio__762C88DA" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Creat__24E777C3" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Updat__25DB9BFC" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Creat__26CFC035" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Id__00AA174D" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Profe__0C1BC9F9" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Updat__27C3E46E" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNetwor__Id__038683F8" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Creat__28B808A7" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Professor__Updat__29AC2CE0" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Province__Create__2AA05119" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Province__Update__2B947552" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Creat__2C88998B" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Updat__2D7CBDC4" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__2E70E1FD" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__2F650636" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__30592A6F" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__314D4EA8" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Created__324172E1" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Id__7720AD13" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Student__Updated__3335971A" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__StudentCo__Stude__084B3915" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__StudentCo__Creat__3429BB53" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101PICESModel.FK__StudentCo__Updat__351DDF8C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

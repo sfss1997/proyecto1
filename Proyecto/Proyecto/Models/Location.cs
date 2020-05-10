@@ -25,9 +25,9 @@ namespace Proyecto.Models
         public Nullable<int> ProvinceId { get; set; }
         public Nullable<int> CantonId { get; set; }
         public Nullable<int> DistrictId { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         public virtual Canton Canton { get; set; }

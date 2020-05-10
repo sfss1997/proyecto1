@@ -10,19 +10,12 @@
 namespace Proyecto.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SocialNetworksProfessor
+    public partial class StudentApproval_Result
     {
         public int Id { get; set; }
-        public string Url { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreateAt { get; set; }
-        public Nullable<int> UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
-    
-        public virtual Professor Professor { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
+        public string StudentName { get; set; }
+        public string LastName { get; set; }
+        public string Mail { get; set; }
     }
 }

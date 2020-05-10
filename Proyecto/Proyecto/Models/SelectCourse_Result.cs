@@ -11,11 +11,13 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class SelectStudentApproval_Result
+    public partial class SelectCourse_Result
     {
-        public string Id { get; set; }
-        public string StudentName { get; set; }
-        public string LastName { get; set; }
-        public string Mail { get; set; }
+        public int Id { get; set; }
+        public string Initials { get; set; }
+        public string Name { get; set; }
+        public int IsActive { get; set; }
+        public int Credits { get; set; }
+        public int Cycle { get; set; }
     }
 }

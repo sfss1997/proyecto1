@@ -4,27 +4,30 @@
 });
 
 function clearTextBox() {
+    $('#myModal').modal('show');
 
-    $('#StudentId').val("");
+    $('#StudentCard').val("");
     $('#Name').val("");
     $('#LastName').val("");
     $('#Birthday').val("");
     $('#Mail').val("");
+    $('#Username').val("");
     $('#Password').val("");
 
     loadLocation();
-    var s = '<option value="-1">Please Select</option>';
+    var s = '<option value="-1">Seleccione una opción</option>';
     $("#ProvinceDropdown").html(s);
     $("#CantonDropdown").html(s);
     $("#DistrictDropdown").html(s);
 
-    $('#StudentId').css('border-color', 'lightgrey');
+    $('#StudentCard').css('border-color', 'lightgrey');
     $('#Name').css('border-color', 'lightgrey');
     $('#LastName').css('border-color', 'lightgrey');
     $('#Birthday').css('border-color', 'lightgrey');
     $('#Password').css('border-color', 'lightgrey');
     $('#Mail').css('border-color', 'lightgrey');
     $('#Image').css('border-color', 'lightgrey');
+    $('#Username').css('border-color', 'lightgrey');
     $('#ProvinceDropdown').css('border-color', 'lightgrey');
     $('#CantonDropdown').css('border-color', 'lightgrey');
     $('#DistrictDropdown').css('border-color', 'lightgrey');
@@ -38,7 +41,7 @@ function loadLocation() {
             url: "/Home/ListAllProvinces",
             data: "{}",
             success: function (data) {
-                var s = '<option value="-1">Please Select</option>';
+                var s = '<option value="-1">Seleccione una opción</option>';
                 for (var i = 0; i < data.length; i++) {
                     s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
@@ -56,7 +59,7 @@ function loadLocation() {
                             url: "/Home/ListCantonsByIdProvince/" + province.Id,
                             data: "{}",
                             success: function (data) {
-                                var s = '<option value="-1">Please Select</option>';
+                                var s = '<option value="-1">Seleccione una opción</option>';
                                 for (var i = 0; i < data.length; i++) {
                                     s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                                 }
@@ -74,7 +77,7 @@ function loadLocation() {
                                             url: "/Home/ListDistrictsByIdCanton/" + canton.Id,
                                             data: "{}",
                                             success: function (data) {
-                                                var s = '<option value="-1">Please Select</option>';
+                                                var s = '<option value="-1">Seleccione una opción</option>';
                                                 for (var i = 0; i < data.length; i++) {
                                                     s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                                                 }
@@ -109,7 +112,7 @@ function Add() {
     };
 
     var student = {
-        Id: $('#StudentId').val(),
+        StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
         LastName: $('#LastName').val(),
         Birthday: $('#Birthday').val(),
@@ -119,9 +122,10 @@ function Add() {
         CantonId: canton.Id,
         DistrictId: district.Id,
         Image: $('#Image').val(),
-        RegistrationStatus: "Waiting approval",
+        Username: $('#Username').val(),
+        RegistrationStatus: "En espera",
         IsAdministrator: 0,
-        Status: "Active",
+        Status: "Activo",
     };
     var isValid = Validate();
 
@@ -133,6 +137,7 @@ function Add() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                loadData();
                 $('#myModal').modal('hide');
                 $('.modal-backdrop').hide();
             },
@@ -158,12 +163,12 @@ function Validate() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
-    if ($('#StudentId').val().trim() == "") {
-        $('#StudentId').css('border-color', 'Red');
+    if ($('#StudentCard').val().trim() == "") {
+        $('#StudentCard').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#StudentId').css('border-color', 'lightgrey');
+        $('#StudentCard').css('border-color', 'lightgrey');
     }
     if ($('#Name').val().trim() == "") {
         $('#Name').css('border-color', 'Red');
@@ -210,6 +215,13 @@ function Validate() {
         $('#Password').css('border-color', 'lightgrey');
 
     }
+    if ($('#Username').val().trim() == "") {
+        $('#Username').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Username').css('border-color', 'lightgrey');
+    }
     if (province.Id == "-1") {
         $('#ProvinceDropdown').css('border-color', 'Red');
         isValid = false;
@@ -249,7 +261,7 @@ function loadData() {
                 html += '<td>' + item.StudentName + '</td>';
                 html += '<td>' + item.LastName + '</td>';
                 html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="UpdateStatus(' + item.Id + ')">Approval</a> | <a href="#" onclick="UpdateStatus(' + item.Id + ')">Deny</a></td>';
+                html += '<td><a href="#" onclick="UpdateStatus(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="UpdateStatus(' + item.Id + ')">Rechazar</a></td>';
             });
             $('.tbody').html(html);
         },
@@ -267,6 +279,7 @@ function UpdateStatus(id) {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            loadData();
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

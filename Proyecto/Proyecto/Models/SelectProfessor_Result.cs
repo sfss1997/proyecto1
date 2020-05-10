@@ -11,12 +11,16 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class SelectProfessor_Result
     {
-        public string Database { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public string LastName { get; set; }
+        public string Mail { get; set; }
+        public string Image { get; set; }
+        public string Name1 { get; set; }
+        public string Name2 { get; set; }
+        public string Name3 { get; set; }
+        public string Name4 { get; set; }
     }
 }

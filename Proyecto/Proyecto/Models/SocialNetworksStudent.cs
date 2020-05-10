@@ -14,15 +14,15 @@ namespace Proyecto.Models
     
     public partial class SocialNetworksStudent
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Url { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
-        public virtual Student Student { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

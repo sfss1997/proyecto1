@@ -12,9 +12,9 @@ namespace Proyecto.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProfessorCourse
+    public partial class StudentCourse
     {
-        public int ProfessorId { get; set; }
+        public int StudentId { get; set; }
         public int CourseId { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
@@ -22,7 +22,7 @@ namespace Proyecto.Models
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         public virtual Course Course { get; set; }
-        public virtual Professor Professor { get; set; }
+        public virtual Student Student { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
     }

@@ -11,9 +11,11 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class GetProfessorById_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Mail { get; set; }
+        public string AcademicDegree { get; set; }
     }
 }

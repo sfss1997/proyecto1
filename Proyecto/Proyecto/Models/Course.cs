@@ -21,17 +21,18 @@ namespace Proyecto.Models
             this.PrivateMessage = new HashSet<PrivateMessage>();
             this.ProfessorCourse = new HashSet<ProfessorCourse>();
             this.PublicConsultation = new HashSet<PublicConsultation>();
-            this.Student = new HashSet<Student>();
+            this.StudentCourse = new HashSet<StudentCourse>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string Initials { get; set; }
         public string Name { get; set; }
         public int IsActive { get; set; }
         public int Credits { get; set; }
         public int Cycle { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,6 +46,6 @@ namespace Proyecto.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PublicConsultation> PublicConsultation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<StudentCourse> StudentCourse { get; set; }
     }
 }

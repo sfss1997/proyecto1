@@ -13,7 +13,8 @@ namespace Proyecto.Models
     
     public partial class SelectStudent_Result
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
         public System.DateTime Birthday { get; set; }

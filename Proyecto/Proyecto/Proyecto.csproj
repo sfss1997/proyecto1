@@ -134,92 +134,101 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AcademicDegree.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Appointment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Canton.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\District.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\GetCantonsByIdProvince_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCourseById_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetDistrictsByIdCanton_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProfessorById_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetProvinces_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetStudentById_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Location.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PrivateMessage.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Professor.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProfessorCourse.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Province.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PublicConsultation.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SelectStudentApproval_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Models\SelectCourse_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelectProfessor_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectStudent_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SocialNetworksProfessor.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SocialNetworksStudent.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentApproval_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentCourse.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentDataEF.cs" />
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -261,15 +270,15 @@
     <Content Include="images\tst-image2.jpg" />
     <Content Include="images\tst-image3.jpg" />
     <Content Include="images\tst-image4.jpg" />
-    <Content Include="Models\Model.Context.tt">
+    <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Entities.edmx</DependentUpon>
+      <LastGenOutput>Entities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.tt">
+    <Content Include="Models\Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>Entities.edmx</DependentUpon>
+      <LastGenOutput>Entities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -278,12 +287,12 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\Model.edmx">
+    <EntityDeploy Include="Models\Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>Entities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="Models\Entities.edmx.diagram">
+      <DependentUpon>Entities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />

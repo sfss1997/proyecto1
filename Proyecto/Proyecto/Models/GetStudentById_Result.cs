@@ -13,15 +13,10 @@ namespace Proyecto.Models
     
     public partial class GetStudentById_Result
     {
-        public string Id { get; set; }
+        public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
-        public System.DateTime Birthday { get; set; }
         public string Mail { get; set; }
-        public string Image { get; set; }
         public string RegistrationStatus { get; set; }
-        public string Name { get; set; }
-        public string Name1 { get; set; }
-        public string Name2 { get; set; }
     }
 }
