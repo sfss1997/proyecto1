@@ -332,5 +332,145 @@ namespace Proyecto.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("SPStudentApproval");
         }
+    
+        public virtual ObjectResult<SelectCourse_Result> SPSelectCourse()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCourse_Result>("SPSelectCourse");
+        }
+    
+        public virtual int SPDeleteCourse(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteCourse", idParameter);
+        }
+    
+        public virtual ObjectResult<GetCourseById_Result> SPGetCourseById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCourseById_Result>("SPGetCourseById", idParameter);
+        }
+    
+        public virtual int SPInsertUpdateCourse(Nullable<int> id, string initials, string name, string activeInactive, Nullable<int> credits, string cycleName, string action)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var initialsParameter = initials != null ?
+                new ObjectParameter("Initials", initials) :
+                new ObjectParameter("Initials", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var activeInactiveParameter = activeInactive != null ?
+                new ObjectParameter("ActiveInactive", activeInactive) :
+                new ObjectParameter("ActiveInactive", typeof(string));
+    
+            var creditsParameter = credits.HasValue ?
+                new ObjectParameter("Credits", credits) :
+                new ObjectParameter("Credits", typeof(int));
+    
+            var cycleNameParameter = cycleName != null ?
+                new ObjectParameter("CycleName", cycleName) :
+                new ObjectParameter("CycleName", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateCourse", idParameter, initialsParameter, nameParameter, activeInactiveParameter, creditsParameter, cycleNameParameter, actionParameter);
+        }
+    
+        public virtual int SPDeleteProfessor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteProfessor", idParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorById_Result> SPGetProfessorById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorById_Result>("SPGetProfessorById", idParameter);
+        }
+    
+        public virtual int SPInsertUpdateProfessor(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string name, string lastName, string mail, string image, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, Nullable<int> academicDegree, string action)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var isAdministratorParameter = isAdministrator.HasValue ?
+                new ObjectParameter("IsAdministrator", isAdministrator) :
+                new ObjectParameter("IsAdministrator", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var provinceIdParameter = provinceId.HasValue ?
+                new ObjectParameter("ProvinceId", provinceId) :
+                new ObjectParameter("ProvinceId", typeof(int));
+    
+            var cantonIdParameter = cantonId.HasValue ?
+                new ObjectParameter("CantonId", cantonId) :
+                new ObjectParameter("CantonId", typeof(int));
+    
+            var districtIdParameter = districtId.HasValue ?
+                new ObjectParameter("DistrictId", districtId) :
+                new ObjectParameter("DistrictId", typeof(int));
+    
+            var academicDegreeParameter = academicDegree.HasValue ?
+                new ObjectParameter("AcademicDegree", academicDegree) :
+                new ObjectParameter("AcademicDegree", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateProfessor", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, nameParameter, lastNameParameter, mailParameter, imageParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, academicDegreeParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<SelectProfessor_Result> SPSelectProfessor()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessor_Result>("SPSelectProfessor");
+        }
     }
 }

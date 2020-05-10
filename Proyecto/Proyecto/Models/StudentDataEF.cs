@@ -81,13 +81,7 @@ namespace Proyecto.Models
             }
         }
 
-        public List<GetProvinces_Result> ListAllProvinces()
-        {
-            using (var context = new Entities())
-            {
-                return context.SPGetProvinces().ToList();
-            }
-        }
+        
 
         public List<StudentApproval_Result> ListStudentApproval()
         {
@@ -97,31 +91,6 @@ namespace Proyecto.Models
             }
         }
 
-        public List<GetCantonsByIdProvince_Result> ListCantonsByIdProvince(int id)
-        {
-
-            using (var context = new Entities())
-            {
-                var cantons = context.GetCantonsByIdProvince(id).ToList();
-
-                return cantons;
-
-            }
-
-        }
-
-        public List<GetDistrictsByIdCanton_Result> ListDistrictsByIdCanton(int id)
-        {
-
-            using (var context = new Entities())
-            {
-                var districts = context.GetDistrictsByIdCanton(id).ToList();
-
-                return districts;
-
-            }
-
-        }
 
         public int UpdateStudentStatus(int id, String status)
         {
