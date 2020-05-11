@@ -64,7 +64,10 @@
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <button type="button" id="btnLog" class="btn" onclick="clearTextBox();">Registrarse</button>
                     <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" class="btn">Inicia Sesión</button>
-                    <button type="button" id="btnProfessor" data-toggle="modal" data-target="#myModalProfessor" class="btn">Registrar profesor</button>
+                    <button type="button" id="btnProfessor" data-toggle="modal" data-target="#myModalProfessor" class="btn">Registrar profesor nuevo</button>
+                    <button type="button" id="btnCourse" data-toggle="modal" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
+
+                   
                 </ul>
             </div>
 
@@ -113,6 +116,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     <!---Student Register-->
@@ -295,6 +300,65 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <!--Course Register---->
+    <div class="modal fade" id="myModalCourse" tabindex="-1" role="dialog" hidden>
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h4 id="HeaderTitleAdd" class="modal-title"> Registro de curso nuevo </h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group">
+                                <label for="IdCourse">Id</label>
+                                <input type="text" class="form-control" id="IdCourse" placeholder="Ingrese el nuevo courso" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CourseInitials">Siglas</label>
+                                <input type="text" class="form-control" id="CourseInitials" placeholder="Ingrese las siglas del curso" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CourseName">Nombre</label>
+                                <input type="text" class="form-control" id="CourseName" placeholder="Ingrese el nombre del curso" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="IsCourseActive">Estado de curso</label>
+                                <select class="form-control" id="IsActiveDropdown" name="IsActiveDropdown"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CourseCredits">Créditos</label>
+                                <input type="text" class="form-control" id="CourseCredits" placeholder="Ingrese los créditos del curso" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CourseCycle">Siglas</label>
+                                <input type="text" class="form-control" id="CourseCycle" placeholder="Ingrese el ciclo lectivo del curso" autocomplete="off">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnAdd">Registrar curso</button>
+                        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
         </div>
     </div>
 

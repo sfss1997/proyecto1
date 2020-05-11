@@ -28,6 +28,31 @@
     color: white;
    }
 
+#btnProfessor {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+
+#btnCourse {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnCourse:hover {
+        background: #a9cce3;
+        color: white;
+    }
+
 #btnAdd {
     background: #a9cce3;
     border-color: black;
