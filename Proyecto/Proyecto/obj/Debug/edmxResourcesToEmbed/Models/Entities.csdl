@@ -1250,6 +1250,45 @@
     <FunctionImport Name="SPSelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
     <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
     <FunctionImport Name="SPStudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
+    <FunctionImport Name="SPSelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
+    <FunctionImport Name="SPDeleteCourse">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetCourseById" ReturnType="Collection(IF4101PICESModel.GetCourseById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPInsertUpdateCourse">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Initials" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ActiveInactive" Mode="In" Type="String" />
+      <Parameter Name="Credits" Mode="In" Type="Int32" />
+      <Parameter Name="CycleName" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPDeleteProfessor">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPInsertUpdateProfessor">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IsAdministrator" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+      <Parameter Name="CantonId" Mode="In" Type="Int32" />
+      <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+      <Parameter Name="AcademicDegree" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101PICESModel.SelectProfessor_Result)" />
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />

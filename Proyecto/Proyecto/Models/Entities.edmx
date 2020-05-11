@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IF4101PICESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IF4101PICESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicDegree">
           <Key>
             <PropertyRef Name="Id" />
@@ -1149,8 +1149,7 @@
             <End Role="StudentCourse" EntitySet="StudentCourse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IF4101PICESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2326,29 +2325,29 @@
             <End Role="StudentCourse" EntitySet="StudentCourse" />
           </AssociationSet>
           <FunctionImport Name="DeleteCourse">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProfessor">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteStudent">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCantonsByIdProvince" ReturnType="Collection(IF4101PICESModel.GetCantonsByIdProvince_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCourseById" ReturnType="Collection(IF4101PICESModel.GetCourseById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetDistrictsByIdCanton" ReturnType="Collection(IF4101PICESModel.GetDistrictsByIdCanton_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
           <FunctionImport Name="GetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="InsertUpdateCourse">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -2406,10 +2405,10 @@
           <FunctionImport Name="SPStudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
           <FunctionImport Name="SPSelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
           <FunctionImport Name="SPDeleteCourse">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetCourseById" ReturnType="Collection(IF4101PICESModel.GetCourseById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPInsertUpdateCourse">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -2421,10 +2420,10 @@
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPDeleteProfessor">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPInsertUpdateProfessor">
             <Parameter Name="Id" Mode="In" Type="Int32" />

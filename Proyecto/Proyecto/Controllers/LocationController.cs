@@ -15,7 +15,7 @@ namespace Proyecto.Controllers
             return View();
         }
 
-       |LocationDataEF LocationDataEF = new LocationDataEF();
+       LocationDataEF LocationDataEF = new LocationDataEF();
 
         public JsonResult ListCantonsByIdProvince(int id)
         {

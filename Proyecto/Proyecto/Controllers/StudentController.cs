@@ -50,13 +50,18 @@ namespace Proyecto.Controllers
             return Json(students, JsonRequestBehavior.AllowGet);
         }
 
-        
-
-        public JsonResult UpdateStudentStatus(int id)
+        public JsonResult StudentApproval(int id)
         {
             var student = StudentDataEF.GetStudentById(id);
             Email.SendEmail(student.Mail, "Actualización de estado", student.StudentName + ", ha sido aprobado.");
             return Json(StudentDataEF.UpdateStudentStatus(id, "Aprobado"), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult StudentDeny(int id)
+        {
+            var student = StudentDataEF.GetStudentById(id);
+            Email.SendEmail(student.Mail, "Actualización de estado", student.StudentName + ", ha sido rechazado.");
+            return Json(StudentDataEF.UpdateStudentStatus(id, "Rechazado"), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteStudent(int id)

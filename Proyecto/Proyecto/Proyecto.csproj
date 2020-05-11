@@ -317,6 +317,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
+    <Content Include="Scripts\Professor.js" />
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\Student.js" />
     <Content Include="Content\Style.css" />

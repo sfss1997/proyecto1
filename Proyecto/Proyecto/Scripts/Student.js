@@ -56,7 +56,7 @@ function loadLocation() {
                     $(document).ready(function () {
                         $.ajax({
                             type: "GET",
-                            url: "/Home/ListCantonsByIdProvince/" + province.Id,
+                            url: "/Location/ListCantonsByIdProvince/" + province.Id,
                             data: "{}",
                             success: function (data) {
                                 var s = '<option value="-1">Seleccione una opción</option>';
@@ -74,7 +74,7 @@ function loadLocation() {
                                     $(document).ready(function () {
                                         $.ajax({
                                             type: "GET",
-                                            url: "/Home/ListDistrictsByIdCanton/" + canton.Id,
+                                            url: "/Location/ListDistrictsByIdCanton/" + canton.Id,
                                             data: "{}",
                                             success: function (data) {
                                                 var s = '<option value="-1">Seleccione una opción</option>';
@@ -261,7 +261,7 @@ function loadData() {
                 html += '<td>' + item.StudentName + '</td>';
                 html += '<td>' + item.LastName + '</td>';
                 html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="UpdateStatus(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="UpdateStatus(' + item.Id + ')">Rechazar</a></td>';
+                html += '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>';
             });
             $('.tbody').html(html);
         },
@@ -271,10 +271,26 @@ function loadData() {
     })
 }
 
-function UpdateStatus(id) {
+function StudentApproval(id) {
 
     $.ajax({
-        url: "/Student/UpdateStudentStatus/" + id,
+        url: "/Student/StudentApproval/" + id,
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadData();
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function StudentDeny(id) {
+
+    $.ajax({
+        url: "/Student/StudentDeny/" + id,
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
