@@ -129,7 +129,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\ProfessorController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,9 +149,11 @@
     <Compile Include="Models\Course.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseDataEF.cs" />
     <Compile Include="Models\District.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,6 +190,7 @@
     <Compile Include="Models\Location.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LocationDataEF.cs" />
     <Compile Include="Models\PrivateMessage.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -193,6 +200,7 @@
     <Compile Include="Models\ProfessorCourse.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfessorDataEF.cs" />
     <Compile Include="Models\Province.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

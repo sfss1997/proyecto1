@@ -17,28 +17,25 @@ namespace Proyecto.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Professor()
         {
-            this.ProfessorCourse = new HashSet<ProfessorCourse>();
+            this.Course = new HashSet<Course>();
         }
     
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public int Age { get; set; }
         public string Mail { get; set; }
         public Nullable<int> AcademicDegreeId { get; set; }
         public string Image { get; set; }
+        public Nullable<int> SocialNetWorkId { get; set; }
+        public string Password { get; set; }
+        public int IsAdministrator { get; set; }
         public Nullable<int> LocationId { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreateAt { get; set; }
-        public Nullable<int> UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
     
         public virtual AcademicDegree AcademicDegree { get; set; }
         public virtual Location Location { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
+        public virtual SocialNetworks SocialNetworks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProfessorCourse> ProfessorCourse { get; set; }
-        public virtual Users Users2 { get; set; }
-        public virtual SocialNetworksProfessor SocialNetworksProfessor { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
     }
 }
