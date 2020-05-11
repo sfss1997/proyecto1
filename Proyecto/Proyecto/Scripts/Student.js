@@ -38,7 +38,7 @@ function loadLocation() {
     $(document).ready(function () {
         $.ajax({
             type: "GET",
-            url: "/Home/ListAllProvinces",
+            url: "/Location/ListAllProvinces",
             data: "{}",
             success: function (data) {
                 var s = '<option value="-1">Seleccione una opción</option>';
@@ -131,7 +131,7 @@ function Add() {
 
     if (isValid == true) {
         $.ajax({
-            url: "/Home/Add",
+            url: "/Student/Add",
             data: JSON.stringify(student),
             type: "POST",
             contentType: "application/json;charset=utf-8",
@@ -248,7 +248,7 @@ function Validate() {
 
 function loadData() {
     $.ajax({
-        url: "/Home/ListStudentApproval",
+        url: "/Student/ListStudentApproval",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
@@ -274,7 +274,7 @@ function loadData() {
 function UpdateStatus(id) {
 
     $.ajax({
-        url: "/Home/UpdateStudentStatus/" + id,
+        url: "/Student/UpdateStudentStatus/" + id,
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
