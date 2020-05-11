@@ -1,6 +1,7 @@
 ﻿body {
 }
 
+
 #btnLog {
     position: inherit;
     margin-top: 15px;
@@ -14,6 +15,18 @@
     color:white;
 
 }
+
+#btnSignLog {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnSignLog:hover {
+    background: #a9cce3;
+    color: white;
+   }
 
 #btnAdd {
     background: #a9cce3;
