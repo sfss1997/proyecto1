@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    loadLocation();
+    loadLocationStudent();
     loadData();
 });
 
-function clearTextBox() {
+function clearTextBoxStudent() {
     $('#myModal').modal('show');
 
     $('#StudentCard').val("");
@@ -14,7 +14,7 @@ function clearTextBox() {
     $('#Username').val("");
     $('#Password').val("");
 
-    loadLocation();
+    loadLocationStudent();
     var s = '<option value="-1">Seleccione una opción</option>';
     $("#ProvinceDropdown").html(s);
     $("#CantonDropdown").html(s);
@@ -33,7 +33,7 @@ function clearTextBox() {
     $('#DistrictDropdown').css('border-color', 'lightgrey');
 }
 
-function loadLocation() {
+function loadLocationStudent() {
 
     $(document).ready(function () {
         $.ajax({
@@ -263,7 +263,7 @@ function loadData() {
                 html += '<td>' + item.Mail + '</td>';
                 html += '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>';
             });
-            $('.tbody').html(html);
+            $('#tableStudent').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

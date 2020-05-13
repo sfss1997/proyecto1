@@ -62,12 +62,12 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right pull-right">
-                    <button type="button" id="btnLog" class="btn" onclick="clearTextBox();">Registrarse</button>
-                    <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" class="btn">Inicia Sesión</button>
-                    <button type="button" id="btnProfessor" data-toggle="modal" data-target="#myModalProfessor" class="btn">Registrar profesor nuevo</button>
+                    <button type="button" id="btnLog" class="btn" onclick="clearTextBoxStudent();">Registrarse</button>
+                    <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" class="btn">Iniciar Sesión</button>
+                    <button type="button" id="btnProfessor" onclick="clearTextBoxProfessor();" class="btn">Registrar profesor nuevo</button>
                     <button type="button" id="btnCourse" data-toggle="modal" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
 
-                   
+
                 </ul>
             </div>
 
@@ -102,9 +102,6 @@
                             <label for="PasswordSignLog">Contraseña</label>
                             <input type="password" class="form-control" id="PasswordSignLog" placeholder="Ingrese su contraseña" autocomplete="off">
                         </div>
-
-
-
 
                     </form>
                 </div>
@@ -318,13 +315,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <div class="col-md-6">
                         <form>
-                            <div class="form-group">
-                                <label for="IdCourse">Id</label>
-                                <input type="text" class="form-control" id="IdCourse" placeholder="Ingrese el nuevo courso" autocomplete="off">
-
-                            </div>
 
                             <div class="form-group">
                                 <label for="CourseInitials">Siglas</label>
@@ -338,7 +329,10 @@
 
                             <div class="form-group">
                                 <label for="IsCourseActive">Estado de curso</label>
-                                <select class="form-control" id="IsActiveDropdown" name="IsActiveDropdown"></select>
+                                <select class="form-control" id="IsActiveDropdown" name="IsActiveDropdown">
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -347,18 +341,22 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="CourseCycle">Siglas</label>
-                                <input type="text" class="form-control" id="CourseCycle" placeholder="Ingrese el ciclo lectivo del curso" autocomplete="off">
+                                <label for="CourseCycle">Ciclo</label>
+                                <select class="form-control" id="CycleDropdown" name="CycleDropdown">
+                                    <option value="1">I Semestre</option>
+                                    <option value="2">II Semestre</option>
+                                    <option value="3">Verano</option>
+                                </select>
                             </div>
 
                         </form>
-                    </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btnAdd">Registrar curso</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 
@@ -407,6 +405,7 @@
     </section>
 
     <!---ADMINISTRATOR/STUDENT APPROVAL-->
+    <h3>Estudiantes en espera</h3>
     <div class="table-responsive">
         <table class="table table-bordered table-hover" id="tableApproval">
 
@@ -429,7 +428,37 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="tbody">
+            <tbody class="tbody" id="tableStudent">
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Profesores Registrados</h3>
+
+    <!---ADMINISTRATOR/LIST PROFESSOR-->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="tableProfesor">
+
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Mail
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody" id="tableProfesor">
             </tbody>
         </table>
     </div>

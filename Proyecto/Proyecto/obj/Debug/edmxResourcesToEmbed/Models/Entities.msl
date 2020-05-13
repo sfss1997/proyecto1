@@ -308,21 +308,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectProfessor_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Name1" ColumnName="Name1" />
-          <ScalarProperty Name="Name2" ColumnName="Name2" />
-          <ScalarProperty Name="Name3" ColumnName="Name3" />
-          <ScalarProperty Name="Name4" ColumnName="Name4" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor" />
     <FunctionImportMapping FunctionImportName="SelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudent_Result">
@@ -424,6 +410,22 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SPInsertUpdateProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateProfessor" />
+    <FunctionImportMapping FunctionImportName="SelectAcademicDegree" FunctionName="IF4101PICESModel.Store.SelectAcademicDegree">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectAcademicDegree_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPSelectAcademicDegree" FunctionName="IF4101PICESModel.Store.SelectAcademicDegree">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectAcademicDegree_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SPSelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.SelectProfessor_Result">
@@ -432,10 +434,10 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Name1" ColumnName="Name1" />
-          <ScalarProperty Name="Name2" ColumnName="Name2" />
-          <ScalarProperty Name="Name3" ColumnName="Name3" />
-          <ScalarProperty Name="Name4" ColumnName="Name4" />
+          <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="District" ColumnName="District" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

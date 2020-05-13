@@ -875,9 +875,9 @@
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Initials" Type="varchar" Mode="In" />
           <Parameter Name="Name" Type="varchar" Mode="In" />
-          <Parameter Name="ActiveInactive" Type="varchar" Mode="In" />
+          <Parameter Name="IsActive" Type="int" Mode="In" />
           <Parameter Name="Credits" Type="int" Mode="In" />
-          <Parameter Name="CycleName" Type="varchar" Mode="In" />
+          <Parameter Name="Cycle" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -914,6 +914,7 @@
           <Parameter Name="DistrictId" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SelectAcademicDegree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -2353,9 +2354,9 @@
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Initials" Mode="In" Type="String" />
             <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="ActiveInactive" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Int32" />
             <Parameter Name="Credits" Mode="In" Type="Int32" />
-            <Parameter Name="CycleName" Mode="In" Type="String" />
+            <Parameter Name="Cycle" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertUpdateProfessor">
@@ -2393,7 +2394,7 @@
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
-          <FunctionImport Name="SelectProfessor" ReturnType="Collection(IF4101PICESModel.SelectProfessor_Result)" />
+          <FunctionImport Name="SelectProfessor" />
           <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
           <FunctionImport Name="StudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
           <FunctionImport Name="UpdateStatusStudent">
@@ -2414,9 +2415,9 @@
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Initials" Mode="In" Type="String" />
             <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="ActiveInactive" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Int32" />
             <Parameter Name="Credits" Mode="In" Type="Int32" />
-            <Parameter Name="CycleName" Mode="In" Type="String" />
+            <Parameter Name="Cycle" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPDeleteProfessor">
@@ -2441,6 +2442,8 @@
             <Parameter Name="AcademicDegree" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
+          <FunctionImport Name="SPSelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
           <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101PICESModel.SelectProfessor_Result)" />
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
@@ -2484,17 +2487,6 @@
           <Property Type="Int32" Name="Credits" Nullable="false" />
           <Property Type="Int32" Name="Cycle" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SelectProfessor_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Image" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Name1" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name2" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name3" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name4" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="SelectStudent_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
@@ -2513,6 +2505,21 @@
           <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectAcademicDegree_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectProfessor_Result" >
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="LastName" Nullable="false" />
+          <Property Type="String" Name="Mail" Nullable="false" />
+          <Property Type="String" Name="Image" Nullable="false" />
+          <Property Type="String" Name="AcademicDegree" Nullable="false" />
+          <Property Type="String" Name="Province" Nullable="false" />
+          <Property Type="String" Name="Canton" Nullable="false" />
+          <Property Type="String" Name="District" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2828,19 +2835,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectProfessor_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
-                <ScalarProperty Name="Name3" ColumnName="Name3" />
-                <ScalarProperty Name="Name4" ColumnName="Name4" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
             <ResultMapping>
@@ -2943,6 +2937,22 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPInsertUpdateProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="SelectAcademicDegree" FunctionName="IF4101PICESModel.Store.SelectAcademicDegree">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectAcademicDegree_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectAcademicDegree" FunctionName="IF4101PICESModel.Store.SelectAcademicDegree" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectAcademicDegree_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPSelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IF4101PICESModel.SelectProfessor_Result">
@@ -2951,10 +2961,10 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
-                <ScalarProperty Name="Name3" ColumnName="Name3" />
-                <ScalarProperty Name="Name4" ColumnName="Name4" />
+                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="District" ColumnName="District" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

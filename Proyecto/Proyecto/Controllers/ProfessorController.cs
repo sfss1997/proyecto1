@@ -20,7 +20,7 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Professor professor, Location location, Users user)
         {
-            Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + ", ha sido añadido satisfactoriamente, su aprobación se encuentra en espera.");
+            Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + ", ha sido añadido satisfactoriamente.");
             return Json(ProfessorDataEF.Add(professor, location, user), JsonRequestBehavior.AllowGet);
         }
 
@@ -46,6 +46,13 @@ namespace Proyecto.Controllers
         public JsonResult DeleteProfessor(int id)
         {
             return Json(ProfessorDataEF.DeleteProfessor(id), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListAcademicDegree()
+        {
+            var academicDegree = ProfessorDataEF.ListAcademicDegree();
+
+            return Json(academicDegree, JsonRequestBehavior.AllowGet);
         }
     }
 }

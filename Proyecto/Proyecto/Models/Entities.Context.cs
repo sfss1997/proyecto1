@@ -122,7 +122,7 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
         }
     
-        public virtual int InsertUpdateCourse(Nullable<int> id, string initials, string name, string activeInactive, Nullable<int> credits, string cycleName, string action)
+        public virtual int InsertUpdateCourse(Nullable<int> id, string initials, string name, Nullable<int> isActive, Nullable<int> credits, Nullable<int> cycle, string action)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
@@ -136,23 +136,23 @@ namespace Proyecto.Models
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
     
-            var activeInactiveParameter = activeInactive != null ?
-                new ObjectParameter("ActiveInactive", activeInactive) :
-                new ObjectParameter("ActiveInactive", typeof(string));
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(int));
     
             var creditsParameter = credits.HasValue ?
                 new ObjectParameter("Credits", credits) :
                 new ObjectParameter("Credits", typeof(int));
     
-            var cycleNameParameter = cycleName != null ?
-                new ObjectParameter("CycleName", cycleName) :
-                new ObjectParameter("CycleName", typeof(string));
+            var cycleParameter = cycle.HasValue ?
+                new ObjectParameter("Cycle", cycle) :
+                new ObjectParameter("Cycle", typeof(int));
     
             var actionParameter = action != null ?
                 new ObjectParameter("Action", action) :
                 new ObjectParameter("Action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateCourse", idParameter, initialsParameter, nameParameter, activeInactiveParameter, creditsParameter, cycleNameParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateCourse", idParameter, initialsParameter, nameParameter, isActiveParameter, creditsParameter, cycleParameter, actionParameter);
         }
     
         public virtual int InsertUpdateProfessor(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string name, string lastName, string mail, string image, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, Nullable<int> academicDegree, string action)
@@ -290,9 +290,9 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCourse_Result>("SelectCourse");
         }
     
-        public virtual ObjectResult<SelectProfessor_Result> SelectProfessor()
+        public virtual int SelectProfessor()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessor_Result>("SelectProfessor");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SelectProfessor");
         }
     
         public virtual ObjectResult<SelectStudent_Result> SelectStudent()
@@ -356,7 +356,7 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCourseById_Result>("SPGetCourseById", idParameter);
         }
     
-        public virtual int SPInsertUpdateCourse(Nullable<int> id, string initials, string name, string activeInactive, Nullable<int> credits, string cycleName, string action)
+        public virtual int SPInsertUpdateCourse(Nullable<int> id, string initials, string name, Nullable<int> isActive, Nullable<int> credits, Nullable<int> cycle, string action)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
@@ -370,23 +370,23 @@ namespace Proyecto.Models
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
     
-            var activeInactiveParameter = activeInactive != null ?
-                new ObjectParameter("ActiveInactive", activeInactive) :
-                new ObjectParameter("ActiveInactive", typeof(string));
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(int));
     
             var creditsParameter = credits.HasValue ?
                 new ObjectParameter("Credits", credits) :
                 new ObjectParameter("Credits", typeof(int));
     
-            var cycleNameParameter = cycleName != null ?
-                new ObjectParameter("CycleName", cycleName) :
-                new ObjectParameter("CycleName", typeof(string));
+            var cycleParameter = cycle.HasValue ?
+                new ObjectParameter("Cycle", cycle) :
+                new ObjectParameter("Cycle", typeof(int));
     
             var actionParameter = action != null ?
                 new ObjectParameter("Action", action) :
                 new ObjectParameter("Action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateCourse", idParameter, initialsParameter, nameParameter, activeInactiveParameter, creditsParameter, cycleNameParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateCourse", idParameter, initialsParameter, nameParameter, isActiveParameter, creditsParameter, cycleParameter, actionParameter);
         }
     
         public virtual int SPDeleteProfessor(Nullable<int> id)
@@ -466,6 +466,16 @@ namespace Proyecto.Models
                 new ObjectParameter("Action", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateProfessor", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, nameParameter, lastNameParameter, mailParameter, imageParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, academicDegreeParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<SelectAcademicDegree_Result> SelectAcademicDegree()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAcademicDegree_Result>("SelectAcademicDegree");
+        }
+    
+        public virtual ObjectResult<SelectAcademicDegree_Result> SPSelectAcademicDegree()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAcademicDegree_Result>("SPSelectAcademicDegree");
         }
     
         public virtual ObjectResult<SelectProfessor_Result> SPSelectProfessor()

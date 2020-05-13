@@ -17,9 +17,9 @@ namespace Proyecto.Models
                                        course.Id,
                                        course.Initials,
                                        course.Name,
-                                       course.IsActive.ToString(),
+                                       course.IsActive,
                                        course.Credits,
-                                       course.Cycle.ToString(),
+                                       course.Cycle,
                                        "Insert");
             }
             return resultToReturn;
@@ -35,9 +35,9 @@ namespace Proyecto.Models
                                        course.Id,
                                        course.Initials,
                                        course.Name,
-                                       course.IsActive.ToString(),
+                                       course.IsActive,
                                        course.Credits,
-                                       course.Cycle.ToString(),
+                                       course.Cycle,
                                        "Update");
             }
             return resultToReturn;

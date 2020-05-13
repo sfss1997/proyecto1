@@ -870,9 +870,9 @@
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Initials" Type="varchar" Mode="In" />
     <Parameter Name="Name" Type="varchar" Mode="In" />
-    <Parameter Name="ActiveInactive" Type="varchar" Mode="In" />
+    <Parameter Name="IsActive" Type="int" Mode="In" />
     <Parameter Name="Credits" Type="int" Mode="In" />
-    <Parameter Name="CycleName" Type="varchar" Mode="In" />
+    <Parameter Name="Cycle" Type="int" Mode="In" />
     <Parameter Name="Action" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -909,6 +909,7 @@
     <Parameter Name="DistrictId" Type="int" Mode="In" />
     <Parameter Name="Action" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SelectAcademicDegree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

@@ -77,7 +77,7 @@ namespace Proyecto.Models
             }
         }
 
-        
+
         public int DeleteProfessor(int id)
         {
             int resultToReturn;
@@ -87,6 +87,14 @@ namespace Proyecto.Models
                 resultToReturn = context.SPDeleteProfessor(id);
             }
             return resultToReturn;
+        }
+
+        public List<SelectAcademicDegree_Result> ListAcademicDegree()
+        {
+            using (var context = new Entities())
+            {
+                return context.SPSelectAcademicDegree().ToList();
+            }
         }
     }
 }
