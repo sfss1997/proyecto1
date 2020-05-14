@@ -17,16 +17,6 @@ namespace Proyecto.Controllers
 
         UserDataEF userDataEF = new UserDataEF();
 
-        public JsonResult VerifyTypeOfUser(int id)
-        {
-            return Json(userDataEF.VerifyTypeOfUser(id), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Login(string username, string password)
-        {
-            return Json(userDataEF.Login(username,password), JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult ListAllUsers()
         {
             return Json(userDataEF.ListAllUsers(), JsonRequestBehavior.AllowGet);

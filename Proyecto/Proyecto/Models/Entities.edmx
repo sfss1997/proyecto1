@@ -2581,9 +2581,9 @@
           <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name1" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name2" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="StudentApproval_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2948,9 +2948,9 @@
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Province" ColumnName="Name" />
+                <ScalarProperty Name="Canton" ColumnName="Name1" />
+                <ScalarProperty Name="District" ColumnName="Name2" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2976,9 +2976,9 @@
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Province" ColumnName="Name" />
+                <ScalarProperty Name="Canton" ColumnName="Name1" />
+                <ScalarProperty Name="District" ColumnName="Name2" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

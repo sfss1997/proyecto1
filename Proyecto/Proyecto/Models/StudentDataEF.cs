@@ -63,7 +63,7 @@ namespace Proyecto.Models
         {
             using (var context = new Entities())
             {
-                var students = context.SelectStudent().ToList();
+                var students = context.SPSelectStudent().ToList();
 
                 return students;
 

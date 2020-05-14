@@ -21,8 +21,8 @@ namespace Proyecto.Models
         public string Mail { get; set; }
         public string Image { get; set; }
         public string RegistrationStatus { get; set; }
-        public string Name { get; set; }
-        public string Name1 { get; set; }
-        public string Name2 { get; set; }
+        public string Province { get; set; }
+        public string Canton { get; set; }
+        public string District { get; set; }
     }
 }

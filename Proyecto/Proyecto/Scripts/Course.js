@@ -41,6 +41,7 @@ function getByIdCourse(id) {
         dataType: "json",
         success: function (result) {
 
+            $('#CourseId').val(result.Id);
             $('#CourseInitials').val(result.Initials);
             $('#CourseName').val(result.Name);
             $("#IsActiveDropdown").val(result.IsActive);
@@ -67,6 +68,7 @@ function editCourse() {
     }
 
     var course = {
+        Id: $('#CourseId').val(),
         Initials: $('#CourseInitials').val(),
         Name: $('#CourseName').val(),
         IsActive: isActive,

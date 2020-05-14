@@ -279,7 +279,7 @@ function loadProfessors() {
                 html += '<td>' + item.Mail + '</td>';
                 html += '<td><a href="#" onclick="Update(' + item.Id + ')">Editar</a> | <a href="#" onclick="Delete(' + item.Id + ')">Borrar</a></td>';
             });
-            $('#tableProfesor').html(html);
+            $('.tableProfesor').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

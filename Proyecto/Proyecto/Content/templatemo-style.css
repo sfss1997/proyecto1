@@ -383,10 +383,10 @@ https://templatemo.com/tm-516-known
   .caption h3 a { color: #FFF; }
   .caption h3 a:hover { color: #FF3; }
 
-  .home-slider .item-first {
-    background-image: url(../images/img1.jpg);
-	background-position: center;
-  }
+.home-slider .item-first {
+    background-image: url(../images/image1.jpg);
+    background-position: center;
+}
 
   .home-slider .item-second {
     background-image: url(../images/img2.jpg);

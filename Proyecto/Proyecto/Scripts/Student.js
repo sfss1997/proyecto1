@@ -263,7 +263,7 @@ function loadData() {
                 html += '<td>' + item.Mail + '</td>';
                 html += '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>';
             });
-            $('#tableStudent').html(html);
+            $('.tableStudent').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

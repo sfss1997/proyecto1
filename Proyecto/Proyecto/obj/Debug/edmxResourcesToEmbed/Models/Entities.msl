@@ -320,9 +320,9 @@
           <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Name1" ColumnName="Name1" />
-          <ScalarProperty Name="Name2" ColumnName="Name2" />
+          <ScalarProperty Name="Province" ColumnName="Name" />
+          <ScalarProperty Name="Canton" ColumnName="Name1" />
+          <ScalarProperty Name="District" ColumnName="Name2" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -348,9 +348,9 @@
           <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Name1" ColumnName="Name1" />
-          <ScalarProperty Name="Name2" ColumnName="Name2" />
+          <ScalarProperty Name="Province" ColumnName="Name" />
+          <ScalarProperty Name="Canton" ColumnName="Name1" />
+          <ScalarProperty Name="District" ColumnName="Name2" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="~/Content/templatemo-style.css">
 
 </head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50" class="pre-scrollable">
 
     <div class="container">
 
@@ -317,6 +317,11 @@
                         <form>
 
                             <div class="form-group">
+                                <label for="CourseId">ID</label>
+                                <input type="text" class="form-control" id="CourseId" disabled="disabled">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="CourseInitials">Siglas</label>
                                 <input type="text" class="form-control" id="CourseInitials" placeholder="Ingrese las siglas del curso" autocomplete="off">
                             </div>
@@ -426,8 +431,8 @@
         <!------Administrator Section-->
 
         <section id="administratorSection" hidden>
-            <div class="row">
-                <h1>Administrador</h1>
+            <div class="row pre-scrollable">
+                <h3>Administrador</h3>
                 <!---ADMINISTRATOR/STUDENT APPROVAL-->
                 <div class="table-responsive hidden">
                     <h3>Estudiantes en espera</h3>
@@ -452,7 +457,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="tbody" id="tableStudent">
+                        <tbody class="tableApproval" id="tableStudent">
                         </tbody>
                     </table>
                 </div>
@@ -481,7 +486,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="tbody" id="tableProfesor">
+                        <tbody class="tableProfesor" id="tableProfesor">
                         </tbody>
                     </table>
                 </div>
@@ -516,7 +521,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="tbody" id="tableCourseRegister">
+                        <tbody class="tableCourseRegister" id="tableCourseRegister">
                         </tbody>
                     </table>
                 </div>
