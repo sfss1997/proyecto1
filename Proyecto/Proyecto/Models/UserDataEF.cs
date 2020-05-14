@@ -31,5 +31,16 @@ namespace Proyecto.Models
             }
 
         }
+
+        public List<SelectUsers_Result> ListAllUsers()
+        {
+            using (var context = new Entities())
+            {
+                var users = context.SPSelectUsers().ToList();
+
+                return users;
+
+            }
+        }
     }
 }

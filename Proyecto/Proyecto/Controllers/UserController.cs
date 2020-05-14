@@ -26,5 +26,10 @@ namespace Proyecto.Controllers
         {
             return Json(userDataEF.Login(username,password), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ListAllUsers()
+        {
+            return Json(userDataEF.ListAllUsers(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

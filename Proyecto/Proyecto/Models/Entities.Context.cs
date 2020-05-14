@@ -629,5 +629,15 @@ namespace Proyecto.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SPUsersLogin", usernameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<SelectUsers_Result> SelectUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SelectUsers");
+        }
+    
+        public virtual ObjectResult<SelectUsers_Result> SPSelectUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SPSelectUsers");
+        }
     }
 }

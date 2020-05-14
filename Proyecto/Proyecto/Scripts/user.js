@@ -10,12 +10,25 @@ function login() {
         Password: $('#PasswordSignLog').val()
     };
 
-    if (user.Username == "nicole" && user.Password == "pass") {
-        $("#myModalSignLog").hide();
-        $('.modal-backdrop').hide();
-        $("#studentSection").show();
-        $("#home").hide();
-    }
-    
-   
+    $.ajax({
+        url: "/User/ListAllUsers",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            var html = '';
+            $.each(result, function (key, item) {
+                if (user.Username == item.Username && user.Password == item.Password) {
+                    $("#myModalSignLog").hide();
+                    $('.modal-backdrop').hide();
+                    $("#studentSection").show();
+                    $("#home").hide();
+                }
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
 }
