@@ -1,8 +1,9 @@
-﻿
-function log() {
-    
+﻿$(document).ready(function () {
+    $("#btnProfessor").hide();
+    $("#btnCourse").hide();
+    $("#btnLogOut").hide();
+});
 
-}
 
 function login() {
     var user = {
@@ -24,6 +25,13 @@ function login() {
                     $('.modal-backdrop').hide();
                     $("#studentSection").show();
                     $("#home").hide();
+                    $("#btnProfessor").hide();
+                    $("#btnCourse").hide();
+                    $("#btnLog").hide();
+                    $("#btnSignLog").hide();
+                    $("#btnLogOut").show();
+
+
                 }
             });
         },
@@ -31,4 +39,13 @@ function login() {
             alert(errorMessage.responseText);
         }
     })
+}
+
+function logOut() {
+    $("#btnLog").show();
+    $("#btnSignLog").show();
+    $("#studentSection").hide();
+    $("#home").show();
+    $("#btnLogOut").hide();
+
 }
