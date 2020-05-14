@@ -63,7 +63,7 @@
                         <li><a href="#about" class="smoothScroll">Acerca de</a></li>
                         <li><a href="#contact" class="smoothScroll">Contáctanos</a></li>
                         <button type="button" id="btnLog" class="btn" onclick="clearTextBoxStudent();">Registrarse</button>
-                        <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" class="btn">Iniciar Sesión</button>
+                        <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" onclick="clearTextBoxSignLog();" class="btn">Iniciar Sesión</button>
                         <button type="button" id="btnProfessor" onclick="clearTextBoxProfessor();" class="btn">Registrar profesor nuevo</button>
                         <button type="button" id="btnCourse" data-toggle="modal" onclick="clearTextBoxCourse();" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
                         <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
@@ -374,9 +374,8 @@
                         <div class="caption">
                             <div class="container">
                                 <div class="col-md-6 col-sm-12">
-                                    <h1>Asociación de Estudiantes</h1>
-                                    <h3>We have the student association which helps other students in academic and recreational activities.</h3>
-                                    <a href="#feature" class="section-btn btn btn-default smoothScroll">Discover more</a>
+                                    <h1>Recinto de Paraíso</h1>
+                                    <h3>El Recinto de Paraíso fue creado con el fin de generar espacios para la capacitación y el enriquecimiento acádemico, en pro del desarrollo de la comunidad.</h3>
                                 </div>
                             </div>
                         </div>
@@ -386,9 +385,8 @@
                         <div class="caption">
                             <div class="container">
                                 <div class="col-md-6 col-sm-12">
-                                    <h1>Talks and workshops</h1>
-                                    <h3>We provide hands-on workshops and talks for students to learn about more topics outside of the career curriculum.</h3>
-                                    <a href="#courses" class="section-btn btn btn-default smoothScroll">Take a course</a>
+                                    <h1>Proceso de acreditación</h1>
+                                    <h3>El Bachillerato en Informática Empresarial es la primera carrera exclusiva de todas las sedes regionales de la Universidad de Costa Rica que culmina el proceso de autoevaluación con miras a la acreditación.</h3>
                                 </div>
                             </div>
                         </div>
@@ -398,9 +396,8 @@
                         <div class="caption">
                             <div class="container">
                                 <div class="col-md-6 col-sm-12">
-                                    <h1>Adequate infrastructure</h1>
-                                    <h3>We offer a good infrastructure for the development of each lesson.</h3>
-                                    <a href="#contact" class="section-btn btn btn-default smoothScroll">See gallery</a>
+                                    <h1>Instalaciones</h1>
+                                    <h3>El Recinto cuenta con áreas para el desarrollo de las lecciones, actividades al aire libre y un amplio parqueo para vehículos.</h3>
                                 </div>
                             </div>
                         </div>
@@ -412,10 +409,10 @@
 
         <!------Student Section-->
 
-        <section id="studentSection" hidden>
+        <section id="studentSection">
             <div class="row">
-                <h1>Estudiante</h1>
-                <h2>Este será el acceso a los estudiantes.</h2>
+                <h2>Estudiante</h2>
+                <h3>Este será el acceso a los estudiantes.</h3>
             </div>
         </section>
 
@@ -423,8 +420,8 @@
 
         <section id="professorSection" hidden>
             <div class="row">
-                <h1>Profesor</h1>
-                <h2>Este será el acceso a los profesores.</h2>
+                <h2>Profesor</h2>
+                <h3>Este será el acceso a los profesores.</h3>
             </div>
         </section>
 
@@ -434,7 +431,7 @@
             <div class="row pre-scrollable">
                 <h3>Administrador</h3>
                 <!---ADMINISTRATOR/STUDENT APPROVAL-->
-                <div class="table-responsive hidden">
+                <div class="table-responsive">
                     <h3>Estudiantes en espera</h3>
                     <table class="table table-bordered table-hover" id="tableApproval">
 
@@ -444,26 +441,26 @@
                                     ID
                                 </th>
                                 <th>
-                                    Name
+                                    Nombre
                                 </th>
                                 <th>
-                                    Last Name
+                                    Apellido
                                 </th>
                                 <th>
-                                    Mail
+                                    Correo
                                 </th>
                                 <th>
-                                    Action
+                                    Acción
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="tableApproval" id="tableStudent">
+                        <tbody class="tableApproval" id="tableApproval">
                         </tbody>
                     </table>
                 </div>
 
                 <!---ADMINISTRATOR/LIST PROFESSOR-->
-                <div class="table-responsive hidden">
+                <div class="table-responsive">
                     <h3>Profesores Registrados</h3>
                     <table class="table table-bordered table-hover" id="tableProfesor">
 
@@ -473,16 +470,16 @@
                                     ID
                                 </th>
                                 <th>
-                                    Name
+                                    Nombre
                                 </th>
                                 <th>
-                                    Last Name
+                                    Apellido
                                 </th>
                                 <th>
-                                    Mail
+                                    Correo
                                 </th>
                                 <th>
-                                    Action
+                                    Acción
                                 </th>
                             </tr>
                         </thead>
@@ -502,22 +499,22 @@
                                     ID
                                 </th>
                                 <th>
-                                    Initials
+                                    Siglas
                                 </th>
                                 <th>
-                                    Name
+                                    Nombre
                                 </th>
                                 <th>
-                                    Credits
+                                    Créditos
                                 </th>
                                 <th>
-                                    Cycle
+                                    Ciclo
                                 </th>
                                 <th>
-                                    Status
+                                    Estado
                                 </th>
                                 <th>
-                                    Action
+                                    Acción
                                 </th>
                             </tr>
                         </thead>
@@ -530,7 +527,7 @@
             </div>
         </section>
 
-      
+
 
         <!-- FEATURE -->
         <!--
@@ -1239,6 +1236,7 @@
             </div>
         </footer>
     -->
+    </div>
         <!-- SCRIPTS -->
         <script src="~/Scripts/jquery.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
@@ -1250,5 +1248,5 @@
         <script src="~/Scripts/Course.js"></script>
         <script src="~/Scripts/user.js"></script>
 
-    </div>
+    
 </body>

@@ -487,5 +487,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListStudent" FunctionName="IF4101PICESModel.Store.ListStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.ListStudent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPListStudent" FunctionName="IF4101PICESModel.Store.ListStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.ListStudent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

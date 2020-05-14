@@ -82,7 +82,6 @@ namespace Proyecto.Models
         }
 
         
-
         public List<StudentApproval_Result> ListStudentApproval()
         {
             using (var context = new Entities())
@@ -112,6 +111,17 @@ namespace Proyecto.Models
                 resultToReturn = context.DeleteStudent(id);
             }
             return resultToReturn;
+        }
+
+        public List<ListStudent_Result> ListStudents()
+        {
+            using (var context = new Entities())
+            {
+                var students = context.SPListStudent().ToList();
+
+                return students;
+
+            }
         }
 
 

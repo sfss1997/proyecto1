@@ -188,6 +188,9 @@
     <Compile Include="Models\GetStudentById_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListStudent_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Location.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

@@ -639,5 +639,15 @@ namespace Proyecto.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SPSelectUsers");
         }
+    
+        public virtual ObjectResult<ListStudent_Result> ListStudent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListStudent_Result>("ListStudent");
+        }
+    
+        public virtual ObjectResult<ListStudent_Result> SPListStudent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListStudent_Result>("SPListStudent");
+        }
     }
 }

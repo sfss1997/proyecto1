@@ -1337,6 +1337,8 @@
     </FunctionImport>
     <FunctionImport Name="SelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
     <FunctionImport Name="SPSelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
+    <FunctionImport Name="ListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
+    <FunctionImport Name="SPListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1428,5 +1430,10 @@
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ListStudent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

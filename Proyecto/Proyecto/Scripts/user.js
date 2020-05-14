@@ -2,14 +2,22 @@
     $("#btnProfessor").hide();
     $("#btnCourse").hide();
     $("#btnLogOut").hide();
+    $('#studentSection').hide();
 });
 
+function clearTextBoxSignLog() {
+    $('#UsernameSignLog').val(""),
+    $('#PasswordSignLog').val("")
+}
 
 function login() {
     var user = {
         Username: $('#UsernameSignLog').val(),
         Password: $('#PasswordSignLog').val()
     };
+
+    var arrayProf = listProfessors();
+    var arrayStud = listStudents();
 
     $.ajax({
         url: "/User/ListAllUsers",
@@ -31,18 +39,23 @@ function login() {
                     $("#btnProfessor").hide();
                     $("#btnCourse").hide();
 
-                    //var typeUser = verifyUser(item.Id); 
+                    arrayProf.forEach(function (prof, key, array) {
+                        if (item.Id == prof.Id) {
+                            $('#professorSection').show();
+                        }
+                    });
 
-                    if (user.Username == "wilmer.mata" && user.Password == "pass") {
-                        $("#studentSection").show();
-                    }
-                    else if (user.Username == "prueba123" && user.Password == "123") {
-                        $("#professorSection").show();
-                    }
-                    else {
-                        $("#administratorSection").show();
-                        $("#btnProfessor").show();
-                        $("#btnCourse").show();
+                    arrayStud.forEach(function (stud, key, array) {
+                        if (item.Id == stud.Id) {
+                            $('#studentSection').show();
+                        }
+                    });
+
+                    if (user.Username == "admin" && user.Password == "admin") {
+                        $('#administratorSection').show();
+                        $('#btnProfessor').show();
+                        $('#btnCourse').show();
+
                     }
                 }
             });
@@ -54,39 +67,41 @@ function login() {
 }
 
 function logOut() {
-    $("#btnLog").show();
-    $("#btnSignLog").show();
-    $("#studentSection").hide();
-    $("#professorSection").hide();
-    $("#administratorSection").hide();
-    $("#home").show();
-    $("#btnLogOut").hide();
-    $("#btnProfessor").hide();
-    $("#btnCourse").hide();
+    $('#btnLog').show();
+    $('#btnSignLog').show();
+    $('#studentSection').hide();
+    $('#professorSection').hide();
+    $('#administratorSection').hide();
+    $('#home').show();
+    $('#btnLogOut').hide();
+    $('#btnProfessor').hide();
+    $('#btnCourse').hide();
 
 }
 
-function verifyUser(id) {
-    var typeUser = 0;
+function listStudents() {
+    var arrayStudent = [];
+    $.ajax({
+        url: "/Student/ListStudents",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            var html = '';
+            $.each(result, function (key, item) {
+                arrayStudent.push(item);
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
+    return arrayStudent;
+}
 
-    //$.ajax({
-    //    url: "/Student/ListAllStudents",
-    //    type: "GET",
-    //    contentType: "application/json;charset=utf-8",
-    //    dataType: "json",
-    //    success: function (result) {
-    //        dataSet = new Array();
-    //        var html = '';
-    //        $.each(result, function (key, item) {
-    //            if (item.Id == id) {
-    //                typeUser = 1;
-    //            }
-    //        });
-    //    },
-    //    error: function (errorMessage) {
-    //        alert(errorMessage.responseText);
-    //    }
-    //})
+function listProfessors() {
+    var arrayProfessor = [];
 
     $.ajax({
         url: "/Professor/ListAllProfessors",
@@ -97,16 +112,12 @@ function verifyUser(id) {
             dataSet = new Array();
             var html = '';
             $.each(result, function (key, item) {
-                if (item.Id == id) {
-                    typeUser = 2;
-                }
+                arrayProfessor.push(item);
             });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
         }
     })
-
-    return typeUser;
-
+    return arrayProfessor;
 }

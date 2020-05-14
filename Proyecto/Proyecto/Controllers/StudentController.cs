@@ -69,5 +69,12 @@ namespace Proyecto.Controllers
         {
             return Json(StudentDataEF.DeleteStudent(id), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ListStudents()
+        {
+            var students = StudentDataEF.ListStudents();
+
+            return Json(students, JsonRequestBehavior.AllowGet);
+        }
     }
 }

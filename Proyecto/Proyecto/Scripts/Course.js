@@ -71,9 +71,9 @@ function editCourse() {
         Id: $('#CourseId').val(),
         Initials: $('#CourseInitials').val(),
         Name: $('#CourseName').val(),
-        IsActive: isActive,
+        IsActive: isActive.id,
         Credits: $('#CourseCredits').val(),
-        Cycle: cycle
+        Cycle: cycle.id
     };
 
     $.ajax({
