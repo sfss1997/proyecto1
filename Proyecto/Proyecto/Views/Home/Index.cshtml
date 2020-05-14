@@ -65,7 +65,7 @@
                         <button type="button" id="btnLog" class="btn" onclick="clearTextBoxStudent();">Registrarse</button>
                         <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" class="btn">Iniciar Sesión</button>
                         <button type="button" id="btnProfessor" onclick="clearTextBoxProfessor();" class="btn">Registrar profesor nuevo</button>
-                        <button type="button" id="btnCourse" data-toggle="modal" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
+                        <button type="button" id="btnCourse" data-toggle="modal" onclick="clearTextBoxCourse();" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
                     </ul>
                 </div>
 
@@ -350,7 +350,8 @@
                         </form>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="addCourse();" id="btnAdd">Registrar curso</button>
+                            <button type="button" class="btn btn-primary" onclick="addCourse();" id="btnAddCourse">Registrar curso</button>
+                            <button type="button" class="btn btn-default" onclick="editCourse();" id="btnEditCourse" data-dismiss="modal">Actualizar</button>
                             <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
@@ -425,68 +426,105 @@
 
         <section id="administratorSection" hidden>
             <div class="row">
-                <h1>Estudiante</h1>
-                <h2>Este será el acceso a los administradores.</h2>
+                <h1>Administrador</h1>
+                <!---ADMINISTRATOR/STUDENT APPROVAL-->
+                <div class="table-responsive hidden">
+                    <h3>Estudiantes en espera</h3>
+                    <table class="table table-bordered table-hover" id="tableApproval">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Last Name
+                                </th>
+                                <th>
+                                    Mail
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody" id="tableStudent">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!---ADMINISTRATOR/LIST PROFESSOR-->
+                <div class="table-responsive hidden">
+                    <h3>Profesores Registrados</h3>
+                    <table class="table table-bordered table-hover" id="tableProfesor">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Last Name
+                                </th>
+                                <th>
+                                    Mail
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody" id="tableProfesor">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!---Courses registered-->
+                <div class="table-responsive">
+                    <h3>Cursos registrados</h3>
+                    <table class="table table-bordered table-hover" id="tableCourseRegister">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Initials
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Credits
+                                </th>
+                                <th>
+                                    Cycle
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody" id="tableCourseRegister">
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </section>
 
-        <!---ADMINISTRATOR/STUDENT APPROVAL-->
-        <div class="table-responsive hidden">
-            <h3>Estudiantes en espera</h3>
-            <table class="table table-bordered table-hover" id="tableApproval">
-
-                <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Last Name
-                        </th>
-                        <th>
-                            Mail
-                        </th>
-                        <th>
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="tbody" id="tableStudent">
-                </tbody>
-            </table>
-        </div>
-
-        <!---ADMINISTRATOR/LIST PROFESSOR-->
-        <div class="table-responsive hidden">
-            <h3>Profesores Registrados</h3>
-            <table class="table table-bordered table-hover" id="tableProfesor">
-
-                <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Last Name
-                        </th>
-                        <th>
-                            Mail
-                        </th>
-                        <th>
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="tbody" id="tableProfesor">
-                </tbody>
-            </table>
-        </div>
+      
 
         <!-- FEATURE -->
         <!--
@@ -1201,9 +1239,9 @@
         <script src="~/Scripts/owl.carousel.min.js"></script>
         <script src="~/Scripts/smoothscroll.js"></script>
         <script src="~/Scripts/custom.js"></script>
-        <script src="~/Scripts/student.js"></script>
-        <script src="~/Scripts/professor.js"></script>
-        <script src="~/Scripts/course.js"></script>
+        <script src="~/Scripts/Student.js"></script>
+        <script src="~/Scripts/Professor.js"></script>
+        <script src="~/Scripts/Course.js"></script>
         <script src="~/Scripts/user.js"></script>
 
     </div>
