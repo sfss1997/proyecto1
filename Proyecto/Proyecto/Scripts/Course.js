@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    loadCourses();
 });
 
 function addCourse() {
@@ -32,12 +33,81 @@ function addCourse() {
     }
 }
 
+function getByIdCourse(id) {
+    $.ajax({
+        url: "/Course/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            $('#CourseInitials').val(result.Initials);
+            $('#CourseName').val(result.Name);
+            $("#IsActiveDropdown").val(result.IsActive);
+            $('#CourseCredits').val(result.Credits);
+            $("#CycleDropdown").val(result.Cycle);
+            $('#myModalCourse').modal('show');
+            $('#btnEditCourse').show();
+            $('#btnAddCourse').hide();
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
 function editCourse() {
+    var isActive = {
+        id: $("#IsActiveDropdown option:selected").val()
+    };
+
+    var cycle = {
+        id: $("#CycleDropdown option:selected").val()
+    }
+
+    var course = {
+        Initials: $('#CourseInitials').val(),
+        Name: $('#CourseName').val(),
+        IsActive: isActive,
+        Credits: $('#CourseCredits').val(),
+        Cycle: cycle
+    };
+
+    $.ajax({
+        url: "/Course/Update",
+        data: JSON.stringify(course),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadCourses();
+            $('#myModalCourse').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 
 }
 
-function deleteCourse() {
+function deleteCourse(id) {
+    var alert = confirm("¿Está seguro que desea eliminar el registro?");
 
+    if (alert) {
+        $.ajax({
+            url: "/Course/DeleteCourse/" + id,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                loadCourses();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
 }
 
 function clearTextBoxCourse() {
@@ -125,9 +195,9 @@ function loadCourses() {
                 html += '<td>' + item.Credits + '</td>';
                 html += '<td>' + item.Cycle + '</td>';
                 html += '<td>' + item.IsActive + '</td>';
-                html += '<td><a href="#" onclick="editCourse(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteCourse(' + item.Id + ')">Borrar</a></td>';
+                html += '<td><a href="#" onclick="getByIdCourse(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteCourse(' + item.Id + ')">Borrar</a></td>';
             });
-            $('').html(html);
+            $('.tableCourseRegister').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

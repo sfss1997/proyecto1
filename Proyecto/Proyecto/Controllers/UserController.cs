@@ -22,7 +22,7 @@ namespace Proyecto.Controllers
             return Json(userDataEF.VerifyTypeOfUser(id), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Loginr(String username, String password)
+        public JsonResult Login(string username, string password)
         {
             return Json(userDataEF.Login(username,password), JsonRequestBehavior.AllowGet);
         }

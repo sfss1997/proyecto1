@@ -8,25 +8,25 @@ namespace Proyecto.Models
     public class UserDataEF
     {
 
-        public String VerifyTypeOfUser(int id) {
+        public int VerifyTypeOfUser(int id) {
 
             using (var context = new Entities())
             {
                 var user = context.SPTypeUserVerify(id).Single();
 
-                return user;
+                return Int32.Parse(user);
 
             }
 
         }
 
-        public String Login(String Username, String Password)
+        public int Login(String Username, String Password)
         {
             using (var context = new Entities())
             {
                 var user = context.SPUsersLogin(Username, Password).Single();
 
-                return user;
+                return Int32.Parse(user);
 
             }
 
