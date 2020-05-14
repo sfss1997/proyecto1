@@ -20,14 +20,16 @@ namespace Proyecto.Models
 
         }
 
-        public String Login(String Username , String Password)
-        { 
+        public String Login(String Username, String Password)
+        {
             using (var context = new Entities())
             {
-                var user = context.SPUsersLogin(Username,Password).Single();
+                var user = context.SPUsersLogin(Username, Password).Single();
 
                 return user;
 
             }
+
+        }
     }
 }
