@@ -441,5 +441,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TypeUserVerify" FunctionName="IF4101PICESModel.Store.TypeUserVerify" />
+    <FunctionImportMapping FunctionImportName="UsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
   </EntityContainerMapping>
 </Mapping>

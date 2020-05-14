@@ -482,5 +482,27 @@ namespace Proyecto.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessor_Result>("SPSelectProfessor");
         }
+    
+        public virtual int TypeUserVerify(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TypeUserVerify", idParameter);
+        }
+    
+        public virtual int UsersLogin(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsersLogin", usernameParameter, passwordParameter);
+        }
     }
 }

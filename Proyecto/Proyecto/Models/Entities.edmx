@@ -919,9 +919,16 @@
         <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="StudentApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UpdateStatusStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="RegistrationStatus" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UsersLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="IF4101PICESModelStoreContainer">
           <EntitySet Name="AcademicDegree" EntityType="Self.AcademicDegree" Schema="dbo" store:Type="Tables" />
@@ -2445,6 +2452,13 @@
           <FunctionImport Name="SelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
           <FunctionImport Name="SPSelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
           <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101PICESModel.SelectProfessor_Result)" />
+          <FunctionImport Name="TypeUserVerify">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UsersLogin">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2968,6 +2982,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TypeUserVerify" FunctionName="IF4101PICESModel.Store.TypeUserVerify" />
+          <FunctionImportMapping FunctionImportName="UsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

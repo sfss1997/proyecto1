@@ -1291,6 +1291,13 @@
     <FunctionImport Name="SelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
     <FunctionImport Name="SPSelectAcademicDegree" ReturnType="Collection(IF4101PICESModel.SelectAcademicDegree_Result)" />
     <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101PICESModel.SelectProfessor_Result)" />
+    <FunctionImport Name="TypeUserVerify">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UsersLogin">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
