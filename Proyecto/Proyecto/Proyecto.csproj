@@ -220,6 +220,9 @@
     <Compile Include="Models\SelectStudent_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SelectUsers_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SocialNetworksProfessor.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -333,6 +336,7 @@
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\Student.js" />
     <Content Include="Content\Style.css" />
+    <Content Include="Scripts\user.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
