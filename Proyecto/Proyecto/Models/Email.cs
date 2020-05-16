@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
+using System.Net.Mail;
+using System.Configuration;
+using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Proyecto.Models
 {
@@ -14,7 +24,7 @@ namespace Proyecto.Models
             mmsg.Subject = subject;
             mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
 
-            mmsg.Body = body;
+            mmsg.Body = CreateBody(body);
 
             mmsg.BodyEncoding = System.Text.Encoding.UTF8;
             mmsg.IsBodyHtml = true;
@@ -76,5 +86,24 @@ namespace Proyecto.Models
         //        throw;
         //    }
         //}
+
+        private string CreateBody(String msg)
+        {
+            string body = string.Empty;
+            var server = HttpContext.Current.Server;
+            using (StreamReader reader = new StreamReader(server.MapPath("~/EmailTemplate.html")))
+            {
+
+                body = reader.ReadToEnd();
+
+            }
+
+            body = body.Replace("{msg}", msg); //replacing Parameters
+
+
+
+            return body;
+
+        }
     }
 }
