@@ -17,7 +17,7 @@ namespace Proyecto.Models
             mmsg.Body = body;
 
             mmsg.BodyEncoding = System.Text.Encoding.UTF8;
-            mmsg.IsBodyHtml = false;
+            mmsg.IsBodyHtml = true;
             mmsg.From = new System.Net.Mail.MailAddress("infoempresarialucr@gmail.com");
 
             System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
