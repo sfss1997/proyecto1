@@ -50,7 +50,7 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <img id="ucrImage" src="../images/ucr.png" style="border: 0; float: left; margin-right: 15px"/>
+                    <img id="ucrImage" src="../images/ucr.png" style="border: 0; float: left; margin-right: 15px" />
                     <!-- lOGO TEXT HERE -->
 
 
@@ -60,7 +60,7 @@
                 <div id="navBar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
                         <li class="smoothScroll">  </li>
-     
+
                         <button type="button" id="btnLog" class="btn" onclick="clearTextBoxStudent();">Registrarse</button>
 
                         <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" onclick="clearTextBoxSignLog();" class="btn">Iniciar Sesión</button>
@@ -213,7 +213,7 @@
             </div>
         </div>
 
-        <!---Professor Register-->
+        <!---Professor Register and Update-->
 
         <div class="modal fade" id="myModalProfessor" tabindex="-1" role="dialog" hidden>
 
@@ -224,13 +224,20 @@
                     <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 id="HeaderTitleAdd" class="modal-title"> Registro de profesor </h4>
+                        <h4 id="TitleAddProfessor" class="modal-title"> Registro de profesor </h4>
+                        <h4 id="TitleUpdateProfessor" class="modal-title" hidden="hidden"> Actualizar profesor </h4>
 
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <form>
+
+                                    <div class="form-group">
+                                        <label for="ProfessorId">Identificador</label>
+                                        <input type="text" class="form-control" id="ProfessorId" disabled="disabled">
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="ProfessorUsername">Nombre de usuario</label>
                                         <input type="text" class="form-control" id="ProfessorUsername" placeholder="Nombre de usuario" autocomplete="off">
@@ -256,7 +263,6 @@
                                         <label for="ProfessorMail">Correo eléctronico</label>
                                         <input type="text" class="form-control" id="ProfessorMail" placeholder="Correo eléctronico" autocomplete="off">
                                     </div>
-
                                 </form>
                             </div>
                             <div class="col-md-6">
@@ -286,6 +292,24 @@
                                         <label for="District">Distrito</label>
                                         <select class="form-control" id="ProfessorDistrictDropdown" name="DistrictDropdown"></select>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="StatusProfessorDropdown">Estado</label>
+                                        <select class="form-control" id="StatusProfessorDropdown" disabled="disabled">
+                                            <option value="0">Inactivo</option>
+                                            <option value="1">Activo</option>
+                                        </select>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="form-group">
+                                        <label class="switch">
+                                            Administrador
+                                            <input type="checkbox" disabled="disabled" id="ProfessorCheckbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
                                 </form>
 
                             </div>
@@ -294,7 +318,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddProfessor();">Registrar</button>
+                        <button type="button" class="btn btn-primary" id="btnAddProfessor" onclick="return AddProfessor();">Registrar</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdateProfessor" onclick="EditProfessor();">Actualizar</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
 
                     </div>
