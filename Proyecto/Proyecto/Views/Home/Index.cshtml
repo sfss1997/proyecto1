@@ -67,7 +67,7 @@
 
                         <button type="button" id="btnProfessor" onclick="clearTextBoxProfessor();" class="btn">Registrar profesor nuevo</button>
 
-                        <button type="button" id="btnCourse" data-toggle="modal" onclick="clearTextBoxCourse();" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
+                        <button type="button" id="btnCourse" onclick="clearTextBoxCourse();" class="btn">Registrar curso nuevo</button>
 
                         <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
                     </ul>
@@ -338,7 +338,8 @@
                     <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 id="HeaderTitleAdd" class="modal-title"> Registro de curso nuevo </h4>
+                        <h4 id="TitleAddCourse" class="modal-title"> Registro de curso nuevo </h4>
+                        <h4 id="TitleUpdateCourse" class="modal-title"> Actualizar curso </h4>
 
                     </div>
                     <div class="modal-body">
@@ -385,7 +386,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" onclick="addCourse();" id="btnAddCourse">Registrar curso</button>
-                            <button type="button" class="btn btn-default" onclick="editCourse();" id="btnEditCourse" data-dismiss="modal">Actualizar</button>
+                            <button type="button" class="btn btn-default" onclick="editCourse();" id="btnEditCourse">Actualizar</button>
                             <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>

@@ -26,7 +26,6 @@ function login() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
                 if (user.Username == item.Username && user.Password == item.Password) {
 
@@ -47,7 +46,11 @@ function login() {
 
                     arrayStud.forEach(function (stud, key, array) {
                         if (item.Id == stud.Id) {
-                            $('#studentSection').show();  
+                            //console.log("existe")
+                            //if (stud.RegistrationStatus == "Aprobado") {
+                                $('#studentSection').show();
+                               // console.log("aprobado")
+                            }
                         }
                     });
 
