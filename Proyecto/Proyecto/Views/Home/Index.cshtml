@@ -50,22 +50,25 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-
+                    <img id="ucrImage" src="../images/ucr.png" style="border: 0; float: left; margin-right: 15px"/>
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Informática Empresarial</a>
+
 
                 </div>
 
                 <!-- MENU LINKS -->
-                <div class="collapse navbar-collapse">
+                <div id="navBar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                        <li><a href="#top" class="smoothScroll">Inicio</a></li>
-                        <li><a href="#about" class="smoothScroll">Acerca de</a></li>
-                        <li><a href="#contact" class="smoothScroll">Contáctanos</a></li>
+                        <li class="smoothScroll">  </li>
+     
                         <button type="button" id="btnLog" class="btn" onclick="clearTextBoxStudent();">Registrarse</button>
+
                         <button type="button" id="btnSignLog" data-toggle="modal" data-target="#myModalSignLog" onclick="clearTextBoxSignLog();" class="btn">Iniciar Sesión</button>
+
                         <button type="button" id="btnProfessor" onclick="clearTextBoxProfessor();" class="btn">Registrar profesor nuevo</button>
+
                         <button type="button" id="btnCourse" data-toggle="modal" onclick="clearTextBoxCourse();" data-target="#myModalCourse" class="btn">Registrar curso nuevo</button>
+
                         <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
                     </ul>
                 </div>

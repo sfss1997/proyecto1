@@ -284,17 +284,17 @@ https://templatemo.com/tm-516-known
     padding-left: 12px;
   }
 
-  .custom-navbar .navbar-nav.navbar-right li a .fa {
-    background:  #a9cce3 ;
-    border-radius: 100%;
-    color: #ffffff;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    display: inline-block;
-    margin-right: 5px;
-  }
+    .custom-navbar .navbar-nav.navbar-right li a .fa {
+        background: #FFFFFF;
+        border-radius: 100%;
+        color: #ffffff;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        display: inline-block;
+        margin-right: 5px;
+    }
 
   .custom-navbar .nav li a {
     line-height: 40px;
@@ -309,7 +309,7 @@ https://templatemo.com/tm-516-known
   }
 
   .custom-navbar .nav li a:hover {
-    background-color: #a9cce3 ;
+    background-color: #FFFFFF ;
     color: #ffffff;
   }
 
@@ -941,7 +941,7 @@ https://templatemo.com/tm-516-known
 
     .custom-navbar .nav li a,
     .top-nav-collapse .nav li a {
-      color: #575757;
+      color: white;
     }
 
     .custom-navbar .navbar-nav.navbar-right li {

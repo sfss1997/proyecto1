@@ -47,7 +47,7 @@ function login() {
 
                     arrayStud.forEach(function (stud, key, array) {
                         if (item.Id == stud.Id) {
-                            $('#studentSection').show();
+                            $('#studentSection').show();  
                         }
                     });
 
