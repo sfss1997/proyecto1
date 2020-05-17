@@ -5,8 +5,16 @@
 });
 
 function clearTextBoxProfessor() {
+    $('#TitleAddProfessor').show();
+    $('#btnAddProfessor').show();
+    $('#btnUpdateProfessor').hide();
     $('#myModalProfessor').modal('show');
+    $('#TitleUpdateProfessor').hide();
+    $('#ProfessorPassword').prop("disabled", false);
+    $('#ProfessorImage').prop("disabled", false);
+    $('#StatusProfessorDropdown').prop("disabled", true);
 
+    $('#ProfessorId').val("");
     $('#ProfessorUsername').val("");
     $('#ProfessorPassword').val("");
     $('#ProfessorName').val("");
@@ -143,6 +151,7 @@ function AddProfessor() {
             success: function (result) {
                 $('#myModalProfessor').modal('hide');
                 $('.modal-backdrop').hide();
+                loadProfessors();
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
@@ -163,6 +172,7 @@ function loadAcademicDegree() {
                     s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
                 $("#AcademicDegreeDropdown").html(s);
+                $("#AcademicDegreeUpdateDropdown").html(s);
             }
         });
     });
@@ -277,7 +287,7 @@ function loadProfessors() {
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.LastName + '</td>';
                 html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="Update(' + item.Id + ')">Editar</a> | <a href="#" onclick="Delete(' + item.Id + ')">Borrar</a></td>';
+                html += '<td><a href="#" onclick="getByIdProfessor(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteProfessor(' + item.Id + ')">Borrar</a></td>';
             });
             $('.tableProfesor').html(html);
         },
@@ -285,4 +295,134 @@ function loadProfessors() {
             alert(errorMessage.responseText);
         }
     })
+}
+
+function getByIdProfessor(id) {
+    loadLocationProfessor();
+    loadAcademicDegree();
+    $('#ProfessorId').prop("disabled", true);
+    $('#myModalProfessor').modal('show');
+    $('#btnAddProfessor').hide();
+    $('#btnUpdateProfessor').show();;
+    $('#TitleAddProfessor').hide();
+    $('#TitleUpdateProfessor').show();
+    $('#StatusProfessorDiv').show();
+    $('#ProfessorPassword').prop("disabled", true);
+    $('#ProfessorImage').prop("disabled", true);
+    $('#StatusProfessorDropdown').prop("disabled", false);
+    $('#ProfessorCheckbox').prop("disabled", false);
+
+    $.ajax({
+        url: "/Professor/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            
+            $('#ProfessorId').val(result.Id);
+            $('#ProfessorUsername').val(result.Username);
+            $('#ProfessorPassword').val(result.Password); 
+            $("#ProfessorName").val(result.Name);
+            $('#ProfessorLastName').val(result.LastName);
+            $('#ProfessorMail').val(result.Mail);
+            $("#AcademicDegreeDropdown").val(result.AcademicDegree.Id);
+            $("#ProfessorProvinceDropdown").val(result.Province.Id);
+            $("#ProfessorCantonDropdown").val(result.Canton.Id);
+            $("#ProfessorDistrictDropdown").val(result.District.Id);
+
+            var status = result.Status;
+            if (status == 0) {
+                $("#StatusProfessorDropdown").val("Inactivo");
+            } else if (status == 1) {
+                $("#StatusProfessorDropdown").val("Activo");
+            }
+            
+            
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function EditProfessor() {
+    var academicDegree = {
+        id: $("#AcademicDegreeDropdown option:selected").val()
+    };
+
+    var province = {
+        id: $("#ProfessorProvinceDropdown option:selected").val()
+    }
+
+    var canton = {
+        id: $("#ProfessorCantonDropdown option:selected").val()
+    }
+
+    var district = {
+        id: $("#ProfessorDistrictDropdown option:selected").val()
+    }
+
+    var isActive = {
+        id: $("#StatusProfessorDropdown option:selected").val()
+    }
+
+    var administrator;
+    $("#ProfessorCheckbox").change(function () {
+        if ($(this).prop("checked") == true) {
+            administrator = 1;
+        } else {
+            administrator = 0;
+        }
+    });
+
+    var professor = {
+        Id: $('#ProfessorId').val(),
+        Username: $('#ProfessorUsername').val(),
+        Password: $('#ProfessorPassword').val(),
+        Name: $('#ProfessorName').val(),
+        LastName: $('#ProfessorLastName').val(),
+        Image: $('#ProfessorImage').val(),
+        Mail: $('#ProfessorMail').val(),
+        AcademicDegree: academicDegree.Id,
+        ProvinceId: province.Id,
+        CantonId: canton.Id,
+        DistrictId: district.Id,
+        IsAdministrator: administrator,
+        Status: isActive,
+    };
+
+    $.ajax({
+        url: "/Professor/Update",
+        data: JSON.stringify(professor),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadProfessors();
+            $('#myModalProfessor').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function deleteProfessor(id) {
+    var alert = confirm("¿Está seguro que desea eliminar el registro?");
+
+    if (alert) {
+        $.ajax({
+            url: "/Professor/DeleteProfessor/" + id,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                loadProfessors();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
 }

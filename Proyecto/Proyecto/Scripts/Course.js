@@ -25,6 +25,7 @@ function addCourse() {
             success: function (result) {
                 $('#myModalCourse').modal('hide');
                 $('.modal-backdrop').hide();
+                loadCourses();
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
@@ -34,6 +35,23 @@ function addCourse() {
 }
 
 function getByIdCourse(id) {
+
+    $('#TitleAddCourse').hide();
+    $('#TitleUpdateCourse').show();
+    $('#btnEditCourse').show();
+    $('#btnAddCourse').hide();
+
+    var activeDropdown = '<option value="-1">Seleccione una opción</option>';
+    activeDropdown += '<option value="0">Inactivo</option>';
+    activeDropdown += '<option value="1">Activo</option>';
+    $("#IsActiveDropdown").html(activeDropdown);
+
+    var cycleDropdown = '<option value="-1">Seleccione una opción</option>';
+    cycleDropdown += '<option value="1">I Semestre</option>';
+    cycleDropdown += '<option value="2">II Semestre</option>';
+    cycleDropdown += '<option value="3">Verano</option>';
+    $("#CycleDropdown").html(cycleDropdown);
+
     $.ajax({
         url: "/Course/GetById/" + id,
         type: "GET",
@@ -114,14 +132,26 @@ function deleteCourse(id) {
 
 function clearTextBoxCourse() {
     $('#myModalCourse').modal('show');
+    $('#btnEditCourse').hide();
+    $('#btnAddCourse').show();
+    $('#TitleAddCourse').show();
+    $('#TitleUpdateCourse').hide();
 
+    $('#CourseId').val("");
     $('#CourseInitials').val("");
     $('#CourseName').val("");
     $('#CourseCredits').val("");
 
-    var s = '<option value="-1">Seleccione una opción</option>';
-    $("#IsActiveDropdown").html(s);
-    $("#CycleDropdown").html(s);
+    var activeDropdown= '<option value="-1">Seleccione una opción</option>';
+    activeDropdown += '<option value="0">Inactivo</option>';
+    activeDropdown += '<option value="1">Activo</option>';
+    $("#IsActiveDropdown").html(activeDropdown);
+
+    var cycleDropdown = '<option value="-1">Seleccione una opción</option>';
+    cycleDropdown += '<option value="1">I Semestre</option>';
+    cycleDropdown += '<option value="2">II Semestre</option>';
+    cycleDropdown += '<option value="3">Verano</option>';
+    $("#CycleDropdown").html(cycleDropdown);
 
     $('#CourseInitials').css('border-color', 'lightgrey');
     $('#CourseName').css('border-color', 'lightgrey');
@@ -190,13 +220,32 @@ function loadCourses() {
             dataSet = new Array();
             var html = '';
             $.each(result, function (key, item) {
+                var cycle = "";
+                var active = "";
+                if (item.Cycle == 1) {
+                    cycle = "I Semestre"
+                }
+                else if (item.Cycle == 2) {
+                    cycle = "II Semestre"
+                }
+                else if (item.Cycle == 3) {
+                    cycle = "Verano"
+                }
+
+                if (item.IsActive == 0) {
+                    active = "Inactivo"
+                }
+                else if (item.IsActive == 1) {
+                    active = "Activo"
+                }
+
                 html += '<tr>';
                 html += '<td>' + item.Id + '</td>';
                 html += '<td>' + item.Initials + '</td>';
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.Credits + '</td>';
-                html += '<td>' + item.Cycle + '</td>';
-                html += '<td>' + item.IsActive + '</td>';
+                html += '<td>' + cycle + '</td>';
+                html += '<td>' + active + '</td>';
                 html += '<td><a href="#" onclick="getByIdCourse(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteCourse(' + item.Id + ')">Borrar</a></td>';
             });
             $('.tableCourseRegister').html(html);

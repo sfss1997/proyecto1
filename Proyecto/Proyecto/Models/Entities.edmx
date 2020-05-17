@@ -2383,9 +2383,6 @@
           <FunctionImport Name="GetDistrictsByIdCanton" ReturnType="Collection(IF4101PICESModel.GetDistrictsByIdCanton_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
           <FunctionImport Name="GetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -2463,9 +2460,6 @@
           <FunctionImport Name="SPDeleteProfessor">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SPGetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="SPInsertUpdateProfessor">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Username" Mode="In" Type="String" />
@@ -2533,6 +2527,12 @@
           <FunctionImport Name="SPSelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
           <FunctionImport Name="ListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
           <FunctionImport Name="SPListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
+          <FunctionImport Name="GetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2549,12 +2549,6 @@
         <ComplexType Name="GetDistrictsByIdCanton_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="GetProfessorById_Result">
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AcademicDegree" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="GetProvinces_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2629,6 +2623,21 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetProfessorById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AcademicDegree" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2899,16 +2908,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetProfessorById" FunctionName="IF4101PICESModel.Store.GetProfessorById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorById_Result">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetProvinces" FunctionName="IF4101PICESModel.Store.GetProvinces">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
@@ -3035,16 +3034,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPInsertUpdateCourse" FunctionName="IF4101PICESModel.Store.InsertUpdateCourse" />
           <FunctionImportMapping FunctionImportName="SPDeleteProfessor" FunctionName="IF4101PICESModel.Store.DeleteProfessor" />
-          <FunctionImportMapping FunctionImportName="SPGetProfessorById" FunctionName="IF4101PICESModel.Store.GetProfessorById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorById_Result">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPInsertUpdateProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateProfessor" />
           <FunctionImportMapping FunctionImportName="SelectAcademicDegree" FunctionName="IF4101PICESModel.Store.SelectAcademicDegree">
             <ResultMapping>
@@ -3138,6 +3127,44 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
                 <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProfessorById" FunctionName="IF4101PICESModel.Store.GetProfessorById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetProfessorById" FunctionName="IF4101PICESModel.Store.GetProfessorById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
