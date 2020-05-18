@@ -6,11 +6,18 @@
 });
 
 function clearTextBoxSignLog() {
-    $('#UsernameSignLog').val(""),
-    $('#PasswordSignLog').val("")
+    $('#UsernameSignLog').val("");
+    $('#PasswordSignLog').val("");
+    $('#userNotApprovedMessage').hide();
+    $('#invalidUserMessage').hide();
+
 }
 
 function login() {
+
+    $('#userNotApprovedMessage').hide();
+    $('#invalidUserMessage').hide();
+
     var user = {
         Username: $('#UsernameSignLog').val(),
         Password: $('#PasswordSignLog').val()
@@ -29,37 +36,56 @@ function login() {
             $.each(result, function (key, item) {
                 if (user.Username == item.Username && user.Password == item.Password) {
 
-                    $("#home").hide();
-                    $("#myModalSignLog").hide();
-                    $('.modal-backdrop').hide();
-                    $("#btnSignLog").hide();
-                    $("#btnLogOut").show();
-                    $("#btnLog").hide();
-                    $("#btnProfessor").hide();
-                    $("#btnCourse").hide();
-
                     arrayProf.forEach(function (prof, key, array) {
                         if (item.Id == prof.Id) {
+                            $("#home").hide();
+                            $("#myModalSignLog").hide();
+                            $('.modal-backdrop').hide();
+                            $("#btnSignLog").hide();
+                            $("#btnLogOut").show();
+                            $("#btnLog").hide();
+                            $("#btnProfessor").hide();
+                            $("#btnCourse").hide();
                             $('#professorSection').show();
                         }
                     });
 
                     arrayStud.forEach(function (stud, key, array) {
                         if (item.Id == stud.Id) {
-                            //console.log("existe")
-                            //if (stud.RegistrationStatus == "Aprobado") {
+                            if (stud.RegistrationStatus == "Aprobado") {
+                                $("#home").hide();
+                                $("#myModalSignLog").hide();
+                                $('.modal-backdrop').hide();
+                                $("#btnSignLog").hide();
+                                $("#btnLogOut").show();
+                                $("#btnLog").hide();
+                                $("#btnProfessor").hide();
+                                $("#btnCourse").hide();
                                 $('#studentSection').show();
-                               // console.log("aprobado")
+                            } else {
+                                $('#userNotApprovedMessage').show();
+                                $('#invalidUserMessage').hide();
                             }
                         }
                     });
 
                     if (user.Username == "admin" && user.Password == "admin") {
+                        $("#home").hide();
+                        $("#myModalSignLog").hide();
+                        $('.modal-backdrop').hide();
+                        $("#btnSignLog").hide();
+                        $("#btnLogOut").show();
+                        $("#btnLog").hide();
+                        $("#btnProfessor").hide();
+                        $("#btnCourse").hide();
                         $('#administratorSection').show();
                         $('#btnProfessor').show();
                         $('#btnCourse').show();
 
                     }
+                } else {
+                    $('#userNotApprovedMessage').hide();
+                    $('#invalidUserMessage').show();
                 }
             });
         },
@@ -85,7 +111,7 @@ function logOut() {
 function listStudents() {
     var arrayStudent = [];
     $.ajax({
-        url: "/Student/ListStudents",
+        url: "/Student/ListAllStudents",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",

@@ -18,14 +18,6 @@ namespace Proyecto.Controllers
         ProfessorDataEF ProfessorDataEF = new ProfessorDataEF();
         Email Email = new Email();
 
-        //public JsonResult Add(Professor professor, Location location, Users user)
-        //{
-        //    Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + " " + professor.LastName+ ", ha sido añadido satisfactoriamente."+
-        //        "\n\n\n\n" + "Para consultas o mas información ingrese a la direción www.ucr.ac.cr" +
-        //        "\nUniversidad de Costa Rica" +
-        //        "\nInformática Empresarial");
-        //    return Json(ProfessorDataEF.Add(professor, location, user), JsonRequestBehavior.AllowGet);
-        //}
         public JsonResult Add(Professor professor, Location location, Users user)
         {
             Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + " " + professor.LastName + ", ha sido añadido satisfactoriamente.");

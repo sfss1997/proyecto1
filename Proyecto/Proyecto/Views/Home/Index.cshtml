@@ -109,15 +109,14 @@
                     </div>
 
                     <div class="modal-footer">
+                        <h5 id="userNotApprovedMessage" hidden="hidden">El usuario no ha sido aprobado.</h5>
+                        <h5 id="invalidUserMessage" hidden="hidden">El usuario no se encuentra registrado.</h5>
                         <button type="button" class="btn btn-primary" onclick="login();" id="btnAdd">Iniciar sesión</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
 
         <!---Student Register-->
 
@@ -304,8 +303,8 @@
                                     <br />
 
                                     <div class="form-group">
-                                        <label class="switch">
-                                            Administrador
+                                        <label>Administrador</label>
+                                        <label class="switch">    
                                             <input type="checkbox" disabled="disabled" id="ProfessorCheckbox">
                                             <span class="slider round"></span>
                                         </label>
@@ -552,6 +551,31 @@
                     </table>
                 </div>
 
+                <!---ALL STUDENTS-->
+                <div class="table-responsive">
+                    <h3>Estudiantes registrados</h3>
+                    <table class="table table-bordered table-hover" id="tableStudents">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Carné
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Apellido
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableStudents">
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </section>

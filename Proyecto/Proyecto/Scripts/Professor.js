@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    loadLocationProfessor();
+    loadProvinceProfessor();
     loadAcademicDegree();
     loadProfessors();
 });
@@ -22,7 +22,7 @@ function clearTextBoxProfessor() {
     $('#ProfessorMail').val("");
     $('#ProfessorImage').val("");
 
-    loadLocationProfessor();
+    loadProvinceProfessor();
     loadAcademicDegree();
     var s = '<option value="-1">Seleccione una opción</option>';
     $("#AcademicDegreeDropdown").html(s);
@@ -42,7 +42,7 @@ function clearTextBoxProfessor() {
     $('#ProfessorDistrictDropdown').css('border-color', 'lightgrey');
 }
 
-function loadLocationProfessor() {
+function loadProvinceProfessor() {
 
     $(document).ready(function () {
         $.ajax({
@@ -62,44 +62,51 @@ function loadLocationProfessor() {
                         Id: $("#ProfessorProvinceDropdown option:selected").val()
                     };
 
-                    $(document).ready(function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "/Location/ListCantonsByIdProvince/" + province.Id,
-                            data: "{}",
-                            success: function (data) {
-                                var s = '<option value="-1">Seleccione una opción</option>';
-                                for (var i = 0; i < data.length; i++) {
-                                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                                }
-                                $("#ProfessorCantonDropdown").html(s);
-
-                                $("#ProfessorCantonDropdown").change(function () {
-
-                                    var canton = {
-                                        Id: $("#ProfessorCantonDropdown option:selected").val()
-                                    };
-
-                                    $(document).ready(function () {
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "/Location/ListDistrictsByIdCanton/" + canton.Id,
-                                            data: "{}",
-                                            success: function (data) {
-                                                var s = '<option value="-1">Seleccione una opción</option>';
-                                                for (var i = 0; i < data.length; i++) {
-                                                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                                                }
-                                                $("#ProfessorDistrictDropdown").html(s);
-                                            }
-                                        });
-                                    });
-                                });
-                            }
-                        });
-                    });
+                    loadCantonProfessor(province.Id);
 
                 });
+            }
+        });
+    });
+}
+
+function loadCantonProfessor(province) {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Location/ListCantonsByIdProvince/" + province,
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#ProfessorCantonDropdown").html(s);
+
+                $("#ProfessorCantonDropdown").change(function () {
+
+                    var canton = {
+                        Id: $("#ProfessorCantonDropdown option:selected").val()
+                    };
+                    loadDistrictProfessor(canton.Id);
+                });
+            }
+        });
+    });
+}
+
+function loadDistrictProfessor(canton) {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Location/ListDistrictsByIdCanton/" + canton,
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#ProfessorDistrictDropdown").html(s);
             }
         });
     });
@@ -130,7 +137,7 @@ function AddProfessor() {
         LastName: $('#ProfessorLastName').val(),
         Image: $('#ProfessorImage').val(),
         Mail: $('#ProfessorMail').val(),
-        AcademicDegreeId: academicDegree.Id,
+        AcademicDegree: academicDegree.Id,
         ProvinceId: province.Id,
         CantonId: canton.Id,
         DistrictId: district.Id,
@@ -172,7 +179,6 @@ function loadAcademicDegree() {
                     s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
                 $("#AcademicDegreeDropdown").html(s);
-                $("#AcademicDegreeUpdateDropdown").html(s);
             }
         });
     });
@@ -298,7 +304,8 @@ function loadProfessors() {
 }
 
 function getByIdProfessor(id) {
-    loadLocationProfessor();
+
+    loadProvinceProfessor();
     loadAcademicDegree();
     $('#ProfessorId').prop("disabled", true);
     $('#myModalProfessor').modal('show');
@@ -325,18 +332,27 @@ function getByIdProfessor(id) {
             $("#ProfessorName").val(result.Name);
             $('#ProfessorLastName').val(result.LastName);
             $('#ProfessorMail').val(result.Mail);
-            $("#AcademicDegreeDropdown").val(result.AcademicDegree.Id);
-            $("#ProfessorProvinceDropdown").val(result.Province.Id);
-            $("#ProfessorCantonDropdown").val(result.Canton.Id);
-            $("#ProfessorDistrictDropdown").val(result.District.Id);
-
-            var status = result.Status;
-            if (status == 0) {
-                $("#StatusProfessorDropdown").val("Inactivo");
-            } else if (status == 1) {
-                $("#StatusProfessorDropdown").val("Activo");
-            }
+            $('#ProfessorImage').val("");
+            $("#AcademicDegreeDropdown").val(result.AcademicDegreeId);
+            $("#ProfessorProvinceDropdown").val(result.ProvinceId);
+            loadCantonProfessor(result.ProvinceId);
+            loadDistrictProfessor(result.CantonId);
+            $("#ProfessorCantonDropdown").val(result.CantonId);
+            $("#ProfessorDistrictDropdown").val(result.DistrictId);
             
+            var status = result.Status;
+            if (status == "Inactivo") {
+                $("#StatusProfessorDropdown").val(0);
+            } else if (status == "Activo") {
+                $("#StatusProfessorDropdown").val(1);
+            }
+
+            var administrator = result.IsAdministrator;
+            if (administrator == 0) {
+                $("#ProfessorCheckbox").attr('checked', false);
+            } else if (administrator == 1) {
+                $("#ProfessorCheckbox").attr('checked', true);
+            }
             
         },
 
@@ -348,33 +364,38 @@ function getByIdProfessor(id) {
 
 function EditProfessor() {
     var academicDegree = {
-        id: $("#AcademicDegreeDropdown option:selected").val()
+        AcademicDegreeId: $("#AcademicDegreeDropdown option:selected").val()
     };
 
     var province = {
-        id: $("#ProfessorProvinceDropdown option:selected").val()
+        ProvinceId: $("#ProfessorProvinceDropdown option:selected").val()
     }
 
     var canton = {
-        id: $("#ProfessorCantonDropdown option:selected").val()
+        CantonId: $("#ProfessorCantonDropdown option:selected").val()
     }
 
     var district = {
-        id: $("#ProfessorDistrictDropdown option:selected").val()
+        DistrictId: $("#ProfessorDistrictDropdown option:selected").val()
     }
 
     var isActive = {
-        id: $("#StatusProfessorDropdown option:selected").val()
+        Status: $("#StatusProfessorDropdown option:selected").val()
     }
 
-    var administrator;
-    $("#ProfessorCheckbox").change(function () {
-        if ($(this).prop("checked") == true) {
-            administrator = 1;
-        } else {
-            administrator = 0;
-        }
-    });
+    var administrator = 0;
+    if ($("#ProfessorCheckbox").prop('checked') == false) {
+        administrator = 0;
+    } else if ($("#ProfessorCheckbox").prop('checked') == true) {
+        administrator = 1;
+    }
+
+    var active = "";
+    if (isActive.Status == 0) {
+        active = "Inactivo"
+    } else if (isActive.Status == 1) {
+        active = "Activo"
+    }
 
     var professor = {
         Id: $('#ProfessorId').val(),
@@ -384,12 +405,12 @@ function EditProfessor() {
         LastName: $('#ProfessorLastName').val(),
         Image: $('#ProfessorImage').val(),
         Mail: $('#ProfessorMail').val(),
-        AcademicDegree: academicDegree.Id,
-        ProvinceId: province.Id,
-        CantonId: canton.Id,
-        DistrictId: district.Id,
+        AcademicDegreeId: academicDegree.AcademicDegreeId,
+        ProvinceId: province.ProvinceId,
+        CantonId: canton.CantonId,
+        DistrictId: district.DistrictId,
         IsAdministrator: administrator,
-        Status: isActive,
+        Status: active,
     };
 
     $.ajax({

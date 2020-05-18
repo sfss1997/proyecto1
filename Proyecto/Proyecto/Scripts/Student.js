@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     loadLocationStudent();
     loadData();
+    loadStudents();
 });
 
 function clearTextBoxStudent() {
@@ -301,6 +302,32 @@ function StudentDeny(id) {
             alert(errorMessage.responseText);
         }
     });
+}
+
+function loadStudents() {
+    $.ajax({
+        url: "/Student/ListAllStudents",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            var html = '';
+            $.each(result, function (key, item) {
+                if (item.RegistrationStatus == "Aprobado") {
+                    html += '<tr>';
+                    html += '<td>' + item.StudentCard + '</td>';
+                    html += '<td>' + item.StudentName + '</td>';
+                    html += '<td>' + item.LastName + '</td>';
+                    html += '<td>' + item.Mail + '</td>';
+                }
+            });
+            $('.tableStudents').html(html);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
 }
 
 

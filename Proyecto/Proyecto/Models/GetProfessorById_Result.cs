@@ -19,9 +19,13 @@ namespace Proyecto.Models
         public string Mail { get; set; }
         public string Image { get; set; }
         public string AcademicDegree { get; set; }
+        public int AcademicDegreeId { get; set; }
         public string Province { get; set; }
+        public int ProvinceId { get; set; }
         public string Canton { get; set; }
+        public int CantonId { get; set; }
         public string District { get; set; }
+        public int DistrictId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int IsAdministrator { get; set; }

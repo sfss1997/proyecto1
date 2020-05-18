@@ -286,11 +286,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SelectProfessor");
         }
     
-        public virtual ObjectResult<SelectStudent_Result> SelectStudent()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudent_Result>("SelectStudent");
-        }
-    
         public virtual ObjectResult<StudentApproval_Result> StudentApproval()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("StudentApproval");
@@ -307,11 +302,6 @@ namespace Proyecto.Models
                 new ObjectParameter("RegistrationStatus", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStatusStudent", idParameter, registrationStatusParameter);
-        }
-    
-        public virtual ObjectResult<SelectStudent_Result> SPSelectStudent()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudent_Result>("SPSelectStudent");
         }
     
         public virtual ObjectResult<GetProvinces_Result> SPGetProvinces()
@@ -630,6 +620,16 @@ namespace Proyecto.Models
         public virtual ObjectResult<ListStudent_Result> SPListStudent()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListStudent_Result>("SPListStudent");
+        }
+    
+        public virtual ObjectResult<SelectStudent_Result> SelectStudent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudent_Result>("SelectStudent");
+        }
+    
+        public virtual ObjectResult<SelectStudent_Result> SPSelectStudent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudent_Result>("SPSelectStudent");
         }
     
         public virtual ObjectResult<GetProfessorById_Result> GetProfessorById(Nullable<int> id)

@@ -1238,13 +1238,11 @@
     </FunctionImport>
     <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
     <FunctionImport Name="SelectProfessor" />
-    <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
     <FunctionImport Name="StudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
     <FunctionImport Name="UpdateStatusStudent">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="RegistrationStatus" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SPSelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
     <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
     <FunctionImport Name="SPStudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
     <FunctionImport Name="SPSelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
@@ -1333,6 +1331,8 @@
     <FunctionImport Name="SPSelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
     <FunctionImport Name="ListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
     <FunctionImport Name="SPListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
+    <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
+    <FunctionImport Name="SPSelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
     <FunctionImport Name="GetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1374,19 +1374,6 @@
     <Property Type="Int32" Name="IsActive" Nullable="false" />
     <Property Type="Int32" Name="Credits" Nullable="false" />
     <Property Type="Int32" Name="Cycle" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="SelectStudent_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="Birthday" Nullable="false" />
-    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="StudentApproval_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1430,6 +1417,23 @@
     <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
   </ComplexType>
+  <ComplexType Name="SelectStudent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Birthday" Nullable="false" />
+    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="GetProfessorById_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
@@ -1437,9 +1441,13 @@
     <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Image" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="AcademicDegree" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="AcademicDegreeId" Nullable="false" />
     <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ProvinceId" Nullable="false" />
     <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="CantonId" Nullable="false" />
     <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="DistrictId" Nullable="false" />
     <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="IsAdministrator" Nullable="false" />

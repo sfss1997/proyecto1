@@ -348,3 +348,5 @@ C:\Users\wilme\Documents\Repositorio\Proyecto I Lenguajes\proyecto1\Proyecto\Pro
 C:\Users\wilme\Documents\Repositorio\Proyecto I Lenguajes\proyecto1\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.CopyComplete
 C:\Users\wilme\Documents\Repositorio\Proyecto I Lenguajes\proyecto1\Proyecto\Proyecto\obj\Debug\Proyecto.dll
 C:\Users\wilme\Documents\Repositorio\Proyecto I Lenguajes\proyecto1\Proyecto\Proyecto\obj\Debug\Proyecto.pdb
+C:\Users\Nicole\Documents\GitHub\proyecto1\Proyecto\Proyecto\bin\System.Net.Http.Formatting.dll
+C:\Users\Nicole\Documents\GitHub\proyecto1\Proyecto\Proyecto\bin\System.Net.Http.Formatting.xml

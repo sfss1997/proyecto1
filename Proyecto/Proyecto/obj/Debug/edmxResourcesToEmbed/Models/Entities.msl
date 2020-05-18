@@ -299,23 +299,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SelectProfessor" FunctionName="IF4101PICESModel.Store.SelectProfessor" />
-    <FunctionImportMapping FunctionImportName="SelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudent_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-          <ScalarProperty Name="Province" ColumnName="Name" />
-          <ScalarProperty Name="Canton" ColumnName="Name1" />
-          <ScalarProperty Name="District" ColumnName="Name2" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="StudentApproval" FunctionName="IF4101PICESModel.Store.StudentApproval">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.StudentApproval_Result">
@@ -327,23 +310,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateStatusStudent" FunctionName="IF4101PICESModel.Store.UpdateStatusStudent" />
-    <FunctionImportMapping FunctionImportName="SPSelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudent_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-          <ScalarProperty Name="Province" ColumnName="Name" />
-          <ScalarProperty Name="Canton" ColumnName="Name1" />
-          <ScalarProperty Name="District" ColumnName="Name2" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SPGetProvinces" FunctionName="IF4101PICESModel.Store.GetProvinces">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
@@ -485,6 +451,48 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPSelectStudent" FunctionName="IF4101PICESModel.Store.SelectStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectStudent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetProfessorById" FunctionName="IF4101PICESModel.Store.GetProfessorById">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorById_Result">
@@ -494,9 +502,13 @@
           <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+          <ScalarProperty Name="AcademicDegreeId" ColumnName="AcademicDegreeId" />
           <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
           <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="CantonId" ColumnName="CantonId" />
           <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
@@ -513,9 +525,13 @@
           <ScalarProperty Name="Mail" ColumnName="Mail" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+          <ScalarProperty Name="AcademicDegreeId" ColumnName="AcademicDegreeId" />
           <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
           <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="CantonId" ColumnName="CantonId" />
           <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
