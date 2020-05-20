@@ -22,7 +22,7 @@ namespace Proyecto.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
-                var responseTask = client.GetAsync("GetComment/"+id);
+                var responseTask = client.GetAsync("GetCommentsByIdNews/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
