@@ -177,13 +177,13 @@
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Birthday" Type="date" Nullable="false" />
     <Property Name="Mail" Type="varchar" MaxLength="50" />
-    <Property Name="Image" Type="varchar" MaxLength="200" />
     <Property Name="LocationId" Type="int" />
     <Property Name="RegistrationStatus" Type="varchar" MaxLength="20" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
+    <Property Name="Image" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="StudentCourse">
     <Key>

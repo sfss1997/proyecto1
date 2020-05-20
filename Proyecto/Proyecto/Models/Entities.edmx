@@ -182,13 +182,13 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Birthday" Type="date" Nullable="false" />
           <Property Name="Mail" Type="varchar" MaxLength="50" />
-          <Property Name="Image" Type="varchar" MaxLength="200" />
           <Property Name="LocationId" Type="int" />
           <Property Name="RegistrationStatus" Type="varchar" MaxLength="20" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreateAt" Type="date" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedAt" Type="date" />
+          <Property Name="Image" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="StudentCourse">
           <Key>
@@ -1224,8 +1224,8 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Course" Relationship="Self.FK__Appointme__Cours__10E07F16" FromRole="Appointment" ToRole="Course" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Appointme__Creat__1B5E0D89" FromRole="Appointment" ToRole="Users" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Appointme__Stude__0FEC5ADD" FromRole="Appointment" ToRole="Student" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__Appointme__Updat__1C5231C2" FromRole="Appointment" ToRole="Users" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__Appointme__Stude__0FEC5ADD" FromRole="Appointment" ToRole="Student" />
         </EntityType>
         <EntityType Name="Canton">
           <Key>
@@ -1300,7 +1300,7 @@
           <NavigationProperty Name="Province" Relationship="Self.FK__Location__Provin__6F7F8B4B" FromRole="Location" ToRole="Province" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__Location__Update__23F3538A" FromRole="Location" ToRole="Users" />
           <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__Locat__7FB5F314" FromRole="Location" ToRole="Professor" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Student__Locatio__762C88DA" FromRole="Location" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__Student__Locatio__762C88DA" FromRole="Location" ToRole="Student" />
         </EntityType>
         <EntityType Name="PrivateMessage">
           <Key>
@@ -1317,8 +1317,8 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Course" Relationship="Self.FK__PrivateMe__Cours__14B10FFA" FromRole="PrivateMessage" ToRole="Course" />
           <NavigationProperty Name="Users" Relationship="Self.FK__PrivateMe__Creat__24E777C3" FromRole="PrivateMessage" ToRole="Users" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__PrivateMe__Stude__13BCEBC1" FromRole="PrivateMessage" ToRole="Student" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__PrivateMe__Updat__25DB9BFC" FromRole="PrivateMessage" ToRole="Users" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1" FromRole="PrivateMessage" ToRole="Student" />
         </EntityType>
         <EntityType Name="Professor">
           <Key>
@@ -1389,8 +1389,8 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Course" Relationship="Self.FK__PublicCon__Cours__1881A0DE" FromRole="PublicConsultation" ToRole="Course" />
           <NavigationProperty Name="Users" Relationship="Self.FK__PublicCon__Creat__2C88998B" FromRole="PublicConsultation" ToRole="Users" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__PublicCon__Stude__178D7CA5" FromRole="PublicConsultation" ToRole="Student" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__PublicCon__Updat__2D7CBDC4" FromRole="PublicConsultation" ToRole="Users" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5" FromRole="PublicConsultation" ToRole="Student" />
         </EntityType>
         <EntityType Name="SocialNetworksProfessor">
           <Key>
@@ -1418,34 +1418,7 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Users" Relationship="Self.FK__SocialNet__Creat__30592A6F" FromRole="SocialNetworksStudent" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__SocialNet__Updat__314D4EA8" FromRole="SocialNetworksStudent" ToRole="Users" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__SocialNetwor__Id__79FD19BE" FromRole="SocialNetworksStudent" ToRole="Student" />
-        </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="StudentCard" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="LocationId" Type="Int32" />
-          <Property Name="RegistrationStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreateAt" Type="DateTime" Precision="0" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Stude__0FEC5ADD" FromRole="Student" ToRole="Appointment" />
-          <NavigationProperty Name="Location" Relationship="Self.FK__Student__Locatio__762C88DA" FromRole="Student" ToRole="Location" />
-          <NavigationProperty Name="PrivateMessage" Relationship="Self.FK__PrivateMe__Stude__13BCEBC1" FromRole="Student" ToRole="PrivateMessage" />
-          <NavigationProperty Name="PublicConsultation" Relationship="Self.FK__PublicCon__Stude__178D7CA5" FromRole="Student" ToRole="PublicConsultation" />
-          <NavigationProperty Name="SocialNetworksStudent" Relationship="Self.FK__SocialNetwor__Id__79FD19BE" FromRole="Student" ToRole="SocialNetworksStudent" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Student__Created__324172E1" FromRole="Student" ToRole="Users" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK__Student__Id__7720AD13" FromRole="Student" ToRole="Users" />
-          <NavigationProperty Name="Users2" Relationship="Self.FK__Student__Updated__3335971A" FromRole="Student" ToRole="Users" />
-          <NavigationProperty Name="StudentCourse" Relationship="Self.FK__StudentCo__Stude__084B3915" FromRole="Student" ToRole="StudentCourse" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE" FromRole="SocialNetworksStudent" ToRole="Student" />
         </EntityType>
         <EntityType Name="StudentCourse">
           <Key>
@@ -1459,9 +1432,9 @@
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Course" Relationship="Self.FK__StudentCo__Cours__093F5D4E" FromRole="StudentCourse" ToRole="Course" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__StudentCo__Stude__084B3915" FromRole="StudentCourse" ToRole="Student" />
           <NavigationProperty Name="Users" Relationship="Self.FK__StudentCo__Creat__3429BB53" FromRole="StudentCourse" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__StudentCo__Updat__351DDF8C" FromRole="StudentCourse" ToRole="Users" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__StudentCo__Stude__084B3915" FromRole="StudentCourse" ToRole="Student" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1509,11 +1482,11 @@
           <NavigationProperty Name="SocialNetworksProfessor1" Relationship="Self.FK__SocialNet__Updat__2F650636" FromRole="Users" ToRole="SocialNetworksProfessor" />
           <NavigationProperty Name="SocialNetworksStudent" Relationship="Self.FK__SocialNet__Creat__30592A6F" FromRole="Users" ToRole="SocialNetworksStudent" />
           <NavigationProperty Name="SocialNetworksStudent1" Relationship="Self.FK__SocialNet__Updat__314D4EA8" FromRole="Users" ToRole="SocialNetworksStudent" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Student__Created__324172E1" FromRole="Users" ToRole="Student" />
-          <NavigationProperty Name="Student1" Relationship="Self.FK__Student__Id__7720AD13" FromRole="Users" ToRole="Student" />
-          <NavigationProperty Name="Student2" Relationship="Self.FK__Student__Updated__3335971A" FromRole="Users" ToRole="Student" />
           <NavigationProperty Name="StudentCourse" Relationship="Self.FK__StudentCo__Creat__3429BB53" FromRole="Users" ToRole="StudentCourse" />
           <NavigationProperty Name="StudentCourse1" Relationship="Self.FK__StudentCo__Updat__351DDF8C" FromRole="Users" ToRole="StudentCourse" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__Student__Created__324172E1" FromRole="Users" ToRole="Student" />
+          <NavigationProperty Name="Student1" Relationship="IF4101PICESModel.FK__Student__Id__7720AD13" FromRole="Users" ToRole="Student" />
+          <NavigationProperty Name="Student2" Relationship="IF4101PICESModel.FK__Student__Updated__3335971A" FromRole="Users" ToRole="Student" />
         </EntityType>
         <Association Name="FK__AcademicD__Creat__1975C517">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -1572,18 +1545,6 @@
             </Principal>
             <Dependent Role="Appointment">
               <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Appointme__Stude__0FEC5ADD">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1815,18 +1776,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__Locatio__762C88DA">
-          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__PrivateMe__Creat__24E777C3">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
@@ -1836,18 +1785,6 @@
             </Principal>
             <Dependent Role="PrivateMessage">
               <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PrivateMe__Stude__13BCEBC1">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PrivateMessage">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1983,18 +1920,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PublicCon__Stude__178D7CA5">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PublicConsultation">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__PublicCon__Updat__2D7CBDC4">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
@@ -2055,66 +1980,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SocialNetwor__Id__79FD19BE">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SocialNetworksStudent">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Student__Created__324172E1">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Student__Id__7720AD13">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Student__Updated__3335971A">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="UpdatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StudentCo__Stude__084B3915">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StudentCourse">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__StudentCo__Creat__3429BB53">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
@@ -2153,7 +2018,6 @@
           <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" />
           <EntitySet Name="SocialNetworksProfessor" EntityType="Self.SocialNetworksProfessor" />
           <EntitySet Name="SocialNetworksStudent" EntityType="Self.SocialNetworksStudent" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -2175,10 +2039,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Appointme__Creat__1B5E0D89" Association="Self.FK__Appointme__Creat__1B5E0D89">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Appointment" EntitySet="Appointment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Appointme__Stude__0FEC5ADD" Association="Self.FK__Appointme__Stude__0FEC5ADD">
-            <End Role="Student" EntitySet="Student" />
             <End Role="Appointment" EntitySet="Appointment" />
           </AssociationSet>
           <AssociationSet Name="FK__Appointme__Updat__1C5231C2" Association="Self.FK__Appointme__Updat__1C5231C2">
@@ -2257,16 +2117,8 @@
             <End Role="Location" EntitySet="Location" />
             <End Role="Professor" EntitySet="Professor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__Locatio__762C88DA" Association="Self.FK__Student__Locatio__762C88DA">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
           <AssociationSet Name="FK__PrivateMe__Creat__24E777C3" Association="Self.FK__PrivateMe__Creat__24E777C3">
             <End Role="Users" EntitySet="Users" />
-            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PrivateMe__Stude__13BCEBC1" Association="Self.FK__PrivateMe__Stude__13BCEBC1">
-            <End Role="Student" EntitySet="Student" />
             <End Role="PrivateMessage" EntitySet="PrivateMessage" />
           </AssociationSet>
           <AssociationSet Name="FK__PrivateMe__Updat__25DB9BFC" Association="Self.FK__PrivateMe__Updat__25DB9BFC">
@@ -2313,10 +2165,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="PublicConsultation" EntitySet="PublicConsultation" />
           </AssociationSet>
-          <AssociationSet Name="FK__PublicCon__Stude__178D7CA5" Association="Self.FK__PublicCon__Stude__178D7CA5">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
-          </AssociationSet>
           <AssociationSet Name="FK__PublicCon__Updat__2D7CBDC4" Association="Self.FK__PublicCon__Updat__2D7CBDC4">
             <End Role="Users" EntitySet="Users" />
             <End Role="PublicConsultation" EntitySet="PublicConsultation" />
@@ -2336,26 +2184,6 @@
           <AssociationSet Name="FK__SocialNet__Updat__314D4EA8" Association="Self.FK__SocialNet__Updat__314D4EA8">
             <End Role="Users" EntitySet="Users" />
             <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SocialNetwor__Id__79FD19BE" Association="Self.FK__SocialNetwor__Id__79FD19BE">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__Created__324172E1" Association="Self.FK__Student__Created__324172E1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__Id__7720AD13" Association="Self.FK__Student__Id__7720AD13">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__Updated__3335971A" Association="Self.FK__Student__Updated__3335971A">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StudentCo__Stude__084B3915" Association="Self.FK__StudentCo__Stude__084B3915">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="StudentCourse" EntitySet="StudentCourse" />
           </AssociationSet>
           <AssociationSet Name="FK__StudentCo__Creat__3429BB53" Association="Self.FK__StudentCo__Creat__3429BB53">
             <End Role="Users" EntitySet="Users" />
@@ -2384,9 +2212,6 @@
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
-          <FunctionImport Name="GetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="InsertUpdateCourse">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Initials" Mode="In" Type="String" />
@@ -2528,9 +2353,52 @@
           <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
           <FunctionImport Name="SPSelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
           <FunctionImport Name="GetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetProfessorById" ReturnType="Collection(IF4101PICESModel.GetProfessorById_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Student" EntityType="IF4101PICESModel.Student" />
+          <AssociationSet Name="FK__Appointme__Stude__0FEC5ADD" Association="IF4101PICESModel.FK__Appointme__Stude__0FEC5ADD">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Locatio__762C88DA" Association="IF4101PICESModel.FK__Student__Locatio__762C88DA">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrivateMe__Stude__13BCEBC1" Association="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicCon__Stude__178D7CA5" Association="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SocialNetwor__Id__79FD19BE" Association="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Created__324172E1" Association="IF4101PICESModel.FK__Student__Created__324172E1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Id__7720AD13" Association="IF4101PICESModel.FK__Student__Id__7720AD13">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Updated__3335971A" Association="IF4101PICESModel.FK__Student__Updated__3335971A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Stude__084B3915" Association="IF4101PICESModel.FK__StudentCo__Stude__084B3915">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <FunctionImport Name="GetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
             <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -2553,13 +2421,6 @@
         <ComplexType Name="GetProvinces_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="GetStudentById_Result">
-          <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="SelectCourse_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2646,6 +2507,161 @@
           <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
           <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StudentCard" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StudentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="RegistrationStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreateAt" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Appointment" Relationship="IF4101PICESModel.FK__Appointme__Stude__0FEC5ADD" FromRole="Student" ToRole="Appointment" />
+          <NavigationProperty Name="Location" Relationship="IF4101PICESModel.FK__Student__Locatio__762C88DA" FromRole="Student" ToRole="Location" />
+          <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1" FromRole="Student" ToRole="PrivateMessage" />
+          <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5" FromRole="Student" ToRole="PublicConsultation" />
+          <NavigationProperty Name="SocialNetworksStudent" Relationship="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE" FromRole="Student" ToRole="SocialNetworksStudent" />
+          <NavigationProperty Name="Users" Relationship="IF4101PICESModel.FK__Student__Created__324172E1" FromRole="Student" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__Student__Id__7720AD13" FromRole="Student" ToRole="Users" />
+          <NavigationProperty Name="Users2" Relationship="IF4101PICESModel.FK__Student__Updated__3335971A" FromRole="Student" ToRole="Users" />
+          <NavigationProperty Name="StudentCourse" Relationship="IF4101PICESModel.FK__StudentCo__Stude__084B3915" FromRole="Student" ToRole="StudentCourse" />
+        </EntityType>
+        <Association Name="FK__Appointme__Stude__0FEC5ADD">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Locatio__762C88DA">
+          <End Type="IF4101PICESModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrivateMe__Stude__13BCEBC1">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessage">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicCon__Stude__178D7CA5">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.PublicConsultation" Role="PublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PublicConsultation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SocialNetwor__Id__79FD19BE">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="IF4101PICESModel.SocialNetworksStudent" Role="SocialNetworksStudent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SocialNetworksStudent">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Created__324172E1">
+          <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Id__7720AD13">
+          <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Updated__3335971A">
+          <End Type="IF4101PICESModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Stude__084B3915">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="IF4101PICESModel.StudentCourse" Role="StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetStudentById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Birthday" Nullable="false" />
+          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Province" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ProvinceId" Nullable="false" />
+          <Property Type="String" Name="Canton" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CantonId" Nullable="false" />
+          <Property Type="String" Name="District" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="DistrictId" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2832,25 +2848,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="IF4101PICESModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="StudentCourse">
             <EntityTypeMapping TypeName="IF4101PICESModel.StudentCourse">
               <MappingFragment StoreEntitySet="StudentCourse">
@@ -2921,17 +2918,6 @@
               <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
-                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3189,6 +3175,73 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="IF4101PICESModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

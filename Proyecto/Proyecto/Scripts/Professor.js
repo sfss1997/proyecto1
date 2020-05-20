@@ -10,9 +10,10 @@ function clearTextBoxProfessor() {
     $('#btnUpdateProfessor').hide();
     $('#myModalProfessor').modal('show');
     $('#TitleUpdateProfessor').hide();
-    $('#ProfessorPassword').prop("disabled", false);
-    $('#ProfessorImage').prop("disabled", false);
-    $('#StatusProfessorDropdown').prop("disabled", true);
+    $('#ProfessorPassword').prop("disabled", true);
+    $('#ProfessorImage').prop("disabled", true);
+    $('#StatusProfessorDropdown').prop("disabled", false);
+    $('#ProfessorCheckbox').prop("disabled", false);
 
     $('#ProfessorId').val("");
     $('#ProfessorUsername').val("");
@@ -40,6 +41,7 @@ function clearTextBoxProfessor() {
     $('#ProfessorProvinceDropdown').css('border-color', 'lightgrey');
     $('#ProfessorCantonDropdown').css('border-color', 'lightgrey');
     $('#ProfessorDistrictDropdown').css('border-color', 'lightgrey');
+    $('#StatusProfessorDropdown').css('border-color', 'lightgrey');
 }
 
 function loadProvinceProfessor() {
@@ -112,6 +114,16 @@ function loadDistrictProfessor(canton) {
     });
 }
 
+function generatePassword() {
+    var pass = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 8; i++) {
+        pass += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return pass;
+}
+
 function AddProfessor() {
 
     var province = {
@@ -127,22 +139,42 @@ function AddProfessor() {
     };
 
     var academicDegree = {
-        Id: $("#AcademicDegreeDropdown option:selected").val()
+        AcademicDegreeId: $("#AcademicDegreeDropdown option:selected").val()
     };
+
+    var isActive = {
+        Status: $("#StatusProfessorDropdown option:selected").val()
+    }
+
+    var administrator = 0;
+    if ($("#ProfessorCheckbox").prop('checked') == false) {
+        administrator = 0;
+    } else if ($("#ProfessorCheckbox").prop('checked') == true) {
+        administrator = 1;
+    }
+
+    var active = "";
+    if (isActive.Status == 0) {
+        active = "Inactivo"
+    } else if (isActive.Status == 1) {
+        active = "Activo"
+    }
+
+    var password = generatePassword();
 
     var professor = {
         Username: $('#ProfessorUsername').val(),
-        Password: $('#ProfessorPassword').val(),
+        Password: password,
         Name: $('#ProfessorName').val(),
         LastName: $('#ProfessorLastName').val(),
         Image: $('#ProfessorImage').val(),
         Mail: $('#ProfessorMail').val(),
-        AcademicDegree: academicDegree.Id,
+        AcademicDegreeId: academicDegree.AcademicDegreeId,
         ProvinceId: province.Id,
         CantonId: canton.Id,
         DistrictId: district.Id,
-        IsAdministrator: 0,
-        Status: "Activo",
+        IsAdministrator: administrator,
+        Status: active,
     };
 
     var isValid = ValidateProfessor();
@@ -210,14 +242,6 @@ function ValidateProfessor() {
     else {
         $('#ProfessorUsername').css('border-color', 'lightgrey');
     }
-    if ($('#ProfessorPassword').val().trim() == "") {
-        $('#ProfessorPassword').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#ProfessorPassword').css('border-color', 'lightgrey');
-    }
-
     if ($('#ProfessorName').val().trim() == "") {
         $('#ProfessorName').css('border-color', 'Red');
         isValid = false;
@@ -238,13 +262,6 @@ function ValidateProfessor() {
     }
     else {
         $('#ProfessorMail').css('border-color', 'lightgrey');
-
-    } if ($('#ProfessorImage').val().trim() == "") {
-        $('#ProfessorImage').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#ProfessorImage').css('border-color', 'lightgrey');
 
     }
     if (province.Id == "-1") {

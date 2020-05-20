@@ -74,7 +74,7 @@ namespace Proyecto.Models
         {
             using (var context = new Entities())
             {
-                var student = context.GetStudentById(id).Single();
+                var student = context.SPGetStudentById(id).Single();
 
                 return student;
 

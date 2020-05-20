@@ -40,10 +40,10 @@ namespace Proyecto.Models
         public virtual DbSet<PublicConsultation> PublicConsultation { get; set; }
         public virtual DbSet<SocialNetworksProfessor> SocialNetworksProfessor { get; set; }
         public virtual DbSet<SocialNetworksStudent> SocialNetworksStudent { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<StudentCourse> StudentCourse { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     
         public virtual int DeleteCourse(Nullable<int> id)
         {
@@ -102,15 +102,6 @@ namespace Proyecto.Models
         public virtual ObjectResult<GetProvinces_Result> GetProvinces()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("GetProvinces");
-        }
-    
-        public virtual ObjectResult<GetStudentById_Result> GetStudentById(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
         }
     
         public virtual int InsertUpdateCourse(Nullable<int> id, string initials, string name, Nullable<int> isActive, Nullable<int> credits, Nullable<int> cycle, string action)
@@ -648,6 +639,24 @@ namespace Proyecto.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorById_Result>("SPGetProfessorById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentById_Result> GetStudentById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentById_Result> SPGetStudentById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("SPGetStudentById", idParameter);
         }
     }
 }

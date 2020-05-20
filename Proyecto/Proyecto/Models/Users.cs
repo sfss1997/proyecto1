@@ -43,10 +43,10 @@ namespace Proyecto.Models
             this.SocialNetworksProfessor1 = new HashSet<SocialNetworksProfessor>();
             this.SocialNetworksStudent = new HashSet<SocialNetworksStudent>();
             this.SocialNetworksStudent1 = new HashSet<SocialNetworksStudent>();
-            this.Student = new HashSet<Student>();
-            this.Student2 = new HashSet<Student>();
             this.StudentCourse = new HashSet<StudentCourse>();
             this.StudentCourse1 = new HashSet<StudentCourse>();
+            this.Student = new HashSet<Student>();
+            this.Student2 = new HashSet<Student>();
         }
     
         public int Id { get; set; }
@@ -109,13 +109,13 @@ namespace Proyecto.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocialNetworksStudent> SocialNetworksStudent1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentCourse> StudentCourse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentCourse> StudentCourse1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student { get; set; }
         public virtual Student Student1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentCourse> StudentCourse { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentCourse> StudentCourse1 { get; set; }
     }
 }

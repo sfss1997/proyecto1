@@ -62,6 +62,7 @@ function login() {
                                 $("#btnProfessor").hide();
                                 $("#btnCourse").hide();
                                 $('#studentSection').show();
+                                studentInformation(stud.Id);
                             } else {
                                 $('#userNotApprovedMessage').show();
                                 $('#invalidUserMessage').hide();
@@ -149,4 +150,30 @@ function listProfessors() {
         }
     })
     return arrayProfessor;
+}
+
+function studentInformation(id) {
+
+    $.ajax({
+        url: "/Student/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            document.querySelector('#StudentWelcomeMessage').innerText = 'Bienvenido(a) ' + result.StudentName + ' ' + result.LastName;
+            document.querySelector('#labelStudentCard').innerText = result.StudentCard;
+            document.querySelector('#labelStudentUserName').innerText = result.Username;
+            document.querySelector('#labelStudentName').innerText = result.StudentName + ' ' + result.LastName;
+            document.querySelector('#labelStudentBirthday').innerText = result.Birthday;
+            document.querySelector('#labelStudentMail').innerText = result.Mail;
+            document.querySelector('#labelStudentProvince').innerText = result.Province;
+            document.querySelector('#labelStudentCanton').innerText = result.Canton;
+            document.querySelector('#labelStudentDistrict').innerText = result.District;
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+    
 }

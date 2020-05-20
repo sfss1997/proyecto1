@@ -118,7 +118,7 @@
             </div>
         </div>
 
-        <!---Student Register-->
+        <!---Student Register and Update-->
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" hidden>
 
@@ -129,17 +129,23 @@
                     <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 id="HeaderTitleAdd" class="modal-title"> Registro de estudiante </h4>
+                        <h4 id="HeaderTitleAddStudent" class="modal-title"> Registro de estudiante </h4>
+                        <h4 id="HeaderTitleUpdateStudent" class="modal-title"> Actualizar estudiante </h4>
 
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <form>
+
+                                    <div class="form-group" hidden="hidden" id="DivStudentId">
+                                        <label for="StudentId">ID</label>
+                                        <input type="text" class="form-control" id="StudentId" disabled="disabled">
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="StudentCard">Carné</label>
-                                        <input type="text" class="form-control" id="StudentCard" placeholder="Carné">
-
+                                        <input type="text" class="form-control" id="StudentCard" placeholder="Carné" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -150,7 +156,7 @@
 
                                     <div class="form-group">
                                         <label for="Last Name">Apellido</label>
-                                        <input type="text" class="form-control" id="LastName" placeholder="Apellido" value"reset">
+                                        <input type="text" class="form-control" id="LastName" placeholder="Apellido" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -160,7 +166,7 @@
 
                                     <div class="form-group">
                                         <label for="Mail">Correo eléctronico</label>
-                                        <input type="text" class="form-control" id="Mail" placeholder="Correo eléctronico">
+                                        <input type="text" class="form-control" id="Mail" placeholder="Correo eléctronico" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -173,12 +179,12 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="Username">Nombre de usuario</label>
-                                        <input type="text" class="form-control" id="Username" placeholder="Nombre de usuario">
+                                        <input type="text" class="form-control" id="Username" placeholder="Nombre de usuario" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Password">Contraseña</label>
-                                        <input type="password" class="form-control" id="Password" placeholder="Contraseña">
+                                        <input type="password" class="form-control" id="Password" placeholder="Contraseña" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -195,6 +201,24 @@
                                         <label for="District">Distrito</label>
                                         <select class="form-control" id="DistrictDropdown" name="DistrictDropdown"></select>
                                     </div>
+
+                                    <div class="form-group" hidden="hidden" id="DivStatusStudentDropdown">
+                                        <label for="StatusStudentDropdown">Estado</label>
+                                        <select class="form-control" id="StatusStudentDropdown">
+                                            <option value="0">Inactivo</option>
+                                            <option value="1">Activo</option>
+                                        </select>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="form-group" hidden="hidden" id="DivStudentCheckbox">
+                                        <label>Administrador</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="StudentCheckbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
                                 </form>
 
                             </div>
@@ -203,8 +227,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Registrarse</button>
-                        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none" onclick="Update();">Actualizar</button>
+                        <button type="button" class="btn btn-primary" id="btnAddStudent" onclick="return Add();">Registrarse</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdateStudent" style="display:none" onclick="EditStudent();">Actualizar</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
 
                     </div>
@@ -438,9 +462,67 @@
         <!------Student Section-->
 
         <section id="studentSection">
-            <div class="row">
-                <h2>Estudiante</h2>
-                <h3>Este será el acceso a los estudiantes.</h3>
+            <div class="row" >
+                <h2 id="StudentWelcomeMessage"></h2> <hr />
+
+                <!------Student Information-->
+
+                
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Datos personales</h3> <hr />
+                        <form>
+                            <div class="form-group">
+                                <label for="StudentCard">Carné:</label>
+                                <label id="labelStudentCard"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Username">Nombre de usuario:</label>
+                                <label id="labelStudentUserName"></label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="Name">Nombre:</label>
+                                <label id="labelStudentName"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Birthday">Fecha de Nacimiento:</label>
+                                <label id="labelStudentBirthday"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Mail">Correo eléctronico:</label>
+                                <label id="labelStudentMail"></label>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Ubicación</h3> <hr />
+                        <form>
+                            <div class="form-group">
+                                <label for="Province">Provincia:</label>
+                                <label id="labelStudentProvince"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Canton">Cantón:</label>
+                                <label id="labelStudentCanton"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="District">Distrito:</label>
+                                <label id="labelStudentDistrict"></label>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -569,6 +651,9 @@
                                 </th>
                                 <th>
                                     Correo
+                                </th>
+                                <th>
+                                    Acción
                                 </th>
                             </tr>
                         </thead>
