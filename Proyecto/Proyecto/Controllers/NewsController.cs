@@ -14,7 +14,7 @@ namespace Proyecto.Controllers
         {
             return View();
         }
-
+        //
         public JsonResult GetNews()
         {
             IEnumerable<News> news = null;
