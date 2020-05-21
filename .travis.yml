@@ -1,2 +1,9 @@
 language: csharp
 solution: Proyecto/Proyecto.sln
+
+
+deploy:
+  provider: netlify
+  site: <proyecto>
+  auth: <lenguajes>
+  edge: true # opt in to dpl v2
