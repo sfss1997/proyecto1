@@ -8,13 +8,14 @@
     $('#newsSection').hide();
     $('#btnReturnStudent').hide();
     $('#btnReturnProfessor').hide();
+    $('#professorSection').hide();
     loadSocialNetwork(); 
 });
 
 function clearTextBoxSignLog() {
     $('#UsernameSignLog').val("");
     $('#PasswordSignLog').val("");
-    document.querySelector('#invalidUser').innerText = "";
+    document.querySelector('#invalidUser').innerText = " ";
 }
 
 function login() {

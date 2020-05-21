@@ -240,7 +240,6 @@ function loadCourses() {
                 }
 
                 html += '<tr>';
-                html += '<td>' + item.Id + '</td>';
                 html += '<td>' + item.Initials + '</td>';
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.Credits + '</td>';

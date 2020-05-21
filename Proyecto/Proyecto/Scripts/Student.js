@@ -422,7 +422,7 @@ function loadData() {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
-                html += '<td>' + item.Id + '</td>';
+                html += '<td>' + item.StudentCard + '</td>';
                 html += '<td>' + item.StudentName + '</td>';
                 html += '<td>' + item.LastName + '</td>';
                 html += '<td>' + item.Mail + '</td>';

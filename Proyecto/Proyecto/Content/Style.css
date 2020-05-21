@@ -57,6 +57,19 @@
 
 }
 
+#btnSocialNetwork {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnSocialNetwork:hover {
+    background: #a9cce3;
+    color: white;
+}
+
 #btnNewsStudent {
     position: inherit;
     margin-top: 15px;
