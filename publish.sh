@@ -10,7 +10,7 @@ temp=`echo $url | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=sp
 
 # https://www.netlify.com/docs/api/#deploys
 echo "Publishing build ${temp##*|}..."
-curl -X POST -H "Authorization: Bearer $NETLIFY_PUBLISH_KEY" -d "{}" "https://api.netlify.com/api/v1/sites/YOUR_SITE_HERE/deploys/${temp##*|}/restore"
+curl -X POST -H "Authorization: Bearer $NETLIFY_PUBLISH_KEY" -d "{}" "https://api.netlify.com/api/v1/sites/ucr.ac.cr/deploys/${temp##*|}/restore"
 
 # https://open-api.netlify.com/#/default/lockDeploy
 echo "Locking deploy to ${temp##*|}..."
