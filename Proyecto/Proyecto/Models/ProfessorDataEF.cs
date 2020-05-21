@@ -96,5 +96,39 @@ namespace Proyecto.Models
                 return context.SPSelectAcademicDegree().ToList();
             }
         }
+
+        public int AddSocialNetwork(int Id, string Url, int SocialNetworkNameId)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertUpdateSocialNetworkProfessor(Id,
+                                       Url,
+                                       SocialNetworkNameId,
+                                       "Insert");
+            }
+            return resultToReturn;
+        }
+
+        public int AddProfessorCourse(int ProfessorId, int CourseId)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertProfessorCourse(ProfessorId,
+                                       CourseId);
+            }
+            return resultToReturn;
+        }
+
+        public List<SocialNetworksCatalog> ListSocialNetworksCatalog()
+        {
+            using (var context = new Entities())
+            {
+                return context.SPGetNameSocialNetworks().ToList();
+            }
+        }
     }
 }

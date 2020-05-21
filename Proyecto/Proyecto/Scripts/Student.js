@@ -1,11 +1,19 @@
 ﻿$(document).ready(function () {
-    loadLocationStudent();
+    loadProvinceStudent();
     loadData();
     loadStudents();
 });
 
 function clearTextBoxStudent() {
+    $('#DivStudentId').hide();
+    $('#StudentCard').prop("disabled", false);
     $('#myModal').modal('show');
+    $('#DivStatusStudentDropdown').hide();
+    $('#DivStudentCheckbox').hide();
+    $('#btnAddStudent').show();
+    $('#btnUpdateStudent').hide();
+    $('#HeaderTitleAddStudent').show();
+    $('#HeaderTitleUpdateStudent').hide();
 
     $('#StudentCard').val("");
     $('#Name').val("");
@@ -15,7 +23,7 @@ function clearTextBoxStudent() {
     $('#Username').val("");
     $('#Password').val("");
 
-    loadLocationStudent();
+    loadProvinceStudent();
     var s = '<option value="-1">Seleccione una opción</option>';
     $("#ProvinceDropdown").html(s);
     $("#CantonDropdown").html(s);
@@ -34,8 +42,7 @@ function clearTextBoxStudent() {
     $('#DistrictDropdown').css('border-color', 'lightgrey');
 }
 
-function loadLocationStudent() {
-
+function loadProvinceStudent() {
     $(document).ready(function () {
         $.ajax({
             type: "GET",
@@ -54,42 +61,7 @@ function loadLocationStudent() {
                         Id: $("#ProvinceDropdown option:selected").val()
                     };
 
-                    $(document).ready(function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "/Location/ListCantonsByIdProvince/" + province.Id,
-                            data: "{}",
-                            success: function (data) {
-                                var s = '<option value="-1">Seleccione una opción</option>';
-                                for (var i = 0; i < data.length; i++) {
-                                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                                }
-                                $("#CantonDropdown").html(s);
-
-                                $("#CantonDropdown").change(function () {
-
-                                    var canton = {
-                                        Id: $("#CantonDropdown option:selected").val()
-                                    };
-
-                                    $(document).ready(function () {
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "/Location/ListDistrictsByIdCanton/" + canton.Id,
-                                            data: "{}",
-                                            success: function (data) {
-                                                var s = '<option value="-1">Seleccione una opción</option>';
-                                                for (var i = 0; i < data.length; i++) {
-                                                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                                                }
-                                                $("#DistrictDropdown").html(s);
-                                            }
-                                        });
-                                    });
-                                });
-                            }
-                        });
-                    });
+                    loadCantonStudent(province.Id);
 
                 });
             }
@@ -97,6 +69,47 @@ function loadLocationStudent() {
     });
 }
 
+function loadCantonStudent(province) {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Location/ListCantonsByIdProvince/" + province,
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#CantonDropdown").html(s);
+
+                $("#CantonDropdown").change(function () {
+
+                    var canton = {
+                        Id: $("#CantonDropdown option:selected").val()
+                    };
+                    loadDistrictStudent(canton.Id);
+                });
+            }
+        });
+    });
+}
+
+function loadDistrictStudent(canton) {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Location/ListDistrictsByIdCanton/" + canton,
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#DistrictDropdown").html(s);
+            }
+        });
+    });
+}
 
 function Add() {
 
@@ -112,6 +125,9 @@ function Add() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
+    var imagePath = fakePath($('#Image').val());
+    
+
     var student = {
         StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
@@ -122,7 +138,7 @@ function Add() {
         ProvinceId: province.Id,
         CantonId: canton.Id,
         DistrictId: district.Id,
-        Image: $('#Image').val(),
+        Image: imagePath,
         Username: $('#Username').val(),
         RegistrationStatus: "En espera",
         IsAdministrator: 0,
@@ -144,6 +160,154 @@ function Add() {
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
+            }
+        });
+    }
+}
+
+function fakePath(fakepath) {
+    var splits = fakepath.split('fakepath\\');
+    var path = '../images/' + splits[1];
+    return path;
+}
+
+function getByIdStudent(id) {
+
+    loadProvinceStudent();
+    $('#DivStudentId').show();
+    $('#StudentCard').prop("disabled", true);
+    $('#myModal').modal('show');
+    $('#btnUpdateStudent').show();
+    $('#btnAddStudent').hide();
+    $('#HeaderTitleAddStudent').hide();
+    $('#HeaderTitleUpdateStudent').show();
+    $('#DivStatusStudentDropdown').show();
+    $('#DivStudentCheckbox').show();
+    $('#Image').prop("disabled", true);
+    $('#Password').prop("disabled", true);
+
+    $.ajax({
+        url: "/Student/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            $('#StudentId').val(result.Id);
+            $('#StudentCard').val(result.StudentCard);
+            $('#Name').val(result.StudentName);
+            $('#LastName').val(result.LastName);
+            $("#Birthday").val(result.Birthday);
+            $('#Mail').val(result.Mail);
+            $('#Username').val(result.Username);
+            $('#Password').val(result.Password);
+            $('#Image').val("");
+            $("#ProvinceDropdown").val(result.ProvinceId);
+            $("#ProfessorCantonDropdown").val(loadCantonStudent(result.ProvinceId));
+            $("#ProfessorDistrictDropdown").val(loadDistrictStudent(result.CantonId));
+
+            var status = result.Status;
+            if (status == "Inactivo") {
+                $("#StatusStudentDropdown").val(0);
+            } else if (status == "Activo") {
+                $("#StatusStudentDropdown").val(1);
+            }
+
+            var administrator = result.IsAdministrator;
+            if (administrator == 0) {
+                $("#StudentCheckbox").attr('checked', false);
+            } else if (administrator == 1) {
+                $("#StudentCheckbox").attr('checked', true);
+            }
+
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function EditStudent() {
+
+    var province = {
+        ProvinceId: $("#ProvinceDropdown option:selected").val()
+    }
+
+    var canton = {
+        CantonId: $("#CantonDropdown option:selected").val()
+    }
+
+    var district = {
+        DistrictId: $("#DistrictDropdown option:selected").val()
+    }
+
+    var isActive = {
+        Status: $("#StatusStudentDropdown option:selected").val()
+    }
+
+    var administrator = 0;
+    if ($("#StudentCheckbox").prop('checked') == false) {
+        administrator = 0;
+    } else if ($("#StudentCheckbox").prop('checked') == true) {
+        administrator = 1;
+    }
+
+    var active = "";
+    if (isActive.Status == 0) {
+        active = "Inactivo"
+    } else if (isActive.Status == 1) {
+        active = "Activo"
+    }
+
+    var student = {
+        Id: $('#StudentId').val(),
+        StudentCard: $('#StudentCard').val(),
+        StudentName: $('#Name').val(),
+        LastName: $('#LastName').val(),
+        Birthday: $('#Birthday').val(),
+        Mail: $('#Mail').val(),
+        Image: $('#Image').val(),
+        Username: $('#Username').val(),
+        Password: $('#Password').val(),
+        ProvinceId: province.ProvinceId,
+        CantonId: canton.CantonId,
+        DistrictId: district.DistrictId,
+        IsAdministrator: administrator,
+        Status: active,
+        RegistrationStatus: "Aprobado"
+    };
+
+    $.ajax({
+        url: "/Student/Update",
+        data: JSON.stringify(student),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadStudents()
+            $('#myModal').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function deleteStudent(id) {
+    var alert = confirm("¿Está seguro que desea eliminar el registro?");
+
+    if (alert) {
+        $.ajax({
+            url: "/Student/DeleteStudent/" + id,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                loadStudents();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
             }
         });
     }
@@ -281,6 +445,7 @@ function StudentApproval(id) {
         dataType: "json",
         success: function (result) {
             loadData();
+            loadStudents();
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -297,6 +462,7 @@ function StudentDeny(id) {
         dataType: "json",
         success: function (result) {
             loadData();
+            loadStudents();
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -320,6 +486,7 @@ function loadStudents() {
                     html += '<td>' + item.StudentName + '</td>';
                     html += '<td>' + item.LastName + '</td>';
                     html += '<td>' + item.Mail + '</td>';
+                    html += '<td><a href="#" onclick="getByIdStudent(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteStudent(' + item.Id + ')">Borrar</a></td>';
                 }
             });
             $('.tableStudents').html(html);

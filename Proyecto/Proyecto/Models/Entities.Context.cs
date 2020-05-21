@@ -40,10 +40,11 @@ namespace Proyecto.Models
         public virtual DbSet<PublicConsultation> PublicConsultation { get; set; }
         public virtual DbSet<SocialNetworksProfessor> SocialNetworksProfessor { get; set; }
         public virtual DbSet<SocialNetworksStudent> SocialNetworksStudent { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<StudentCourse> StudentCourse { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<SocialNetworksCatalog> SocialNetworksCatalog { get; set; }
     
         public virtual int DeleteCourse(Nullable<int> id)
         {
@@ -102,15 +103,6 @@ namespace Proyecto.Models
         public virtual ObjectResult<GetProvinces_Result> GetProvinces()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("GetProvinces");
-        }
-    
-        public virtual ObjectResult<GetStudentById_Result> GetStudentById(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
         }
     
         public virtual int InsertUpdateCourse(Nullable<int> id, string initials, string name, Nullable<int> isActive, Nullable<int> credits, Nullable<int> cycle, string action)
@@ -648,6 +640,107 @@ namespace Proyecto.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorById_Result>("SPGetProfessorById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentById_Result> GetStudentById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("GetStudentById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentById_Result> SPGetStudentById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("SPGetStudentById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetNameSocialNetworks_Result> GetNameSocialNetworks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNameSocialNetworks_Result>("GetNameSocialNetworks");
+        }
+    
+        public virtual int InsertStudentCourse(Nullable<int> studentId, Nullable<int> courseId)
+        {
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertStudentCourse", studentIdParameter, courseIdParameter);
+        }
+    
+        public virtual int InsertUpdateSocialNetworkProfessor(Nullable<int> id, string url, Nullable<int> socialNetworksNameId, string action)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var urlParameter = url != null ?
+                new ObjectParameter("Url", url) :
+                new ObjectParameter("Url", typeof(string));
+    
+            var socialNetworksNameIdParameter = socialNetworksNameId.HasValue ?
+                new ObjectParameter("SocialNetworksNameId", socialNetworksNameId) :
+                new ObjectParameter("SocialNetworksNameId", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkProfessor", idParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
+        }
+    
+        public virtual int InsertUpdateSocialNetworkStudent(Nullable<int> studentId, string url, Nullable<int> socialNetworksNameId, string action)
+        {
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var urlParameter = url != null ?
+                new ObjectParameter("Url", url) :
+                new ObjectParameter("Url", typeof(string));
+    
+            var socialNetworksNameIdParameter = socialNetworksNameId.HasValue ?
+                new ObjectParameter("SocialNetworksNameId", socialNetworksNameId) :
+                new ObjectParameter("SocialNetworksNameId", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkStudent", studentIdParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<SocialNetworksCatalog> SPGetNameSocialNetworks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SocialNetworksCatalog>("SPGetNameSocialNetworks");
+        }
+    
+        public virtual ObjectResult<SocialNetworksCatalog> SPGetNameSocialNetworks(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SocialNetworksCatalog>("SPGetNameSocialNetworks", mergeOption);
+        }
+    
+        public virtual int InsertProfessorCourse(Nullable<int> professorId, Nullable<int> courseId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertProfessorCourse", professorIdParameter, courseIdParameter);
         }
     }
 }

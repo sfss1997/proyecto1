@@ -159,6 +159,7 @@
     <EntitySetMapping Name="SocialNetworksProfessor">
       <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksProfessor">
         <MappingFragment StoreEntitySet="SocialNetworksProfessor">
+          <ScalarProperty Name="SocialNetworksNameId" ColumnName="SocialNetworksNameId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -171,27 +172,9 @@
     <EntitySetMapping Name="SocialNetworksStudent">
       <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksStudent">
         <MappingFragment StoreEntitySet="SocialNetworksStudent">
+          <ScalarProperty Name="SocialNetworksNameId" ColumnName="SocialNetworksNameId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Url" ColumnName="Url" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Student">
-      <EntityTypeMapping TypeName="IF4101PICESModel.Student">
-        <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -269,17 +252,6 @@
         <ComplexTypeMapping TypeName="IF4101PICESModel.GetProvinces_Result">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -539,5 +511,93 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="IF4101PICESModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetStudentById" FunctionName="IF4101PICESModel.Store.GetStudentById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetStudentById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="CantonId" ColumnName="CantonId" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="SocialNetworksCatalog">
+      <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksCatalog">
+        <MappingFragment StoreEntitySet="SocialNetworksCatalog">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetNameSocialNetworks" FunctionName="IF4101PICESModel.Store.GetNameSocialNetworks">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetNameSocialNetworks_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertStudentCourse" FunctionName="IF4101PICESModel.Store.InsertStudentCourse" />
+    <FunctionImportMapping FunctionImportName="InsertUpdateSocialNetworkProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateSocialNetworkProfessor" />
+    <FunctionImportMapping FunctionImportName="InsertUpdateSocialNetworkStudent" FunctionName="IF4101PICESModel.Store.InsertUpdateSocialNetworkStudent" />
+    <FunctionImportMapping FunctionImportName="SPGetNameSocialNetworks" FunctionName="IF4101PICESModel.Store.GetNameSocialNetworks" />
+    <FunctionImportMapping FunctionImportName="InsertProfessorCourse" FunctionName="IF4101PICESModel.Store.InsertProfessorCourse" />
   </EntityContainerMapping>
 </Mapping>

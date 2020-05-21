@@ -20,7 +20,9 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Professor professor, Location location, Users user)
         {
-            Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + " " + professor.LastName + ", ha sido añadido satisfactoriamente.");
+            Email.SendEmail(professor.Mail, "Nuevo Usuario", professor.Name + " " + professor.LastName + ", ha sido añadido satisfactoriamente." +
+                "\nNombre de usuario: " + user.Username +
+                "\nContraseña temporal: " + user.Password + "\nDiríjase al sitio a realizar el cambio de contraseña.");
             return Json(ProfessorDataEF.Add(professor, location, user), JsonRequestBehavior.AllowGet);
         }
 
@@ -53,6 +55,21 @@ namespace Proyecto.Controllers
             var academicDegree = ProfessorDataEF.ListAcademicDegree();
 
             return Json(academicDegree, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddSocialNetwork(int Id, string Url, int SocialNetworkNameId)
+        {
+            return Json(ProfessorDataEF.AddSocialNetwork(Id, Url, SocialNetworkNameId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddProfessorCourse(int ProfessorId, int CourseId)
+        {
+            return Json(ProfessorDataEF.AddProfessorCourse(ProfessorId, CourseId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListSocialNetworksCatalog()
+        {
+            return Json(ProfessorDataEF.ListSocialNetworksCatalog(), JsonRequestBehavior.AllowGet);
         }
     }
 }

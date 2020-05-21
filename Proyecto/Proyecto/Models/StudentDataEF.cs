@@ -74,7 +74,7 @@ namespace Proyecto.Models
         {
             using (var context = new Entities())
             {
-                var student = context.GetStudentById(id).Single();
+                var student = context.SPGetStudentById(id).Single();
 
                 return student;
 
@@ -124,6 +124,39 @@ namespace Proyecto.Models
             }
         }
 
+        public int AddSocialNetwork(int Id, string Url, int SocialNetworkNameId)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertUpdateSocialNetworkStudent(Id,
+                                       Url,
+                                       SocialNetworkNameId,
+                                       "Insert");
+            }
+            return resultToReturn;
+        }
+
+        public int AddStudentCourse(int StudentId, int CourseId)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertStudentCourse(StudentId,
+                                       CourseId);
+            }
+            return resultToReturn;
+        }
+
+        public List<SocialNetworksCatalog> ListSocialNetworksCatalog()
+        {
+            using (var context = new Entities())
+            {
+                return context.SPGetNameSocialNetworks().ToList();
+            }
+        }
 
     }
 }
