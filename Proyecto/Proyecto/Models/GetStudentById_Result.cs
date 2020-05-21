@@ -10,15 +10,13 @@
 namespace Proyecto.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class GetStudentById_Result
     {
         public int Id { get; set; }
         public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Birthday { get; set; }
         public string Mail { get; set; }
         public string Image { get; set; }

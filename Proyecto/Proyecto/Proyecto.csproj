@@ -185,6 +185,9 @@
     <Compile Include="Models\GetDistrictsByIdCanton_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetNameSocialNetworks_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetProfessorById_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -231,6 +234,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectUsers_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SocialNetworksCatalog.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SocialNetworksProfessor.cs">

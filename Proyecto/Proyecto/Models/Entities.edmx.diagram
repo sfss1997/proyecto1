@@ -74,6 +74,9 @@
         <AssociationConnector Association="IF4101PICESModel.FK__Student__Id__7720AD13" />
         <AssociationConnector Association="IF4101PICESModel.FK__Student__Updated__3335971A" />
         <AssociationConnector Association="IF4101PICESModel.FK__StudentCo__Stude__084B3915" />
+        <EntityTypeShape EntityType="IF4101PICESModel.SocialNetworksCatalog" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Socia__53A266AC" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Socia__5772F790" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

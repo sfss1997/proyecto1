@@ -11,8 +11,7 @@ namespace Proyecto.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +27,6 @@ namespace Proyecto.Models
         public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Birthday { get; set; }
         public string Mail { get; set; }
         public string Image { get; set; }

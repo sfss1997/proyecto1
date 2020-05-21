@@ -145,12 +145,20 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
   </EntityType>
+  <EntityType Name="SocialNetworksCatalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="SocialNetworksProfessor">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SocialNetworksNameId" Type="int" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
@@ -162,6 +170,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SocialNetworksNameId" Type="int" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
@@ -673,7 +682,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNet__Creat__2E70E1FD">
+  <Association Name="FK__SocialNet__Creat__58671BC9">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -685,7 +694,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNet__Creat__30592A6F">
+  <Association Name="FK__SocialNet__Creat__5A4F643B">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
     <ReferentialConstraint>
@@ -697,7 +706,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNet__Updat__2F650636">
+  <Association Name="FK__SocialNet__Socia__53A266AC">
+    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Socia__5772F790">
+    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksProfessor">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Updat__595B4002">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -709,7 +742,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNet__Updat__314D4EA8">
+  <Association Name="FK__SocialNet__Updat__5B438874">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
     <ReferentialConstraint>
@@ -721,19 +754,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNetwor__Id__038683F8">
-    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
-    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Professor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksProfessor">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNetwor__Id__79FD19BE">
+  <Association Name="FK__SocialNetwor__Id__52AE4273">
     <End Role="Student" Type="Self.Student" Multiplicity="1" />
     <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -741,6 +762,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNetwor__Id__567ED357">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksProfessor">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -860,12 +893,21 @@
   <Function Name="GetDistrictsByIdCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetNameSocialNetworks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="GetProvinces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetStudentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertProfessorCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="CourseId" Type="int" Mode="In" />
   </Function>
   <Function Name="InsertUpdateCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
@@ -890,6 +932,18 @@
     <Parameter Name="CantonId" Type="int" Mode="In" />
     <Parameter Name="DistrictId" Type="int" Mode="In" />
     <Parameter Name="AcademicDegree" Type="int" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="InsertUpdateSocialNetworkProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Url" Type="varchar" Mode="In" />
+    <Parameter Name="SocialNetworksNameId" Type="int" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="InsertUpdateSocialNetworkStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="Url" Type="varchar" Mode="In" />
+    <Parameter Name="SocialNetworksNameId" Type="int" Mode="In" />
     <Parameter Name="Action" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertUpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -970,6 +1024,7 @@
     <EntitySet Name="ProfessorCourse" EntityType="Self.ProfessorCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialNetworksCatalog" EntityType="Self.SocialNetworksCatalog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksProfessor" EntityType="Self.SocialNetworksProfessor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksStudent" EntityType="Self.SocialNetworksStudent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -1128,29 +1183,37 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Creat__2E70E1FD" Association="Self.FK__SocialNet__Creat__2E70E1FD">
+    <AssociationSet Name="FK__SocialNet__Creat__58671BC9" Association="Self.FK__SocialNet__Creat__58671BC9">
       <End Role="Users" EntitySet="Users" />
       <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Creat__30592A6F" Association="Self.FK__SocialNet__Creat__30592A6F">
+    <AssociationSet Name="FK__SocialNet__Creat__5A4F643B" Association="Self.FK__SocialNet__Creat__5A4F643B">
       <End Role="Users" EntitySet="Users" />
       <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Updat__2F650636" Association="Self.FK__SocialNet__Updat__2F650636">
+    <AssociationSet Name="FK__SocialNet__Socia__53A266AC" Association="Self.FK__SocialNet__Socia__53A266AC">
+      <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
+      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Socia__5772F790" Association="Self.FK__SocialNet__Socia__5772F790">
+      <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
+      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Updat__595B4002" Association="Self.FK__SocialNet__Updat__595B4002">
       <End Role="Users" EntitySet="Users" />
       <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Updat__314D4EA8" Association="Self.FK__SocialNet__Updat__314D4EA8">
+    <AssociationSet Name="FK__SocialNet__Updat__5B438874" Association="Self.FK__SocialNet__Updat__5B438874">
       <End Role="Users" EntitySet="Users" />
       <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNetwor__Id__038683F8" Association="Self.FK__SocialNetwor__Id__038683F8">
-      <End Role="Professor" EntitySet="Professor" />
-      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SocialNetwor__Id__79FD19BE" Association="Self.FK__SocialNetwor__Id__79FD19BE">
+    <AssociationSet Name="FK__SocialNetwor__Id__52AE4273" Association="Self.FK__SocialNetwor__Id__52AE4273">
       <End Role="Student" EntitySet="Student" />
       <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNetwor__Id__567ED357" Association="Self.FK__SocialNetwor__Id__567ED357">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
     <AssociationSet Name="FK__Student__Created__324172E1" Association="Self.FK__Student__Created__324172E1">
       <End Role="Users" EntitySet="Users" />

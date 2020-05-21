@@ -159,6 +159,7 @@
     <EntitySetMapping Name="SocialNetworksProfessor">
       <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksProfessor">
         <MappingFragment StoreEntitySet="SocialNetworksProfessor">
+          <ScalarProperty Name="SocialNetworksNameId" ColumnName="SocialNetworksNameId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -171,6 +172,7 @@
     <EntitySetMapping Name="SocialNetworksStudent">
       <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksStudent">
         <MappingFragment StoreEntitySet="SocialNetworksStudent">
+          <ScalarProperty Name="SocialNetworksNameId" ColumnName="SocialNetworksNameId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -576,5 +578,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="SocialNetworksCatalog">
+      <EntityTypeMapping TypeName="IF4101PICESModel.SocialNetworksCatalog">
+        <MappingFragment StoreEntitySet="SocialNetworksCatalog">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetNameSocialNetworks" FunctionName="IF4101PICESModel.Store.GetNameSocialNetworks">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetNameSocialNetworks_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertStudentCourse" FunctionName="IF4101PICESModel.Store.InsertStudentCourse" />
+    <FunctionImportMapping FunctionImportName="InsertUpdateSocialNetworkProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateSocialNetworkProfessor" />
+    <FunctionImportMapping FunctionImportName="InsertUpdateSocialNetworkStudent" FunctionName="IF4101PICESModel.Store.InsertUpdateSocialNetworkStudent" />
+    <FunctionImportMapping FunctionImportName="SPGetNameSocialNetworks" FunctionName="IF4101PICESModel.Store.GetNameSocialNetworks" />
+    <FunctionImportMapping FunctionImportName="InsertProfessorCourse" FunctionName="IF4101PICESModel.Store.InsertProfessorCourse" />
   </EntityContainerMapping>
 </Mapping>

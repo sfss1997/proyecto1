@@ -211,6 +211,8 @@
     <NavigationProperty Name="Professor" Relationship="Self.FK__SocialNetwor__Id__038683F8" FromRole="SocialNetworksProfessor" ToRole="Professor" />
     <NavigationProperty Name="Users" Relationship="Self.FK__SocialNet__Creat__2E70E1FD" FromRole="SocialNetworksProfessor" ToRole="Users" />
     <NavigationProperty Name="Users1" Relationship="Self.FK__SocialNet__Updat__2F650636" FromRole="SocialNetworksProfessor" ToRole="Users" />
+    <Property Name="SocialNetworksNameId" Type="Int32" />
+    <NavigationProperty Name="SocialNetworksCatalog" Relationship="IF4101PICESModel.FK__SocialNet__Socia__5772F790" FromRole="SocialNetworksProfessor" ToRole="SocialNetworksCatalog" />
   </EntityType>
   <EntityType Name="SocialNetworksStudent">
     <Key>
@@ -225,6 +227,8 @@
     <NavigationProperty Name="Users" Relationship="Self.FK__SocialNet__Creat__30592A6F" FromRole="SocialNetworksStudent" ToRole="Users" />
     <NavigationProperty Name="Users1" Relationship="Self.FK__SocialNet__Updat__314D4EA8" FromRole="SocialNetworksStudent" ToRole="Users" />
     <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE" FromRole="SocialNetworksStudent" ToRole="Student" />
+    <Property Name="SocialNetworksNameId" Type="Int32" />
+    <NavigationProperty Name="SocialNetworksCatalog" Relationship="IF4101PICESModel.FK__SocialNet__Socia__53A266AC" FromRole="SocialNetworksStudent" ToRole="SocialNetworksCatalog" />
   </EntityType>
   <EntityType Name="StudentCourse">
     <Key>
@@ -1207,6 +1211,37 @@
     <FunctionImport Name="SPGetStudentById" ReturnType="Collection(IF4101PICESModel.GetStudentById_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="SocialNetworksCatalog" EntityType="IF4101PICESModel.SocialNetworksCatalog" />
+    <AssociationSet Name="FK__SocialNet__Socia__53A266AC" Association="IF4101PICESModel.FK__SocialNet__Socia__53A266AC">
+      <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
+      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Socia__5772F790" Association="IF4101PICESModel.FK__SocialNet__Socia__5772F790">
+      <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
+      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
+    </AssociationSet>
+    <FunctionImport Name="GetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
+    <FunctionImport Name="InsertStudentCourse">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertUpdateSocialNetworkProfessor">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Url" Mode="In" Type="String" />
+      <Parameter Name="SocialNetworksNameId" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertUpdateSocialNetworkStudent">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="Url" Mode="In" Type="String" />
+      <Parameter Name="SocialNetworksNameId" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetNameSocialNetworks" EntitySet="SocialNetworksCatalog" ReturnType="Collection(IF4101PICESModel.SocialNetworksCatalog)" />
+    <FunctionImport Name="InsertProfessorCourse">
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1468,5 +1503,42 @@
     <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="SocialNetworksCatalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SocialNetworksStudent" Relationship="IF4101PICESModel.FK__SocialNet__Socia__53A266AC" FromRole="SocialNetworksCatalog" ToRole="SocialNetworksStudent" />
+    <NavigationProperty Name="SocialNetworksProfessor" Relationship="IF4101PICESModel.FK__SocialNet__Socia__5772F790" FromRole="SocialNetworksCatalog" ToRole="SocialNetworksProfessor" />
+  </EntityType>
+  <Association Name="FK__SocialNet__Socia__53A266AC">
+    <End Type="IF4101PICESModel.SocialNetworksCatalog" Role="SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksStudent" Role="SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Socia__5772F790">
+    <End Type="IF4101PICESModel.SocialNetworksCatalog" Role="SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksProfessor" Role="SocialNetworksProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksProfessor">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetNameSocialNetworks_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>
