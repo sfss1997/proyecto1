@@ -199,6 +199,13 @@ function AddProfessor() {
     }
 }
 
+function fakePath(fakepath) {
+    var splits = fakepath.split('fakepath\\');
+    var path = '../images/' + splits[1];
+    return path;
+}
+
+
 function loadAcademicDegree() {
     $(document).ready(function () {
         $.ajax({

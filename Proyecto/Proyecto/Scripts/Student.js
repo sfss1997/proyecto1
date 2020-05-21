@@ -125,6 +125,9 @@ function Add() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
+    var imagePath = fakePath($('#Image').val());
+    
+
     var student = {
         StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
@@ -135,7 +138,7 @@ function Add() {
         ProvinceId: province.Id,
         CantonId: canton.Id,
         DistrictId: district.Id,
-        Image: $('#Image').val(),
+        Image: imagePath,
         Username: $('#Username').val(),
         RegistrationStatus: "En espera",
         IsAdministrator: 0,
@@ -160,6 +163,12 @@ function Add() {
             }
         });
     }
+}
+
+function fakePath(fakepath) {
+    var splits = fakepath.split('fakepath\\');
+    var path = '../images/' + splits[1];
+    return path;
 }
 
 function getByIdStudent(id) {

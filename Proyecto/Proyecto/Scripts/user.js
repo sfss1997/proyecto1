@@ -3,6 +3,7 @@
     $("#btnCourse").hide();
     $("#btnLogOut").hide();
     $('#studentSection').hide();
+    loadSocialNetwork(); 
 });
 
 function clearTextBoxSignLog() {
@@ -47,6 +48,8 @@ function login() {
                             $("#btnProfessor").hide();
                             $("#btnCourse").hide();
                             $('#professorSection').show();
+                            setProfileImageProfessor(prof.Id);
+
                         }
                     });
 
@@ -63,6 +66,7 @@ function login() {
                                 $("#btnCourse").hide();
                                 $('#studentSection').show();
                                 studentInformation(stud.Id);
+                                setProfileImageStudent(stud.Id);
                             } else {
                                 $('#userNotApprovedMessage').show();
                                 $('#invalidUserMessage').hide();
@@ -95,6 +99,43 @@ function login() {
         }
     })
 }
+
+
+function setProfileImageStudent(id) {
+
+    $.ajax({
+        url: "/Student/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            document.getElementById('imgProfile').src = result.Image;
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function setProfileImageProfessor(id) {
+
+    $.ajax({
+        url: "/Professor/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            document.getElementById('imgProfileProfessor').src = result.Image;
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
 
 function logOut() {
     $('#btnLog').show();
@@ -176,4 +217,21 @@ function studentInformation(id) {
         }
     });
     
+}
+
+function loadSocialNetwork() {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Student/ListSocialNetworksCatalog",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#SocialNetworkDropdown").html(s);
+            }
+        });
+    });
 }
