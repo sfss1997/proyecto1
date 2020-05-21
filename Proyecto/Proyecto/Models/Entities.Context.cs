@@ -660,11 +660,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentById_Result>("SPGetStudentById", idParameter);
         }
     
-        public virtual ObjectResult<GetNameSocialNetworks_Result> GetNameSocialNetworks()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNameSocialNetworks_Result>("GetNameSocialNetworks");
-        }
-    
         public virtual int InsertStudentCourse(Nullable<int> studentId, Nullable<int> courseId)
         {
             var studentIdParameter = studentId.HasValue ?
@@ -720,16 +715,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkStudent", studentIdParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
         }
     
-        public virtual ObjectResult<SocialNetworksCatalog> SPGetNameSocialNetworks()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SocialNetworksCatalog>("SPGetNameSocialNetworks");
-        }
-    
-        public virtual ObjectResult<SocialNetworksCatalog> SPGetNameSocialNetworks(MergeOption mergeOption)
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SocialNetworksCatalog>("SPGetNameSocialNetworks", mergeOption);
-        }
-    
         public virtual int InsertProfessorCourse(Nullable<int> professorId, Nullable<int> courseId)
         {
             var professorIdParameter = professorId.HasValue ?
@@ -741,6 +726,16 @@ namespace Proyecto.Models
                 new ObjectParameter("CourseId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertProfessorCourse", professorIdParameter, courseIdParameter);
+        }
+    
+        public virtual ObjectResult<GetNameSocialNetworks_Result> GetNameSocialNetworks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNameSocialNetworks_Result>("GetNameSocialNetworks");
+        }
+    
+        public virtual ObjectResult<GetNameSocialNetworks_Result> SPGetNameSocialNetworks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNameSocialNetworks_Result>("SPGetNameSocialNetworks");
         }
     }
 }

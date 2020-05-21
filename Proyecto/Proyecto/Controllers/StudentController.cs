@@ -89,7 +89,8 @@ namespace Proyecto.Controllers
 
         public JsonResult ListSocialNetworksCatalog()
         {
-            return Json(StudentDataEF.ListSocialNetworksCatalog(), JsonRequestBehavior.AllowGet);
+            var socialNetworks = StudentDataEF.ListSocialNetworksCatalog();
+            return Json(socialNetworks, JsonRequestBehavior.AllowGet);
         }
     }
 }

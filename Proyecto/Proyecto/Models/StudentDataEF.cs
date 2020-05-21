@@ -150,11 +150,14 @@ namespace Proyecto.Models
             return resultToReturn;
         }
 
-        public List<SocialNetworksCatalog> ListSocialNetworksCatalog()
+        public List<GetNameSocialNetworks_Result> ListSocialNetworksCatalog()
         {
             using (var context = new Entities())
             {
-                return context.SPGetNameSocialNetworks().ToList();
+                var socialNetworks = context.SPGetNameSocialNetworks().ToList();
+
+                return socialNetworks;
+
             }
         }
 

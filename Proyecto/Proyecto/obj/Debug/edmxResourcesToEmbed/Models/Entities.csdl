@@ -1220,7 +1220,6 @@
       <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
       <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
-    <FunctionImport Name="GetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
     <FunctionImport Name="InsertStudentCourse">
       <Parameter Name="StudentId" Mode="In" Type="Int32" />
       <Parameter Name="CourseId" Mode="In" Type="Int32" />
@@ -1237,11 +1236,12 @@
       <Parameter Name="SocialNetworksNameId" Mode="In" Type="Int32" />
       <Parameter Name="Action" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SPGetNameSocialNetworks" EntitySet="SocialNetworksCatalog" ReturnType="Collection(IF4101PICESModel.SocialNetworksCatalog)" />
     <FunctionImport Name="InsertProfessorCourse">
       <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
       <Parameter Name="CourseId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
+    <FunctionImport Name="SPGetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />

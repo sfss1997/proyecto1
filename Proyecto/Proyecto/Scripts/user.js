@@ -3,21 +3,21 @@
     $("#btnCourse").hide();
     $("#btnLogOut").hide();
     $('#studentSection').hide();
+    $("#btnNewsStudent").hide();
+    $("#btnNewsProfessor").hide();
+    $('#newsSection').hide();
+    $('#btnReturnStudent').hide();
+    $('#btnReturnProfessor').hide();
     loadSocialNetwork(); 
 });
 
 function clearTextBoxSignLog() {
     $('#UsernameSignLog').val("");
     $('#PasswordSignLog').val("");
-    $('#userNotApprovedMessage').hide();
-    $('#invalidUserMessage').hide();
-
+    document.querySelector('#invalidUser').innerText = "";
 }
 
 function login() {
-
-    $('#userNotApprovedMessage').hide();
-    $('#invalidUserMessage').hide();
 
     var user = {
         Username: $('#UsernameSignLog').val(),
@@ -48,8 +48,9 @@ function login() {
                             $("#btnProfessor").hide();
                             $("#btnCourse").hide();
                             $('#professorSection').show();
+                            $("#btnNewsProfessor").show();
                             setProfileImageProfessor(prof.Id);
-
+                            professorInformation(prof.Id);
                         }
                     });
 
@@ -64,12 +65,12 @@ function login() {
                                 $("#btnLog").hide();
                                 $("#btnProfessor").hide();
                                 $("#btnCourse").hide();
+                                $("#btnNewsStudent").show();
                                 $('#studentSection').show();
                                 studentInformation(stud.Id);
                                 setProfileImageStudent(stud.Id);
                             } else {
-                                $('#userNotApprovedMessage').show();
-                                $('#invalidUserMessage').hide();
+                                document.querySelector('#invalidUser').innerText = "El usuario no ha sido aprobado.";
                             }
                         }
                     });
@@ -88,9 +89,9 @@ function login() {
                         $('#btnCourse').show();
 
                     }
-                } else {
-                    $('#userNotApprovedMessage').hide();
-                    $('#invalidUserMessage').show();
+                }
+                 else {
+                    document.querySelector('#invalidUser').innerText = "Datos incorrectos.";
                 }
             });
         },
@@ -99,7 +100,6 @@ function login() {
         }
     })
 }
-
 
 function setProfileImageStudent(id) {
 
@@ -135,8 +135,6 @@ function setProfileImageProfessor(id) {
     });
 }
 
-
-
 function logOut() {
     $('#btnLog').show();
     $('#btnSignLog').show();
@@ -147,7 +145,10 @@ function logOut() {
     $('#btnLogOut').hide();
     $('#btnProfessor').hide();
     $('#btnCourse').hide();
-
+    $('#btnNewsStudent').hide();
+    $('#btnNewsProfessor').hide();
+    $('#btnReturnStudent').hide();
+    $('#btnReturnProfessor').hide();
 }
 
 function listStudents() {
@@ -219,19 +220,117 @@ function studentInformation(id) {
     
 }
 
-function loadSocialNetwork() {
-    $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            url: "/Student/ListSocialNetworksCatalog",
-            data: "{}",
-            success: function (data) {
-                var s = '<option value="-1">Seleccione una opción</option>';
-                for (var i = 0; i < data.length; i++) {
-                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                }
-                $("#SocialNetworkDropdown").html(s);
-            }
-        });
+function professorInformation(id) {
+
+    $.ajax({
+        url: "/Professor/GetById/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            document.querySelector('#ProfessorWelcomeMessage').innerText = 'Bienvenido(a) ' + result.Name + ' ' + result.LastName;
+            document.querySelector('#labelProfessorUserName').innerText = result.Username;
+            document.querySelector('#labelProfessorName').innerText = result.Name + ' ' + result.LastName;
+            document.querySelector('#labelProfessorMail').innerText = result.Mail;
+            document.querySelector('#labelProfessorAcademicDegree').innerText = result.AcademicDegree;
+            document.querySelector('#labelProfessorProvince').innerText = result.Province;
+            document.querySelector('#labelProfessorCanton').innerText = result.Canton;
+            document.querySelector('#labelProfessorDistrict').innerText = result.District;
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
     });
+
+}
+
+function loadSocialNetwork() {
+    $.ajax({
+        type: "GET",
+        url: "/Student/ListSocialNetworksCatalog",
+        data: "{}",
+        success: function (data) {
+            var s = '<option value="-1">Seleccione una opción</option>';
+            for (var i = 0; i < data.length; i++) {
+                s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+            }
+            $("#SocialNetworkDropdown").html(s);
+        }
+    });
+}
+
+function addSocialNetworkStudent() {
+
+    var studentId;
+    var studentCard = document.getElementById("labelStudentCard").innerHTML;
+
+    var socialNetworkDropDown = {
+        SocialNetworksNameId: $("#SocialNetworkDropdown option:selected").val()
+    };
+
+    $.ajax({
+        url: "/Student/ListAllStudents",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            $.each(result, function (key, item) {
+                if (studentCard == item.StudentCard) {
+                    var socialNetwork = {
+                        Id: item.Id,
+                        Url: $('#studentSocialNetwork').val(),
+                        SocialNetworksNameId: parseInt(socialNetworkDropDown.SocialNetworksNameId)
+                    };
+
+                    $.ajax({
+                        url: "/Student/AddSocialNetwork",
+                        data: JSON.stringify(socialNetwork),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#myModalSocialNetwork').modal('hide');
+                            $('.modal-backdrop').hide();
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+                }
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    }); 
+}
+
+function newsStudent() {
+    $('#newsSection').show();
+    $('#studentSection').hide();
+    $('#btnReturnStudent').show();
+    $('#btnNewsStudent').hide();
+}
+
+function newsProfessor() {
+    $('#newsSection').show();
+    $('#professorSection').hide();
+    $('#btnReturnProfessor').show();
+    $('#btnNewsProfessor').hide();
+}
+
+function returnStudent() {
+    $('#studentSection').show();
+    $("#btnNewsStudent").show();
+    $("#newsSection").hide();
+    $('#btnReturnStudent').hide();
+}
+
+function returnProfessor() {
+    $('#professorSection').show();
+    $("#btnNewsProfessor").show();
+    $("#newsSection").hide();
+    $('#btnReturnProfessor').hide();
 }

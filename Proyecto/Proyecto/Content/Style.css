@@ -6,6 +6,42 @@
     margin-bottom:5px;
 }
 
+#btnAddStudent {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnUpdateStudent {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnAddProfessor {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnAddCourse {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnEditCourse {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnUpdateProfessor {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
 #btnLog {
     position: inherit;
     margin-top: 15px;
@@ -20,6 +56,54 @@
     color:white;
 
 }
+
+#btnNewsStudent {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnNewsStudent:hover {
+    background: #a9cce3;
+    color: white;
+    }
+
+#btnNewsProfessor {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnNewsProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnReturnStudent {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnReturnStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnReturnProfessor {
+    position: inherit;
+    margin-top: 15px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnReturnProfessor:hover {
+    background: #a9cce3;
+    color: white;
+    }
 
 #btnSignLog {
     position: inherit;
@@ -86,8 +170,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 30px;
+    height: 19px;
 }
 
     /* Hide default HTML checkbox */
@@ -113,8 +197,8 @@
     .slider:before {
         position: absolute;
         content: "";
-        height: 26px;
-        width: 26px;
+        height: 15px;
+        width: 15px;
         left: 4px;
         bottom: 4px;
         background-color: white;
@@ -131,14 +215,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
 }
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+    border-radius: 15px;
 }
 
     .slider.round:before {
