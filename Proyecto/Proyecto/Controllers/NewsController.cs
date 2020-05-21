@@ -88,5 +88,41 @@ namespace Proyecto.Controllers
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult UpdateNews(News news)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                try
+                {
+                    var responseTask = client.GetAsync("UpdateNews/" + news);
+                    responseTask.Wait();
+                }
+                catch (AggregateException agg_ex)
+                {
+                    var ex = agg_ex.InnerExceptions[0];
+                }
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteNews(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                try
+                {
+                    var responseTask = client.GetAsync("DeleteNews/" + id);
+                    responseTask.Wait();
+                }
+                catch (AggregateException agg_ex)
+                {
+                    var ex = agg_ex.InnerExceptions[0];
+                }
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }
