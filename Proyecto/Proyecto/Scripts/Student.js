@@ -481,15 +481,22 @@ function loadStudents() {
             var html = '';
             $.each(result, function (key, item) {
                 if (item.RegistrationStatus == "Aprobado") {
-                    html += '<tr>';
-                    html += '<td>' + item.StudentCard + '</td>';
-                    html += '<td>' + item.StudentName + '</td>';
-                    html += '<td>' + item.LastName + '</td>';
-                    html += '<td>' + item.Mail + '</td>';
-                    html += '<td><a href="#" onclick="getByIdStudent(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteStudent(' + item.Id + ')">Borrar</a></td>';
+                    data = [
+                        item.StudentCard,
+                        item.StudentName,
+                        item.LastName,
+                        item.Mail,
+                        '<td><a href="#" onclick="getByIdStudent(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteStudent(' + item.Id + ')">Borrar</a></td>'
+                    ];
+                    dataSet.push(data);
                 }
+                
             });
-            $('.tableStudents').html(html);
+            $('#tableStudents').DataTable({
+                "searching": true,
+                data: dataSet,
+                "bDestroy": true
+            });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
