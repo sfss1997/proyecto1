@@ -21,5 +21,6 @@ namespace Proyecto.Controllers
         {
             return Json(userDataEF.ListAllUsers(), JsonRequestBehavior.AllowGet);
         }
+
     }
 }

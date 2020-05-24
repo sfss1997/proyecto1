@@ -11,12 +11,10 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class StudentApproval_Result
+    public partial class GetSocialNetworksByIdProfessor_Result
     {
         public int Id { get; set; }
-        public string StudentCard { get; set; }
-        public string StudentName { get; set; }
-        public string LastName { get; set; }
-        public string Mail { get; set; }
+        public string Url { get; set; }
+        public Nullable<int> SocialNetworksNameId { get; set; }
     }
 }

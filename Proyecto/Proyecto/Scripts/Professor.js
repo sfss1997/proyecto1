@@ -167,7 +167,6 @@ function AddProfessor() {
         Password: password,
         Name: $('#ProfessorName').val(),
         LastName: $('#ProfessorLastName').val(),
-        Image: $('#ProfessorImage').val(),
         Mail: $('#ProfessorMail').val(),
         AcademicDegreeId: academicDegree.AcademicDegreeId,
         ProvinceId: province.Id,
@@ -342,7 +341,6 @@ function getByIdProfessor(id) {
     $('#TitleUpdateProfessor').show();
     $('#StatusProfessorDiv').show();
     $('#ProfessorPassword').prop("disabled", true);
-    $('#ProfessorImage').prop("disabled", true);
     $('#StatusProfessorDropdown').prop("disabled", false);
     $('#ProfessorCheckbox').prop("disabled", false);
 
@@ -359,7 +357,6 @@ function getByIdProfessor(id) {
             $("#ProfessorName").val(result.Name);
             $('#ProfessorLastName').val(result.LastName);
             $('#ProfessorMail').val(result.Mail);
-            $('#ProfessorImage').val("");
             $("#AcademicDegreeDropdown").val(result.AcademicDegreeId);
             $("#ProfessorProvinceDropdown").val(result.ProvinceId);
             loadCantonProfessor(result.ProvinceId);
@@ -430,7 +427,6 @@ function EditProfessor() {
         Password: $('#ProfessorPassword').val(),
         Name: $('#ProfessorName').val(),
         LastName: $('#ProfessorLastName').val(),
-        Image: $('#ProfessorImage').val(),
         Mail: $('#ProfessorMail').val(),
         AcademicDegreeId: academicDegree.AcademicDegreeId,
         ProvinceId: province.ProvinceId,

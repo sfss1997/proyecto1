@@ -148,6 +148,7 @@
     <NavigationProperty Name="ProfessorCourse" Relationship="Self.FK__Professor__Profe__0C1BC9F9" FromRole="Professor" ToRole="ProfessorCourse" />
     <NavigationProperty Name="Users2" Relationship="Self.FK__Professor__Updat__27C3E46E" FromRole="Professor" ToRole="Users" />
     <NavigationProperty Name="SocialNetworksProfessor" Relationship="Self.FK__SocialNetwor__Id__038683F8" FromRole="Professor" ToRole="SocialNetworksProfessor" />
+    <NavigationProperty Name="SocialNetworksProfessor1" Relationship="IF4101PICESModel.FK__SocialNet__Profe__0C50D423" FromRole="Professor" ToRole="SocialNetworksProfessor" />
   </EntityType>
   <EntityType Name="ProfessorCourse">
     <Key>
@@ -213,6 +214,8 @@
     <NavigationProperty Name="Users1" Relationship="Self.FK__SocialNet__Updat__2F650636" FromRole="SocialNetworksProfessor" ToRole="Users" />
     <Property Name="SocialNetworksNameId" Type="Int32" />
     <NavigationProperty Name="SocialNetworksCatalog" Relationship="IF4101PICESModel.FK__SocialNet__Socia__5772F790" FromRole="SocialNetworksProfessor" ToRole="SocialNetworksCatalog" />
+    <Property Name="ProfessorId" Type="Int32" />
+    <NavigationProperty Name="Professor1" Relationship="IF4101PICESModel.FK__SocialNet__Profe__0C50D423" FromRole="SocialNetworksProfessor" ToRole="Professor" />
   </EntityType>
   <EntityType Name="SocialNetworksStudent">
     <Key>
@@ -229,6 +232,8 @@
     <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__SocialNetwor__Id__79FD19BE" FromRole="SocialNetworksStudent" ToRole="Student" />
     <Property Name="SocialNetworksNameId" Type="Int32" />
     <NavigationProperty Name="SocialNetworksCatalog" Relationship="IF4101PICESModel.FK__SocialNet__Socia__53A266AC" FromRole="SocialNetworksStudent" ToRole="SocialNetworksCatalog" />
+    <Property Name="StudentId" Type="Int32" />
+    <NavigationProperty Name="Student1" Relationship="IF4101PICESModel.FK__SocialNet__Stude__0880433F" FromRole="SocialNetworksStudent" ToRole="Student" />
   </EntityType>
   <EntityType Name="StudentCourse">
     <Key>
@@ -1067,13 +1072,11 @@
     </FunctionImport>
     <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
     <FunctionImport Name="SelectProfessor" />
-    <FunctionImport Name="StudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
     <FunctionImport Name="UpdateStatusStudent">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="RegistrationStatus" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SPGetProvinces" ReturnType="Collection(IF4101PICESModel.GetProvinces_Result)" />
-    <FunctionImport Name="SPStudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
     <FunctionImport Name="SPSelectCourse" ReturnType="Collection(IF4101PICESModel.SelectCourse_Result)" />
     <FunctionImport Name="SPDeleteCourse">
       <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -1226,11 +1229,13 @@
     </FunctionImport>
     <FunctionImport Name="InsertUpdateSocialNetworkProfessor">
       <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
       <Parameter Name="Url" Mode="In" Type="String" />
       <Parameter Name="SocialNetworksNameId" Mode="In" Type="Int32" />
       <Parameter Name="Action" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertUpdateSocialNetworkStudent">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="StudentId" Mode="In" Type="Int32" />
       <Parameter Name="Url" Mode="In" Type="String" />
       <Parameter Name="SocialNetworksNameId" Mode="In" Type="Int32" />
@@ -1242,6 +1247,28 @@
     </FunctionImport>
     <FunctionImport Name="GetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
     <FunctionImport Name="SPGetNameSocialNetworks" ReturnType="Collection(IF4101PICESModel.GetNameSocialNetworks_Result)" />
+    <FunctionImport Name="StudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
+    <FunctionImport Name="SPStudentApproval" ReturnType="Collection(IF4101PICESModel.StudentApproval_Result)" />
+    <AssociationSet Name="FK__SocialNet__Profe__0C50D423" Association="IF4101PICESModel.FK__SocialNet__Profe__0C50D423">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialNet__Stude__0880433F" Association="IF4101PICESModel.FK__SocialNet__Stude__0880433F">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
+    </AssociationSet>
+    <FunctionImport Name="GetSocialNetworksByIdProfessor" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdProfessor_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSocialNetworksByIdStudent" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdStudent_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetSocialNetworksByIdProfessor" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdProfessor_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetSocialNetworksByIdStudent" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdStudent_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1270,12 +1297,6 @@
     <Property Type="Int32" Name="IsActive" Nullable="false" />
     <Property Type="Int32" Name="Credits" Nullable="false" />
     <Property Type="Int32" Name="Cycle" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="StudentApproval_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="SelectAcademicDegree_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1375,6 +1396,7 @@
     <NavigationProperty Name="Users1" Relationship="IF4101PICESModel.FK__Student__Id__7720AD13" FromRole="Student" ToRole="Users" />
     <NavigationProperty Name="Users2" Relationship="IF4101PICESModel.FK__Student__Updated__3335971A" FromRole="Student" ToRole="Users" />
     <NavigationProperty Name="StudentCourse" Relationship="IF4101PICESModel.FK__StudentCo__Stude__084B3915" FromRole="Student" ToRole="StudentCourse" />
+    <NavigationProperty Name="SocialNetworksStudent1" Relationship="IF4101PICESModel.FK__SocialNet__Stude__0880433F" FromRole="Student" ToRole="SocialNetworksStudent" />
   </EntityType>
   <Association Name="FK__Appointme__Stude__0FEC5ADD">
     <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
@@ -1540,5 +1562,46 @@
   <ComplexType Name="GetNameSocialNetworks_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="StudentApproval_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <Association Name="FK__SocialNet__Profe__0C50D423">
+    <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksProfessor" Role="SocialNetworksProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksProfessor">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Stude__0880433F">
+    <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.SocialNetworksStudent" Role="SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetSocialNetworksByIdProfessor_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Url" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SocialNetworksNameId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetSocialNetworksByIdStudent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Url" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SocialNetworksNameId" Nullable="true" />
   </ComplexType>
 </Schema>

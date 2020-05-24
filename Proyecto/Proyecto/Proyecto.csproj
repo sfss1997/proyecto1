@@ -194,6 +194,12 @@
     <Compile Include="Models\GetProvinces_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetSocialNetworksByIdProfessor_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSocialNetworksByIdStudent_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetStudentById_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -277,6 +283,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.bootstrap4.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\datatables.css" />
     <Content Include="Content\dataTables.foundation.css" />
     <Content Include="Content\dataTables.jqueryui.css" />
@@ -293,28 +300,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\contact-image.jpg" />
     <Content Include="images\courses-image1.jpg" />
-    <Content Include="images\courses-image10.jpg" />
-    <Content Include="images\courses-image2.jpg" />
-    <Content Include="images\courses-image3.jpg" />
-    <Content Include="images\courses-image4.jpg" />
-    <Content Include="images\courses-image5.jpg" />
-    <Content Include="images\courses-image6.jpg" />
-    <Content Include="images\courses-image7.jpg" />
-    <Content Include="images\courses-image8.jpg" />
-    <Content Include="images\courses-image9.jpg" />
-    <Content Include="images\img1.jpg" />
+    <Content Include="images\image1.jpg" />
     <Content Include="images\img2.jpg" />
     <Content Include="images\img3.jpg" />
-    <Content Include="images\prof1.jpg" />
-    <Content Include="images\prof2.jpg" />
-    <Content Include="images\prof3.jpg" />
-    <Content Include="images\prof4.jpg" />
-    <Content Include="images\prof5.jpg" />
-    <Content Include="images\prof6.jpg" />
-    <Content Include="images\tst-image1.jpg" />
-    <Content Include="images\tst-image2.jpg" />
-    <Content Include="images\tst-image3.jpg" />
-    <Content Include="images\tst-image4.jpg" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_asc_disabled.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
+    <Content Include="images\sort_desc_disabled.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>

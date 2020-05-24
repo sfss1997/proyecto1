@@ -278,11 +278,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SelectProfessor");
         }
     
-        public virtual ObjectResult<StudentApproval_Result> StudentApproval()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("StudentApproval");
-        }
-    
         public virtual int UpdateStatusStudent(Nullable<int> id, string registrationStatus)
         {
             var idParameter = id.HasValue ?
@@ -299,11 +294,6 @@ namespace Proyecto.Models
         public virtual ObjectResult<GetProvinces_Result> SPGetProvinces()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvinces_Result>("SPGetProvinces");
-        }
-    
-        public virtual ObjectResult<StudentApproval_Result> SPStudentApproval()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("SPStudentApproval");
         }
     
         public virtual ObjectResult<SelectCourse_Result> SPSelectCourse()
@@ -673,11 +663,15 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertStudentCourse", studentIdParameter, courseIdParameter);
         }
     
-        public virtual int InsertUpdateSocialNetworkProfessor(Nullable<int> id, string url, Nullable<int> socialNetworksNameId, string action)
+        public virtual int InsertUpdateSocialNetworkProfessor(Nullable<int> id, Nullable<int> professorId, string url, Nullable<int> socialNetworksNameId, string action)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
                 new ObjectParameter("Id", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
     
             var urlParameter = url != null ?
                 new ObjectParameter("Url", url) :
@@ -691,11 +685,15 @@ namespace Proyecto.Models
                 new ObjectParameter("Action", action) :
                 new ObjectParameter("Action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkProfessor", idParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkProfessor", idParameter, professorIdParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
         }
     
-        public virtual int InsertUpdateSocialNetworkStudent(Nullable<int> studentId, string url, Nullable<int> socialNetworksNameId, string action)
+        public virtual int InsertUpdateSocialNetworkStudent(Nullable<int> id, Nullable<int> studentId, string url, Nullable<int> socialNetworksNameId, string action)
         {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
             var studentIdParameter = studentId.HasValue ?
                 new ObjectParameter("StudentId", studentId) :
                 new ObjectParameter("StudentId", typeof(int));
@@ -712,7 +710,7 @@ namespace Proyecto.Models
                 new ObjectParameter("Action", action) :
                 new ObjectParameter("Action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkStudent", studentIdParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateSocialNetworkStudent", idParameter, studentIdParameter, urlParameter, socialNetworksNameIdParameter, actionParameter);
         }
     
         public virtual int InsertProfessorCourse(Nullable<int> professorId, Nullable<int> courseId)
@@ -736,6 +734,52 @@ namespace Proyecto.Models
         public virtual ObjectResult<GetNameSocialNetworks_Result> SPGetNameSocialNetworks()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNameSocialNetworks_Result>("SPGetNameSocialNetworks");
+        }
+    
+        public virtual ObjectResult<StudentApproval_Result> StudentApproval()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("StudentApproval");
+        }
+    
+        public virtual ObjectResult<StudentApproval_Result> SPStudentApproval()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentApproval_Result>("SPStudentApproval");
+        }
+    
+        public virtual ObjectResult<GetSocialNetworksByIdProfessor_Result> GetSocialNetworksByIdProfessor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSocialNetworksByIdProfessor_Result>("GetSocialNetworksByIdProfessor", idParameter);
+        }
+    
+        public virtual ObjectResult<GetSocialNetworksByIdStudent_Result> GetSocialNetworksByIdStudent(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSocialNetworksByIdStudent_Result>("GetSocialNetworksByIdStudent", idParameter);
+        }
+    
+        public virtual ObjectResult<GetSocialNetworksByIdProfessor_Result> SPGetSocialNetworksByIdProfessor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSocialNetworksByIdProfessor_Result>("SPGetSocialNetworksByIdProfessor", idParameter);
+        }
+    
+        public virtual ObjectResult<GetSocialNetworksByIdStudent_Result> SPGetSocialNetworksByIdStudent(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSocialNetworksByIdStudent_Result>("SPGetSocialNetworksByIdStudent", idParameter);
         }
     }
 }

@@ -156,25 +156,19 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfessorId" Type="int" />
     <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="SocialNetworksNameId" Type="int" />
-    <Property Name="CreatedBy" Type="int" />
-    <Property Name="CreateAt" Type="date" />
-    <Property Name="UpdatedBy" Type="int" />
-    <Property Name="UpdatedAt" Type="date" />
   </EntityType>
   <EntityType Name="SocialNetworksStudent">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" />
     <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="SocialNetworksNameId" Type="int" />
-    <Property Name="CreatedBy" Type="int" />
-    <Property Name="CreateAt" Type="date" />
-    <Property Name="UpdatedBy" Type="int" />
-    <Property Name="UpdatedAt" Type="date" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -186,13 +180,13 @@
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Birthday" Type="date" Nullable="false" />
     <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="200" />
     <Property Name="LocationId" Type="int" />
     <Property Name="RegistrationStatus" Type="varchar" MaxLength="20" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
-    <Property Name="Image" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="StudentCourse">
     <Key>
@@ -206,16 +200,6 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="Id" />
@@ -226,7 +210,7 @@
     <Property Name="IsAdministrator" Type="int" Nullable="false" />
     <Property Name="Status" Type="varchar" MaxLength="20" />
   </EntityType>
-  <Association Name="FK__AcademicD__Creat__1975C517">
+  <Association Name="FK__AcademicD__Creat__4B7734FF">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="AcademicDegree" Type="Self.AcademicDegree" Multiplicity="*" />
     <ReferentialConstraint>
@@ -238,7 +222,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__AcademicD__Updat__1A69E950">
+  <Association Name="FK__AcademicD__Updat__4C6B5938">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="AcademicDegree" Type="Self.AcademicDegree" Multiplicity="*" />
     <ReferentialConstraint>
@@ -250,7 +234,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Appointme__Cours__10E07F16">
+  <Association Name="FK__Appointme__Cours__42E1EEFE">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -262,7 +246,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Appointme__Creat__1B5E0D89">
+  <Association Name="FK__Appointme__Creat__4D5F7D71">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -274,7 +258,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Appointme__Stude__0FEC5ADD">
+  <Association Name="FK__Appointme__Stude__41EDCAC5">
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -286,7 +270,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Appointme__Updat__1C5231C2">
+  <Association Name="FK__Appointme__Updat__4E53A1AA">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -298,7 +282,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Canton__CreatedB__1D4655FB">
+  <Association Name="FK__Canton__CreatedB__4F47C5E3">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
     <ReferentialConstraint>
@@ -310,7 +294,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Canton__Province__69C6B1F5">
+  <Association Name="FK__Canton__Province__17F790F9">
     <End Role="Province" Type="Self.Province" Multiplicity="1" />
     <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
     <ReferentialConstraint>
@@ -322,7 +306,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Canton__UpdatedB__1E3A7A34">
+  <Association Name="FK__Canton__UpdatedB__503BEA1C">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
     <ReferentialConstraint>
@@ -334,7 +318,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Course__CreatedB__1F2E9E6D">
+  <Association Name="FK__Course__CreatedB__51300E55">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Course" Type="Self.Course" Multiplicity="*" />
     <ReferentialConstraint>
@@ -346,7 +330,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Course__UpdatedB__2022C2A6">
+  <Association Name="FK__Course__UpdatedB__5224328E">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Course" Type="Self.Course" Multiplicity="*" />
     <ReferentialConstraint>
@@ -358,7 +342,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__District__Canton__6CA31EA0">
+  <Association Name="FK__District__Canton__1AD3FDA4">
     <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
     <End Role="District" Type="Self.District" Multiplicity="*" />
     <ReferentialConstraint>
@@ -370,7 +354,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__District__Create__2116E6DF">
+  <Association Name="FK__District__Create__531856C7">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="District" Type="Self.District" Multiplicity="*" />
     <ReferentialConstraint>
@@ -382,7 +366,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__District__Update__220B0B18">
+  <Association Name="FK__District__Update__540C7B00">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="District" Type="Self.District" Multiplicity="*" />
     <ReferentialConstraint>
@@ -394,7 +378,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Location__Canton__7073AF84">
+  <Association Name="FK__Location__Canton__1EA48E88">
     <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
     <End Role="Location" Type="Self.Location" Multiplicity="*" />
     <ReferentialConstraint>
@@ -406,7 +390,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Location__Create__22FF2F51">
+  <Association Name="FK__Location__Create__55009F39">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Location" Type="Self.Location" Multiplicity="*" />
     <ReferentialConstraint>
@@ -418,7 +402,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Location__Distri__7167D3BD">
+  <Association Name="FK__Location__Distri__1F98B2C1">
     <End Role="District" Type="Self.District" Multiplicity="0..1" />
     <End Role="Location" Type="Self.Location" Multiplicity="*" />
     <ReferentialConstraint>
@@ -430,7 +414,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Location__Provin__6F7F8B4B">
+  <Association Name="FK__Location__Provin__1DB06A4F">
     <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
     <End Role="Location" Type="Self.Location" Multiplicity="*" />
     <ReferentialConstraint>
@@ -442,7 +426,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Location__Update__23F3538A">
+  <Association Name="FK__Location__Update__55F4C372">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Location" Type="Self.Location" Multiplicity="*" />
     <ReferentialConstraint>
@@ -454,7 +438,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PrivateMe__Cours__14B10FFA">
+  <Association Name="FK__PrivateMe__Cours__46B27FE2">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -466,7 +450,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PrivateMe__Creat__24E777C3">
+  <Association Name="FK__PrivateMe__Creat__56E8E7AB">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -478,7 +462,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PrivateMe__Stude__13BCEBC1">
+  <Association Name="FK__PrivateMe__Stude__45BE5BA9">
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -490,7 +474,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PrivateMe__Updat__25DB9BFC">
+  <Association Name="FK__PrivateMe__Updat__57DD0BE4">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -502,7 +486,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Acade__7EC1CEDB">
+  <Association Name="FK__Professor__Acade__2FCF1A8A">
     <End Role="AcademicDegree" Type="Self.AcademicDegree" Multiplicity="0..1" />
     <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -514,7 +498,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Cours__0D0FEE32">
+  <Association Name="FK__Professor__Cours__3F115E1A">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -526,7 +510,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Creat__26CFC035">
+  <Association Name="FK__Professor__Creat__58D1301D">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -538,7 +522,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Creat__28B808A7">
+  <Association Name="FK__Professor__Creat__5AB9788F">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -550,7 +534,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Id__00AA174D">
+  <Association Name="FK__Professor__Id__31B762FC">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -562,7 +546,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Locat__7FB5F314">
+  <Association Name="FK__Professor__Locat__30C33EC3">
     <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
     <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -574,7 +558,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Profe__0C1BC9F9">
+  <Association Name="FK__Professor__Profe__3E1D39E1">
     <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
     <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -586,7 +570,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Updat__27C3E46E">
+  <Association Name="FK__Professor__Updat__59C55456">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -598,7 +582,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Professor__Updat__29AC2CE0">
+  <Association Name="FK__Professor__Updat__5BAD9CC8">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="ProfessorCourse" Type="Self.ProfessorCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -610,7 +594,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Province__Create__2AA05119">
+  <Association Name="FK__Province__Create__5CA1C101">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Province" Type="Self.Province" Multiplicity="*" />
     <ReferentialConstraint>
@@ -622,7 +606,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Province__Update__2B947552">
+  <Association Name="FK__Province__Update__5D95E53A">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Province" Type="Self.Province" Multiplicity="*" />
     <ReferentialConstraint>
@@ -634,7 +618,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PublicCon__Cours__1881A0DE">
+  <Association Name="FK__PublicCon__Cours__4A8310C6">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
     <ReferentialConstraint>
@@ -646,7 +630,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PublicCon__Creat__2C88998B">
+  <Association Name="FK__PublicCon__Creat__5E8A0973">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
     <ReferentialConstraint>
@@ -658,7 +642,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PublicCon__Stude__178D7CA5">
+  <Association Name="FK__PublicCon__Stude__498EEC8D">
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
     <ReferentialConstraint>
@@ -670,7 +654,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PublicCon__Updat__2D7CBDC4">
+  <Association Name="FK__PublicCon__Updat__5F7E2DAC">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
     <ReferentialConstraint>
@@ -682,103 +666,55 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SocialNet__Creat__58671BC9">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+  <Association Name="FK__SocialNet__Profe__0C50D423">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
     <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksProfessor">
-        <PropertyRef Name="CreatedBy" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNet__Creat__5A4F643B">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksStudent">
-        <PropertyRef Name="CreatedBy" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNet__Socia__53A266AC">
-    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
-    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SocialNetworksCatalog">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksStudent">
-        <PropertyRef Name="SocialNetworksNameId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNet__Socia__5772F790">
-    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
-    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SocialNetworksCatalog">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksProfessor">
-        <PropertyRef Name="SocialNetworksNameId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNet__Updat__595B4002">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksProfessor">
-        <PropertyRef Name="UpdatedBy" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNet__Updat__5B438874">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksStudent">
-        <PropertyRef Name="UpdatedBy" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNetwor__Id__52AE4273">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
-    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SocialNetworksStudent">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SocialNetwor__Id__567ED357">
-    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
-    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Professor">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="SocialNetworksProfessor">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="ProfessorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__Created__324172E1">
+  <Association Name="FK__SocialNet__Socia__09746778">
+    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Socia__0D44F85C">
+    <End Role="SocialNetworksCatalog" Type="Self.SocialNetworksCatalog" Multiplicity="0..1" />
+    <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialNetworksCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksProfessor">
+        <PropertyRef Name="SocialNetworksNameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialNet__Stude__0880433F">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="SocialNetworksStudent" Type="Self.SocialNetworksStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworksStudent">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__Created__6442E2C9">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -790,7 +726,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__Id__7720AD13">
+  <Association Name="FK__Student__Id__25518C17">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -802,7 +738,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__Locatio__762C88DA">
+  <Association Name="FK__Student__Locatio__245D67DE">
     <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -814,7 +750,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__Updated__3335971A">
+  <Association Name="FK__Student__Updated__65370702">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -826,7 +762,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCo__Cours__093F5D4E">
+  <Association Name="FK__StudentCo__Cours__3B40CD36">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -838,7 +774,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCo__Creat__3429BB53">
+  <Association Name="FK__StudentCo__Creat__662B2B3B">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -850,7 +786,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCo__Stude__084B3915">
+  <Association Name="FK__StudentCo__Stude__3A4CA8FD">
     <End Role="Student" Type="Self.Student" Multiplicity="1" />
     <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -862,7 +798,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCo__Updat__351DDF8C">
+  <Association Name="FK__StudentCo__Updat__671F4F74">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
     <ReferentialConstraint>
@@ -883,7 +819,6 @@
   <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="GetCantonsByIdProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -898,6 +833,12 @@
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="GetProvinces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetSocialNetworksByIdProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSocialNetworksByIdStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetStudentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -936,11 +877,13 @@
   </Function>
   <Function Name="InsertUpdateSocialNetworkProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Url" Type="varchar" Mode="In" />
     <Parameter Name="SocialNetworksNameId" Type="int" Mode="In" />
     <Parameter Name="Action" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertUpdateSocialNetworkStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="Url" Type="varchar" Mode="In" />
     <Parameter Name="SocialNetworksNameId" Type="int" Mode="In" />
@@ -970,36 +913,6 @@
   <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="StudentApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
@@ -1029,221 +942,204 @@
     <EntitySet Name="SocialNetworksStudent" EntityType="Self.SocialNetworksStudent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__AcademicD__Creat__1975C517" Association="Self.FK__AcademicD__Creat__1975C517">
+    <AssociationSet Name="FK__AcademicD__Creat__4B7734FF" Association="Self.FK__AcademicD__Creat__4B7734FF">
       <End Role="Users" EntitySet="Users" />
       <End Role="AcademicDegree" EntitySet="AcademicDegree" />
     </AssociationSet>
-    <AssociationSet Name="FK__AcademicD__Updat__1A69E950" Association="Self.FK__AcademicD__Updat__1A69E950">
+    <AssociationSet Name="FK__AcademicD__Updat__4C6B5938" Association="Self.FK__AcademicD__Updat__4C6B5938">
       <End Role="Users" EntitySet="Users" />
       <End Role="AcademicDegree" EntitySet="AcademicDegree" />
     </AssociationSet>
-    <AssociationSet Name="FK__Appointme__Cours__10E07F16" Association="Self.FK__Appointme__Cours__10E07F16">
+    <AssociationSet Name="FK__Appointme__Cours__42E1EEFE" Association="Self.FK__Appointme__Cours__42E1EEFE">
       <End Role="Course" EntitySet="Course" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Appointme__Creat__1B5E0D89" Association="Self.FK__Appointme__Creat__1B5E0D89">
+    <AssociationSet Name="FK__Appointme__Creat__4D5F7D71" Association="Self.FK__Appointme__Creat__4D5F7D71">
       <End Role="Users" EntitySet="Users" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Appointme__Stude__0FEC5ADD" Association="Self.FK__Appointme__Stude__0FEC5ADD">
+    <AssociationSet Name="FK__Appointme__Stude__41EDCAC5" Association="Self.FK__Appointme__Stude__41EDCAC5">
       <End Role="Student" EntitySet="Student" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Appointme__Updat__1C5231C2" Association="Self.FK__Appointme__Updat__1C5231C2">
+    <AssociationSet Name="FK__Appointme__Updat__4E53A1AA" Association="Self.FK__Appointme__Updat__4E53A1AA">
       <End Role="Users" EntitySet="Users" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Canton__CreatedB__1D4655FB" Association="Self.FK__Canton__CreatedB__1D4655FB">
+    <AssociationSet Name="FK__Canton__CreatedB__4F47C5E3" Association="Self.FK__Canton__CreatedB__4F47C5E3">
       <End Role="Users" EntitySet="Users" />
       <End Role="Canton" EntitySet="Canton" />
     </AssociationSet>
-    <AssociationSet Name="FK__Canton__Province__69C6B1F5" Association="Self.FK__Canton__Province__69C6B1F5">
+    <AssociationSet Name="FK__Canton__Province__17F790F9" Association="Self.FK__Canton__Province__17F790F9">
       <End Role="Province" EntitySet="Province" />
       <End Role="Canton" EntitySet="Canton" />
     </AssociationSet>
-    <AssociationSet Name="FK__Canton__UpdatedB__1E3A7A34" Association="Self.FK__Canton__UpdatedB__1E3A7A34">
+    <AssociationSet Name="FK__Canton__UpdatedB__503BEA1C" Association="Self.FK__Canton__UpdatedB__503BEA1C">
       <End Role="Users" EntitySet="Users" />
       <End Role="Canton" EntitySet="Canton" />
     </AssociationSet>
-    <AssociationSet Name="FK__Course__CreatedB__1F2E9E6D" Association="Self.FK__Course__CreatedB__1F2E9E6D">
+    <AssociationSet Name="FK__Course__CreatedB__51300E55" Association="Self.FK__Course__CreatedB__51300E55">
       <End Role="Users" EntitySet="Users" />
       <End Role="Course" EntitySet="Course" />
     </AssociationSet>
-    <AssociationSet Name="FK__Course__UpdatedB__2022C2A6" Association="Self.FK__Course__UpdatedB__2022C2A6">
+    <AssociationSet Name="FK__Course__UpdatedB__5224328E" Association="Self.FK__Course__UpdatedB__5224328E">
       <End Role="Users" EntitySet="Users" />
       <End Role="Course" EntitySet="Course" />
     </AssociationSet>
-    <AssociationSet Name="FK__District__Canton__6CA31EA0" Association="Self.FK__District__Canton__6CA31EA0">
+    <AssociationSet Name="FK__District__Canton__1AD3FDA4" Association="Self.FK__District__Canton__1AD3FDA4">
       <End Role="Canton" EntitySet="Canton" />
       <End Role="District" EntitySet="District" />
     </AssociationSet>
-    <AssociationSet Name="FK__District__Create__2116E6DF" Association="Self.FK__District__Create__2116E6DF">
+    <AssociationSet Name="FK__District__Create__531856C7" Association="Self.FK__District__Create__531856C7">
       <End Role="Users" EntitySet="Users" />
       <End Role="District" EntitySet="District" />
     </AssociationSet>
-    <AssociationSet Name="FK__District__Update__220B0B18" Association="Self.FK__District__Update__220B0B18">
+    <AssociationSet Name="FK__District__Update__540C7B00" Association="Self.FK__District__Update__540C7B00">
       <End Role="Users" EntitySet="Users" />
       <End Role="District" EntitySet="District" />
     </AssociationSet>
-    <AssociationSet Name="FK__Location__Canton__7073AF84" Association="Self.FK__Location__Canton__7073AF84">
+    <AssociationSet Name="FK__Location__Canton__1EA48E88" Association="Self.FK__Location__Canton__1EA48E88">
       <End Role="Canton" EntitySet="Canton" />
       <End Role="Location" EntitySet="Location" />
     </AssociationSet>
-    <AssociationSet Name="FK__Location__Create__22FF2F51" Association="Self.FK__Location__Create__22FF2F51">
+    <AssociationSet Name="FK__Location__Create__55009F39" Association="Self.FK__Location__Create__55009F39">
       <End Role="Users" EntitySet="Users" />
       <End Role="Location" EntitySet="Location" />
     </AssociationSet>
-    <AssociationSet Name="FK__Location__Distri__7167D3BD" Association="Self.FK__Location__Distri__7167D3BD">
+    <AssociationSet Name="FK__Location__Distri__1F98B2C1" Association="Self.FK__Location__Distri__1F98B2C1">
       <End Role="District" EntitySet="District" />
       <End Role="Location" EntitySet="Location" />
     </AssociationSet>
-    <AssociationSet Name="FK__Location__Provin__6F7F8B4B" Association="Self.FK__Location__Provin__6F7F8B4B">
+    <AssociationSet Name="FK__Location__Provin__1DB06A4F" Association="Self.FK__Location__Provin__1DB06A4F">
       <End Role="Province" EntitySet="Province" />
       <End Role="Location" EntitySet="Location" />
     </AssociationSet>
-    <AssociationSet Name="FK__Location__Update__23F3538A" Association="Self.FK__Location__Update__23F3538A">
+    <AssociationSet Name="FK__Location__Update__55F4C372" Association="Self.FK__Location__Update__55F4C372">
       <End Role="Users" EntitySet="Users" />
       <End Role="Location" EntitySet="Location" />
     </AssociationSet>
-    <AssociationSet Name="FK__PrivateMe__Cours__14B10FFA" Association="Self.FK__PrivateMe__Cours__14B10FFA">
+    <AssociationSet Name="FK__PrivateMe__Cours__46B27FE2" Association="Self.FK__PrivateMe__Cours__46B27FE2">
       <End Role="Course" EntitySet="Course" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
     </AssociationSet>
-    <AssociationSet Name="FK__PrivateMe__Creat__24E777C3" Association="Self.FK__PrivateMe__Creat__24E777C3">
+    <AssociationSet Name="FK__PrivateMe__Creat__56E8E7AB" Association="Self.FK__PrivateMe__Creat__56E8E7AB">
       <End Role="Users" EntitySet="Users" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
     </AssociationSet>
-    <AssociationSet Name="FK__PrivateMe__Stude__13BCEBC1" Association="Self.FK__PrivateMe__Stude__13BCEBC1">
+    <AssociationSet Name="FK__PrivateMe__Stude__45BE5BA9" Association="Self.FK__PrivateMe__Stude__45BE5BA9">
       <End Role="Student" EntitySet="Student" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
     </AssociationSet>
-    <AssociationSet Name="FK__PrivateMe__Updat__25DB9BFC" Association="Self.FK__PrivateMe__Updat__25DB9BFC">
+    <AssociationSet Name="FK__PrivateMe__Updat__57DD0BE4" Association="Self.FK__PrivateMe__Updat__57DD0BE4">
       <End Role="Users" EntitySet="Users" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Acade__7EC1CEDB" Association="Self.FK__Professor__Acade__7EC1CEDB">
+    <AssociationSet Name="FK__Professor__Acade__2FCF1A8A" Association="Self.FK__Professor__Acade__2FCF1A8A">
       <End Role="AcademicDegree" EntitySet="AcademicDegree" />
       <End Role="Professor" EntitySet="Professor" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Cours__0D0FEE32" Association="Self.FK__Professor__Cours__0D0FEE32">
+    <AssociationSet Name="FK__Professor__Cours__3F115E1A" Association="Self.FK__Professor__Cours__3F115E1A">
       <End Role="Course" EntitySet="Course" />
       <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Creat__26CFC035" Association="Self.FK__Professor__Creat__26CFC035">
+    <AssociationSet Name="FK__Professor__Creat__58D1301D" Association="Self.FK__Professor__Creat__58D1301D">
       <End Role="Users" EntitySet="Users" />
       <End Role="Professor" EntitySet="Professor" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Creat__28B808A7" Association="Self.FK__Professor__Creat__28B808A7">
+    <AssociationSet Name="FK__Professor__Creat__5AB9788F" Association="Self.FK__Professor__Creat__5AB9788F">
       <End Role="Users" EntitySet="Users" />
       <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Id__00AA174D" Association="Self.FK__Professor__Id__00AA174D">
+    <AssociationSet Name="FK__Professor__Id__31B762FC" Association="Self.FK__Professor__Id__31B762FC">
       <End Role="Users" EntitySet="Users" />
       <End Role="Professor" EntitySet="Professor" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Locat__7FB5F314" Association="Self.FK__Professor__Locat__7FB5F314">
+    <AssociationSet Name="FK__Professor__Locat__30C33EC3" Association="Self.FK__Professor__Locat__30C33EC3">
       <End Role="Location" EntitySet="Location" />
       <End Role="Professor" EntitySet="Professor" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Profe__0C1BC9F9" Association="Self.FK__Professor__Profe__0C1BC9F9">
+    <AssociationSet Name="FK__Professor__Profe__3E1D39E1" Association="Self.FK__Professor__Profe__3E1D39E1">
       <End Role="Professor" EntitySet="Professor" />
       <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Updat__27C3E46E" Association="Self.FK__Professor__Updat__27C3E46E">
+    <AssociationSet Name="FK__Professor__Updat__59C55456" Association="Self.FK__Professor__Updat__59C55456">
       <End Role="Users" EntitySet="Users" />
       <End Role="Professor" EntitySet="Professor" />
     </AssociationSet>
-    <AssociationSet Name="FK__Professor__Updat__29AC2CE0" Association="Self.FK__Professor__Updat__29AC2CE0">
+    <AssociationSet Name="FK__Professor__Updat__5BAD9CC8" Association="Self.FK__Professor__Updat__5BAD9CC8">
       <End Role="Users" EntitySet="Users" />
       <End Role="ProfessorCourse" EntitySet="ProfessorCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__Province__Create__2AA05119" Association="Self.FK__Province__Create__2AA05119">
+    <AssociationSet Name="FK__Province__Create__5CA1C101" Association="Self.FK__Province__Create__5CA1C101">
       <End Role="Users" EntitySet="Users" />
       <End Role="Province" EntitySet="Province" />
     </AssociationSet>
-    <AssociationSet Name="FK__Province__Update__2B947552" Association="Self.FK__Province__Update__2B947552">
+    <AssociationSet Name="FK__Province__Update__5D95E53A" Association="Self.FK__Province__Update__5D95E53A">
       <End Role="Users" EntitySet="Users" />
       <End Role="Province" EntitySet="Province" />
     </AssociationSet>
-    <AssociationSet Name="FK__PublicCon__Cours__1881A0DE" Association="Self.FK__PublicCon__Cours__1881A0DE">
+    <AssociationSet Name="FK__PublicCon__Cours__4A8310C6" Association="Self.FK__PublicCon__Cours__4A8310C6">
       <End Role="Course" EntitySet="Course" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
-    <AssociationSet Name="FK__PublicCon__Creat__2C88998B" Association="Self.FK__PublicCon__Creat__2C88998B">
+    <AssociationSet Name="FK__PublicCon__Creat__5E8A0973" Association="Self.FK__PublicCon__Creat__5E8A0973">
       <End Role="Users" EntitySet="Users" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
-    <AssociationSet Name="FK__PublicCon__Stude__178D7CA5" Association="Self.FK__PublicCon__Stude__178D7CA5">
+    <AssociationSet Name="FK__PublicCon__Stude__498EEC8D" Association="Self.FK__PublicCon__Stude__498EEC8D">
       <End Role="Student" EntitySet="Student" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
-    <AssociationSet Name="FK__PublicCon__Updat__2D7CBDC4" Association="Self.FK__PublicCon__Updat__2D7CBDC4">
+    <AssociationSet Name="FK__PublicCon__Updat__5F7E2DAC" Association="Self.FK__PublicCon__Updat__5F7E2DAC">
       <End Role="Users" EntitySet="Users" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Creat__58671BC9" Association="Self.FK__SocialNet__Creat__58671BC9">
-      <End Role="Users" EntitySet="Users" />
+    <AssociationSet Name="FK__SocialNet__Profe__0C50D423" Association="Self.FK__SocialNet__Profe__0C50D423">
+      <End Role="Professor" EntitySet="Professor" />
       <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Creat__5A4F643B" Association="Self.FK__SocialNet__Creat__5A4F643B">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Socia__53A266AC" Association="Self.FK__SocialNet__Socia__53A266AC">
+    <AssociationSet Name="FK__SocialNet__Socia__09746778" Association="Self.FK__SocialNet__Socia__09746778">
       <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
       <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Socia__5772F790" Association="Self.FK__SocialNet__Socia__5772F790">
+    <AssociationSet Name="FK__SocialNet__Socia__0D44F85C" Association="Self.FK__SocialNet__Socia__0D44F85C">
       <End Role="SocialNetworksCatalog" EntitySet="SocialNetworksCatalog" />
       <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Updat__595B4002" Association="Self.FK__SocialNet__Updat__595B4002">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SocialNet__Updat__5B438874" Association="Self.FK__SocialNet__Updat__5B438874">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SocialNetwor__Id__52AE4273" Association="Self.FK__SocialNetwor__Id__52AE4273">
+    <AssociationSet Name="FK__SocialNet__Stude__0880433F" Association="Self.FK__SocialNet__Stude__0880433F">
       <End Role="Student" EntitySet="Student" />
       <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
     </AssociationSet>
-    <AssociationSet Name="FK__SocialNetwor__Id__567ED357" Association="Self.FK__SocialNetwor__Id__567ED357">
-      <End Role="Professor" EntitySet="Professor" />
-      <End Role="SocialNetworksProfessor" EntitySet="SocialNetworksProfessor" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Student__Created__324172E1" Association="Self.FK__Student__Created__324172E1">
+    <AssociationSet Name="FK__Student__Created__6442E2C9" Association="Self.FK__Student__Created__6442E2C9">
       <End Role="Users" EntitySet="Users" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
-    <AssociationSet Name="FK__Student__Id__7720AD13" Association="Self.FK__Student__Id__7720AD13">
+    <AssociationSet Name="FK__Student__Id__25518C17" Association="Self.FK__Student__Id__25518C17">
       <End Role="Users" EntitySet="Users" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
-    <AssociationSet Name="FK__Student__Locatio__762C88DA" Association="Self.FK__Student__Locatio__762C88DA">
+    <AssociationSet Name="FK__Student__Locatio__245D67DE" Association="Self.FK__Student__Locatio__245D67DE">
       <End Role="Location" EntitySet="Location" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
-    <AssociationSet Name="FK__Student__Updated__3335971A" Association="Self.FK__Student__Updated__3335971A">
+    <AssociationSet Name="FK__Student__Updated__65370702" Association="Self.FK__Student__Updated__65370702">
       <End Role="Users" EntitySet="Users" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCo__Cours__093F5D4E" Association="Self.FK__StudentCo__Cours__093F5D4E">
+    <AssociationSet Name="FK__StudentCo__Cours__3B40CD36" Association="Self.FK__StudentCo__Cours__3B40CD36">
       <End Role="Course" EntitySet="Course" />
       <End Role="StudentCourse" EntitySet="StudentCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCo__Creat__3429BB53" Association="Self.FK__StudentCo__Creat__3429BB53">
+    <AssociationSet Name="FK__StudentCo__Creat__662B2B3B" Association="Self.FK__StudentCo__Creat__662B2B3B">
       <End Role="Users" EntitySet="Users" />
       <End Role="StudentCourse" EntitySet="StudentCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCo__Stude__084B3915" Association="Self.FK__StudentCo__Stude__084B3915">
+    <AssociationSet Name="FK__StudentCo__Stude__3A4CA8FD" Association="Self.FK__StudentCo__Stude__3A4CA8FD">
       <End Role="Student" EntitySet="Student" />
       <End Role="StudentCourse" EntitySet="StudentCourse" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCo__Updat__351DDF8C" Association="Self.FK__StudentCo__Updat__351DDF8C">
+    <AssociationSet Name="FK__StudentCo__Updat__671F4F74" Association="Self.FK__StudentCo__Updat__671F4F74">
       <End Role="Users" EntitySet="Users" />
       <End Role="StudentCourse" EntitySet="StudentCourse" />
     </AssociationSet>

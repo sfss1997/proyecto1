@@ -52,6 +52,7 @@ function login() {
                             $("#btnNewsProfessor").show();
                             setProfileImageProfessor(prof.Id);
                             professorInformation(prof.Id);
+                            getSocialNetworksByIdProdessor(prof.Id);
                         }
                     });
 
@@ -70,6 +71,7 @@ function login() {
                                 $('#studentSection').show();
                                 studentInformation(stud.Id);
                                 setProfileImageStudent(stud.Id);
+                                getSocialNetworksByIdStudent(stud.Id);
                             } else {
                                 document.querySelector('#invalidUser').innerText = "El usuario no ha sido aprobado.";
                             }
@@ -183,7 +185,6 @@ function listProfessors() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
                 arrayProfessor.push(item);
             });
@@ -229,6 +230,7 @@ function professorInformation(id) {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            document.querySelector('#labelProfessorId').innerText = result.Id;
             document.querySelector('#ProfessorWelcomeMessage').innerText = 'Bienvenido(a) ' + result.Name + ' ' + result.LastName;
             document.querySelector('#labelProfessorUserName').innerText = result.Username;
             document.querySelector('#labelProfessorName').innerText = result.Name + ' ' + result.LastName;
@@ -256,18 +258,18 @@ function loadSocialNetwork() {
             for (var i = 0; i < data.length; i++) {
                 s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
             }
-            $("#SocialNetworkDropdown").html(s);
+            $("#SocialNetworkStudentDropdown").html(s);
+            $("#SocialNetworkProfessorDropdown").html(s);
         }
     });
 }
 
 function addSocialNetworkStudent() {
 
-    var studentId;
     var studentCard = document.getElementById("labelStudentCard").innerHTML;
 
     var socialNetworkDropDown = {
-        SocialNetworksNameId: $("#SocialNetworkDropdown option:selected").val()
+        SocialNetworksNameId: $("#SocialNetworkStudentDropdown option:selected").val()
     };
 
     $.ajax({
@@ -280,7 +282,7 @@ function addSocialNetworkStudent() {
             $.each(result, function (key, item) {
                 if (studentCard == item.StudentCard) {
                     var socialNetwork = {
-                        Id: item.Id,
+                        StudentId: item.Id,
                         Url: $('#studentSocialNetwork').val(),
                         SocialNetworksNameId: parseInt(socialNetworkDropDown.SocialNetworksNameId)
                     };
@@ -292,7 +294,7 @@ function addSocialNetworkStudent() {
                         contentType: "application/json;charset=utf-8",
                         dataType: "json",
                         success: function (result) {
-                            $('#myModalSocialNetwork').modal('hide');
+                            $('#myModalSocialNetworkStudent').modal('hide');
                             $('.modal-backdrop').hide();
                         },
                         error: function (errorMessage) {
@@ -306,6 +308,52 @@ function addSocialNetworkStudent() {
             alert(errorMessage.responseText);
         }
     }); 
+}
+
+function addSocialNetworkProfessor() {
+
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    var socialNetworkDropDown = {
+        SocialNetworksNameId: $("#SocialNetworkProfessorDropdown option:selected").val()
+    };
+
+    $.ajax({
+        url: "/Professor/ListAllProfessors",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            dataSet = new Array();
+            $.each(result, function (key, item) {
+                if (professorId == item.Id) {
+                    var socialNetwork = {
+                        ProfessorId: item.Id,
+                        Url: $('#professorSocialNetwork').val(),
+                        SocialNetworksNameId: parseInt(socialNetworkDropDown.SocialNetworksNameId)
+                    };
+
+                    $.ajax({
+                        url: "/Professor/AddSocialNetwork",
+                        data: JSON.stringify(socialNetwork),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $('#myModalSocialNetworkProfessor').modal('hide');
+                            $('.modal-backdrop').hide();
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+                }
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 }
 
 function newsStudent() {
@@ -334,4 +382,44 @@ function returnProfessor() {
     $("#btnNewsProfessor").show();
     $("#newsSection").hide();
     $('#btnReturnProfessor').hide();
+}
+
+function getSocialNetworksByIdStudent(id) {
+    $.ajax({
+        type: "GET",
+        url: "/Student/GetSocialNetworksByIdStudent/" + id,
+        data: "{}",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                var contenido = '';
+                contenido += '<li class="list-group-item">';
+                contenido += '<span>' + item.Id + '</span>';
+                contenido += ' <a href="' + item.Url + '">';
+                contenido += '<span>' + item.Url + '</span>';
+                contenido += ' </a>';
+                contenido += '</li>';
+                $('#ulSocialNetworksStudent').append(contenido);
+            });
+        }
+    });
+}
+
+function getSocialNetworksByIdProdessor(id) {
+    $.ajax({
+        type: "GET",
+        url: "/Professor/GetSocialNetworksByIdProfessor/" + id,
+        data: "{}",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                var contenido = '';
+                contenido += '<li class="list-group-item">';
+                contenido += '<span>' + item.Id + '</span>';
+                contenido += ' <a href="' + item.Url + '">';
+                contenido += '<span>' + item.Url + '</span>';
+                contenido += ' </a>';
+                contenido += '</li>';
+                $('#ulSocialNetworksProfessor').append(contenido);
+            });
+        }
+    });
 }

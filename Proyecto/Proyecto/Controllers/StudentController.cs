@@ -77,9 +77,9 @@ namespace Proyecto.Controllers
             return Json(students, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddSocialNetwork(int Id, string Url, int SocialNetworkNameId)
+        public JsonResult AddSocialNetwork(SocialNetworksStudent socialNetworksStudent)
         {
-            return Json(StudentDataEF.AddSocialNetwork(Id, Url, SocialNetworkNameId), JsonRequestBehavior.AllowGet);
+            return Json(StudentDataEF.AddSocialNetwork(socialNetworksStudent), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddStudentCourse(int StudentId, int CourseId)
@@ -91,6 +91,11 @@ namespace Proyecto.Controllers
         {
             var socialNetworks = StudentDataEF.ListSocialNetworksCatalog();
             return Json(socialNetworks, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSocialNetworksByIdStudent(int id)
+        {
+            return Json(StudentDataEF.GetSocialNetworksByIdStudent(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

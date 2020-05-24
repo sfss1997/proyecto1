@@ -97,15 +97,16 @@ namespace Proyecto.Models
             }
         }
 
-        public int AddSocialNetwork(int Id, string Url, int SocialNetworkNameId)
+        public int AddSocialNetwork(SocialNetworksProfessor socialNetworksProfessor)
         {
             int resultToReturn;
 
             using (var context = new Entities())
             {
-                resultToReturn = context.InsertUpdateSocialNetworkProfessor(Id,
-                                       Url,
-                                       SocialNetworkNameId,
+                resultToReturn = context.InsertUpdateSocialNetworkProfessor(socialNetworksProfessor.Id,
+                                       socialNetworksProfessor.ProfessorId,
+                                       socialNetworksProfessor.Url,
+                                       socialNetworksProfessor.SocialNetworksNameId,
                                        "Insert");
             }
             return resultToReturn;
@@ -128,6 +129,17 @@ namespace Proyecto.Models
             using (var context = new Entities())
             {
                 return context.SPGetNameSocialNetworks().ToList();
+            }
+        }
+
+        public List<GetSocialNetworksByIdProfessor_Result> GetSocialNetworksByIdProfessor(int id)
+        {
+            using (var context = new Entities())
+            {
+                var socialNetworks = context.SPGetSocialNetworksByIdProfessor(id).ToList();
+
+                return socialNetworks;
+
             }
         }
     }

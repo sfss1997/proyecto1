@@ -18,6 +18,7 @@ namespace Proyecto.Models
         public Professor()
         {
             this.ProfessorCourse = new HashSet<ProfessorCourse>();
+            this.SocialNetworksProfessor1 = new HashSet<SocialNetworksProfessor>();
         }
     
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace Proyecto.Models
         public virtual ICollection<ProfessorCourse> ProfessorCourse { get; set; }
         public virtual Users Users2 { get; set; }
         public virtual SocialNetworksProfessor SocialNetworksProfessor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SocialNetworksProfessor> SocialNetworksProfessor1 { get; set; }
     }
 }

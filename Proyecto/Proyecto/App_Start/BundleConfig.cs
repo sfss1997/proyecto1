@@ -42,7 +42,8 @@ namespace Proyecto
                      "~/Content/dataTables.foundation.css",
                      "~/Content/dataTables.jqueryui.css",
                      "~/Content/dataTables.semanticui.css",
-                     "~/Content/jquery.dataTables.css"));
+                     "~/Content/jquery.dataTables.css",
+                     "~/Content/dataTables.bootstrap4.min.css"));
         }
     }
 }

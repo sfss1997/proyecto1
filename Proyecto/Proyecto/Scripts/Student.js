@@ -7,6 +7,7 @@
 function clearTextBoxStudent() {
     $('#DivStudentId').hide();
     $('#StudentCard').prop("disabled", false);
+    $('#Birthday').prop("disabled", false);
     $('#myModal').modal('show');
     $('#DivStatusStudentDropdown').hide();
     $('#DivStudentCheckbox').hide();
@@ -185,7 +186,8 @@ function getByIdStudent(id) {
     $('#DivStudentCheckbox').show();
     $('#Image').prop("disabled", true);
     $('#Password').prop("disabled", true);
-
+    $('#Birthday').prop("disabled", true);
+    
     $.ajax({
         url: "/Student/GetById/" + id,
         type: "GET",
@@ -197,11 +199,9 @@ function getByIdStudent(id) {
             $('#StudentCard').val(result.StudentCard);
             $('#Name').val(result.StudentName);
             $('#LastName').val(result.LastName);
-            $("#Birthday").val(result.Birthday);
             $('#Mail').val(result.Mail);
             $('#Username').val(result.Username);
             $('#Password').val(result.Password);
-            $('#Image').val("");
             $("#ProvinceDropdown").val(result.ProvinceId);
             $("#ProfessorCantonDropdown").val(loadCantonStudent(result.ProvinceId));
             $("#ProfessorDistrictDropdown").val(loadDistrictStudent(result.CantonId));
@@ -265,9 +265,7 @@ function EditStudent() {
         StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
         LastName: $('#LastName').val(),
-        Birthday: $('#Birthday').val(),
         Mail: $('#Mail').val(),
-        Image: $('#Image').val(),
         Username: $('#Username').val(),
         Password: $('#Password').val(),
         ProvinceId: province.ProvinceId,
@@ -421,13 +419,14 @@ function loadData() {
             dataSet = new Array();
             $.each(result, function (key, item) {
                 data = [
-                    item.StudentCard,
+                    item.Id,
                     item.StudentName,
                     item.LastName,
                     item.Mail,
                     '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>'
 
                 ];
+                dataSet.push(data);
             });
             $('#tableApproval').DataTable({
                 "searching": true,
