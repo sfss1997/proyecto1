@@ -419,16 +419,21 @@ function loadData() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
-                html += '<tr>';
-                html += '<td>' + item.StudentCard + '</td>';
-                html += '<td>' + item.StudentName + '</td>';
-                html += '<td>' + item.LastName + '</td>';
-                html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>';
+                data = [
+                    item.StudentCard,
+                    item.StudentName,
+                    item.LastName,
+                    item.Mail,
+                    '<td><a href="#" onclick="StudentApproval(' + item.Id + ')">Aprobar</a> | <a href="#" onclick="StudentDeny(' + item.Id + ')">Rechazar</a></td>'
+
+                ];
             });
-            $('.tableApproval').html(html);
+            $('#tableApproval').DataTable({
+                "searching": true,
+                data: dataSet,
+                "bDestroy": true
+            });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -478,7 +483,6 @@ function loadStudents() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
                 if (item.RegistrationStatus == "Aprobado") {
                     data = [

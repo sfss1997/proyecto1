@@ -205,7 +205,6 @@ function fakePath(fakepath) {
     return path;
 }
 
-
 function loadAcademicDegree() {
     $(document).ready(function () {
         $.ajax({
@@ -310,15 +309,20 @@ function loadProfessors() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
-                html += '<tr>';
-                html += '<td>' + item.Name + '</td>';
-                html += '<td>' + item.LastName + '</td>';
-                html += '<td>' + item.Mail + '</td>';
-                html += '<td><a href="#" onclick="getByIdProfessor(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteProfessor(' + item.Id + ')">Borrar</a></td>';
+                data = [
+                    item.Name,
+                    item.LastName,
+                    item.Mail,
+                    '<td><a href="#" onclick="getByIdProfessor(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteProfessor(' + item.Id + ')">Borrar</a></td>'
+                ];
+                dataSet.push(data);
             });
-            $('.tableProfesor').html(html);
+            $('#tableProfesor').DataTable({
+                "searching": true,
+                data: dataSet,
+                "bDestroy": true
+            });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

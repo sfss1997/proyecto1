@@ -218,7 +218,6 @@ function loadCourses() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
                 var cycle = "";
                 var active = "";
@@ -239,15 +238,21 @@ function loadCourses() {
                     active = "Activo"
                 }
 
-                html += '<tr>';
-                html += '<td>' + item.Initials + '</td>';
-                html += '<td>' + item.Name + '</td>';
-                html += '<td>' + item.Credits + '</td>';
-                html += '<td>' + cycle + '</td>';
-                html += '<td>' + active + '</td>';
-                html += '<td><a href="#" onclick="getByIdCourse(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteCourse(' + item.Id + ')">Borrar</a></td>';
+                data = [
+                    item.Initials,
+                    item.Name,
+                    item.Credits,
+                    cycle,
+                    active,
+                    '<td><a href="#" onclick="getByIdCourse(' + item.Id + ')">Editar</a> | <a href="#" onclick="deleteCourse(' + item.Id + ')">Borrar</a></td>'
+                ];
+                dataSet.push(data);
             });
-            $('.tableCourseRegister').html(html);
+            $('#tableCourseRegister').DataTable({
+                "searching": true,
+                data: dataSet,
+                "bDestroy": true
+            });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
