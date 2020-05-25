@@ -37,7 +37,7 @@ namespace Proyecto.Controllers
                 else
                 {
                     news = Enumerable.Empty<News>();
-                    ModelState.AddModelError(String.Empty, "Server error. Please contact adminstrator");
+                    ModelState.AddModelError(String.Empty, "Server error. Please contact administrator");
                 }
             }
             return Json(news, JsonRequestBehavior.AllowGet);

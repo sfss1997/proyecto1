@@ -57,6 +57,19 @@
 
 }
 
+#btnNews {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnNews:hover {
+    background: #a9cce3;
+    color: white;
+}
+
 #btnSocialNetwork {
     position: inherit;
     margin-top: 15px;

@@ -9,6 +9,7 @@
     $('#btnReturnStudent').hide();
     $('#btnReturnProfessor').hide();
     $('#professorSection').hide();
+    $('#btnNews').hide();
     loadSocialNetwork(); 
 });
 
@@ -90,6 +91,7 @@ function login() {
                         $('#administratorSection').show();
                         $('#btnProfessor').show();
                         $('#btnCourse').show();
+                        $('#btnNews').show();
 
                     }
                 }
