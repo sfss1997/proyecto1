@@ -507,4 +507,27 @@ function loadStudents() {
     })
 }
 
+function getProfileStudent() {
 
+    var studentCard = document.getElementById("labelStudentCard").innerHTML;
+
+    $('#HeaderTitleAddStudent').hide();
+    $('#HeaderTitleUpdateStudent').show();
+
+    loadProvinceStudent();
+    $('#DivStudentId').show();
+    $('#StudentCard').prop("disabled", true);
+    $('#myModal').modal('show');
+    $('#btnUpdateStudent').show();
+    $('#btnAddStudent').hide();
+    $('#HeaderTitleAddStudent').hide();
+    $('#HeaderTitleUpdateStudent').show();
+    $('#DivStatusStudentDropdown').show();
+    $('#DivStudentCheckbox').show();
+    $('#Image').prop("disabled", true);
+    $('#Password').prop("disabled", true);
+    $('#Birthday').prop("disabled", true);
+
+
+
+}

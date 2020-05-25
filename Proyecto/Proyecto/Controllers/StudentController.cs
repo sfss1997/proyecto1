@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +23,13 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
+            string fileName = student.Image;
+            string folder = "/images/";
+            string path = System.IO.Path.Combine(folder, fileName);
+
+            //Image image = ;
+            //image.Save(path);
+
             Email.SendEmail(student.Mail,"Nuevo Usuario", student.StudentName + " " + student.LastName +
                 ", ha sido añadido satisfactoriamente, su aprobación se encuentra en espera. ");
             return Json(StudentDataEF.Add(student, location, user), JsonRequestBehavior.AllowGet);
@@ -96,6 +106,11 @@ namespace Proyecto.Controllers
         public JsonResult GetSocialNetworksByIdStudent(int id)
         {
             return Json(StudentDataEF.GetSocialNetworksByIdStudent(id), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UpdateImage(Student student)
+        {
+            return Json(StudentDataEF.UpdateImage(student), JsonRequestBehavior.AllowGet);
         }
     }
 }

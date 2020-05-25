@@ -781,5 +781,31 @@ namespace Proyecto.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSocialNetworksByIdStudent_Result>("SPGetSocialNetworksByIdStudent", idParameter);
         }
+    
+        public virtual int UpdateProfessorImage(string image, Nullable<int> id)
+        {
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateProfessorImage", imageParameter, idParameter);
+        }
+    
+        public virtual int UpdateStudentImage(string image, Nullable<int> id)
+        {
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStudentImage", imageParameter, idParameter);
+        }
     }
 }

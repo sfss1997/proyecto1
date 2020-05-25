@@ -135,7 +135,7 @@
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="AcademicDegreeId" Type="Int32" />
-    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="LocationId" Type="Int32" />
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="CreateAt" Type="DateTime" Precision="0" />
@@ -1267,6 +1267,14 @@
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SPGetSocialNetworksByIdStudent" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdStudent_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateProfessorImage">
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateStudentImage">
+      <Parameter Name="Image" Mode="In" Type="String" />
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>

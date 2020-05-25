@@ -603,5 +603,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateProfessorImage" FunctionName="IF4101PICESModel.Store.UpdateProfessorImage" />
+    <FunctionImportMapping FunctionImportName="UpdateStudentImage" FunctionName="IF4101PICESModel.Store.UpdateStudentImage" />
   </EntityContainerMapping>
 </Mapping>

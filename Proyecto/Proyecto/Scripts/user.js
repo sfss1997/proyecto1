@@ -391,14 +391,26 @@ function getSocialNetworksByIdStudent(id) {
         data: "{}",
         success: function (result) {
             $.each(result, function (key, item) {
-                var contenido = '';
-                contenido += '<li class="list-group-item">';
-                contenido += '<span>' + item.Id + '</span>';
-                contenido += ' <a href="' + item.Url + '">';
-                contenido += '<span>' + item.Url + '</span>';
-                contenido += ' </a>';
-                contenido += '</li>';
-                $('#ulSocialNetworksStudent').append(contenido);
+                $.ajax({
+                    type: "GET",
+                    url: "/Student/ListSocialNetworksCatalog",
+                    data: "{}",
+                    success: function (data) {
+                        $.each(data, function (key, socialNetwork) {
+                            if (socialNetwork.Id == item.SocialNetworksNameId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + socialNetwork.Name + ':</span>';
+                                contenido += ' <a href="' + item.Url + '">';
+                                contenido += '<span>' + item.Url + '</span>';
+                                contenido += ' </a>';
+                                contenido += '</li>';
+                                $('#ulSocialNetworksStudent').append(contenido);
+                            }
+                        });
+                    }
+                });
+                
             });
         }
     });
@@ -411,14 +423,25 @@ function getSocialNetworksByIdProdessor(id) {
         data: "{}",
         success: function (result) {
             $.each(result, function (key, item) {
-                var contenido = '';
-                contenido += '<li class="list-group-item">';
-                contenido += '<span>' + item.Id + '</span>';
-                contenido += ' <a href="' + item.Url + '">';
-                contenido += '<span>' + item.Url + '</span>';
-                contenido += ' </a>';
-                contenido += '</li>';
-                $('#ulSocialNetworksProfessor').append(contenido);
+                $.ajax({
+                    type: "GET",
+                    url: "/Student/ListSocialNetworksCatalog",
+                    data: "{}",
+                    success: function (data) {
+                        $.each(data, function (key, socialNetwork) {
+                            if (socialNetwork.Id == item.SocialNetworksNameId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + socialNetwork.Name + ':</span>';
+                                contenido += ' <a href="' + item.Url + '">';
+                                contenido += '<span>' + item.Url + '</span>';
+                                contenido += ' </a>';
+                                contenido += '</li>';
+                                $('#ulSocialNetworksProfessor').append(contenido);
+                            }
+                        });
+                    }
+                });
             });
         }
     });

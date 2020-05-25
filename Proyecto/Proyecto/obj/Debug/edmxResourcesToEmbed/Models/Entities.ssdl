@@ -101,7 +101,7 @@
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Mail" Type="varchar" MaxLength="50" />
     <Property Name="AcademicDegreeId" Type="int" />
-    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="200" />
     <Property Name="LocationId" Type="int" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
@@ -917,9 +917,17 @@
   <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="UpdateProfessorImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Image" Type="varchar" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UpdateStatusStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="RegistrationStatus" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateStudentImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Image" Type="varchar" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UsersLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Username" Type="varchar" Mode="In" />

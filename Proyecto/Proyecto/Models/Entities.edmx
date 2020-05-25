@@ -106,7 +106,7 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Mail" Type="varchar" MaxLength="50" />
           <Property Name="AcademicDegreeId" Type="int" />
-          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="200" />
           <Property Name="LocationId" Type="int" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreateAt" Type="date" />
@@ -922,9 +922,17 @@
         <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="UpdateProfessorImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Image" Type="varchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UpdateStatusStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="RegistrationStatus" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateStudentImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Image" Type="varchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UsersLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="varchar" Mode="In" />
@@ -1288,7 +1296,7 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AcademicDegreeId" Type="Int32" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreateAt" Type="DateTime" Precision="0" />
@@ -2411,15 +2419,23 @@
             <End Role="SocialNetworksStudent" EntitySet="SocialNetworksStudent" />
           </AssociationSet>
           <FunctionImport Name="GetSocialNetworksByIdProfessor" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdProfessor_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetSocialNetworksByIdStudent" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdStudent_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetSocialNetworksByIdProfessor" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdProfessor_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetSocialNetworksByIdStudent" ReturnType="Collection(IF4101PICESModel.GetSocialNetworksByIdStudent_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProfessorImage">
+            <Parameter Name="Image" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStudentImage">
+            <Parameter Name="Image" Mode="In" Type="String" />
             <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -3366,6 +3382,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateProfessorImage" FunctionName="IF4101PICESModel.Store.UpdateProfessorImage" />
+          <FunctionImportMapping FunctionImportName="UpdateStudentImage" FunctionName="IF4101PICESModel.Store.UpdateStudentImage" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

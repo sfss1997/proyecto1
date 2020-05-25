@@ -172,5 +172,16 @@ namespace Proyecto.Models
             }
         }
 
+        public int UpdateImage(Student student)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.UpdateStudentImage(student.Image, student.Id);
+            }
+            return resultToReturn;
+        }
+
     }
 }

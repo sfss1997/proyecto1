@@ -142,5 +142,16 @@ namespace Proyecto.Models
 
             }
         }
+
+        public int UpdateImage(Professor professor)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.UpdateProfessorImage(professor.Image, professor.Id);
+            }
+            return resultToReturn;
+        }
     }
 }

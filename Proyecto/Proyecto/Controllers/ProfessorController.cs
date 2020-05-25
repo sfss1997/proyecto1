@@ -76,5 +76,10 @@ namespace Proyecto.Controllers
         {
             return Json(ProfessorDataEF.GetSocialNetworksByIdProfessor(id), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult UpdateImage(Professor professor)
+        {
+            return Json(ProfessorDataEF.UpdateImage(professor), JsonRequestBehavior.AllowGet);
+        }
     }
 }
