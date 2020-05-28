@@ -10,6 +10,8 @@
     $('#btnReturnProfessor').hide();
     $('#professorSection').hide();
     $('#btnNews').hide();
+    $("#btnStudentCourses").hide();
+    $("#btnProfessorCourses").hide();
     loadSocialNetwork(); 
 });
 
@@ -52,6 +54,7 @@ function login() {
                             $("#btnCourse").hide();
                             $('#professorSection').show();
                             $("#btnNewsProfessor").show();
+                            $("#btnProfessorCourses").show();
                             setProfileImageProfessor(prof.Id);
                             professorInformation(prof.Id);
                             getSocialNetworksByIdProdessor(prof.Id);
@@ -71,6 +74,7 @@ function login() {
                                 $("#btnCourse").hide();
                                 $("#btnNewsStudent").show();
                                 $('#studentSection').show();
+                                $("#btnStudentCourses").show();
                                 studentInformation(stud.Id);
                                 setProfileImageStudent(stud.Id);
                                 getSocialNetworksByIdStudent(stud.Id);
@@ -149,6 +153,7 @@ function logOut() {
     $('#studentSection').hide();
     $('#professorSection').hide();
     $('#administratorSection').hide();
+    $('#StudentCoursesSection').hide();
     $('#home').show();
     $('#btnLogOut').hide();
     $('#btnProfessor').hide();
@@ -158,6 +163,7 @@ function logOut() {
     $('#btnReturnStudent').hide();
     $('#btnReturnProfessor').hide();
     $('#btnNews').hide();
+    $("#btnStudentCourses").hide();
 }
 
 function listStudents() {
@@ -366,6 +372,8 @@ function newsStudent() {
     $('#studentSection').hide();
     $('#btnReturnStudent').show();
     $('#btnNewsStudent').hide();
+    $("#StudentCoursesSection").hide();
+    $('#btnStudentCourses').show();
 }
 
 function newsProfessor() {
@@ -373,6 +381,8 @@ function newsProfessor() {
     $('#professorSection').hide();
     $('#btnReturnProfessor').show();
     $('#btnNewsProfessor').hide();
+    $("#ProfessorCoursesSection").hide();
+    $('#btnProfessorCourses').show();
 }
 
 function returnStudent() {
@@ -380,6 +390,8 @@ function returnStudent() {
     $("#btnNewsStudent").show();
     $("#newsSection").hide();
     $('#btnReturnStudent').hide();
+    $("#btnStudentCourses").show();
+    $("#StudentCoursesSection").hide();
 }
 
 function returnProfessor() {
@@ -387,6 +399,8 @@ function returnProfessor() {
     $("#btnNewsProfessor").show();
     $("#newsSection").hide();
     $('#btnReturnProfessor').hide();
+    $("#btnProfessorCourses").show();
+    $("#ProfessorCoursesSection").hide();
 }
 
 function getSocialNetworksByIdStudent(id) {

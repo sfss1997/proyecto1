@@ -68,7 +68,9 @@
 
                         <button type="button" id="btnNews" data-toggle="modal" data-target="#modalNews" class="btn" onclick="clearTextBoxNews();">Añadir noticia</button>
 
-                        <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
+                        <button type="button" id="btnStudentCourses" class="btn" onclick="studentCourses();">Cursos</button>
+
+                        <button type="button" id="btnProfessorCourses" class="btn" onclick="professorCourses();">Cursos</button>
 
                         <button type="button" id="btnNewsStudent" class="btn" onclick="newsStudent();">Noticias</button>
 
@@ -78,6 +80,7 @@
 
                         <button type="button" id="btnReturnProfessor" class="btn" onclick="returnProfessor();">Volver al perfil</button>
 
+                        <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
                     </ul>
                 </div>
 
@@ -620,6 +623,16 @@
                     </table>
                 </div>
             </div>
+        </section>
+
+        <!------Student Courses-->
+        <section id="StudentCoursesSection" hidden>
+            <h4>Cursos matriculados</h4>
+        </section>
+
+        <!------Professor Courses-->
+        <section id="ProfessorCoursesSection" hidden>
+            <h4>Cursos impartidos</h4>
         </section>
 
         <!------Student Section-->

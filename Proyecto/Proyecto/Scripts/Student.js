@@ -130,8 +130,8 @@ function Add() {
         Id: $("#DistrictDropdown option:selected").val()
     };
 
-    var imagePath = fakePath($('#Image').val());
-    
+    var imagePath = fakePathStudent($('#Image').val());
+
     var student = {
         StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
@@ -169,9 +169,9 @@ function Add() {
     }
 }
 
-function fakePath(fakepath) {
+function fakePathStudent(fakepath) {
     var splits = fakepath.split('fakepath\\');
-    var path = '../images/' + splits[1];
+    var path = splits[1];
     return path;
 }
 
@@ -693,4 +693,13 @@ function updateImageStudent() {
             alert(errorMessage.responseText);
         }
     });
+}
+
+function studentCourses() {
+    $('#StudentCoursesSection').show();
+    $('#studentSection').hide();
+    $('#btnReturnStudent').show();
+    $('#newsSection').hide();
+    $('#btnNewsStudent').show();
+    $('#btnStudentCourses').hide();
 }

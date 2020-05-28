@@ -200,7 +200,7 @@ function AddProfessor() {
 
 function fakePath(fakepath) {
     var splits = fakepath.split('fakepath\\');
-    var path = '../images/' + splits[1];
+    var path = splits[1];
     return path;
 }
 
@@ -587,4 +587,13 @@ function updateImageProfessor() {
             alert(errorMessage.responseText);
         }
     });
+}
+
+function professorCourses() {
+    $('#ProfessorCoursesSection').show();
+    $('#professorSection').hide();
+    $('#btnReturnProfessor').show();
+    $('#newsSection').hide();
+    $('#btnNewsProfessor').show();
+    $('#btnProfessorCourses').hide();
 }

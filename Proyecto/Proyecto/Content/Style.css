@@ -73,6 +73,32 @@
     color:white;
 }
 
+#btnStudentCourses {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnStudentCourses:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnProfessorCourses {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnProfessorCourses:hover {
+    background: #a9cce3;
+    color: white;
+    }
+
 #btnSocialNetworkStudent {
     position: inherit;
     margin-top: 15px;

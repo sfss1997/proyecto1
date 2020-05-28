@@ -7,11 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
+using Microsoft.VisualBasic.Devices;
 
 namespace Proyecto.Controllers
 {
     public class StudentController : Controller
     {
+        Computer Computer = new Computer();
         // GET: Student
         public ActionResult Index()
         {
@@ -23,15 +25,10 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
-            string fileName = student.Image;
-            string folder = "/images/";
-            string path = System.IO.Path.Combine(folder, fileName);
-
-            //Image image = ;
-            //image.Save(path);
-
+            //var path = Path.Combine(Server.MapPath("~/images/"), student.Image);
+            //Computer.FileSystem.CopyFile(student.Image, path);
             Email.SendEmail(student.Mail,"Nuevo Usuario", student.StudentName + " " + student.LastName +
-                ", ha sido añadido satisfactoriamente, su aprobación se encuentra en espera. ");
+              ", ha sido añadido satisfactoriamente, su aprobación se encuentra en espera. ");
             return Json(StudentDataEF.Add(student, location, user), JsonRequestBehavior.AllowGet);
         }
 
