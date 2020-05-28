@@ -13,8 +13,12 @@ function clearTextBoxStudent() {
     $('#DivStudentCheckbox').hide();
     $('#btnAddStudent').show();
     $('#btnUpdateStudent').hide();
+    $('#btnUpdateProfileStudent').hide();
     $('#HeaderTitleAddStudent').show();
     $('#HeaderTitleUpdateStudent').hide();
+    $('#Image').prop("disabled", false);
+    $('#Birthday').prop("disabled", false);
+    $('#Password').prop("disabled", false);
 
     $('#StudentCard').val("");
     $('#Name').val("");
@@ -128,7 +132,6 @@ function Add() {
 
     var imagePath = fakePath($('#Image').val());
     
-
     var student = {
         StudentCard: $('#StudentCard').val(),
         StudentName: $('#Name').val(),
@@ -283,7 +286,7 @@ function EditStudent() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            loadStudents()
+            loadStudents();
             $('#myModal').modal('hide');
         },
         error: function (errorMessage) {
@@ -508,26 +511,186 @@ function loadStudents() {
 }
 
 function getProfileStudent() {
-
-    var studentCard = document.getElementById("labelStudentCard").innerHTML;
-
     $('#HeaderTitleAddStudent').hide();
     $('#HeaderTitleUpdateStudent').show();
 
     loadProvinceStudent();
     $('#DivStudentId').show();
     $('#StudentCard').prop("disabled", true);
-    $('#myModal').modal('show');
-    $('#btnUpdateStudent').show();
+    $('#btnUpdateProfileStudent').show();
+    $('#btnUpdateStudent').hide();
     $('#btnAddStudent').hide();
     $('#HeaderTitleAddStudent').hide();
     $('#HeaderTitleUpdateStudent').show();
+    $('#Image').prop("disabled", true);
+    $('#Password').prop("disabled", false);
+    $('#Birthday').prop("disabled", true);
     $('#DivStatusStudentDropdown').show();
     $('#DivStudentCheckbox').show();
-    $('#Image').prop("disabled", true);
-    $('#Password').prop("disabled", true);
-    $('#Birthday').prop("disabled", true);
+    $('#StatusStudentDropdown').prop("disabled", true);
+    $('#StudentCheckbox').prop("disabled", true);
 
+    var studentCard = document.getElementById("labelStudentCard").innerHTML;
 
+    $.ajax({
+        url: "/Student/ListAllStudents",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (index, value) {
+                if (studentCard == value.StudentCard) {
+                    $.ajax({
+                        url: "/Student/GetById/" + value.Id,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            $('#StudentId').val(data.Id);
+                            $('#StudentCard').val(data.StudentCard);
+                            $('#Name').val(data.StudentName);
+                            $('#LastName').val(data.LastName);
+                            $('#Mail').val(data.Mail);
+                            $('#Username').val(data.Username);
+                            $('#Password').val(data.Password);
+                            $("#ProvinceDropdown").val(data.ProvinceId);
+                            $("#ProfessorCantonDropdown").val(loadCantonStudent(data.ProvinceId));
+                            $("#ProfessorDistrictDropdown").val(loadDistrictStudent(data.CantonId));
 
+                            var status = data.Status;
+                            if (status == "Inactivo") {
+                                $("#StatusStudentDropdown").val(0);
+                            } else if (status == "Activo") {
+                                $("#StatusStudentDropdown").val(1);
+                            }
+
+                            var administrator = data.IsAdministrator;
+                            if (administrator == 0) {
+                                $("#StudentCheckbox").attr('checked', false);
+                            } else if (administrator == 1) {
+                                $("#StudentCheckbox").attr('checked', true);
+                            }
+
+                        },
+
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+                }
+
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
+}
+
+function editProfileStudent() {
+    var province = {
+        ProvinceId: $("#ProvinceDropdown option:selected").val()
+    }
+
+    var canton = {
+        CantonId: $("#CantonDropdown option:selected").val()
+    }
+
+    var district = {
+        DistrictId: $("#DistrictDropdown option:selected").val()
+    }
+
+    var isActive = {
+        Status: $("#StatusStudentDropdown option:selected").val()
+    }
+
+    var administrator = 0;
+    if ($("#StudentCheckbox").prop('checked') == false) {
+        administrator = 0;
+    } else if ($("#StudentCheckbox").prop('checked') == true) {
+        administrator = 1;
+    }
+
+    var active = "";
+    if (isActive.Status == 0) {
+        active = "Inactivo"
+    } else if (isActive.Status == 1) {
+        active = "Activo"
+    }
+
+    var student = {
+        Id: $('#StudentId').val(),
+        StudentCard: $('#StudentCard').val(),
+        StudentName: $('#Name').val(),
+        LastName: $('#LastName').val(),
+        Mail: $('#Mail').val(),
+        Username: $('#Username').val(),
+        Password: $('#Password').val(),
+        ProvinceId: province.ProvinceId,
+        CantonId: canton.CantonId,
+        DistrictId: district.DistrictId,
+        IsAdministrator: administrator,
+        Status: active,
+        RegistrationStatus: "Aprobado"
+    };
+
+    $.ajax({
+        url: "/Student/Update",
+        data: JSON.stringify(student),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadStudents();
+            $('#myModal').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function getImageStudent() {
+
+    $('#modalUpdateImageStudent').modal('show');
+    var studentCard = document.getElementById("labelStudentCard").innerHTML;
+
+    $.ajax({
+        url: "/Student/ListAllStudents",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (index, value) {
+                if (studentCard == value.StudentCard) {
+                    $('#idStudent').val(value.Id);
+                }
+            });
+        }
+    });
+}
+
+function updateImageStudent() {
+
+    var imagePath = fakePath($('#imgStudent').val());
+
+    var student = {
+        Id: $('#idStudent').val(),
+        Image: imagePath
+    };
+
+    $.ajax({
+        url: "/Student/UpdateImage",
+        data: JSON.stringify(student),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadStudents();
+            $('#modalUpdateImageStudent').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 }

@@ -16,6 +16,7 @@
 function clearTextBoxSignLog() {
     $('#UsernameSignLog').val("");
     $('#PasswordSignLog').val("");
+    $('#invalidUser').hide();
     document.querySelector('#invalidUser').innerText = " ";
 }
 
@@ -74,6 +75,7 @@ function login() {
                                 setProfileImageStudent(stud.Id);
                                 getSocialNetworksByIdStudent(stud.Id);
                             } else {
+                                $('#invalidUser').show();
                                 document.querySelector('#invalidUser').innerText = "El usuario no ha sido aprobado.";
                             }
                         }
@@ -95,7 +97,8 @@ function login() {
 
                     }
                 }
-                 else {
+                else {
+                    $('#invalidUser').show();
                     document.querySelector('#invalidUser').innerText = "Datos incorrectos.";
                 }
             });
@@ -154,6 +157,7 @@ function logOut() {
     $('#btnNewsProfessor').hide();
     $('#btnReturnStudent').hide();
     $('#btnReturnProfessor').hide();
+    $('#btnNews').hide();
 }
 
 function listStudents() {
@@ -165,7 +169,6 @@ function listStudents() {
         dataType: "json",
         success: function (result) {
             dataSet = new Array();
-            var html = '';
             $.each(result, function (key, item) {
                 arrayStudent.push(item);
             });
@@ -387,6 +390,7 @@ function returnProfessor() {
 }
 
 function getSocialNetworksByIdStudent(id) {
+    $('#ulSocialNetworksStudent').empty();
     $.ajax({
         type: "GET",
         url: "/Student/GetSocialNetworksByIdStudent/" + id,
@@ -419,6 +423,7 @@ function getSocialNetworksByIdStudent(id) {
 }
 
 function getSocialNetworksByIdProdessor(id) {
+    $('#ulSocialNetworksProfessor').empty();
     $.ajax({
         type: "GET",
         url: "/Professor/GetSocialNetworksByIdProfessor/" + id,

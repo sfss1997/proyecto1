@@ -66,7 +66,7 @@
 
                         <button type="button" id="btnCourse" onclick="clearTextBoxCourse();" class="btn">Registrar curso</button>
 
-                        <button type="button" id="btnNews" data-toggle="modal" data-target="#modalNews" class="btn">Añadir noticia</button>
+                        <button type="button" id="btnNews" data-toggle="modal" data-target="#modalNews" class="btn" onclick="clearTextBoxNews();">Añadir noticia</button>
 
                         <button type="button" id="btnLogOut" class="btn" onclick="logOut();">Cerrar Sesión</button>
 
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <!-- Insert News-->
+        <!-- Insert Update News-->
         <div class="modal fade" id="modalNews" tabindex="-1" role="dialog" hidden>
 
             <div class="modal-dialog">
@@ -135,7 +135,8 @@
                     <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 class="modal-title"> Insertar noticia </h4>
+                        <h4 id="addNewsTitle" class="modal-title"> Insertar noticia </h4>
+                        <h4 id="UpdateNewsTitle" class="modal-title"> Actualizar noticia </h4>
 
                     </div>
                     <div class="modal-body">
@@ -171,6 +172,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn" onclick="addNews();" id="btnAddNews">Añadir</button>
+                        <button type="button" class="btn" onclick="updateNews();" id="btnUpdateNews">Actualizar</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -288,6 +290,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn" id="btnAddStudent" onclick="return Add();">Registrarse</button>
                         <button type="button" class="btn" id="btnUpdateStudent" style="display:none" onclick="EditStudent();">Actualizar</button>
+                        <button type="button" class="btn" id="btnUpdateProfileStudent" style="display:none" onclick="editProfileStudent();">Actualizar</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
 
                     </div>
@@ -307,7 +310,7 @@
 
                         <button type="button" class="close" data-dismiss="modal">X</button>
                         <h4 id="TitleAddProfessor" class="modal-title"> Registro de profesor </h4>
-                        <h4 id="TitleUpdateProfessor" class="modal-title" hidden="hidden"> Actualizar profesor </h4>
+                        <h4 id="TitleUpdateProfessor" class="modal-title" hidden="hidden"> Actualizar </h4>
 
                     </div>
                     <div class="modal-body">
@@ -405,6 +408,81 @@
             </div>
         </div>
 
+        <!------Update Image Student-->
+        <div class="modal fade" id="modalUpdateImageStudent" tabindex="-1" role="dialog" hidden>
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 class="modal-title">Actualizar foto</h4>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input type="text" class="form-control" id="idStudent" disabled="disabled">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" class="form-control" id="imgStudent">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn" id="btnUpdateImageStudent" onclick="updateImageStudent();">Actualizar</button>
+                        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------Update Image Professor-->
+        <div class="modal fade" id="modalUpdateImageProfessor" tabindex="-1" role="dialog" hidden>
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 class="modal-title">Actualizar foto</h4>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input type="text" class="form-control" id="idProfessor" disabled="disabled">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" class="form-control" id="imgProfessor">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn" id="btnUpdateImageProfessor" onclick="updateImageProfessor();">Actualizar</button>
+                        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--Course Register---->
         <div class="modal fade" id="myModalCourse" tabindex="-1" role="dialog" hidden>
@@ -549,9 +627,9 @@
         <section id="studentSection">
             <div class="row pre-scrollable">
                 <h2 id="StudentWelcomeMessage"></h2> <hr />
-                <img src="" id="imgProfile" width="150" height="150" />
+                <img src="" id="imgProfile" width="150" height="150" title="Editar" onclick="getImageStudent();" />
                 <button type="button" id="btnSocialNetworkStudent" data-toggle="modal" data-target="#myModalSocialNetworkStudent" class="btn">Ajustes Redes Sociales</button>
-                <button type="button" data-toggle="modal" data-target="#myModal" class="btn" onclick="getProfileStudent();">Editar perfil</button>
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn" id="btngetProfileStudent" onclick="getProfileStudent();">Editar perfil</button>
 
                 <!---Social Networks-->
 
@@ -588,7 +666,7 @@
 
                             <div class="modal-footer">
 
-                                <button type="button" class="btn" onclick="addSocialNetworkStudent();">Agregar</button>
+                                <button type="button" class="btn" id="btnAddSocialNetworkStudent" onclick="addSocialNetworkStudent();">Agregar</button>
                                 <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -648,6 +726,7 @@
                         </ul>
                     </form>
                 </div>
+
             </div>
         </section>
 
@@ -656,8 +735,9 @@
         <section id="professorSection">
             <div class="row pre-scrollable">
                 <h2 id="ProfessorWelcomeMessage"></h2> <hr />
-                <img src="" id="imgProfileProfessor" width="150" height="150" />
-                <button type="button" id="btnSocialNetwork" data-toggle="modal" data-target="#myModalSocialNetworkProfessor" class="btn">Ajustes Redes Sociales</button>
+                <img src="" id="imgProfileProfessor" width="150" height="150" title="Editar" onclick="getImageProfessor();" />
+                <button type="button" id="btnSocialNetworkProfessor" data-toggle="modal" data-target="#myModalSocialNetworkProfessor" class="btn">Ajustes Redes Sociales</button>
+                <button type="button" id="btngetProfileProfessor" data-toggle="modal" data-target="#myModalProfessor" class="btn" onclick="getProfileProfessor();">Editar perfil</button>
 
                 <!---Social Networks-->
 
@@ -694,7 +774,7 @@
 
                             <div class="modal-footer">
 
-                                <button type="button" class="btn" onclick="addSocialNetworkProfessor();" id="btnAdd">Agregar</button>
+                                <button type="button" class="btn" id="btnAddSocialNetworkProfessor" onclick="addSocialNetworkProfessor();" id="btnAdd">Agregar</button>
                                 <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -758,122 +838,149 @@
 
         <!------Administrator Section-->
 
-        <section id="administratorSection" class="pre-scrollable" hidden="hidden">
+        <section id="administratorSection" hidden="hidden">
             <h3>Administrador</h3>
+            <div class="row pre-scrollable">
+                <!---ADMINISTRATOR/STUDENT APPROVAL-->
+                <div class="table-responsive">
+                    <h3>Estudiantes en espera</h3>
+                    <table class="table table-bordered table-hover" id="tableApproval">
 
-            <!---ADMINISTRATOR/STUDENT APPROVAL-->
-            <div class="table-responsive">
-                <h3>Estudiantes en espera</h3>
-                <table class="table table-bordered table-hover" id="tableApproval">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Carné
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Apellido
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                                <th>
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableApproval">
+                        </tbody>
+                    </table>
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>
-                                Carné
-                            </th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Apellido
-                            </th>
-                            <th>
-                                Correo
-                            </th>
-                            <th>
-                                Acción
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableApproval">
-                    </tbody>
-                </table>
-            </div>
+                <!---ADMINISTRATOR/LIST PROFESSOR-->
+                <div class="table-responsive">
+                    <h3>Profesores Registrados</h3>
+                    <table class="table table-bordered table-hover" id="tableProfesor">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Apellido
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                                <th>
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableProfesor" id="tableProfesor">
+                        </tbody>
+                    </table>
+                </div>
 
-            <!---ADMINISTRATOR/LIST PROFESSOR-->
-            <div class="table-responsive">
-                <h3>Profesores Registrados</h3>
-                <table class="table table-bordered table-hover" id="tableProfesor">
-                    <thead>
-                        <tr>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Apellido
-                            </th>
-                            <th>
-                                Correo
-                            </th>
-                            <th>
-                                Acción
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="tableProfesor" id="tableProfesor">
-                    </tbody>
-                </table>
-            </div>
+                <!---Courses registered-->
+                <div class="table-responsive">
+                    <h3>Cursos registrados</h3>
+                    <table class="table table-bordered table-hover table-striped" id="tableCourseRegister">
 
-            <!---Courses registered-->
-            <div class="table-responsive">
-                <h3>Cursos registrados</h3>
-                <table class="table table-bordered table-hover table-striped" id="tableCourseRegister">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Siglas
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Créditos
+                                </th>
+                                <th>
+                                    Ciclo
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                                <th>
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableCourseRegister" id="tableCourseRegister">
+                        </tbody>
+                    </table>
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>
-                                Siglas
-                            </th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Créditos
-                            </th>
-                            <th>
-                                Ciclo
-                            </th>
-                            <th>
-                                Estado
-                            </th>
-                            <th>
-                                Acción
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="tableCourseRegister" id="tableCourseRegister">
-                    </tbody>
-                </table>
-            </div>
+                <!---ALL STUDENTS-->
+                <div class="table-responsive">
+                    <h3>Estudiantes registrados</h3>
+                    <table class="table table-bordered table-hover" id="tableStudents">
 
-            <!---ALL STUDENTS-->
-            <div class="table-responsive">
-                <h3>Estudiantes registrados</h3>
-                <table class="table table-bordered table-hover" id="tableStudents">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Carné
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Apellido
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                                <th>
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableStudents">
+                        </tbody>
+                    </table>
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>
-                                Carné
-                            </th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Apellido
-                            </th>
-                            <th>
-                                Correo
-                            </th>
-                            <th>
-                                Acción
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="tableStudents">
-                    </tbody>
-                </table>
+                <!---NEWS-->
+                <h2>Noticias</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="tableNewsAdministrator">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Título
+                                </th>
+                                <th>
+                                    Autor
+                                </th>
+                                <th>
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableNewsAdministrator">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </div>
@@ -1585,7 +1692,6 @@
             </div>
         </footer>
     -->
-    </div>
     <!-- SCRIPTS -->
     <script src="~/Scripts/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -1596,5 +1702,7 @@
     <script src="~/Scripts/Professor.js"></script>
     <script src="~/Scripts/Course.js"></script>
     <script src="~/Scripts/user.js"></script>
+    <script src="~/Scripts/news.js"></script>
+    <script src="~/Scripts/comment.js"></script>
     <script src="~/Scripts/datatables.js"></script>
 </body>

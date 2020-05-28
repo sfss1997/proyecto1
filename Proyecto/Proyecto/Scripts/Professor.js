@@ -470,3 +470,121 @@ function deleteProfessor(id) {
         });
     }
 }
+
+function getProfileProfessor() {
+    $('#TitleAddProfessor').hide();
+    $('#TitleUpdateProfessor').show();
+    $('#btnAddProfessor').hide();
+    $('#btnUpdateProfessor').show();
+
+    $('#ProfessorPassword').prop("disabled", false);
+    $('#ProfessorImage').prop("disabled", true);
+    $('#StatusProfessorDropdown').prop("disabled", true);
+    $('#ProfessorCheckbox').prop("disabled", true);
+
+    loadProvinceProfessor();
+    loadAcademicDegree();
+
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    $.ajax({
+        url: "/Professor/ListAllProfessors",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (index, value) {
+                if (professorId == value.Id) {
+                    $.ajax({
+                        url: "/Professor/GetById/" + value.Id,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+
+                            $('#ProfessorId').val(data.Id);
+                            $('#ProfessorUsername').val(data.Username);
+                            $('#ProfessorPassword').val(data.Password);
+                            $("#ProfessorName").val(data.Name);
+                            $('#ProfessorLastName').val(data.LastName);
+                            $('#ProfessorMail').val(data.Mail);
+                            $("#AcademicDegreeDropdown").val(data.AcademicDegreeId);
+                            $("#ProfessorProvinceDropdown").val(data.ProvinceId);
+                            loadCantonProfessor(data.ProvinceId);
+                            loadDistrictProfessor(data.CantonId);
+                            $("#ProfessorCantonDropdown").val(data.CantonId);
+                            $("#ProfessorDistrictDropdown").val(data.DistrictId);
+
+                            var status = data.Status;
+                            if (status == "Inactivo") {
+                                $("#StatusProfessorDropdown").val(0);
+                            } else if (status == "Activo") {
+                                $("#StatusProfessorDropdown").val(1);
+                            }
+
+                            var administrator = data.IsAdministrator;
+                            if (administrator == 0) {
+                                $("#ProfessorCheckbox").attr('checked', false);
+                            } else if (administrator == 1) {
+                                $("#ProfessorCheckbox").attr('checked', true);
+                            }
+                        },
+
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+                }
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
+}
+
+function getImageProfessor() {
+    $('#modalUpdateImageProfessor').modal('show');
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    $.ajax({
+        url: "/Professor/ListAllProfessors",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (index, value) {
+                if (professorId == value.Id) {
+                    $('#idProfessor').val(value.Id);
+                }
+            });
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
+}
+
+function updateImageProfessor() {
+    var imagePath = fakePath($('#imgProfessor').val());
+
+    var professor = {
+        Id: $('#idProfessor').val(),
+        Image: imagePath
+    };
+
+    $.ajax({
+        url: "/Professor/UpdateImage",
+        data: JSON.stringify(professor),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadProfessors();
+            $('#modalUpdateImageProfessor').modal('hide');
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}

@@ -12,7 +12,25 @@
     border-color: black;
 }
 
+#btnAddSocialNetworkStudent {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnAddSocialNetworkProfessor {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
 #btnUpdateStudent {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnUpdateProfileStudent {
     position: inherit;
     background: #a9cce3;
     border-color: black;
@@ -51,10 +69,60 @@
 }
 
 #btnLog:hover {
-
     background: #a9cce3;
     color:white;
+}
 
+#btnSocialNetworkStudent {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnSocialNetworkStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btngetProfileStudent {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btngetProfileStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnSocialNetworkProfessor {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnSocialNetworkProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btngetProfileProfessor {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btngetProfileProfessor:hover {
+    background: #a9cce3;
+    color: white;
 }
 
 #btnNews {
