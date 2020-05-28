@@ -71,6 +71,34 @@ namespace Proyecto.Controllers
             return Json(news, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetNewsById(int id)
+        {
+            News news = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                var responseTask = client.GetAsync("GetNewsById/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<News>();
+                    readTask.Wait();
+
+                    news = readTask.Result;
+                }
+                else
+                {
+                    news = null;
+                    ModelState.AddModelError(String.Empty, "Server error. Please contact adminstrator");
+                }
+            }
+            return Json(news, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult InsertNews(News news)
         {
             using (var client = new HttpClient())

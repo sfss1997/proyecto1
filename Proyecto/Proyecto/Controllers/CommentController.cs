@@ -60,5 +60,23 @@ namespace Proyecto.Controllers
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult DeleteComment(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                try
+                {
+                    var responseTask = client.GetAsync("DeleteComment/" + id);
+                    responseTask.Wait();
+                }
+                catch (AggregateException agg_ex)
+                {
+                    var ex = agg_ex.InnerExceptions[0];
+                }
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }
