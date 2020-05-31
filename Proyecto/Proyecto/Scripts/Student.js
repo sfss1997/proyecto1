@@ -702,4 +702,5 @@ function studentCourses() {
     $('#newsSection').hide();
     $('#btnNewsStudent').show();
     $('#btnStudentCourses').hide();
+    $('#btnEnrollCourse').show();
 }

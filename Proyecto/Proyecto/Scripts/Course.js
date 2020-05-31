@@ -130,6 +130,10 @@ function deleteCourse(id) {
     }
 }
 
+function enrollCourse(){
+    $('myModalEnrollCourse').modal('show');
+}
+
 function clearTextBoxCourse() {
     $('#myModalCourse').modal('show');
     $('#btnEditCourse').hide();

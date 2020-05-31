@@ -596,4 +596,5 @@ function professorCourses() {
     $('#newsSection').hide();
     $('#btnNewsProfessor').show();
     $('#btnProfessorCourses').hide();
+
 }

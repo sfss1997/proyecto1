@@ -99,6 +99,19 @@
     color: white;
     }
 
+#btnEnrollCourse {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnEnrollCourse:hover {
+    background: #a9cce3;
+    color: white;
+}
+
 #btnSocialNetworkStudent {
     position: inherit;
     margin-top: 15px;

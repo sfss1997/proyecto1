@@ -12,6 +12,7 @@
     $('#btnNews').hide();
     $("#btnStudentCourses").hide();
     $("#btnProfessorCourses").hide();
+    $("#btnEnrollCourse").hide();
     loadSocialNetwork(); 
 });
 
@@ -57,6 +58,7 @@ function login() {
                             $('#professorSection').show();
                             $("#btnNewsProfessor").show();
                             $("#btnProfessorCourses").show();
+                            $("#btnEnrollCourse").hide();
                             setProfileImageProfessor(prof.Id);
                             professorInformation(prof.Id);
                             getSocialNetworksByIdProdessor(prof.Id);
@@ -77,6 +79,7 @@ function login() {
                                 $("#btnNewsStudent").show();
                                 $('#studentSection').show();
                                 $("#btnStudentCourses").show();
+                                $("#btnEnrollCourse").show();
                                 studentInformation(stud.Id);
                                 setProfileImageStudent(stud.Id);
                                 getSocialNetworksByIdStudent(stud.Id);
@@ -100,6 +103,7 @@ function login() {
                         $('#btnProfessor').show();
                         $('#btnCourse').show();
                         $('#btnNews').show();
+                        $("#btnEnrollCourse").show();
 
                     }
                 }
@@ -169,6 +173,7 @@ function logOut() {
     $("#btnStudentCourses").hide();
     $("#btnProfessorCourses").hide();
     $("#newsSection").hide();
+    $("#btnEnrollCourse").hide();
 
     document.querySelector('#labelStudentId').innerText = "";
     document.querySelector('#labelProfessorId').innerText = "";
