@@ -156,6 +156,7 @@ function logOut() {
     $('#professorSection').hide();
     $('#administratorSection').hide();
     $('#StudentCoursesSection').hide();
+    $('#ProfessorCoursesSection').hide();
     $('#home').show();
     $('#btnLogOut').hide();
     $('#btnProfessor').hide();
