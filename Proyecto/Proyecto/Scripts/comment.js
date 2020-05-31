@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 });
 
-function addComment() {
+/*function addComment() {
     
     var comment = {
         AuthorId: $('#').val(),
@@ -23,7 +23,7 @@ function addComment() {
             alert(errorMessage.responseText);
         }
     });
-}
+}*/
 
 function getCommentById(id) {
     

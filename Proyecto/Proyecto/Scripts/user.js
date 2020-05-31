@@ -40,8 +40,10 @@ function login() {
         success: function (result) {
             dataSet = new Array();
             $.each(result, function (key, item) {
-                if (user.Username == item.Username && user.Password == item.Password) {
-
+                if (user.Username == item.Username && user.Password == item.Password && item.Status == "Activo") {
+                    if (item.IsAdministrator == 1) {
+                        $('#btnNews').show();
+                    }
                     arrayProf.forEach(function (prof, key, array) {
                         if (item.Id == prof.Id) {
                             $("#home").hide();
@@ -164,6 +166,14 @@ function logOut() {
     $('#btnReturnProfessor').hide();
     $('#btnNews').hide();
     $("#btnStudentCourses").hide();
+    $("#btnProfessorCourses").hide();
+    $("#newsSection").hide();
+
+    document.querySelector('#labelStudentId').innerText = "";
+    document.querySelector('#labelProfessorId').innerText = "";
+    document.querySelector('#labelStudentUserName').innerText = "";
+    document.querySelector('#labelProfessorUserName').innerText = "";
+
 }
 
 function listStudents() {
@@ -216,6 +226,7 @@ function studentInformation(id) {
         dataType: "json",
         success: function (result) {
             document.querySelector('#StudentWelcomeMessage').innerText = 'Bienvenido(a) ' + result.StudentName + ' ' + result.LastName;
+            document.querySelector('#labelStudentId').innerText = result.Id;
             document.querySelector('#labelStudentCard').innerText = result.StudentCard;
             document.querySelector('#labelStudentUserName').innerText = result.Username;
             document.querySelector('#labelStudentName').innerText = result.StudentName + ' ' + result.LastName;

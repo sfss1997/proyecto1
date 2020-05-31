@@ -145,6 +145,16 @@
                     <div class="modal-body">
 
                         <form>
+                            <div class="form-group" hidden>
+                                <label>ID</label>
+                                <input type="text" class="form-control" id="NewsId">
+                            </div>
+
+                            <div class="form-group">
+                                <label>ID Usuario</label>
+                                <input type="text" class="form-control" id="AuthorId" disabled>
+                            </div>
+
                             <div class="form-group">
                                 <label>Título</label>
                                 <input type="text" class="form-control" id="NewsTitle" placeholder="Título de la noticia" autocomplete="off">
@@ -152,7 +162,7 @@
 
                             <div class="form-group">
                                 <label>Autor</label>
-                                <input type="text" class="form-control" id="Author" placeholder="Autor de la noticia" autocomplete="off">
+                                <input type="text" class="form-control" id="Author" placeholder="Autor de la noticia o usuario que publica" autocomplete="off">
                             </div>
 
                             <div class="form-group">
@@ -167,7 +177,7 @@
 
                             <div class="form-group">
                                 <label>Noticia</label>
-                                <textarea rows="8" cols="50" class="form-control" id="text" placeholder="Ingrese su noticia" autocomplete="off"></textarea>
+                                <textarea rows="6" cols="50" class="form-control" id="text" placeholder="Ingrese su noticia" autocomplete="off"></textarea>
                             </div>
 
                         </form>
@@ -176,6 +186,66 @@
                     <div class="modal-footer">
                         <button type="button" class="btn" onclick="addNews();" id="btnAddNews">Añadir</button>
                         <button type="button" class="btn" onclick="updateNews();" id="btnUpdateNews">Actualizar</button>
+                        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View News-->
+        <div class="modal fade" id="modalViewNews" tabindex="-1" role="dialog" hidden>
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 id="addNewsTitle" class="modal-title"> Detalle noticia </h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" hidden>
+                                <label id="idDetails"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Título:</label>
+                                <label id="titleDetails">Título</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Autor:</label>
+                                <label id="authorDetails"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Fecha de publicación:</label>
+                                <label id="datetimeDetails"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Noticia:</label>
+                                <label id="newsDetails"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Comentarios:</label>
+                                <ul id="ulComments" class="list-group"></ul>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="addComment" placeholder="Comentario" autocomplete="off">
+                                </br>
+                                <button type="button" class="btn" onclick="addComments();" id="btnAddComment">Añadir</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -691,6 +761,10 @@
                 <div class="col-md-6">
                     <h3>Datos personales</h3> <hr />
                     <form>
+                        <div class="form-group" hidden="hidden">
+                            <label id="labelStudentId"></label>
+                        </div>
+
                         <div class="form-group">
                             <label for="StudentCard">Carné:</label>
                             <label id="labelStudentCard"></label>
@@ -1716,6 +1790,5 @@
     <script src="~/Scripts/Course.js"></script>
     <script src="~/Scripts/user.js"></script>
     <script src="~/Scripts/news.js"></script>
-    <script src="~/Scripts/comment.js"></script>
     <script src="~/Scripts/datatables.js"></script>
 </body>

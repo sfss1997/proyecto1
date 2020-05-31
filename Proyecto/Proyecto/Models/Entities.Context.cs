@@ -584,16 +584,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SPUsersLogin", usernameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<SelectUsers_Result> SelectUsers()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SelectUsers");
-        }
-    
-        public virtual ObjectResult<SelectUsers_Result> SPSelectUsers()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SPSelectUsers");
-        }
-    
         public virtual ObjectResult<ListStudent_Result> ListStudent()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListStudent_Result>("ListStudent");
@@ -806,6 +796,16 @@ namespace Proyecto.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStudentImage", imageParameter, idParameter);
+        }
+    
+        public virtual ObjectResult<SelectUsers_Result> SelectUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SelectUsers");
+        }
+    
+        public virtual ObjectResult<SelectUsers_Result> SPSelectUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SPSelectUsers");
         }
     }
 }

@@ -2320,8 +2320,6 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
-          <FunctionImport Name="SPSelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
           <FunctionImport Name="ListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
           <FunctionImport Name="SPListStudent" ReturnType="Collection(IF4101PICESModel.ListStudent_Result)" />
           <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101PICESModel.SelectStudent_Result)" />
@@ -2438,6 +2436,8 @@
             <Parameter Name="Image" Mode="In" Type="String" />
             <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
+          <FunctionImport Name="SPSelectUsers" ReturnType="Collection(IF4101PICESModel.SelectUsers_Result)" />
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2492,11 +2492,6 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SelectUsers_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="ListStudent_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2772,6 +2767,13 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Url" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="SocialNetworksNameId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectUsers_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IsAdministrator" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3105,24 +3107,6 @@
           <FunctionImportMapping FunctionImportName="UsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
           <FunctionImportMapping FunctionImportName="SPTypeUserVerify" FunctionName="IF4101PICESModel.Store.TypeUserVerify" />
           <FunctionImportMapping FunctionImportName="SPUsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
-          <FunctionImportMapping FunctionImportName="SelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPSelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ListStudent" FunctionName="IF4101PICESModel.Store.ListStudent">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IF4101PICESModel.ListStudent_Result">
@@ -3384,6 +3368,28 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateProfessorImage" FunctionName="IF4101PICESModel.Store.UpdateProfessorImage" />
           <FunctionImportMapping FunctionImportName="UpdateStudentImage" FunctionName="IF4101PICESModel.Store.UpdateStudentImage" />
+          <FunctionImportMapping FunctionImportName="SelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

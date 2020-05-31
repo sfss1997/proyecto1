@@ -106,15 +106,25 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/news/");
                 try
                 {
-                    var responseTask = client.GetAsync("InsertNews/" + news);
+                    var responseTask = client.GetAsync("PostNews/" + news);
                     responseTask.Wait();
+
+                    var result = responseTask.Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<News>();
+                        readTask.Wait();
+
+                        news = readTask.Result;
+                    }
                 }
                 catch (AggregateException agg_ex)
                 {
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(news, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateNews(News news)
@@ -124,7 +134,7 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/news/");
                 try
                 {
-                    var responseTask = client.GetAsync("UpdateNews/" + news);
+                    var responseTask = client.GetAsync("PutNews");
                     responseTask.Wait();
                 }
                 catch (AggregateException agg_ex)
@@ -132,7 +142,7 @@ namespace Proyecto.Controllers
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(news, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteNews(int id)

@@ -326,24 +326,6 @@
     <FunctionImportMapping FunctionImportName="UsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
     <FunctionImportMapping FunctionImportName="SPTypeUserVerify" FunctionName="IF4101PICESModel.Store.TypeUserVerify" />
     <FunctionImportMapping FunctionImportName="SPUsersLogin" FunctionName="IF4101PICESModel.Store.UsersLogin" />
-    <FunctionImportMapping FunctionImportName="SelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPSelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ListStudent" FunctionName="IF4101PICESModel.Store.ListStudent">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.ListStudent_Result">
@@ -605,5 +587,27 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateProfessorImage" FunctionName="IF4101PICESModel.Store.UpdateProfessorImage" />
     <FunctionImportMapping FunctionImportName="UpdateStudentImage" FunctionName="IF4101PICESModel.Store.UpdateStudentImage" />
+    <FunctionImportMapping FunctionImportName="SelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPSelectUsers" FunctionName="IF4101PICESModel.Store.SelectUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.SelectUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
