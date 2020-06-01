@@ -2,6 +2,8 @@ language: csharp
 solution: Proyecto/Proyecto.sln
 
 
-after_success:
-  - chmod +x ./publish.sh
-  - ./publish.sh
+deploy:
+  provider: netlify
+  site: lenguajes
+  auth: NETLIFY_PUBLISH_KEY
+  edge: true # opt in to dpl v2
