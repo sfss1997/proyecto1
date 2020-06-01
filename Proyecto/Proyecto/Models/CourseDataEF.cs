@@ -76,5 +76,38 @@ namespace Proyecto.Models
             }
             return resultToReturn;
         }
+
+        public List<GetStudentCourses_Result> GetStudentCourses(int id)
+        {
+            using (var context = new Entities())
+            {
+                var studentCourses = context.SPGetStudentCourses(id).ToList();
+
+                return studentCourses;
+
+            }
+        }
+
+        public List<GetProfessorCourses_Result> GetProfessorCourses(int id)
+        {
+            using (var context = new Entities())
+            {
+                var professorCourses = context.SPGetProfessorCourses(id).ToList();
+
+                return professorCourses;
+
+            }
+        }
+
+        public List<GetProfessorByIdCourse_Result> GetProfessorByIdCourse(int id)
+        {
+            using (var context = new Entities())
+            {
+                var professorCourses = context.SPGetProfessorByIdCourse(id).ToList();
+
+                return professorCourses;
+
+            }
+        }
     }
 }

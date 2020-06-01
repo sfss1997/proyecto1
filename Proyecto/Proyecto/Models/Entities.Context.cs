@@ -807,5 +807,59 @@ namespace Proyecto.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectUsers_Result>("SPSelectUsers");
         }
+    
+        public virtual ObjectResult<GetProfessorByIdCourse_Result> GetProfessorByIdCourse(Nullable<int> courseId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorByIdCourse_Result>("GetProfessorByIdCourse", courseIdParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorByIdCourse_Result> SPGetProfessorByIdCourse(Nullable<int> courseId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorByIdCourse_Result>("SPGetProfessorByIdCourse", courseIdParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentCourses_Result> GetStudentCourses(Nullable<int> studentId)
+        {
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentCourses_Result>("GetStudentCourses", studentIdParameter);
+        }
+    
+        public virtual ObjectResult<GetStudentCourses_Result> SPGetStudentCourses(Nullable<int> studentId)
+        {
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentCourses_Result>("SPGetStudentCourses", studentIdParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorCourses_Result> GetProfessorCourses(Nullable<int> professorId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("GetProfessorCourses", professorIdParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorCourses_Result> SPGetProfessorCourses(Nullable<int> professorId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("SPGetProfessorCourses", professorIdParameter);
+        }
     }
 }

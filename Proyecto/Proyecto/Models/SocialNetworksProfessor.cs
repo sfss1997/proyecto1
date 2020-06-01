@@ -22,11 +22,17 @@ namespace Proyecto.Models
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public Nullable<int> SocialNetworksNameId { get; set; }
         public Nullable<int> ProfessorId { get; set; }
+        public Nullable<int> CreatedBy1 { get; set; }
+        public Nullable<System.DateTime> CreateAt1 { get; set; }
+        public Nullable<int> UpdatedBy1 { get; set; }
+        public Nullable<System.DateTime> UpdatedAt1 { get; set; }
     
         public virtual Professor Professor { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
         public virtual SocialNetworksCatalog SocialNetworksCatalog { get; set; }
         public virtual Professor Professor1 { get; set; }
+        public virtual Users Users2 { get; set; }
+        public virtual Users Users11 { get; set; }
     }
 }

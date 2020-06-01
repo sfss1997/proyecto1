@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     loadCourses();
+    loadStudentCourses();
 });
 
 function addCourse() {
@@ -262,5 +263,101 @@ function loadCourses() {
             alert(errorMessage.responseText);
         }
     })
+}
+
+function loadStudentCourses() {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Course/ListAllCourses",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].IsActive == 1) {
+                        s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                        $("#courseListDropdown").html(s);
+                        $("#courseDropdown").html(s);
+                    }
+                }
+                $("#courseListDropdown").change(function () {
+
+                    var course = {
+                        Id: $("#courseListDropdown option:selected").val()
+                    };
+
+                    loadProfessorCourses(course.Id);
+                });
+            }
+        });
+    });
+    
+}
+
+function loadProfessorCourses(course) {
+    var s = '<option value="-1">Seleccione una opción</option>';
+    $("#professorListDropdown").html(s);
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Course/GetProfessorByIdCourse/" + course,
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#professorListDropdown").html(s);
+            }
+        });
+    });
+}
+
+function enrollNewCourse() {
+
+    var studentId = document.getElementById("labelStudentId").innerHTML;
+
+    var studentCourse = {
+        StudentId: studentId,
+        CourseId: $("#courseListDropdown option:selected").val()
+        
+    };
+
+    $.ajax({
+        url: "/Student/AddStudentCourse",
+        data: JSON.stringify(studentCourse),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#myModalEnrollCourse').modal('hide');
+            $('.modal-backdrop').hide();
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function enrollNewCourseProfessor() {
+    var professorCourse = {
+        ProfessorId: $("#professorDropdown option:selected").val(),
+        CourseId: $("#courseDropdown option:selected").val()
+    };
+
+    $.ajax({
+        url: "/Professor/AddProfessorCourse",
+        data: JSON.stringify(professorCourse),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#myModalEnrollCourseProfessor').modal('hide');
+            $('.modal-backdrop').hide();
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 }
 

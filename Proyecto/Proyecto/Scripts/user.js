@@ -13,6 +13,7 @@
     $("#btnStudentCourses").hide();
     $("#btnProfessorCourses").hide();
     $("#btnEnrollCourse").hide();
+    $("#btnEnrollCourseProfessor").hide();
     loadSocialNetwork(); 
 });
 
@@ -103,8 +104,7 @@ function login() {
                         $('#btnProfessor').show();
                         $('#btnCourse').show();
                         $('#btnNews').show();
-                        $("#btnEnrollCourse").show();
-
+                        $("#btnEnrollCourseProfessor").show();
                     }
                 }
                 else {
@@ -174,6 +174,7 @@ function logOut() {
     $("#btnProfessorCourses").hide();
     $("#newsSection").hide();
     $("#btnEnrollCourse").hide();
+    $("#btnEnrollCourseProfessor").hide();
 
     document.querySelector('#labelStudentId').innerText = "";
     document.querySelector('#labelProfessorId').innerText = "";

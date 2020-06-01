@@ -703,4 +703,31 @@ function studentCourses() {
     $('#btnNewsStudent').show();
     $('#btnStudentCourses').hide();
     $('#btnEnrollCourse').show();
+
+    var s = '<option value="-1">Seleccione una opción</option>';
+    $("#courseListDropdown").html(s);
+    $("#professorListDropdown").html(s);
+
+    var id = document.getElementById("labelStudentId").innerHTML;
+
+    $.ajax({
+        url: "/Course/GetStudentCourses/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<tr>';
+                html += '<td>' + item.Initials + '</td>';
+                html += '<td>' + item.CourseName + '</td>';
+                html += '<td>' + item.Credits + '</td>';
+                html += '<td>' + item.Cycle + '</td>';
+                html += '<td>' + item.ProfessorName + " " + item.ProfessorLastName + '</td>';
+                html += '<td><a href="#" onclick="return publicConsultation(' + item.CourseId + ')">Consulta Pública</a> | <a href="#" onclick="privateConsultation(' + item.CourseId + ')">Consulta Privada</a> | <a href="#" onclick="appointment(' + item.CourseId + ')">Cita de atención</a></td>';
+            });
+            $('.tableStudentCourses').html(html);
+
+        }
+    });
 }

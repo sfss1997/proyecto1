@@ -45,5 +45,26 @@ namespace Proyecto.Controllers
         {
             return Json(CourseDataEF.DeleteCourse(id), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetStudentCourses(int id)
+        {
+            var studentCourses = CourseDataEF.GetStudentCourses(id);
+
+            return Json(studentCourses, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProfessorCourses(int id)
+        {
+            var professorCourses = CourseDataEF.GetProfessorCourses(id);
+
+            return Json(professorCourses, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProfessorByIdCourse(int id)
+        {
+            var professorCourses = CourseDataEF.GetProfessorByIdCourse(id);
+
+            return Json(professorCourses, JsonRequestBehavior.AllowGet);
+        }
     }
 }

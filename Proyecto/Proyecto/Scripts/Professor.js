@@ -2,6 +2,7 @@
     loadProvinceProfessor();
     loadAcademicDegree();
     loadProfessors();
+    loadDropdownProfessor();
 });
 
 function clearTextBoxProfessor() {
@@ -597,4 +598,41 @@ function professorCourses() {
     $('#btnNewsProfessor').show();
     $('#btnProfessorCourses').hide();
 
+    var id = document.getElementById("labelProfessorId").innerHTML;
+
+    $.ajax({
+        url: "/Course/GetProfessorCourses/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<tr>';
+                html += '<td>' + item.Initials + '</td>';
+                html += '<td>' + item.CourseName + '</td>';
+                html += '<td>' + item.Cycle + '</td>';
+                html += '<td><a href="#" onclick="return GetById(' + item.StudentId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.StudentId + ')">Delete</a></td>';
+            });
+            $('.professorCourses').html(html);
+
+        }
+    });
+}
+
+function loadDropdownProfessor() {
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Professor/ListAllProfessors",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Seleccione una opción</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Name + " " + data[i].LastName + '</option>';
+                }
+                $("#professorDropdown").html(s);
+            }
+        });
+    });
 }

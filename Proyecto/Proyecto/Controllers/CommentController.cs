@@ -1,8 +1,10 @@
-﻿using Proyecto.Models;
+﻿using Newtonsoft.Json;
+using Proyecto.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Web.Mvc;
 
 namespace Proyecto.Controllers
@@ -50,7 +52,7 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
                 try
                 {
-                    var responseTask = client.GetAsync("PostComment");
+                    var responseTask = client.PostAsJsonAsync("PostComment", comment);
                     responseTask.Wait();
                 }
                 catch (AggregateException agg_ex)
@@ -58,7 +60,7 @@ namespace Proyecto.Controllers
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(comment, JsonRequestBehavior.AllowGet);
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteComment(int id)
@@ -78,5 +80,35 @@ namespace Proyecto.Controllers
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetComments()
+        {
+            IEnumerable<Comment> comments = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                var responseTask = client.GetAsync("GetComments");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Comment>>();
+                    readTask.Wait();
+
+                    comments = readTask.Result;
+                }
+                else
+                {
+                    comments = Enumerable.Empty<Comment>();
+                    ModelState.AddModelError(String.Empty, "Server error. Please contact administrator");
+                }
+            }
+            return Json(comments, JsonRequestBehavior.AllowGet);
+        }
     }
+
+
 }

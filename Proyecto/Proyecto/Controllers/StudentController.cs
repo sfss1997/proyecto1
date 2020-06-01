@@ -89,9 +89,9 @@ namespace Proyecto.Controllers
             return Json(StudentDataEF.AddSocialNetwork(socialNetworksStudent), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddStudentCourse(int StudentId, int CourseId)
+        public JsonResult AddStudentCourse(StudentCourse studentCourse)
         {
-            return Json(StudentDataEF.AddStudentCourse(StudentId, CourseId), JsonRequestBehavior.AllowGet);
+            return Json(StudentDataEF.AddStudentCourse(studentCourse), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ListSocialNetworksCatalog()

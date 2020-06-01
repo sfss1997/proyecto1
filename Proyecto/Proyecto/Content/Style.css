@@ -73,6 +73,19 @@
     color:white;
 }
 
+#btnEnrollCourseProfessor {
+    position: inherit;
+    margin-top: 15px;
+    margin-right: 5px;
+    background: #ffffff;
+    border-color: #a9cce3;
+}
+
+#btnEnrollCourseProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
 #btnStudentCourses {
     position: inherit;
     margin-top: 15px;

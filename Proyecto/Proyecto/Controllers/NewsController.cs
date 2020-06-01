@@ -1,8 +1,11 @@
-﻿using Proyecto.Models;
+﻿using Newtonsoft.Json;
+using Proyecto.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Web.Mvc;
 
 namespace Proyecto.Controllers
@@ -106,7 +109,7 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/news/");
                 try
                 {
-                    var responseTask = client.GetAsync("PostNews/" + news);
+                    var responseTask = client.PostAsJsonAsync("PostNews", news);
                     responseTask.Wait();
 
                     var result = responseTask.Result;
@@ -124,7 +127,7 @@ namespace Proyecto.Controllers
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(news, JsonRequestBehavior.AllowGet);
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateNews(News news)

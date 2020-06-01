@@ -79,6 +79,10 @@
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Socia__5772F790" />
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Profe__0C50D423" />
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Stude__0880433F" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__3FD07829" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__40C49C62" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__41B8C09B" />
+        <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__42ACE4D4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

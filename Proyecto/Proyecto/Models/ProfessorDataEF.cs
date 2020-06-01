@@ -112,14 +112,14 @@ namespace Proyecto.Models
             return resultToReturn;
         }
 
-        public int AddProfessorCourse(int ProfessorId, int CourseId)
+        public int AddProfessorCourse(ProfessorCourse professorCourse)
         {
             int resultToReturn;
 
             using (var context = new Entities())
             {
-                resultToReturn = context.InsertProfessorCourse(ProfessorId,
-                                       CourseId);
+                resultToReturn = context.InsertProfessorCourse(professorCourse.ProfessorId,
+                                       professorCourse.CourseId);
             }
             return resultToReturn;
         }
