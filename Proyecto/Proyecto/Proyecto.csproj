@@ -243,6 +243,9 @@
     <Compile Include="Models\PublicConsultation.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RepliesPublicConsultation.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SelectAcademicDegree_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

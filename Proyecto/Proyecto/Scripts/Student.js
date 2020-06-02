@@ -746,6 +746,8 @@ function publicConsultation(courseId, professorId) {
     $('#titlePrivateConsultation').hide();
     $('#btnConsultationPublicStudent').show();
     $('#btnConsultationPrivateStudent').hide();
+    $('#btnConsultationPublicProfessor').hide();
+    $('#btnConsultationPrivateProfessor').hide();
 
     $('#courseIdPublicConsultation').val(courseId);
     $('#professorIdPublicConsultation').val(professorId);
@@ -824,6 +826,7 @@ function sendPrivateConsultationStudent() {
         success: function (result) {
             $('#addPublicConsult').val("");
             loadPrivateMessage(privateMessage.CourseId, privateMessage.ProfessorId, privateMessage.StudentId);
+            loadPrivateMessageProfessor(courseId, professorId, studentId);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

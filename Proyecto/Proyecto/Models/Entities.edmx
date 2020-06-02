@@ -152,6 +152,17 @@
           <Property Name="UpdatedAt" Type="date" />
           <Property Name="ProfessorId" Type="int" />
         </EntityType>
+        <EntityType Name="RepliesPublicConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublicConsultationId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="ProfessorId" Type="int" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="SocialNetworksCatalog">
           <Key>
             <PropertyRef Name="Id" />
@@ -705,6 +716,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__RepliesPu__Profe__762C88DA">
+          <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+          <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepliesPu__Publi__74444068">
+          <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="0..1" />
+          <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublicConsultation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="PublicConsultationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepliesPu__Stude__753864A1">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__SocialNet__Creat__3FD07829">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
@@ -965,6 +1012,13 @@
           <Parameter Name="Motive" Type="varchar" Mode="In" />
           <Parameter Name="DateTime" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="InsertRepliesPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PublicConsultationId" Type="int" Mode="In" />
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="ProfessorId" Type="int" Mode="In" />
+          <Parameter Name="Motive" Type="varchar" Mode="In" />
+          <Parameter Name="DateTime" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentId" Type="int" Mode="In" />
           <Parameter Name="CourseId" Type="int" Mode="In" />
@@ -1064,6 +1118,7 @@
           <EntitySet Name="ProfessorCourse" EntityType="Self.ProfessorCourse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepliesPublicConsultation" EntityType="Self.RepliesPublicConsultation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialNetworksCatalog" EntityType="Self.SocialNetworksCatalog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialNetworksProfessor" EntityType="Self.SocialNetworksProfessor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialNetworksStudent" EntityType="Self.SocialNetworksStudent" Schema="dbo" store:Type="Tables" />
@@ -1229,6 +1284,18 @@
           <AssociationSet Name="FK__PublicCon__Updat__3EDC53F0" Association="Self.FK__PublicCon__Updat__3EDC53F0">
             <End Role="Users" EntitySet="Users" />
             <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepliesPu__Profe__762C88DA" Association="Self.FK__RepliesPu__Profe__762C88DA">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepliesPu__Publi__74444068" Association="Self.FK__RepliesPu__Publi__74444068">
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepliesPu__Stude__753864A1" Association="Self.FK__RepliesPu__Stude__753864A1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
           </AssociationSet>
           <AssociationSet Name="FK__SocialNet__Creat__3FD07829" Association="Self.FK__SocialNet__Creat__3FD07829">
             <End Role="Users" EntitySet="Users" />
@@ -1452,6 +1519,7 @@
           <NavigationProperty Name="SocialNetworksProfessor1" Relationship="IF4101PICESModel.FK__SocialNet__Profe__0C50D423" FromRole="Professor" ToRole="SocialNetworksProfessor" />
           <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" FromRole="Professor" ToRole="PrivateMessage" />
           <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="Professor" ToRole="PublicConsultation" />
+          <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" FromRole="Professor" ToRole="RepliesPublicConsultation" />
         </EntityType>
         <EntityType Name="ProfessorCourse">
           <Key>
@@ -1503,6 +1571,7 @@
           <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5" FromRole="PublicConsultation" ToRole="Student" />
           <Property Name="ProfessorId" Type="Int32" />
           <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="PublicConsultation" ToRole="Professor" />
+          <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Publi__74444068" FromRole="PublicConsultation" ToRole="RepliesPublicConsultation" />
         </EntityType>
         <EntityType Name="SocialNetworksProfessor">
           <Key>
@@ -2626,12 +2695,6 @@
           <FunctionImport Name="SPGetStudentCourses" ReturnType="Collection(IF4101PICESModel.GetStudentCourses_Result)">
           <Parameter Name="StudentId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetProfessorCourses" ReturnType="Collection(IF4101PICESModel.GetProfessorCourses_Result)">
-          <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SPGetProfessorCourses" ReturnType="Collection(IF4101PICESModel.GetProfessorCourses_Result)">
-          <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <AssociationSet Name="FK__PrivateMe__Profe__6F7F8B4B" Association="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B">
             <End Role="Professor" EntitySet="Professor" />
             <End Role="PrivateMessage" EntitySet="PrivateMessage" />
@@ -2671,6 +2734,32 @@
           <FunctionImport Name="SPGetPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetPublicConsultation_Result)">
             <Parameter Name="CourseId" Mode="In" Type="Int32" />
             <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetProfessorCourses" ReturnType="Collection(IF4101PICESModel.GetProfessorCourses_Result)">
+          <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetProfessorCourses" ReturnType="Collection(IF4101PICESModel.GetProfessorCourses_Result)">
+          <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="RepliesPublicConsultation" EntityType="IF4101PICESModel.RepliesPublicConsultation" />
+          <AssociationSet Name="FK__RepliesPu__Profe__762C88DA" Association="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepliesPu__Publi__74444068" Association="IF4101PICESModel.FK__RepliesPu__Publi__74444068">
+            <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepliesPu__Stude__753864A1" Association="IF4101PICESModel.FK__RepliesPu__Stude__753864A1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+          </AssociationSet>
+          <FunctionImport Name="InsertRepliesPublicConsultation">
+            <Parameter Name="PublicConsultationId" Mode="In" Type="Int32" />
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+            <Parameter Name="Motive" Mode="In" Type="String" />
+            <Parameter Name="DateTime" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
@@ -2795,6 +2884,7 @@
           <NavigationProperty Name="Users2" Relationship="IF4101PICESModel.FK__Student__Updated__3335971A" FromRole="Student" ToRole="Users" />
           <NavigationProperty Name="StudentCourse" Relationship="IF4101PICESModel.FK__StudentCo__Stude__084B3915" FromRole="Student" ToRole="StudentCourse" />
           <NavigationProperty Name="SocialNetworksStudent1" Relationship="IF4101PICESModel.FK__SocialNet__Stude__0880433F" FromRole="Student" ToRole="SocialNetworksStudent" />
+          <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Stude__753864A1" FromRole="Student" ToRole="RepliesPublicConsultation" />
         </EntityType>
         <Association Name="FK__Appointme__Stude__0FEC5ADD">
           <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
@@ -3073,20 +3163,6 @@
           <Property Type="String" Name="ProfessorName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ProfessorLastName" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="GetProfessorCourses_Result">
-          <Property Type="Int32" Name="StudentId" Nullable="false" />
-          <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="StudentLastName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Initials" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="CourseId" Nullable="false" />
-          <Property Type="Int32" Name="Cycle" Nullable="false" />
-          <Property Type="Int32" Name="Credits" Nullable="false" />
-          <Property Type="Int32" Name="ProfessorId" Nullable="false" />
-          <Property Type="String" Name="ProfessorName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="ProfessorLastName" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <Association Name="FK__PrivateMe__Profe__6F7F8B4B">
           <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
           <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="*" />
@@ -3127,6 +3203,66 @@
           <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ProfessorId" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetProfessorCourses_Result">
+          <Property Type="String" Name="Initials" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CourseId" Nullable="false" />
+          <Property Type="Int32" Name="Cycle" Nullable="false" />
+          <Property Type="Int32" Name="Credits" Nullable="false" />
+          <Property Type="Int32" Name="ProfessorId" Nullable="false" />
+          <Property Type="String" Name="ProfessorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ProfessorLastName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="RepliesPublicConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublicConsultationId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="ProfessorId" Type="Int32" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Motive" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" FromRole="RepliesPublicConsultation" ToRole="Professor" />
+          <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Publi__74444068" FromRole="RepliesPublicConsultation" ToRole="PublicConsultation" />
+          <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__RepliesPu__Stude__753864A1" FromRole="RepliesPublicConsultation" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__RepliesPu__Profe__762C88DA">
+          <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.RepliesPublicConsultation" Role="RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepliesPu__Publi__74444068">
+          <End Type="IF4101PICESModel.PublicConsultation" Role="PublicConsultation" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.RepliesPublicConsultation" Role="RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublicConsultation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="PublicConsultationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepliesPu__Stude__753864A1">
+          <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.RepliesPublicConsultation" Role="RepliesPublicConsultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RepliesPublicConsultation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3800,42 +3936,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="StudentLastName" ColumnName="StudentLastName" />
-                <ScalarProperty Name="Initials" ColumnName="Initials" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="Cycle" ColumnName="Cycle" />
-                <ScalarProperty Name="Credits" ColumnName="Credits" />
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-                <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
-                <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPGetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="StudentLastName" ColumnName="StudentLastName" />
-                <ScalarProperty Name="Initials" ColumnName="Initials" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="Cycle" ColumnName="Cycle" />
-                <ScalarProperty Name="Credits" ColumnName="Credits" />
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-                <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
-                <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertPrivateMessage" FunctionName="IF4101PICESModel.Store.InsertPrivateMessage" />
           <FunctionImportMapping FunctionImportName="InsertPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertPublicConsultation" />
           <FunctionImportMapping FunctionImportName="GetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
@@ -3886,6 +3986,47 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
+                <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
+                <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="RepliesPublicConsultation">
+            <EntityTypeMapping TypeName="IF4101PICESModel.RepliesPublicConsultation">
+              <MappingFragment StoreEntitySet="RepliesPublicConsultation">
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="PublicConsultationId" ColumnName="PublicConsultationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertRepliesPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertRepliesPublicConsultation" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

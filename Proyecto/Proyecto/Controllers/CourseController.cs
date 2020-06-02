@@ -90,5 +90,10 @@ namespace Proyecto.Controllers
 
             return Json(privateMessage, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult AddRepliesPublicConsultation(RepliesPublicConsultation repliesPublicConsultation)
+        {
+            return Json(CourseDataEF.AddRepliesPublicConsultation(repliesPublicConsultation), JsonRequestBehavior.AllowGet);
+        }
     }
 }

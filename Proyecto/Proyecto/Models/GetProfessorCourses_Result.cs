@@ -13,10 +13,6 @@ namespace Proyecto.Models
     
     public partial class GetProfessorCourses_Result
     {
-        public int StudentId { get; set; }
-        public string StudentCard { get; set; }
-        public string StudentName { get; set; }
-        public string StudentLastName { get; set; }
         public string Initials { get; set; }
         public string CourseName { get; set; }
         public int CourseId { get; set; }

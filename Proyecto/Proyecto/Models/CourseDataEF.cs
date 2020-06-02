@@ -126,6 +126,23 @@ namespace Proyecto.Models
             return resultToReturn;
         }
 
+
+        public int AddRepliesPublicConsultation(RepliesPublicConsultation repliesPublicConsultation)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertRepliesPublicConsultation(
+                                       repliesPublicConsultation.PublicConsultationId,
+                                       repliesPublicConsultation.StudentId,
+                                       repliesPublicConsultation.ProfessorId,
+                                       repliesPublicConsultation.Motive,
+                                       repliesPublicConsultation.DateTime);
+            }
+            return resultToReturn;
+        }
+
         public int AddPrivateMessage(PrivateMessage privateMessage)
         {
             int resultToReturn;

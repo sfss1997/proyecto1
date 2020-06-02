@@ -147,6 +147,17 @@
     <Property Name="UpdatedAt" Type="date" />
     <Property Name="ProfessorId" Type="int" />
   </EntityType>
+  <EntityType Name="RepliesPublicConsultation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PublicConsultationId" Type="int" />
+    <Property Name="StudentId" Type="int" />
+    <Property Name="ProfessorId" Type="int" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="SocialNetworksCatalog">
     <Key>
       <PropertyRef Name="Id" />
@@ -700,6 +711,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__RepliesPu__Profe__762C88DA">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPublicConsultation">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPu__Publi__74444068">
+    <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="0..1" />
+    <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PublicConsultation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPublicConsultation">
+        <PropertyRef Name="PublicConsultationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPu__Stude__753864A1">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPublicConsultation">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__SocialNet__Creat__3FD07829">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="SocialNetworksProfessor" Type="Self.SocialNetworksProfessor" Multiplicity="*" />
@@ -960,6 +1007,13 @@
     <Parameter Name="Motive" Type="varchar" Mode="In" />
     <Parameter Name="DateTime" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="InsertRepliesPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PublicConsultationId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="Motive" Type="varchar" Mode="In" />
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="CourseId" Type="int" Mode="In" />
@@ -1059,6 +1113,7 @@
     <EntitySet Name="ProfessorCourse" EntityType="Self.ProfessorCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepliesPublicConsultation" EntityType="Self.RepliesPublicConsultation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksCatalog" EntityType="Self.SocialNetworksCatalog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksProfessor" EntityType="Self.SocialNetworksProfessor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksStudent" EntityType="Self.SocialNetworksStudent" Schema="dbo" store:Type="Tables" />
@@ -1224,6 +1279,18 @@
     <AssociationSet Name="FK__PublicCon__Updat__3EDC53F0" Association="Self.FK__PublicCon__Updat__3EDC53F0">
       <End Role="Users" EntitySet="Users" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPu__Profe__762C88DA" Association="Self.FK__RepliesPu__Profe__762C88DA">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPu__Publi__74444068" Association="Self.FK__RepliesPu__Publi__74444068">
+      <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+      <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPu__Stude__753864A1" Association="Self.FK__RepliesPu__Stude__753864A1">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="RepliesPublicConsultation" EntitySet="RepliesPublicConsultation" />
     </AssociationSet>
     <AssociationSet Name="FK__SocialNet__Creat__3FD07829" Association="Self.FK__SocialNet__Creat__3FD07829">
       <End Role="Users" EntitySet="Users" />

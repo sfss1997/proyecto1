@@ -667,42 +667,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="StudentLastName" ColumnName="StudentLastName" />
-          <ScalarProperty Name="Initials" ColumnName="Initials" />
-          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
-          <ScalarProperty Name="Credits" ColumnName="Credits" />
-          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-          <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
-          <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="StudentCard" ColumnName="StudentCard" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="StudentLastName" ColumnName="StudentLastName" />
-          <ScalarProperty Name="Initials" ColumnName="Initials" />
-          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
-          <ScalarProperty Name="Credits" ColumnName="Credits" />
-          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-          <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
-          <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertPrivateMessage" FunctionName="IF4101PICESModel.Store.InsertPrivateMessage" />
     <FunctionImportMapping FunctionImportName="InsertPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertPublicConsultation" />
     <FunctionImportMapping FunctionImportName="GetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
@@ -753,5 +717,46 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
+          <ScalarProperty Name="Initials" ColumnName="Initials" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
+          <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetProfessorCourses" FunctionName="IF4101PICESModel.Store.GetProfessorCourses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetProfessorCourses_Result">
+          <ScalarProperty Name="Initials" ColumnName="Initials" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
+          <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="RepliesPublicConsultation">
+      <EntityTypeMapping TypeName="IF4101PICESModel.RepliesPublicConsultation">
+        <MappingFragment StoreEntitySet="RepliesPublicConsultation">
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="PublicConsultationId" ColumnName="PublicConsultationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertRepliesPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertRepliesPublicConsultation" />
   </EntityContainerMapping>
 </Mapping>

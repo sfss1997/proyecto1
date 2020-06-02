@@ -45,6 +45,7 @@ namespace Proyecto.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<SocialNetworksCatalog> SocialNetworksCatalog { get; set; }
+        public virtual DbSet<RepliesPublicConsultation> RepliesPublicConsultation { get; set; }
     
         public virtual int DeleteCourse(Nullable<int> id)
         {
@@ -844,24 +845,6 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentCourses_Result>("SPGetStudentCourses", studentIdParameter);
         }
     
-        public virtual ObjectResult<GetProfessorCourses_Result> GetProfessorCourses(Nullable<int> professorId)
-        {
-            var professorIdParameter = professorId.HasValue ?
-                new ObjectParameter("ProfessorId", professorId) :
-                new ObjectParameter("ProfessorId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("GetProfessorCourses", professorIdParameter);
-        }
-    
-        public virtual ObjectResult<GetProfessorCourses_Result> SPGetProfessorCourses(Nullable<int> professorId)
-        {
-            var professorIdParameter = professorId.HasValue ?
-                new ObjectParameter("ProfessorId", professorId) :
-                new ObjectParameter("ProfessorId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("SPGetProfessorCourses", professorIdParameter);
-        }
-    
         public virtual int InsertPrivateMessage(Nullable<int> courseId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
         {
             var courseIdParameter = courseId.HasValue ?
@@ -970,6 +953,49 @@ namespace Proyecto.Models
                 new ObjectParameter("ProfessorId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPublicConsultation_Result>("SPGetPublicConsultation", courseIdParameter, professorIdParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorCourses_Result> GetProfessorCourses(Nullable<int> professorId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("GetProfessorCourses", professorIdParameter);
+        }
+    
+        public virtual ObjectResult<GetProfessorCourses_Result> SPGetProfessorCourses(Nullable<int> professorId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("SPGetProfessorCourses", professorIdParameter);
+        }
+    
+        public virtual int InsertRepliesPublicConsultation(Nullable<int> publicConsultationId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        {
+            var publicConsultationIdParameter = publicConsultationId.HasValue ?
+                new ObjectParameter("PublicConsultationId", publicConsultationId) :
+                new ObjectParameter("PublicConsultationId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var motiveParameter = motive != null ?
+                new ObjectParameter("Motive", motive) :
+                new ObjectParameter("Motive", typeof(string));
+    
+            var dateTimeParameter = dateTime.HasValue ?
+                new ObjectParameter("DateTime", dateTime) :
+                new ObjectParameter("DateTime", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRepliesPublicConsultation", publicConsultationIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
         }
     }
 }
