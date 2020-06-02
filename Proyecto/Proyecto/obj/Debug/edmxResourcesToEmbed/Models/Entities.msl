@@ -88,6 +88,7 @@
     <EntitySetMapping Name="PrivateMessage">
       <EntityTypeMapping TypeName="IF4101PICESModel.PrivateMessage">
         <MappingFragment StoreEntitySet="PrivateMessage">
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -144,6 +145,7 @@
     <EntitySetMapping Name="PublicConsultation">
       <EntityTypeMapping TypeName="IF4101PICESModel.PublicConsultation">
         <MappingFragment StoreEntitySet="PublicConsultation">
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -698,6 +700,56 @@
           <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
           <ScalarProperty Name="ProfessorName" ColumnName="ProfessorName" />
           <ScalarProperty Name="ProfessorLastName" ColumnName="ProfessorLastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertPrivateMessage" FunctionName="IF4101PICESModel.Store.InsertPrivateMessage" />
+    <FunctionImportMapping FunctionImportName="InsertPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertPublicConsultation" />
+    <FunctionImportMapping FunctionImportName="GetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPublicConsultation" FunctionName="IF4101PICESModel.Store.GetPublicConsultation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetPublicConsultation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetPublicConsultation" FunctionName="IF4101PICESModel.Store.GetPublicConsultation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetPublicConsultation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

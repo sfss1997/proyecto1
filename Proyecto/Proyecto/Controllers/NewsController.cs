@@ -102,14 +102,15 @@ namespace Proyecto.Controllers
             return Json(news, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult InsertNews(News news)
+        [HttpPost]
+        public ActionResult InsertNews(News news)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44352/api/news/");
                 try
                 {
-                    var responseTask = client.PostAsJsonAsync("PostNews", news);
+                    var responseTask = client.PostAsJsonAsync<News>("PostNews", news);
                     responseTask.Wait();
 
                     var result = responseTask.Result;
@@ -137,7 +138,7 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/news/");
                 try
                 {
-                    var responseTask = client.GetAsync("PutNews");
+                    var responseTask = client.PutAsJsonAsync("PutNews", news);
                     responseTask.Wait();
                 }
                 catch (AggregateException agg_ex)

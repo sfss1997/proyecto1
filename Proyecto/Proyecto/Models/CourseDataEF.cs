@@ -109,5 +109,59 @@ namespace Proyecto.Models
 
             }
         }
+
+        public int AddPublicConsultation(PublicConsultation publicConsultation)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertPublicConsultation(
+                                       publicConsultation.CourseId,
+                                       publicConsultation.StudentId,
+                                       publicConsultation.ProfessorId,
+                                       publicConsultation.Motive,
+                                       publicConsultation.DateTime);
+            }
+            return resultToReturn;
+        }
+
+        public int AddPrivateMessage(PrivateMessage privateMessage)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertPrivateMessage(
+                                       privateMessage.CourseId,
+                                       privateMessage.StudentId,
+                                       privateMessage.ProfessorId,
+                                       privateMessage.Motive,
+                                       privateMessage.DateTime);
+            }
+            return resultToReturn;
+        }
+
+        public List<GetPublicConsultation_Result> GetPublicConsultation(int courseId, int professorId)
+        {
+            using (var context = new Entities())
+            {
+                var publicConsultation = context.SPGetPublicConsultation(courseId, professorId).ToList();
+
+                return publicConsultation;
+
+            }
+        }
+
+        public List<GetPrivateMessage_Result> GetPrivateMessage(int courseId, int professorId, int studentId)
+        {
+            using (var context = new Entities())
+            {
+                var privateMessage = context.SPGetPrivateMessage(courseId, professorId, studentId).ToList();
+
+                return privateMessage;
+
+            }
+        }
     }
 }

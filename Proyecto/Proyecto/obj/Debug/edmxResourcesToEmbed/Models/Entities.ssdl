@@ -91,6 +91,7 @@
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
+    <Property Name="ProfessorId" Type="int" />
   </EntityType>
   <EntityType Name="Professor">
     <Key>
@@ -144,6 +145,7 @@
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
+    <Property Name="ProfessorId" Type="int" />
   </EntityType>
   <EntityType Name="SocialNetworksCatalog">
     <Key>
@@ -470,6 +472,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PrivateMe__Profe__6F7F8B4B">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrivateMessage">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PrivateMe__Stude__251C81ED">
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
@@ -647,6 +661,18 @@
       </Principal>
       <Dependent Role="PublicConsultation">
         <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PublicCon__Profe__6E8B6712">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="PublicConsultation" Type="Self.PublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PublicConsultation">
+        <PropertyRef Name="ProfessorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -885,6 +911,11 @@
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="GetNameSocialNetworks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -895,6 +926,10 @@
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
   </Function>
   <Function Name="GetProvinces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetSocialNetworksByIdProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -907,9 +942,23 @@
   <Function Name="GetStudentCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentId" Type="int" Mode="In" />
   </Function>
+  <Function Name="InsertPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="Motive" Type="varchar" Mode="In" />
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="InsertProfessorCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="CourseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="Motive" Type="varchar" Mode="In" />
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
   </Function>
   <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentId" Type="int" Mode="In" />
@@ -1100,6 +1149,10 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
     </AssociationSet>
+    <AssociationSet Name="FK__PrivateMe__Profe__6F7F8B4B" Association="Self.FK__PrivateMe__Profe__6F7F8B4B">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+    </AssociationSet>
     <AssociationSet Name="FK__PrivateMe__Stude__251C81ED" Association="Self.FK__PrivateMe__Stude__251C81ED">
       <End Role="Student" EntitySet="Student" />
       <End Role="PrivateMessage" EntitySet="PrivateMessage" />
@@ -1158,6 +1211,10 @@
     </AssociationSet>
     <AssociationSet Name="FK__PublicCon__Creat__3DE82FB7" Association="Self.FK__PublicCon__Creat__3DE82FB7">
       <End Role="Users" EntitySet="Users" />
+      <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PublicCon__Profe__6E8B6712" Association="Self.FK__PublicCon__Profe__6E8B6712">
+      <End Role="Professor" EntitySet="Professor" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
     </AssociationSet>
     <AssociationSet Name="FK__PublicCon__Stude__28ED12D1" Association="Self.FK__PublicCon__Stude__28ED12D1">

@@ -66,5 +66,29 @@ namespace Proyecto.Controllers
 
             return Json(professorCourses, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult AddPublicConsultation(PublicConsultation publicConsultation)
+        {
+            return Json(CourseDataEF.AddPublicConsultation(publicConsultation), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddPrivateMessage(PrivateMessage privateMessage)
+        {
+            return Json(CourseDataEF.AddPrivateMessage(privateMessage), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPublicConsultation(int courseId, int professorId)
+        {
+            var publicConsultation = CourseDataEF.GetPublicConsultation(courseId, professorId);
+
+            return Json(publicConsultation, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPrivateMessage(int courseId, int professorId, int studentId)
+        {
+            var privateMessage = CourseDataEF.GetPrivateMessage(courseId, professorId, studentId);
+
+            return Json(privateMessage, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -704,10 +704,6 @@ function studentCourses() {
     $('#btnStudentCourses').hide();
     $('#btnEnrollCourse').show();
 
-    var s = '<option value="-1">Seleccione una opción</option>';
-    $("#courseListDropdown").html(s);
-    $("#professorListDropdown").html(s);
-
     var id = document.getElementById("labelStudentId").innerHTML;
 
     $.ajax({
@@ -718,16 +714,177 @@ function studentCourses() {
         success: function (result) {
             var html = '';
             $.each(result, function (key, item) {
+                var cycle = "";
+                if (item.Cycle == 1) {
+                    cycle = "I Semestre"
+                }
+                else if (item.Cycle == 2) {
+                    cycle = "II Semestre"
+                }
+                else if (item.Cycle == 3) {
+                    cycle = "Verano"
+                }
+
                 html += '<tr>';
                 html += '<td>' + item.Initials + '</td>';
                 html += '<td>' + item.CourseName + '</td>';
                 html += '<td>' + item.Credits + '</td>';
-                html += '<td>' + item.Cycle + '</td>';
+                html += '<td>' + cycle + '</td>';
                 html += '<td>' + item.ProfessorName + " " + item.ProfessorLastName + '</td>';
-                html += '<td><a href="#" onclick="return publicConsultation(' + item.CourseId + ')">Consulta Pública</a> | <a href="#" onclick="privateConsultation(' + item.CourseId + ')">Consulta Privada</a> | <a href="#" onclick="appointment(' + item.CourseId + ')">Cita de atención</a></td>';
+                html += '<td><a href="#" onclick="return publicConsultation(' + item.CourseId + ',' + item.ProfessorId + ')">Consulta Pública</a> | <a href="#" onclick="privateConsultation(' + item.CourseId + ',' + item.ProfessorId + ',' + item.StudentId + ')">Consulta Privada</a> | <a href="#" onclick="appointment(' + item.CourseId + ')">Cita de atención</a></td>';
             });
             $('.tableStudentCourses').html(html);
 
         }
+    });
+}
+
+function publicConsultation(courseId, professorId) {
+    $('#modalPublicConsultationStudent').modal('show');
+
+    $('#titlePublicConsultation').show();
+    $('#titlePrivateConsultation').hide();
+    $('#btnConsultationPublicStudent').show();
+    $('#btnConsultationPrivateStudent').hide();
+
+    $('#courseIdPublicConsultation').val(courseId);
+    $('#professorIdPublicConsultation').val(professorId);
+
+    loadPublicConsultationStudent(courseId, professorId);
+}
+
+function privateConsultation(courseId, professorId, studentId) {
+    $('#modalPublicConsultationStudent').modal('show');
+
+    $('#titlePublicConsultation').hide();
+    $('#titlePrivateConsultation').show();
+    $('#btnConsultationPublicStudent').hide();
+    $('#btnConsultationPrivateStudent').show();
+
+    $('#courseIdPublicConsultation').val(courseId);
+    $('#professorIdPublicConsultation').val(professorId);
+    $('#studentIdPublicConsultation').val(studentId);
+    loadPrivateMessage(courseId, professorId, studentId);
+}
+
+function sendPublicConsultationStudent() {
+
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+
+    var id = document.getElementById("labelStudentId").innerHTML;
+
+    var publicConsultation = {
+        CourseId: $('#courseIdPublicConsultation').val(),
+        StudentId: id,
+        ProfessorId: $('#professorIdPublicConsultation').val(),
+        Motive: $('#addPublicConsult').val(),
+        DateTime: yyyy + "-" + mm + "-" + dd,
+    };
+
+    $.ajax({
+        url: "/Course/AddPublicConsultation",
+        data: JSON.stringify(publicConsultation),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addPublicConsult').val("");
+            loadPublicConsultationStudent(publicConsultation.CourseId, publicConsultation.ProfessorId);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function sendPrivateConsultationStudent() {
+
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+
+    var privateMessage = {
+        CourseId: $('#courseIdPublicConsultation').val(),
+        StudentId: $('#studentIdPublicConsultation').val(),
+        ProfessorId: $('#professorIdPublicConsultation').val(),
+        Motive: $('#addPublicConsult').val(),
+        DateTime: yyyy + "-" + mm + "-" + dd,
+    };
+
+    $.ajax({
+        url: "/Course/AddPrivateMessage",
+        data: JSON.stringify(privateMessage),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addPublicConsult').val("");
+            loadPrivateMessage(privateMessage.CourseId, privateMessage.ProfessorId, privateMessage.StudentId);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function loadPublicConsultationStudent(courseId, professorId) {
+    $('#ulConsultationspublic').empty();
+    $.getJSON('/Course/GetPublicConsultation/', { courseId, professorId }, function (publicConsultation, textStatus, jqXHR) {
+        $.each(publicConsultation, function (key, consultation) {
+            $.ajax({
+                url: "/Student/GetById/" + consultation.StudentId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var contenido = '';
+                    contenido += '<li class="list-group-item">';
+                    contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
+                    contenido += '<span>' + consultation.Motive + ' </span>';
+                    contenido += '</br>';
+                    contenido += '<span>' + "Fecha publicación: " + '</span>';
+                    contenido += '<span>' + consultation.DateTime + '</span>';
+                    contenido += '</li>';
+                    $('#ulConsultationspublic').append(contenido);
+                },
+
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            });
+        });
+    });  
+}
+
+function loadPrivateMessage(courseId, professorId, studentId) {
+    $('#ulConsultationspublic').empty();
+    $.getJSON('/Course/GetPrivateMessage/', { courseId, professorId, studentId }, function (privateMessage, textStatus, jqXHR) {
+        $.each(privateMessage, function (key, consultation) {
+            $.ajax({
+                url: "/Student/GetById/" + consultation.StudentId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var contenido = '';
+                    contenido += '<li class="list-group-item">';
+                    contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
+                    contenido += '<span>' + consultation.Motive + ' </span>';
+                    contenido += '</br>';
+                    contenido += '<span>' + "Fecha publicación: " + '</span>';
+                    contenido += '<span>' + consultation.DateTime + '</span>';
+                    contenido += '</li>';
+                    $('#ulConsultationspublic').append(contenido);
+                },
+
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            });
+        });
     });
 }

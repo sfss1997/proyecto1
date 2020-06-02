@@ -83,6 +83,8 @@
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__40C49C62" />
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Creat__41B8C09B" />
         <AssociationConnector Association="IF4101PICESModel.FK__SocialNet__Updat__42ACE4D4" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" />
+        <AssociationConnector Association="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

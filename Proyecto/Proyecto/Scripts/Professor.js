@@ -608,11 +608,22 @@ function professorCourses() {
         success: function (result) {
             var html = '';
             $.each(result, function (key, item) {
+                var cycle = "";
+                if (item.Cycle == 1) {
+                    cycle = "I Semestre"
+                }
+                else if (item.Cycle == 2) {
+                    cycle = "II Semestre"
+                }
+                else if (item.Cycle == 3) {
+                    cycle = "Verano"
+                }
+
                 html += '<tr>';
                 html += '<td>' + item.Initials + '</td>';
                 html += '<td>' + item.CourseName + '</td>';
-                html += '<td>' + item.Cycle + '</td>';
-                html += '<td><a href="#" onclick="return GetById(' + item.StudentId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.StudentId + ')">Delete</a></td>';
+                html += '<td>' + cycle + '</td>';
+                html += '<td><a href="#" onclick="return publicConsultationProfessor(' + item.CourseId + ')">Consultas públicas</a> | <a href="#" onclick="privateConsultationProfessor(' + item.CourseId + ')">Consultas privadas</a> | <a href="#" onclick="appointmentProfessor(' + item.CourseId + ')">Citas atención</a></td>';
             });
             $('.professorCourses').html(html);
 

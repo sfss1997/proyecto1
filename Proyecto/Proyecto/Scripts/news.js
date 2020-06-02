@@ -77,6 +77,7 @@ function addNews() {
     $('#btnAddNews').show();
 
     var news = {
+        Id: 0,
         Title: $("#NewsTitle").val(),
         Text: $('#text').val(),
         DateTime: $('#Date').val(),
@@ -308,6 +309,7 @@ function addComments() {
         dataType: "json",
         success: function (result) {
             getComments(newsId);
+            $("#addComment").val("");
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

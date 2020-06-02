@@ -330,6 +330,7 @@ function enrollNewCourse() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            studentCourses();
             $('#myModalEnrollCourse').modal('hide');
             $('.modal-backdrop').hide();
         },
@@ -360,4 +361,5 @@ function enrollNewCourseProfessor() {
         }
     });
 }
+
 

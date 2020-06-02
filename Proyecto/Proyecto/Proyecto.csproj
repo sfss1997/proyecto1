@@ -189,6 +189,9 @@
     <Compile Include="Models\GetNameSocialNetworks_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetPrivateMessage_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetProfessorByIdCourse_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetProvinces_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPublicConsultation_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetSocialNetworksByIdProfessor_Result.cs">

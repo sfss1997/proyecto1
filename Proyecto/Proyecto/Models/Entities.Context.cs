@@ -861,5 +861,115 @@ namespace Proyecto.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfessorCourses_Result>("SPGetProfessorCourses", professorIdParameter);
         }
+    
+        public virtual int InsertPrivateMessage(Nullable<int> courseId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var motiveParameter = motive != null ?
+                new ObjectParameter("Motive", motive) :
+                new ObjectParameter("Motive", typeof(string));
+    
+            var dateTimeParameter = dateTime.HasValue ?
+                new ObjectParameter("DateTime", dateTime) :
+                new ObjectParameter("DateTime", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertPrivateMessage", courseIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
+        }
+    
+        public virtual int InsertPublicConsultation(Nullable<int> courseId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var motiveParameter = motive != null ?
+                new ObjectParameter("Motive", motive) :
+                new ObjectParameter("Motive", typeof(string));
+    
+            var dateTimeParameter = dateTime.HasValue ?
+                new ObjectParameter("DateTime", dateTime) :
+                new ObjectParameter("DateTime", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertPublicConsultation", courseIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
+        }
+    
+        public virtual ObjectResult<GetPrivateMessage_Result> GetPrivateMessage(Nullable<int> courseId, Nullable<int> professorId, Nullable<int> studentId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPrivateMessage_Result>("GetPrivateMessage", courseIdParameter, professorIdParameter, studentIdParameter);
+        }
+    
+        public virtual ObjectResult<GetPublicConsultation_Result> GetPublicConsultation(Nullable<int> courseId, Nullable<int> professorId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPublicConsultation_Result>("GetPublicConsultation", courseIdParameter, professorIdParameter);
+        }
+    
+        public virtual ObjectResult<GetPrivateMessage_Result> SPGetPrivateMessage(Nullable<int> courseId, Nullable<int> professorId, Nullable<int> studentId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPrivateMessage_Result>("SPGetPrivateMessage", courseIdParameter, professorIdParameter, studentIdParameter);
+        }
+    
+        public virtual ObjectResult<GetPublicConsultation_Result> SPGetPublicConsultation(Nullable<int> courseId, Nullable<int> professorId)
+        {
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPublicConsultation_Result>("SPGetPublicConsultation", courseIdParameter, professorIdParameter);
+        }
     }
 }

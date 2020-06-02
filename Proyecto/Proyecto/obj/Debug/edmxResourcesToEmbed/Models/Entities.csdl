@@ -125,6 +125,8 @@
     <NavigationProperty Name="Users" Relationship="Self.FK__PrivateMe__Creat__24E777C3" FromRole="PrivateMessage" ToRole="Users" />
     <NavigationProperty Name="Users1" Relationship="Self.FK__PrivateMe__Updat__25DB9BFC" FromRole="PrivateMessage" ToRole="Users" />
     <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1" FromRole="PrivateMessage" ToRole="Student" />
+    <Property Name="ProfessorId" Type="Int32" />
+    <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" FromRole="PrivateMessage" ToRole="Professor" />
   </EntityType>
   <EntityType Name="Professor">
     <Key>
@@ -149,6 +151,8 @@
     <NavigationProperty Name="Users2" Relationship="Self.FK__Professor__Updat__27C3E46E" FromRole="Professor" ToRole="Users" />
     <NavigationProperty Name="SocialNetworksProfessor" Relationship="Self.FK__SocialNetwor__Id__038683F8" FromRole="Professor" ToRole="SocialNetworksProfessor" />
     <NavigationProperty Name="SocialNetworksProfessor1" Relationship="IF4101PICESModel.FK__SocialNet__Profe__0C50D423" FromRole="Professor" ToRole="SocialNetworksProfessor" />
+    <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" FromRole="Professor" ToRole="PrivateMessage" />
+    <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="Professor" ToRole="PublicConsultation" />
   </EntityType>
   <EntityType Name="ProfessorCourse">
     <Key>
@@ -198,6 +202,8 @@
     <NavigationProperty Name="Users" Relationship="Self.FK__PublicCon__Creat__2C88998B" FromRole="PublicConsultation" ToRole="Users" />
     <NavigationProperty Name="Users1" Relationship="Self.FK__PublicCon__Updat__2D7CBDC4" FromRole="PublicConsultation" ToRole="Users" />
     <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PublicCon__Stude__178D7CA5" FromRole="PublicConsultation" ToRole="Student" />
+    <Property Name="ProfessorId" Type="Int32" />
+    <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="PublicConsultation" ToRole="Professor" />
   </EntityType>
   <EntityType Name="SocialNetworksProfessor">
     <Key>
@@ -1327,6 +1333,46 @@
     <FunctionImport Name="SPGetProfessorCourses" ReturnType="Collection(IF4101PICESModel.GetProfessorCourses_Result)">
       <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <AssociationSet Name="FK__PrivateMe__Profe__6F7F8B4B" Association="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PublicCon__Profe__6E8B6712" Association="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <FunctionImport Name="InsertPrivateMessage">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="Motive" Mode="In" Type="String" />
+      <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPublicConsultation">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="Motive" Mode="In" Type="String" />
+      <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetPublicConsultation_Result)">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetPublicConsultation_Result)">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1741,5 +1787,45 @@
     <Property Type="Int32" Name="ProfessorId" Nullable="false" />
     <Property Type="String" Name="ProfessorName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="ProfessorLastName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <Association Name="FK__PrivateMe__Profe__6F7F8B4B">
+    <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrivateMessage">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PublicCon__Profe__6E8B6712">
+    <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.PublicConsultation" Role="PublicConsultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PublicConsultation">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetPrivateMessage_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="CourseId" Nullable="true" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetPublicConsultation_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="CourseId" Nullable="true" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="ProfessorId" Nullable="true" />
   </ComplexType>
 </Schema>

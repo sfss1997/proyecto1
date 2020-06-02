@@ -52,15 +52,25 @@ namespace Proyecto.Controllers
                 client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
                 try
                 {
-                    var responseTask = client.PostAsJsonAsync("PostComment", comment);
+                    var responseTask = client.PostAsJsonAsync<Comment>("PostComment", comment);
                     responseTask.Wait();
+
+                    var result = responseTask.Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<Comment>();
+                        readTask.Wait();
+
+                        comment = readTask.Result;
+                    }
                 }
                 catch (AggregateException agg_ex)
                 {
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(comment, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteComment(int id)
