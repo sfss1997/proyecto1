@@ -207,6 +207,12 @@
     <Compile Include="Models\GetPublicConsultation_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetRepliesPrivateMessage_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRepliesPublicConsultation_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetSocialNetworksByIdProfessor_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -241,6 +247,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PublicConsultation.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RepliesPrivateMessage.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepliesPublicConsultation.cs">

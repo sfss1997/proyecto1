@@ -22,6 +22,7 @@ namespace Proyecto.Models
             this.PrivateMessage = new HashSet<PrivateMessage>();
             this.PublicConsultation = new HashSet<PublicConsultation>();
             this.RepliesPublicConsultation = new HashSet<RepliesPublicConsultation>();
+            this.RepliesPrivateMessage = new HashSet<RepliesPrivateMessage>();
         }
     
         public int Id { get; set; }
@@ -52,5 +53,7 @@ namespace Proyecto.Models
         public virtual ICollection<PublicConsultation> PublicConsultation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RepliesPublicConsultation> RepliesPublicConsultation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RepliesPrivateMessage> RepliesPrivateMessage { get; set; }
     }
 }

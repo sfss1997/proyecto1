@@ -46,6 +46,7 @@ namespace Proyecto.Models
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<SocialNetworksCatalog> SocialNetworksCatalog { get; set; }
         public virtual DbSet<RepliesPublicConsultation> RepliesPublicConsultation { get; set; }
+        public virtual DbSet<RepliesPrivateMessage> RepliesPrivateMessage { get; set; }
     
         public virtual int DeleteCourse(Nullable<int> id)
         {
@@ -996,6 +997,67 @@ namespace Proyecto.Models
                 new ObjectParameter("DateTime", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRepliesPublicConsultation", publicConsultationIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
+        }
+    
+        public virtual ObjectResult<GetRepliesPublicConsultation_Result> GetRepliesPublicConsultation(Nullable<int> publicConsultationId)
+        {
+            var publicConsultationIdParameter = publicConsultationId.HasValue ?
+                new ObjectParameter("PublicConsultationId", publicConsultationId) :
+                new ObjectParameter("PublicConsultationId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRepliesPublicConsultation_Result>("GetRepliesPublicConsultation", publicConsultationIdParameter);
+        }
+    
+        public virtual ObjectResult<GetRepliesPublicConsultation_Result> SPGetRepliesPublicConsultation(Nullable<int> publicConsultationId)
+        {
+            var publicConsultationIdParameter = publicConsultationId.HasValue ?
+                new ObjectParameter("PublicConsultationId", publicConsultationId) :
+                new ObjectParameter("PublicConsultationId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRepliesPublicConsultation_Result>("SPGetRepliesPublicConsultation", publicConsultationIdParameter);
+        }
+    
+        public virtual ObjectResult<GetRepliesPrivateMessage_Result> GetRepliesPrivateMessage(Nullable<int> privateMessageId)
+        {
+            var privateMessageIdParameter = privateMessageId.HasValue ?
+                new ObjectParameter("PrivateMessageId", privateMessageId) :
+                new ObjectParameter("PrivateMessageId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRepliesPrivateMessage_Result>("GetRepliesPrivateMessage", privateMessageIdParameter);
+        }
+    
+        public virtual int InsertRepliesPrivateMessage(Nullable<int> privateMessageId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        {
+            var privateMessageIdParameter = privateMessageId.HasValue ?
+                new ObjectParameter("PrivateMessageId", privateMessageId) :
+                new ObjectParameter("PrivateMessageId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("StudentId", studentId) :
+                new ObjectParameter("StudentId", typeof(int));
+    
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var motiveParameter = motive != null ?
+                new ObjectParameter("Motive", motive) :
+                new ObjectParameter("Motive", typeof(string));
+    
+            var dateTimeParameter = dateTime.HasValue ?
+                new ObjectParameter("DateTime", dateTime) :
+                new ObjectParameter("DateTime", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRepliesPrivateMessage", privateMessageIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
+        }
+    
+        public virtual ObjectResult<GetRepliesPrivateMessage_Result> SPGetRepliesPrivateMessage(Nullable<int> privateMessageId)
+        {
+            var privateMessageIdParameter = privateMessageId.HasValue ?
+                new ObjectParameter("PrivateMessageId", privateMessageId) :
+                new ObjectParameter("PrivateMessageId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRepliesPrivateMessage_Result>("SPGetRepliesPrivateMessage", privateMessageIdParameter);
         }
     }
 }

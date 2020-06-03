@@ -127,6 +127,7 @@
     <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__PrivateMe__Stude__13BCEBC1" FromRole="PrivateMessage" ToRole="Student" />
     <Property Name="ProfessorId" Type="Int32" />
     <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" FromRole="PrivateMessage" ToRole="Professor" />
+    <NavigationProperty Name="RepliesPrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230" FromRole="PrivateMessage" ToRole="RepliesPrivateMessage" />
   </EntityType>
   <EntityType Name="Professor">
     <Key>
@@ -154,6 +155,7 @@
     <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__PrivateMe__Profe__6F7F8B4B" FromRole="Professor" ToRole="PrivateMessage" />
     <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="Professor" ToRole="PublicConsultation" />
     <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" FromRole="Professor" ToRole="RepliesPublicConsultation" />
+    <NavigationProperty Name="RepliesPrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" FromRole="Professor" ToRole="RepliesPrivateMessage" />
   </EntityType>
   <EntityType Name="ProfessorCourse">
     <Key>
@@ -1395,6 +1397,38 @@
       <Parameter Name="Motive" Mode="In" Type="String" />
       <Parameter Name="DateTime" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="GetRepliesPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetRepliesPublicConsultation_Result)">
+      <Parameter Name="PublicConsultationId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetRepliesPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetRepliesPublicConsultation_Result)">
+      <Parameter Name="PublicConsultationId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="RepliesPrivateMessage" EntityType="IF4101PICESModel.RepliesPrivateMessage" />
+    <AssociationSet Name="FK__RepliesPr__Priva__7BE56230" Association="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230">
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPr__Profe__7DCDAAA2" Association="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPr__Stude__7CD98669" Association="IF4101PICESModel.FK__RepliesPr__Stude__7CD98669">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
+    </AssociationSet>
+    <FunctionImport Name="GetRepliesPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetRepliesPrivateMessage_Result)">
+      <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertRepliesPrivateMessage">
+      <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="Motive" Mode="In" Type="String" />
+      <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetRepliesPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetRepliesPrivateMessage_Result)">
+      <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -1519,6 +1553,7 @@
     <NavigationProperty Name="StudentCourse" Relationship="IF4101PICESModel.FK__StudentCo__Stude__084B3915" FromRole="Student" ToRole="StudentCourse" />
     <NavigationProperty Name="SocialNetworksStudent1" Relationship="IF4101PICESModel.FK__SocialNet__Stude__0880433F" FromRole="Student" ToRole="SocialNetworksStudent" />
     <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Stude__753864A1" FromRole="Student" ToRole="RepliesPublicConsultation" />
+    <NavigationProperty Name="RepliesPrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Stude__7CD98669" FromRole="Student" ToRole="RepliesPrivateMessage" />
   </EntityType>
   <Association Name="FK__Appointme__Stude__0FEC5ADD">
     <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
@@ -1897,4 +1932,70 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="GetRepliesPublicConsultation_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="PublicConsultationId" Nullable="true" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="RepliesPrivateMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrivateMessageId" Type="Int32" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="ProfessorId" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Motive" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230" FromRole="RepliesPrivateMessage" ToRole="PrivateMessage" />
+    <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" FromRole="RepliesPrivateMessage" ToRole="Professor" />
+    <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__RepliesPr__Stude__7CD98669" FromRole="RepliesPrivateMessage" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK__RepliesPr__Priva__7BE56230">
+    <End Type="IF4101PICESModel.PrivateMessage" Role="PrivateMessage" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.RepliesPrivateMessage" Role="RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PrivateMessage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="PrivateMessageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPr__Profe__7DCDAAA2">
+    <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.RepliesPrivateMessage" Role="RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPr__Stude__7CD98669">
+    <End Type="IF4101PICESModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="IF4101PICESModel.RepliesPrivateMessage" Role="RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetRepliesPrivateMessage_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="PrivateMessageId" Nullable="true" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+  </ComplexType>
 </Schema>

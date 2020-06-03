@@ -89,6 +89,10 @@
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" />
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPu__Publi__74444068" />
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPu__Stude__753864A1" />
+        <EntityTypeShape EntityType="IF4101PICESModel.RepliesPrivateMessage" Width="1.5" PointX="19.5" PointY="18.125" />
+        <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230" />
+        <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" />
+        <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Stude__7CD98669" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

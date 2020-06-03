@@ -14,6 +14,12 @@ namespace Proyecto.Models
     
     public partial class PrivateMessage
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PrivateMessage()
+        {
+            this.RepliesPrivateMessage = new HashSet<RepliesPrivateMessage>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> CourseId { get; set; }
         public Nullable<int> StudentId { get; set; }
@@ -30,5 +36,7 @@ namespace Proyecto.Models
         public virtual Users Users1 { get; set; }
         public virtual Student Student { get; set; }
         public virtual Professor Professor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RepliesPrivateMessage> RepliesPrivateMessage { get; set; }
     }
 }

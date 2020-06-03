@@ -758,5 +758,66 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="InsertRepliesPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertRepliesPublicConsultation" />
+    <FunctionImportMapping FunctionImportName="GetRepliesPublicConsultation" FunctionName="IF4101PICESModel.Store.GetRepliesPublicConsultation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetRepliesPublicConsultation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PublicConsultationId" ColumnName="PublicConsultationId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetRepliesPublicConsultation" FunctionName="IF4101PICESModel.Store.GetRepliesPublicConsultation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetRepliesPublicConsultation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PublicConsultationId" ColumnName="PublicConsultationId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="RepliesPrivateMessage">
+      <EntityTypeMapping TypeName="IF4101PICESModel.RepliesPrivateMessage">
+        <MappingFragment StoreEntitySet="RepliesPrivateMessage">
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="PrivateMessageId" ColumnName="PrivateMessageId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetRepliesPrivateMessage" FunctionName="IF4101PICESModel.Store.GetRepliesPrivateMessage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetRepliesPrivateMessage_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PrivateMessageId" ColumnName="PrivateMessageId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertRepliesPrivateMessage" FunctionName="IF4101PICESModel.Store.InsertRepliesPrivateMessage" />
+    <FunctionImportMapping FunctionImportName="SPGetRepliesPrivateMessage" FunctionName="IF4101PICESModel.Store.GetRepliesPrivateMessage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetRepliesPrivateMessage_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PrivateMessageId" ColumnName="PrivateMessageId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

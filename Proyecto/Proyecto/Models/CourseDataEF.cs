@@ -180,5 +180,43 @@ namespace Proyecto.Models
 
             }
         }
+
+        public List<GetRepliesPublicConsultation_Result> GetRepliesPublicConsultation(int publicConsultationId)
+        {
+            using (var context = new Entities())
+            {
+                var replies = context.SPGetRepliesPublicConsultation(publicConsultationId).ToList();
+
+                return replies;
+
+            }
+        }
+
+        public int AddRepliesPrivateMessage(RepliesPrivateMessage repliesPrivateMessage)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertRepliesPrivateMessage(
+                                       repliesPrivateMessage.PrivateMessageId,
+                                       repliesPrivateMessage.StudentId,
+                                       repliesPrivateMessage.ProfessorId,
+                                       repliesPrivateMessage.Motive,
+                                       repliesPrivateMessage.DateTime);
+            }
+            return resultToReturn;
+        }
+
+        public List<GetRepliesPrivateMessage_Result> GetRepliesPrivateMessage(int privateMessageId)
+        {
+            using (var context = new Entities())
+            {
+                var replies = context.SPGetRepliesPrivateMessage(privateMessageId).ToList();
+
+                return replies;
+
+            }
+        }
     }
 }

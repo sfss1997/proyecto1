@@ -743,30 +743,14 @@ function publicConsultation(courseId, professorId) {
     $('#modalPublicConsultationStudent').modal('show');
 
     $('#titlePublicConsultation').show();
-    $('#titlePrivateConsultation').hide();
     $('#btnConsultationPublicStudent').show();
     $('#btnConsultationPrivateStudent').hide();
-    $('#btnConsultationPublicProfessor').hide();
     $('#btnConsultationPrivateProfessor').hide();
 
     $('#courseIdPublicConsultation').val(courseId);
     $('#professorIdPublicConsultation').val(professorId);
 
     loadPublicConsultationStudent(courseId, professorId);
-}
-
-function privateConsultation(courseId, professorId, studentId) {
-    $('#modalPublicConsultationStudent').modal('show');
-
-    $('#titlePublicConsultation').hide();
-    $('#titlePrivateConsultation').show();
-    $('#btnConsultationPublicStudent').hide();
-    $('#btnConsultationPrivateStudent').show();
-
-    $('#courseIdPublicConsultation').val(courseId);
-    $('#professorIdPublicConsultation').val(professorId);
-    $('#studentIdPublicConsultation').val(studentId);
-    loadPrivateMessage(courseId, professorId, studentId);
 }
 
 function sendPublicConsultationStudent() {
@@ -802,38 +786,6 @@ function sendPublicConsultationStudent() {
     });
 }
 
-function sendPrivateConsultationStudent() {
-
-    var date = new Date();
-    var dd = date.getDate();
-    var mm = date.getMonth() + 1;
-    var yyyy = date.getFullYear();
-
-    var privateMessage = {
-        CourseId: $('#courseIdPublicConsultation').val(),
-        StudentId: $('#studentIdPublicConsultation').val(),
-        ProfessorId: $('#professorIdPublicConsultation').val(),
-        Motive: $('#addPublicConsult').val(),
-        DateTime: yyyy + "-" + mm + "-" + dd,
-    };
-
-    $.ajax({
-        url: "/Course/AddPrivateMessage",
-        data: JSON.stringify(privateMessage),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            $('#addPublicConsult').val("");
-            loadPrivateMessage(privateMessage.CourseId, privateMessage.ProfessorId, privateMessage.StudentId);
-            loadPrivateMessageProfessor(courseId, professorId, studentId);
-        },
-        error: function (errorMessage) {
-            alert(errorMessage.responseText);
-        }
-    });
-}
-
 function loadPublicConsultationStudent(courseId, professorId) {
     $('#ulConsultationspublic').empty();
     $.getJSON('/Course/GetPublicConsultation/', { courseId, professorId }, function (publicConsultation, textStatus, jqXHR) {
@@ -845,12 +797,14 @@ function loadPublicConsultationStudent(courseId, professorId) {
                 dataType: "json",
                 success: function (data) {
                     var contenido = '';
+
                     contenido += '<li class="list-group-item">';
                     contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
                     contenido += '<span>' + consultation.Motive + ' </span>';
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha publicación: " + '</span>';
                     contenido += '<span>' + consultation.DateTime + '</span>';
+                    contenido += '<button type="button" class="btn" onclick="viewConsultation(' + consultation.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulConsultationspublic').append(contenido);
                 },
@@ -860,11 +814,161 @@ function loadPublicConsultationStudent(courseId, professorId) {
                 }
             });
         });
-    });  
+    });
+}
+
+function viewConsultation(id) {
+    $('#ulRepliesConsultationspublic').empty();
+    $('#form').empty();
+
+    var studentId = document.getElementById("labelStudentId").innerHTML;
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    $.ajax({
+        url: "/Course/GetRepliesPublicConsultation/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                if (item.StudentId != null) {
+                    $.ajax({
+                        url: "/Student/GetById/" + item.StudentId,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (student) {
+                            if (student.Id == item.StudentId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + student.StudentName + " " + student.LastName + ': </span>';
+                                contenido += '<span>' + item.Motive + ' </span>';
+                                contenido += '</br>';
+                                contenido += '<span>' + "Fecha publicación: " + '</span>';
+                                contenido += '<span>' + item.DateTime + '</span>';
+                                contenido += '</li>';
+                                $('#ulRepliesConsultationspublic').append(contenido);
+                            }
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                } if (item.ProfessorId != null) {
+                    $.ajax({
+                        url: "/Professor/GetById/" + item.ProfessorId,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (professor) {
+                            if (professor.Id == item.ProfessorId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + professor.Name + " " + professor.LastName + ': </span>';
+                                contenido += '<span>' + item.Motive + ' </span>';
+                                contenido += '</br>';
+                                contenido += '<span>' + "Fecha publicación: " + '</span>';
+                                contenido += '<span>' + item.DateTime + '</span>';
+                                contenido += '</li>';
+                                $('#ulRepliesConsultationspublic').append(contenido);
+                            }
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                }
+            });
+            var contentForm = '';
+            contentForm += '<input type="text" class="form-control" id="addRepliesPublicConsult" placeholder="Respuesta" autocomplete="off" >';
+            contentForm += '<button type="button" class="btn" onclick="sendRepliesPublicConsultationStudent(' + id + ');" id="btnRepliesPublicConsult">Enviar</button>'
+            $('#form').append(contentForm);
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function sendRepliesPublicConsultationStudent(id) {
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+
+    var studentId = document.getElementById("labelStudentId").innerHTML;
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    var repliesPublicConsultation = {
+        PublicConsultationId: id,
+        StudentId: studentId,
+        ProfessorId: professorId,
+        Motive: $('#addRepliesPublicConsult').val(),
+        DateTime: yyyy + "-" + mm + "-" + dd,
+    };
+
+    $.ajax({
+        url: "/Course/AddRepliesPublicConsultation",
+        data: JSON.stringify(repliesPublicConsultation),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addRepliesPublicConsult').val("");
+            viewConsultation(id);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+    
+}
+
+function privateConsultation(courseId, professorId, studentId) {
+    $('#modalPrivateMessage').modal('show');
+
+    $('#courseIdPrivateMessage').val(courseId);
+    $('#professorIdPrivateMessage').val(professorId);
+    $('#studentIdPrivateMessage').val(studentId);
+    loadPrivateMessage(courseId, professorId, studentId);
+}
+
+function sendPrivateMessageStudent() {
+
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+
+    var privateMessage = {
+        CourseId: $('#courseIdPrivateMessage').val(),
+        StudentId: $('#studentIdPrivateMessage').val(),
+        ProfessorId: $('#professorIdPrivateMessage').val(),
+        Motive: $('#addPrivateMessage').val(),
+        DateTime: yyyy + "-" + mm + "-" + dd,
+    };
+
+    $.ajax({
+        url: "/Course/AddPrivateMessage",
+        data: JSON.stringify(privateMessage),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addPrivateMessage').val("");
+            loadPrivateMessage(privateMessage.CourseId, privateMessage.ProfessorId, privateMessage.StudentId);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
 }
 
 function loadPrivateMessage(courseId, professorId, studentId) {
-    $('#ulConsultationspublic').empty();
+    $('#ulPrivateMessage').empty();
     $.getJSON('/Course/GetPrivateMessage/', { courseId, professorId, studentId }, function (privateMessage, textStatus, jqXHR) {
         $.each(privateMessage, function (key, consultation) {
             $.ajax({
@@ -881,7 +985,7 @@ function loadPrivateMessage(courseId, professorId, studentId) {
                     contenido += '<span>' + "Fecha publicación: " + '</span>';
                     contenido += '<span>' + consultation.DateTime + '</span>';
                     contenido += '</li>';
-                    $('#ulConsultationspublic').append(contenido);
+                    $('#ulPrivateMessage').append(contenido);
                 },
 
                 error: function (errorMessage) {

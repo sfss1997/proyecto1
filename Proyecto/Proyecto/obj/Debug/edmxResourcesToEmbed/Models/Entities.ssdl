@@ -147,6 +147,17 @@
     <Property Name="UpdatedAt" Type="date" />
     <Property Name="ProfessorId" Type="int" />
   </EntityType>
+  <EntityType Name="RepliesPrivateMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrivateMessageId" Type="int" />
+    <Property Name="StudentId" Type="int" />
+    <Property Name="ProfessorId" Type="int" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="RepliesPublicConsultation">
     <Key>
       <PropertyRef Name="Id" />
@@ -711,6 +722,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__RepliesPr__Priva__7BE56230">
+    <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="0..1" />
+    <End Role="RepliesPrivateMessage" Type="Self.RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PrivateMessage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="PrivateMessageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPr__Profe__7DCDAAA2">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="RepliesPrivateMessage" Type="Self.RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RepliesPr__Stude__7CD98669">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="RepliesPrivateMessage" Type="Self.RepliesPrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepliesPrivateMessage">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__RepliesPu__Profe__762C88DA">
     <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
     <End Role="RepliesPublicConsultation" Type="Self.RepliesPublicConsultation" Multiplicity="*" />
@@ -977,6 +1024,12 @@
     <Parameter Name="CourseId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetRepliesPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PrivateMessageId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetRepliesPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PublicConsultationId" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetSocialNetworksByIdProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -1002,6 +1055,13 @@
   </Function>
   <Function Name="InsertPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="Motive" Type="varchar" Mode="In" />
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="InsertRepliesPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PrivateMessageId" Type="int" Mode="In" />
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Motive" Type="varchar" Mode="In" />
@@ -1113,6 +1173,7 @@
     <EntitySet Name="ProfessorCourse" EntityType="Self.ProfessorCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PublicConsultation" EntityType="Self.PublicConsultation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepliesPrivateMessage" EntityType="Self.RepliesPrivateMessage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RepliesPublicConsultation" EntityType="Self.RepliesPublicConsultation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksCatalog" EntityType="Self.SocialNetworksCatalog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SocialNetworksProfessor" EntityType="Self.SocialNetworksProfessor" Schema="dbo" store:Type="Tables" />
@@ -1279,6 +1340,18 @@
     <AssociationSet Name="FK__PublicCon__Updat__3EDC53F0" Association="Self.FK__PublicCon__Updat__3EDC53F0">
       <End Role="Users" EntitySet="Users" />
       <End Role="PublicConsultation" EntitySet="PublicConsultation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPr__Priva__7BE56230" Association="Self.FK__RepliesPr__Priva__7BE56230">
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPr__Profe__7DCDAAA2" Association="Self.FK__RepliesPr__Profe__7DCDAAA2">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RepliesPr__Stude__7CD98669" Association="Self.FK__RepliesPr__Stude__7CD98669">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
     </AssociationSet>
     <AssociationSet Name="FK__RepliesPu__Profe__762C88DA" Association="Self.FK__RepliesPu__Profe__762C88DA">
       <End Role="Professor" EntitySet="Professor" />
