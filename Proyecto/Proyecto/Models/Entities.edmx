@@ -25,11 +25,12 @@
           <Property Name="StudentId" Type="int" />
           <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Accepted" Type="int" Nullable="false" />
-          <Property Name="DateTime" Type="datetime" />
+          <Property Name="DateTime" Type="varchar" MaxLength="50" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreateAt" Type="date" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedAt" Type="date" />
+          <Property Name="ProfessorId" Type="int" />
         </EntityType>
         <EntityType Name="Canton">
           <Key>
@@ -144,7 +145,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseId" Type="int" />
           <Property Name="StudentId" Type="int" />
-          <Property Name="DateTime" Type="datetime" />
+          <Property Name="DateTime" Type="varchar" MaxLength="50" />
           <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreateAt" Type="date" />
@@ -171,7 +172,7 @@
           <Property Name="PublicConsultationId" Type="int" />
           <Property Name="StudentId" Type="int" />
           <Property Name="ProfessorId" Type="int" />
-          <Property Name="DateTime" Type="datetime" />
+          <Property Name="DateTime" Type="varchar" MaxLength="50" />
           <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="SocialNetworksCatalog">
@@ -292,6 +293,18 @@
             </Principal>
             <Dependent Role="Appointment">
               <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Appointme__Profe__00AA174D">
+          <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ProfessorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1000,6 +1013,14 @@
         <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="ProfessorId" Type="int" Mode="In" />
+          <Parameter Name="CourseId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAppointmentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetCantonsByIdProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
@@ -1013,7 +1034,6 @@
         <Function Name="GetPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CourseId" Type="int" Mode="In" />
           <Parameter Name="ProfessorId" Type="int" Mode="In" />
-          <Parameter Name="StudentId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -1047,6 +1067,14 @@
         <Function Name="GetStudentCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentId" Type="int" Mode="In" />
         </Function>
+        <Function Name="InsertAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CourseId" Type="int" Mode="In" />
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="ProfessorId" Type="int" Mode="In" />
+          <Parameter Name="Motive" Type="varchar" Mode="In" />
+          <Parameter Name="Accepted" Type="int" Mode="In" />
+          <Parameter Name="DateTime" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="InsertPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CourseId" Type="int" Mode="In" />
           <Parameter Name="StudentId" Type="int" Mode="In" />
@@ -1063,7 +1091,7 @@
           <Parameter Name="StudentId" Type="int" Mode="In" />
           <Parameter Name="ProfessorId" Type="int" Mode="In" />
           <Parameter Name="Motive" Type="varchar" Mode="In" />
-          <Parameter Name="DateTime" Type="datetime" Mode="In" />
+          <Parameter Name="DateTime" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertRepliesPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PrivateMessageId" Type="int" Mode="In" />
@@ -1077,7 +1105,7 @@
           <Parameter Name="StudentId" Type="int" Mode="In" />
           <Parameter Name="ProfessorId" Type="int" Mode="In" />
           <Parameter Name="Motive" Type="varchar" Mode="In" />
-          <Parameter Name="DateTime" Type="datetime" Mode="In" />
+          <Parameter Name="DateTime" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StudentId" Type="int" Mode="In" />
@@ -1146,6 +1174,10 @@
         <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SelectUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="StatusAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AppointmentId" Type="int" Mode="In" />
+          <Parameter Name="Accepted" Type="int" Mode="In" />
+        </Function>
         <Function Name="StudentApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -1200,6 +1232,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__Appointme__Creat__2CBDA3B5" Association="Self.FK__Appointme__Creat__2CBDA3B5">
             <End Role="Users" EntitySet="Users" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Appointme__Profe__00AA174D" Association="Self.FK__Appointme__Profe__00AA174D">
+            <End Role="Professor" EntitySet="Professor" />
             <End Role="Appointment" EntitySet="Appointment" />
           </AssociationSet>
           <AssociationSet Name="FK__Appointme__Stude__214BF109" Association="Self.FK__Appointme__Stude__214BF109">
@@ -1462,7 +1498,7 @@
           <Property Name="StudentId" Type="Int32" />
           <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Accepted" Type="Int32" Nullable="false" />
-          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreateAt" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="Int32" />
@@ -1471,6 +1507,8 @@
           <NavigationProperty Name="Users" Relationship="Self.FK__Appointme__Creat__1B5E0D89" FromRole="Appointment" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__Appointme__Updat__1C5231C2" FromRole="Appointment" ToRole="Users" />
           <NavigationProperty Name="Student" Relationship="IF4101PICESModel.FK__Appointme__Stude__0FEC5ADD" FromRole="Appointment" ToRole="Student" />
+          <Property Name="ProfessorId" Type="Int32" />
+          <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__Appointme__Profe__00AA174D" FromRole="Appointment" ToRole="Professor" />
         </EntityType>
         <EntityType Name="Canton">
           <Key>
@@ -1595,6 +1633,7 @@
           <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__PublicCon__Profe__6E8B6712" FromRole="Professor" ToRole="PublicConsultation" />
           <NavigationProperty Name="RepliesPublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" FromRole="Professor" ToRole="RepliesPublicConsultation" />
           <NavigationProperty Name="RepliesPrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" FromRole="Professor" ToRole="RepliesPrivateMessage" />
+          <NavigationProperty Name="Appointment" Relationship="IF4101PICESModel.FK__Appointme__Profe__00AA174D" FromRole="Professor" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="ProfessorCourse">
           <Key>
@@ -1634,7 +1673,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseId" Type="Int32" />
           <Property Name="StudentId" Type="Int32" />
-          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreateAt" Type="DateTime" Precision="0" />
@@ -2790,21 +2829,11 @@
             <Parameter Name="StudentId" Mode="In" Type="Int32" />
             <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
             <Parameter Name="Motive" Mode="In" Type="String" />
-            <Parameter Name="DateTime" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="GetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
-            <Parameter Name="CourseId" Mode="In" Type="Int32" />
-            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
-            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="DateTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetPublicConsultation_Result)">
             <Parameter Name="CourseId" Mode="In" Type="Int32" />
             <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SPGetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
-            <Parameter Name="CourseId" Mode="In" Type="Int32" />
-            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
-            <Parameter Name="StudentId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetPublicConsultation_Result)">
             <Parameter Name="CourseId" Mode="In" Type="Int32" />
@@ -2834,7 +2863,7 @@
             <Parameter Name="StudentId" Mode="In" Type="Int32" />
             <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
             <Parameter Name="Motive" Mode="In" Type="String" />
-            <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetRepliesPublicConsultation" ReturnType="Collection(IF4101PICESModel.GetRepliesPublicConsultation_Result)">
           <Parameter Name="PublicConsultationId" Mode="In" Type="Int32" />
@@ -2856,7 +2885,7 @@
             <End Role="RepliesPrivateMessage" EntitySet="RepliesPrivateMessage" />
           </AssociationSet>
           <FunctionImport Name="GetRepliesPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetRepliesPrivateMessage_Result)">
-            <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+          <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="InsertRepliesPrivateMessage">
             <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
@@ -2866,7 +2895,47 @@
             <Parameter Name="DateTime" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPGetRepliesPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetRepliesPrivateMessage_Result)">
-            <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+          <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
+            <Parameter Name="CourseId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetPrivateMessage_Result)">
+            <Parameter Name="CourseId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK__Appointme__Profe__00AA174D" Association="IF4101PICESModel.FK__Appointme__Profe__00AA174D">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <FunctionImport Name="InsertAppointment">
+            <Parameter Name="CourseId" Mode="In" Type="Int32" />
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+            <Parameter Name="Motive" Mode="In" Type="String" />
+            <Parameter Name="Accepted" Mode="In" Type="Int32" />
+            <Parameter Name="DateTime" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="StatusAppointment">
+            <Parameter Name="AppointmentId" Mode="In" Type="Int32" />
+            <Parameter Name="Accepted" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAppointment" ReturnType="Collection(IF4101PICESModel.GetAppointment_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+            <Parameter Name="CourseId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetAppointment" ReturnType="Collection(IF4101PICESModel.GetAppointment_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+            <Parameter Name="CourseId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAppointmentById" ReturnType="Collection(IF4101PICESModel.GetAppointmentById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetAppointmentById" ReturnType="Collection(IF4101PICESModel.GetAppointmentById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetCantonsByIdProvince_Result">
@@ -3295,19 +3364,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="GetPrivateMessage_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="CourseId" Nullable="true" />
-          <Property Type="Int32" Name="StudentId" Nullable="true" />
-          <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
-          <Property Type="Int32" Name="ProfessorId" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="GetPublicConsultation_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="CourseId" Nullable="true" />
           <Property Type="Int32" Name="StudentId" Nullable="true" />
-          <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DateTime" Nullable="true" />
           <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ProfessorId" Nullable="true" />
         </ComplexType>
@@ -3329,7 +3390,7 @@
           <Property Name="PublicConsultationId" Type="Int32" />
           <Property Name="StudentId" Type="Int32" />
           <Property Name="ProfessorId" Type="Int32" />
-          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Motive" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__RepliesPu__Profe__762C88DA" FromRole="RepliesPublicConsultation" ToRole="Professor" />
           <NavigationProperty Name="PublicConsultation" Relationship="IF4101PICESModel.FK__RepliesPu__Publi__74444068" FromRole="RepliesPublicConsultation" ToRole="PublicConsultation" />
@@ -3375,7 +3436,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="PublicConsultationId" Nullable="true" />
           <Property Type="Int32" Name="StudentId" Nullable="true" />
-          <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DateTime" Nullable="true" />
           <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ProfessorId" Nullable="true" />
         </ComplexType>
@@ -3437,6 +3498,44 @@
           <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ProfessorId" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetPrivateMessage_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CourseId" Nullable="true" />
+          <Property Type="Int32" Name="StudentId" Nullable="true" />
+          <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK__Appointme__Profe__00AA174D">
+          <End Type="IF4101PICESModel.Professor" Role="Professor" Multiplicity="0..1" />
+          <End Type="IF4101PICESModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetAppointment_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CourseId" Nullable="true" />
+          <Property Type="Int32" Name="StudentId" Nullable="true" />
+          <Property Type="String" Name="DateTime" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+          <Property Type="Int32" Name="Accepted" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAppointmentById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CourseId" Nullable="true" />
+          <Property Type="Int32" Name="StudentId" Nullable="true" />
+          <Property Type="String" Name="DateTime" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+          <Property Type="Int32" Name="Accepted" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3458,6 +3557,7 @@
           <EntitySetMapping Name="Appointment">
             <EntityTypeMapping TypeName="IF4101PICESModel.Appointment">
               <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -4112,33 +4212,9 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertPrivateMessage" FunctionName="IF4101PICESModel.Store.InsertPrivateMessage" />
           <FunctionImportMapping FunctionImportName="InsertPublicConsultation" FunctionName="IF4101PICESModel.Store.InsertPublicConsultation" />
-          <FunctionImportMapping FunctionImportName="GetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-                <ScalarProperty Name="Motive" ColumnName="Motive" />
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetPublicConsultation" FunctionName="IF4101PICESModel.Store.GetPublicConsultation">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IF4101PICESModel.GetPublicConsultation_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-                <ScalarProperty Name="Motive" ColumnName="Motive" />
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPGetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -4259,6 +4335,84 @@
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="Motive" ColumnName="Motive" />
                 <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetPrivateMessage" FunctionName="IF4101PICESModel.Store.GetPrivateMessage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetPrivateMessage_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertAppointment" FunctionName="IF4101PICESModel.Store.InsertAppointment" />
+          <FunctionImportMapping FunctionImportName="StatusAppointment" FunctionName="IF4101PICESModel.Store.StatusAppointment" />
+          <FunctionImportMapping FunctionImportName="GetAppointment" FunctionName="IF4101PICESModel.Store.GetAppointment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointment_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetAppointment" FunctionName="IF4101PICESModel.Store.GetAppointment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointment_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAppointmentById" FunctionName="IF4101PICESModel.Store.GetAppointmentById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointmentById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetAppointmentById" FunctionName="IF4101PICESModel.Store.GetAppointmentById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointmentById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -731,7 +731,7 @@ function studentCourses() {
                 html += '<td>' + item.Credits + '</td>';
                 html += '<td>' + cycle + '</td>';
                 html += '<td>' + item.ProfessorName + " " + item.ProfessorLastName + '</td>';
-                html += '<td><a href="#" onclick="return publicConsultation(' + item.CourseId + ',' + item.ProfessorId + ')">Consulta Pública</a> | <a href="#" onclick="privateConsultation(' + item.CourseId + ',' + item.ProfessorId + ',' + item.StudentId + ')">Consulta Privada</a> | <a href="#" onclick="appointment(' + item.CourseId + ')">Cita de atención</a></td>';
+                html += '<td><a href="#" onclick="return publicConsultation(' + item.CourseId + ',' + item.ProfessorId + ')">Consulta Pública</a> | <a href="#" onclick="privateConsultation(' + item.CourseId + ',' + item.ProfessorId + ',' + item.StudentId + ')">Consulta Privada</a> | <a href="#" onclick="appointment(' + item.CourseId + ',' + item.ProfessorId + ',' + item.StudentId +')">Cita de atención</a></td>';
             });
             $('.tableStudentCourses').html(html);
 
@@ -936,7 +936,7 @@ function privateConsultation(courseId, professorId, studentId) {
     loadPrivateMessage(courseId, professorId, studentId);
 }
 
-function sendPrivateMessageStudent() {
+function sendPrivateMessage() {
 
     var date = new Date();
     var dd = date.getDate();
@@ -970,9 +970,9 @@ function sendPrivateMessageStudent() {
 function loadPrivateMessage(courseId, professorId, studentId) {
     $('#ulPrivateMessage').empty();
     $.getJSON('/Course/GetPrivateMessage/', { courseId, professorId, studentId }, function (privateMessage, textStatus, jqXHR) {
-        $.each(privateMessage, function (key, consultation) {
+        $.each(privateMessage, function (key, message) {
             $.ajax({
-                url: "/Student/GetById/" + consultation.StudentId,
+                url: "/Student/GetById/" + message.StudentId,
                 type: "GET",
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
@@ -980,10 +980,11 @@ function loadPrivateMessage(courseId, professorId, studentId) {
                     var contenido = '';
                     contenido += '<li class="list-group-item">';
                     contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
-                    contenido += '<span>' + consultation.Motive + ' </span>';
+                    contenido += '<span>' + message.Motive + ' </span>';
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha publicación: " + '</span>';
-                    contenido += '<span>' + consultation.DateTime + '</span>';
+                    contenido += '<span>' + message.DateTime + '</span>';
+                    contenido += '<button type="button" class="btn" onclick="viewMessage(' + message.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulPrivateMessage').append(contenido);
                 },
@@ -992,6 +993,220 @@ function loadPrivateMessage(courseId, professorId, studentId) {
                     alert(errorMessage.responseText);
                 }
             });
+        });
+    });
+}
+
+function viewMessage(id) {
+    $('#ulRepliesPrivateMessage').empty();
+    $('#formPrivateMessage').empty();
+
+    $.ajax({
+        url: "/Course/GetRepliesPrivateMessage/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                if (item.StudentId != null) {
+                    $.ajax({
+                        url: "/Student/GetById/" + item.StudentId,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (student) {
+                            if (student.Id == item.StudentId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + student.StudentName + " " + student.LastName + ': </span>';
+                                contenido += '<span>' + item.Motive + ' </span>';
+                                contenido += '</br>';
+                                contenido += '<span>' + "Fecha publicación: " + '</span>';
+                                contenido += '<span>' + item.DateTime + '</span>';
+                                contenido += '</li>';
+                                $('#ulRepliesPrivateMessage').append(contenido);
+                            }
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                } if (item.ProfessorId != null) {
+                    $.ajax({
+                        url: "/Professor/GetById/" + item.ProfessorId,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (professor) {
+                            if (professor.Id == item.ProfessorId) {
+                                var contenido = '';
+                                contenido += '<li class="list-group-item">';
+                                contenido += '<span>' + professor.Name + " " + professor.LastName + ': </span>';
+                                contenido += '<span>' + item.Motive + ' </span>';
+                                contenido += '</br>';
+                                contenido += '<span>' + "Fecha publicación: " + '</span>';
+                                contenido += '<span>' + item.DateTime + '</span>';
+                                contenido += '</li>';
+                                $('#ulRepliesPrivateMessage').append(contenido);
+                            }
+                        },
+                        error: function (errorMessage) {
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                }
+            });
+            var contentForm = '';
+            contentForm += '<input type="text" class="form-control" id="addRepliesPrivateMessage" placeholder="Respuesta" autocomplete="off" >';
+            contentForm += '</br>';
+            contentForm += '<button type="button" class="btn" onclick="sendRepliesPrivateMessage(' + id + ');" id="btnRepliesPrivateMessage">Enviar</button>'
+            $('#formPrivateMessage').append(contentForm);
+        },
+
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function sendRepliesPrivateMessage(id) {
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+
+    var studentId = document.getElementById("labelStudentId").innerHTML;
+    var professorId = document.getElementById("labelProfessorId").innerHTML;
+
+    var repliesPrivateMessage = {
+        PrivateMessageId: id,
+        StudentId: studentId,
+        ProfessorId: professorId,
+        Motive: $('#addRepliesPrivateMessage').val(),
+        DateTime: yyyy + "-" + mm + "-" + dd,
+    };
+
+    $.ajax({
+        url: "/Course/AddRepliesPrivateMessage",
+        data: JSON.stringify(repliesPrivateMessage),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addRepliesPrivateMessage').val("");
+            viewMessage(id);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function appointment(courseId, professorId, studentId) {
+    $('#modalAppointment').modal('show');
+
+    $('#courseIdAppointment').val(courseId);
+    $('#professorIdAppointment').val(professorId);
+    $('#studentIdAppointment').val(studentId);
+
+    loadAppointmentStudent(studentId, professorId, courseId);
+}
+
+function sendAppointment() {
+    var appointment = {
+        CourseId: $('#courseIdAppointment').val(),
+        StudentId: $('#studentIdAppointment').val(),
+        ProfessorId: $('#professorIdAppointment').val(),
+        Motive: $('#addAppointment').val(),
+        DateTime: $('#dateAppointment').val(),
+        Accepted: 0
+    };
+
+    $.ajax({
+        url: "/Course/AddAppointment",
+        data: JSON.stringify(appointment),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#addAppointment').val("");
+            loadAppointmentStudent($('#studentIdAppointment').val(), $('#professorIdAppointment').val(), $('#courseIdAppointment').val());
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function loadAppointmentStudent(studentId, professorId, courseId) {
+    $('#ulAppointment').empty();
+    $('#ulStatusAppointment').empty();
+    $.getJSON('/Course/GetAppointment/', { studentId, professorId, courseId }, function (appointment, textStatus, jqXHR) {
+        $.each(appointment, function (key, item) {
+            $.ajax({
+                url: "/Student/GetById/" + item.StudentId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var contenido = '';
+                    contenido += '<li class="list-group-item">';
+                    contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
+                    contenido += '<span>' + item.Motive + ' </span>';
+                    contenido += '</br>';
+                    contenido += '<span>' + "Fecha cita: " + '</span>';
+                    contenido += '<span>' + item.DateTime + '</span>';
+                    contenido += '<button type="button" class="btn" onclick="viewAppointment(' + item.Id + ')">Ver</button>';
+                    contenido += '</li>';
+                    $('#ulAppointment').append(contenido);
+                },
+
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            });
+        });
+    });
+}
+
+function viewAppointment(id) {
+    $('#ulStatusAppointment').empty();
+    $.getJSON('/Course/GetAppointmentById/', { id }, function (appointment, textStatus, jqXHR) {
+        var status = "";
+        if (appointment.Accepted == 0) {
+            status = "En espera";
+        } else if (appointment.Accepted == 1) {
+            status = "Aceptada";
+        }
+        else if (appointment.Accepted == 2) {
+            status = "Rechazada";
+        }
+
+        $.ajax({
+            url: "/Student/GetById/" + appointment.StudentId,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (student) {
+                var content = '';
+                content += '<li class="list-group-item">';
+                content += '<span>' + student.StudentName + " " + student.LastName + ': </span>';
+                content += '<span>' + appointment.Motive + ' </span>';
+                content += '</br>';
+                content += '<span>' + "Fecha publicación: " + '</span>';
+                content += '<span>' + appointment.DateTime + '</span>';
+                content += '</br>';
+                content += '<span>' + "Estado: " + '</span>';
+                content += '<span>' + status + '</span>';
+                content += '</li>';
+                $('#ulStatusAppointment').append(content);
+            },
+
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
         });
     });
 }

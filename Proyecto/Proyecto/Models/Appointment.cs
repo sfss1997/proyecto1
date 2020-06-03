@@ -19,15 +19,17 @@ namespace Proyecto.Models
         public Nullable<int> StudentId { get; set; }
         public string Motive { get; set; }
         public int Accepted { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
+        public string DateTime { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public Nullable<int> ProfessorId { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
         public virtual Student Student { get; set; }
+        public virtual Professor Professor { get; set; }
     }
 }

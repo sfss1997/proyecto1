@@ -20,11 +20,12 @@
     <Property Name="StudentId" Type="int" />
     <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Accepted" Type="int" Nullable="false" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="UpdatedAt" Type="date" />
+    <Property Name="ProfessorId" Type="int" />
   </EntityType>
   <EntityType Name="Canton">
     <Key>
@@ -139,7 +140,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseId" Type="int" />
     <Property Name="StudentId" Type="int" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
     <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
@@ -166,7 +167,7 @@
     <Property Name="PublicConsultationId" Type="int" />
     <Property Name="StudentId" Type="int" />
     <Property Name="ProfessorId" Type="int" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
     <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="SocialNetworksCatalog">
@@ -287,6 +288,18 @@
       </Principal>
       <Dependent Role="Appointment">
         <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Profe__00AA174D">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ProfessorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -995,6 +1008,14 @@
   <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetAppointmentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetCantonsByIdProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -1008,7 +1029,6 @@
   <Function Name="GetPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CourseId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
-    <Parameter Name="StudentId" Type="int" Mode="In" />
   </Function>
   <Function Name="GetProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
@@ -1042,6 +1062,14 @@
   <Function Name="GetStudentCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentId" Type="int" Mode="In" />
   </Function>
+  <Function Name="InsertAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="Motive" Type="varchar" Mode="In" />
+    <Parameter Name="Accepted" Type="int" Mode="In" />
+    <Parameter Name="DateTime" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="InsertPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CourseId" Type="int" Mode="In" />
     <Parameter Name="StudentId" Type="int" Mode="In" />
@@ -1058,7 +1086,7 @@
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Motive" Type="varchar" Mode="In" />
-    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <Parameter Name="DateTime" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertRepliesPrivateMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PrivateMessageId" Type="int" Mode="In" />
@@ -1072,7 +1100,7 @@
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Motive" Type="varchar" Mode="In" />
-    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <Parameter Name="DateTime" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="StudentId" Type="int" Mode="In" />
@@ -1141,6 +1169,10 @@
   <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="StatusAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AppointmentId" Type="int" Mode="In" />
+    <Parameter Name="Accepted" Type="int" Mode="In" />
+  </Function>
   <Function Name="StudentApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="TypeUserVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
@@ -1195,6 +1227,10 @@
     </AssociationSet>
     <AssociationSet Name="FK__Appointme__Creat__2CBDA3B5" Association="Self.FK__Appointme__Creat__2CBDA3B5">
       <End Role="Users" EntitySet="Users" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Profe__00AA174D" Association="Self.FK__Appointme__Profe__00AA174D">
+      <End Role="Professor" EntitySet="Professor" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
     <AssociationSet Name="FK__Appointme__Stude__214BF109" Association="Self.FK__Appointme__Stude__214BF109">

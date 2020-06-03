@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="23891414d1904d30b8c99b3808eeb399" Name="Diagram1">
+      <Diagram DiagramId="23891414d1904d30b8c99b3808eeb399" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="IF4101PICESModel.AcademicDegree" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IF4101PICESModel.Appointment" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="IF4101PICESModel.Canton" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
@@ -93,6 +93,7 @@
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230" />
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" />
         <AssociationConnector Association="IF4101PICESModel.FK__RepliesPr__Stude__7CD98669" />
+        <AssociationConnector Association="IF4101PICESModel.FK__Appointme__Profe__00AA174D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

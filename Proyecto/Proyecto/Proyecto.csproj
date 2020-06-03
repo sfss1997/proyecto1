@@ -177,6 +177,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAppointmentById_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAppointment_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetCantonsByIdProvince_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

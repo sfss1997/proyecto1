@@ -11,7 +11,7 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class GetPublicConsultation_Result
+    public partial class GetAppointment_Result
     {
         public int Id { get; set; }
         public Nullable<int> CourseId { get; set; }
@@ -19,5 +19,6 @@ namespace Proyecto.Models
         public string DateTime { get; set; }
         public string Motive { get; set; }
         public Nullable<int> ProfessorId { get; set; }
+        public int Accepted { get; set; }
     }
 }

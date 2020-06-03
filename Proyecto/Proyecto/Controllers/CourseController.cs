@@ -84,9 +84,9 @@ namespace Proyecto.Controllers
             return Json(publicConsultation, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetPrivateMessage(int courseId, int professorId, int studentId)
+        public JsonResult GetPrivateMessage(int courseId, int professorId)
         {
-            var privateMessage = CourseDataEF.GetPrivateMessage(courseId, professorId, studentId);
+            var privateMessage = CourseDataEF.GetPrivateMessage(courseId, professorId);
 
             return Json(privateMessage, JsonRequestBehavior.AllowGet);
         }
@@ -113,6 +113,30 @@ namespace Proyecto.Controllers
             var replies = CourseDataEF.GetRepliesPrivateMessage(id);
 
             return Json(replies, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddAppointment(Appointment appointment)
+        {
+            return Json(CourseDataEF.AddAppointment(appointment), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UpdateStatusAppointment(Appointment appointment)
+        {
+            return Json(CourseDataEF.UpdateStatusAppointment(appointment), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAppointment(int studentId, int professorId, int courseId)
+        {
+            var appointment = CourseDataEF.GetAppointment(studentId, professorId, courseId);
+
+            return Json(appointment, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAppointmentById(int id)
+        {
+            var appointment = CourseDataEF.GetAppointmentById(id);
+
+            return Json(appointment, JsonRequestBehavior.AllowGet);
         }
     }
 }

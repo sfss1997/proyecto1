@@ -170,11 +170,11 @@ namespace Proyecto.Models
             }
         }
 
-        public List<GetPrivateMessage_Result> GetPrivateMessage(int courseId, int professorId, int studentId)
+        public List<GetPrivateMessage_Result> GetPrivateMessage(int courseId, int professorId)
         {
             using (var context = new Entities())
             {
-                var privateMessage = context.SPGetPrivateMessage(courseId, professorId, studentId).ToList();
+                var privateMessage = context.SPGetPrivateMessage(courseId, professorId).ToList();
 
                 return privateMessage;
 
@@ -215,6 +215,58 @@ namespace Proyecto.Models
                 var replies = context.SPGetRepliesPrivateMessage(privateMessageId).ToList();
 
                 return replies;
+
+            }
+        }
+
+        public int AddAppointment(Appointment appointment)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.InsertAppointment(
+                                       appointment.CourseId,
+                                       appointment.StudentId,
+                                       appointment.ProfessorId,
+                                       appointment.Motive,
+                                       appointment.Accepted,
+                                       appointment.DateTime);
+            }
+            return resultToReturn;
+        }
+
+        public int UpdateStatusAppointment(Appointment appointment)
+        {
+            int resultToReturn;
+
+            using (var context = new Entities())
+            {
+                resultToReturn = context.StatusAppointment(
+                                       appointment.Id,
+                                       appointment.Accepted);
+            }
+            return resultToReturn;
+        }
+
+        public List<GetAppointment_Result> GetAppointment(int studentId, int professorId, int courseId)
+        {
+            using (var context = new Entities())
+            {
+                var appointment = context.SPGetAppointment(studentId,professorId, courseId).ToList();
+
+                return appointment;
+
+            }
+        }
+
+        public GetAppointmentById_Result GetAppointmentById(int id)
+        {
+            using (var context = new Entities())
+            {
+                var appointment = context.SPGetAppointmentById(id).Single();
+
+                return appointment;
 
             }
         }

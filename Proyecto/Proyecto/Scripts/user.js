@@ -181,6 +181,11 @@ function logOut() {
     document.querySelector('#labelStudentUserName').innerText = "";
     document.querySelector('#labelProfessorUserName').innerText = "";
 
+    $('#ulConsultationspublic').empty();
+    $('#ulRepliesConsultationspublic').empty();
+    $('#ulPrivateMessage').empty();
+    $('#ulRepliesPrivateMessage').empty();
+
 }
 
 function listStudents() {
