@@ -31,23 +31,15 @@ function login() {
         Password: $('#PasswordSignLog').val()
     };
 
-    var arrayProf = listProfessors();
-    var arrayStud = listStudents();
-
-    $.ajax({
-        url: "/User/ListAllUsers",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            dataSet = new Array();
-            $.each(result, function (key, item) {
-                if (user.Username == item.Username && user.Password == item.Password && item.Status == "Activo") {
-                    if (item.IsAdministrator == 1) {
-                        $('#btnNews').show();
-                    }
-                    arrayProf.forEach(function (prof, key, array) {
-                        if (item.Id == prof.Id) {
+    $.getJSON('/User/ListAllUsers', function (result, textStatus, jqXHR) {
+        $.each(result, function (key, data) {
+            if (user.Username == data.Username && user.Password == data.Password && data.Status == "Activo") {
+                if (data.IsAdministrator == 1) {
+                  $('#btnNews').show();
+                }
+                $.getJSON('/Professor/ListAllProfessors', function (resultProfessor, textStatus, jqXHR) {
+                    $.each(resultProfessor, function (key, professor) {
+                        if (data.Id == professor.Id) {
                             $("#home").hide();
                             $("#myModalSignLog").hide();
                             $('.modal-backdrop').hide();
@@ -60,16 +52,17 @@ function login() {
                             $("#btnNewsProfessor").show();
                             $("#btnProfessorCourses").show();
                             $("#btnEnrollCourse").hide();
-                            setProfileImageProfessor(prof.Id);
-                            professorInformation(prof.Id);
-                            getSocialNetworksByIdProdessor(prof.Id);
+                            setProfileImageProfessor(professor.Id);
+                            professorInformation(professor.Id);
+                            getSocialNetworksByIdProdessor(professor.Id);
                         }
                     });
+                });
 
-                    arrayStud.forEach(function (stud, key, array) {
-                        if (item.Id == stud.Id) {
-                            if (stud.RegistrationStatus == "Aprobado") {
-                                $("#home").hide();
+                $.getJSON('/Student/ListAllStudents', function (resultStudent, textStatus, jqXHR) {
+                    $.each(resultStudent, function (key, student) {
+                        if (data.Id == student.Id && student.RegistrationStatus == "Aprobado") {
+                            $("#home").hide();
                                 $("#myModalSignLog").hide();
                                 $('.modal-backdrop').hide();
                                 $("#btnSignLog").hide();
@@ -81,18 +74,14 @@ function login() {
                                 $('#studentSection').show();
                                 $("#btnStudentCourses").show();
                                 $("#btnEnrollCourse").show();
-                                studentInformation(stud.Id);
-                                setProfileImageStudent(stud.Id);
-                                getSocialNetworksByIdStudent(stud.Id);
-                            } else {
-                                $('#invalidUser').show();
-                                document.querySelector('#invalidUser').innerText = "El usuario no ha sido aprobado.";
-                            }
+                                studentInformation(student.Id);
+                                setProfileImageStudent(student.Id);
+                                getSocialNetworksByIdStudent(student.Id);
                         }
                     });
-
-                    if (user.Username == "admin" && user.Password == "admin") {
-                        $("#home").hide();
+                });
+                if (user.Username == "admin" && user.Password == "admin") {
+                    $("#home").hide();
                         $("#myModalSignLog").hide();
                         $('.modal-backdrop').hide();
                         $("#btnSignLog").hide();
@@ -105,18 +94,22 @@ function login() {
                         $('#btnCourse').show();
                         $('#btnNews').show();
                         $("#btnEnrollCourseProfessor").show();
-                    }
                 }
-                else {
-                    $('#invalidUser').show();
-                    document.querySelector('#invalidUser').innerText = "Datos incorrectos.";
-                }
-            });
-        },
-        error: function (errorMessage) {
-            alert(errorMessage.responseText);
-        }
-    })
+            } else {
+                invalidUser();
+            }
+        });
+    });
+}
+
+async function invalidUser() {
+    await sleep(1000);
+    $('#invalidUser').show();
+    document.querySelector('#invalidUser').innerText = "Datos incorrectos.";
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function setProfileImageStudent(id) {

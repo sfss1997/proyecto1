@@ -47,7 +47,7 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <img id="ucrImage" src="../images/ucr.png" style="border: 0; float: left; margin-right: 15px" />
+                    <img id="ucrImage" src="~/images/ucr.png" style="border: 0; float: left; margin-right: 15px" />
                     <!-- lOGO TEXT HERE -->
 
 
@@ -1243,7 +1243,7 @@
 
         <div class="modal fade" id="modalPublicConsultationStudent" tabindex="-1" role="dialog" hidden>
 
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
 
                 <div class="modal-content">
 
@@ -1258,22 +1258,31 @@
                         <input type="text" id="professorIdPublicConsultation" hidden>
                         <input type="text" id="studentIdPublicConsultation" hidden>
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="addPublicConsult" placeholder="Consulta" autocomplete="off">
-                            </br>
-                            <button type="button" class="btn" onclick="sendPublicConsultationStudent();" id="btnConsultationPublicStudent">Enviar</button>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="addPublicConsult" placeholder="Consulta" autocomplete="off">
+                                    </br>
+                                    <button type="button" class="btn" onclick="sendPublicConsultationStudent();" id="btnConsultationPublicStudent">Enviar</button>
+                                </div>
 
-                        <form>
-                            <div class="form-group">
-                                <ul id="ulConsultationspublic" class="list-group"></ul>
-                                <h4> Respuestas </h4>
-                                <ul id="ulRepliesConsultationspublic" class="list-group"></ul>
+                                <form>
+                                    <div class="form-group">
+                                        <ul id="ulConsultationspublic" class="list-group"></ul>
+
+                                    </div>
+                                </form>
                             </div>
 
-                        </form>
-                        <form id="form">
-                        </form>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4> Respuestas </h4>
+                                    <ul id="ulRepliesConsultationspublic" class="list-group"></ul>
+                                </div>
+                                <form id="form">
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
