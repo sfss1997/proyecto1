@@ -105,8 +105,7 @@ namespace Proyecto.Controllers
             return Json(news, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult InsertNews(News news)
+        public JsonResult InsertNews(News news)
         {
             using (var client = new HttpClient())
             {
