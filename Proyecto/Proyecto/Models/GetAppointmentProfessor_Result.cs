@@ -11,13 +11,14 @@ namespace Proyecto.Models
 {
     using System;
     
-    public partial class GetRepliesPrivateMessage_Result
+    public partial class GetAppointmentProfessor_Result
     {
         public int Id { get; set; }
-        public Nullable<int> PrivateMessageId { get; set; }
+        public Nullable<int> CourseId { get; set; }
         public Nullable<int> StudentId { get; set; }
         public string DateTime { get; set; }
         public string Motive { get; set; }
         public Nullable<int> ProfessorId { get; set; }
+        public int Accepted { get; set; }
     }
 }

@@ -623,7 +623,7 @@ function professorCourses() {
                 html += '<td>' + item.Initials + '</td>';
                 html += '<td>' + item.CourseName + '</td>';
                 html += '<td>' + cycle + '</td>';
-                html += '<td><a href="#" onclick="return publicConsultationProfessor(' + item.CourseId + ',' + item.ProfessorId +')">Consultas públicas</a> | <a href="#" onclick="privateConsultationProfessor(' + item.CourseId + ',' + item.ProfessorId +')">Consultas privadas</a> | <a href="#" onclick="appointmentProfessor(' + item.CourseId + ')">Citas atención</a></td>';
+                html += '<td><a href="#" onclick="return publicConsultationProfessor(' + item.CourseId + ',' + item.ProfessorId + ')">Consultas públicas</a> | <a href="#" onclick="privateConsultationProfessor(' + item.CourseId + ',' + item.ProfessorId + ')">Consultas privadas</a> | <a href="#" onclick="appointmentProfessor(' + item.CourseId + ',' + item.ProfessorId +')">Citas atención</a></td>';
             });
             $('.professorCourses').html(html);
 
@@ -653,6 +653,131 @@ function privateConsultationProfessor(courseId, professorId) {
     loadPrivateMessage(courseId, professorId);
 }
 
+function appointmentProfessor(courseId, professorId) {
+    $('#modalAppointment').modal('show');
+
+    $('#courseIdPrivateMessage').val(courseId);
+    $('#professorIdPrivateMessage').val(professorId);
+    loadAppointmentProfessor(courseId, professorId);
+}
+
+function loadAppointmentProfessor(courseId, professorId) {
+    $('#ulAppointment').empty();
+    $('#ulStatusAppointment').empty();
+    $.getJSON('/Course/GetAppointmentProfessor/', { professorId, courseId }, function (appointment, textStatus, jqXHR) {
+        $.each(appointment, function (key, item) {
+            $.ajax({
+                url: "/Student/GetById/" + item.StudentId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var contenido = '';
+                    contenido += '<li class="list-group-item">';
+                    contenido += '<span>' + data.StudentName + " " + data.LastName + ': </span>';
+                    contenido += '<span>' + item.Motive + ' </span>';
+                    contenido += '</br>';
+                    contenido += '<span>' + "Fecha cita: " + '</span>';
+                    contenido += '<span>' + item.DateTime + '</span>';
+                    contenido += '<button type="button" class="btn" onclick="viewAppointmentProfessor(' + item.Id + ')">Ver</button>';
+                    contenido += '</li>';
+                    $('#ulAppointment').append(contenido);
+                },
+
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            });
+        });
+    });
+}
+
+function viewAppointmentProfessor(id) {
+    $('#ulStatusAppointment').empty();
+    $.getJSON('/Course/GetAppointmentById/', { id }, function (appointment, textStatus, jqXHR) {
+        var status = "";
+        if (appointment.Accepted == 0) {
+            status = "En espera";
+        } else if (appointment.Accepted == 1) {
+            status = "Aceptada";
+        }
+        else if (appointment.Accepted == 2) {
+            status = "Rechazada";
+        }
+
+        $.ajax({
+            url: "/Student/GetById/" + appointment.StudentId,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (student) {
+                var content = '';
+                content += '<li class="list-group-item">';
+                content += '<span>' + student.StudentName + " " + student.LastName + ': </span>';
+                content += '<span>' + appointment.Motive + ' </span>';
+                content += '</br>';
+                content += '<span>' + "Fecha publicación: " + '</span>';
+                content += '<span>' + appointment.DateTime + '</span>';
+                content += '</br>';
+                content += '<span>' + "Estado: " + '</span>';
+                content += '<span>' + status + '</span>';
+                content += '</br>';
+                content += '<button type="button" class="btn" onclick="acceptAppointment(' + appointment.Id + ')">Aceptar</button>';
+                content += '<button type="button" class="btn" onclick="denyAppointment(' + appointment.Id + ')">Rechazar</button>';
+                content += '</li>';
+                $('#ulStatusAppointment').append(content);
+            },
+
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+        });
+    });
+}
+
+function acceptAppointment(id) {
+    var appointment = {
+        Id: id,
+		Accepted: 1
+    };
+
+    $.ajax({
+        url: "/Course/UpdateStatusAppointment",
+        data: JSON.stringify(appointment),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadAppointmentProfessor($('#courseIdPrivateMessage').val(), $('#professorIdPrivateMessage').val());
+
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function denyAppointment(id) {
+    var appointment = {
+        Id: id,
+        Accepted: 2
+    };
+
+    $.ajax({
+        url: "/Course/UpdateStatusAppointment",
+        data: JSON.stringify(appointment),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadAppointmentProfessor($('#courseIdPrivateMessage').val(), $('#professorIdPrivateMessage').val());
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
 function loadDropdownProfessor() {
     $(document).ready(function () {
         $.ajax({
@@ -668,4 +793,26 @@ function loadDropdownProfessor() {
             }
         });
     });
+}
+
+function deleteProfessorAccount() {
+    var id = document.getElementById("labelProfessorId").innerHTML;
+
+    var alert = confirm("¿Está seguro que desea eliminar su cuenta?");
+
+    if (alert) {
+        $.ajax({
+            url: "/Professor/DeleteProfessor/" + id,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                $('#myModalProfessor').modal('hide');
+                logOut();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
 }

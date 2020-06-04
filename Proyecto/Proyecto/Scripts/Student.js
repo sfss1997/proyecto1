@@ -1210,3 +1210,25 @@ function viewAppointment(id) {
         });
     });
 }
+
+function deleteStudentAccount() {
+    var id = document.getElementById("labelStudentId").innerHTML;
+
+    var alert = confirm("¿Está seguro que desea eliminar su cuenta?");
+
+    if (alert) {
+        $.ajax({
+            url: "/Student/DeleteStudent/" + id,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                $('#myModal').modal('hide');
+                logOut();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+}

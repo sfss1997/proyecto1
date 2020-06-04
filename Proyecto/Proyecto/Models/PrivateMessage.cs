@@ -23,7 +23,7 @@ namespace Proyecto.Models
         public int Id { get; set; }
         public Nullable<int> CourseId { get; set; }
         public Nullable<int> StudentId { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
+        public string DateTime { get; set; }
         public string Motive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }

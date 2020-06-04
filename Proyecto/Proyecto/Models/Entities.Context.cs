@@ -201,7 +201,7 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateProfessor", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, nameParameter, lastNameParameter, mailParameter, imageParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, academicDegreeParameter, actionParameter);
         }
     
-        public virtual int InsertUpdateStudent(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string studentCard, string studentName, string lastName, Nullable<System.DateTime> birthday, string mail, string image, string registrationStatus, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, string action)
+        public virtual int InsertUpdateStudent(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string studentCard, string studentName, string lastName, string birthday, string mail, string image, string registrationStatus, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, string action)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
@@ -235,9 +235,9 @@ namespace Proyecto.Models
                 new ObjectParameter("LastName", lastName) :
                 new ObjectParameter("LastName", typeof(string));
     
-            var birthdayParameter = birthday.HasValue ?
+            var birthdayParameter = birthday != null ?
                 new ObjectParameter("Birthday", birthday) :
-                new ObjectParameter("Birthday", typeof(System.DateTime));
+                new ObjectParameter("Birthday", typeof(string));
     
             var mailParameter = mail != null ?
                 new ObjectParameter("Mail", mail) :
@@ -846,7 +846,7 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStudentCourses_Result>("SPGetStudentCourses", studentIdParameter);
         }
     
-        public virtual int InsertPrivateMessage(Nullable<int> courseId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        public virtual int InsertPrivateMessage(Nullable<int> courseId, Nullable<int> studentId, Nullable<int> professorId, string motive, string dateTime)
         {
             var courseIdParameter = courseId.HasValue ?
                 new ObjectParameter("CourseId", courseId) :
@@ -864,9 +864,9 @@ namespace Proyecto.Models
                 new ObjectParameter("Motive", motive) :
                 new ObjectParameter("Motive", typeof(string));
     
-            var dateTimeParameter = dateTime.HasValue ?
+            var dateTimeParameter = dateTime != null ?
                 new ObjectParameter("DateTime", dateTime) :
-                new ObjectParameter("DateTime", typeof(System.DateTime));
+                new ObjectParameter("DateTime", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertPrivateMessage", courseIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
         }
@@ -992,7 +992,7 @@ namespace Proyecto.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRepliesPrivateMessage_Result>("GetRepliesPrivateMessage", privateMessageIdParameter);
         }
     
-        public virtual int InsertRepliesPrivateMessage(Nullable<int> privateMessageId, Nullable<int> studentId, Nullable<int> professorId, string motive, Nullable<System.DateTime> dateTime)
+        public virtual int InsertRepliesPrivateMessage(Nullable<int> privateMessageId, Nullable<int> studentId, Nullable<int> professorId, string motive, string dateTime)
         {
             var privateMessageIdParameter = privateMessageId.HasValue ?
                 new ObjectParameter("PrivateMessageId", privateMessageId) :
@@ -1010,9 +1010,9 @@ namespace Proyecto.Models
                 new ObjectParameter("Motive", motive) :
                 new ObjectParameter("Motive", typeof(string));
     
-            var dateTimeParameter = dateTime.HasValue ?
+            var dateTimeParameter = dateTime != null ?
                 new ObjectParameter("DateTime", dateTime) :
-                new ObjectParameter("DateTime", typeof(System.DateTime));
+                new ObjectParameter("DateTime", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertRepliesPrivateMessage", privateMessageIdParameter, studentIdParameter, professorIdParameter, motiveParameter, dateTimeParameter);
         }
@@ -1144,6 +1144,101 @@ namespace Proyecto.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAppointmentById_Result>("SPGetAppointmentById", idParameter);
+        }
+    
+        public virtual ObjectResult<GetAppointmentProfessor_Result> GetAppointmentProfessor(Nullable<int> professorId, Nullable<int> courseId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAppointmentProfessor_Result>("GetAppointmentProfessor", professorIdParameter, courseIdParameter);
+        }
+    
+        public virtual ObjectResult<GetAppointmentProfessor_Result> SPGetAppointmentProfessor(Nullable<int> professorId, Nullable<int> courseId)
+        {
+            var professorIdParameter = professorId.HasValue ?
+                new ObjectParameter("ProfessorId", professorId) :
+                new ObjectParameter("ProfessorId", typeof(int));
+    
+            var courseIdParameter = courseId.HasValue ?
+                new ObjectParameter("CourseId", courseId) :
+                new ObjectParameter("CourseId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAppointmentProfessor_Result>("SPGetAppointmentProfessor", professorIdParameter, courseIdParameter);
+        }
+    
+        public virtual int InsertUpdateStudent1(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string studentCard, string studentName, string lastName, string birthday, string mail, string image, string registrationStatus, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, string action)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var isAdministratorParameter = isAdministrator.HasValue ?
+                new ObjectParameter("IsAdministrator", isAdministrator) :
+                new ObjectParameter("IsAdministrator", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            var studentCardParameter = studentCard != null ?
+                new ObjectParameter("StudentCard", studentCard) :
+                new ObjectParameter("StudentCard", typeof(string));
+    
+            var studentNameParameter = studentName != null ?
+                new ObjectParameter("StudentName", studentName) :
+                new ObjectParameter("StudentName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var birthdayParameter = birthday != null ?
+                new ObjectParameter("Birthday", birthday) :
+                new ObjectParameter("Birthday", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var registrationStatusParameter = registrationStatus != null ?
+                new ObjectParameter("RegistrationStatus", registrationStatus) :
+                new ObjectParameter("RegistrationStatus", typeof(string));
+    
+            var provinceIdParameter = provinceId.HasValue ?
+                new ObjectParameter("ProvinceId", provinceId) :
+                new ObjectParameter("ProvinceId", typeof(int));
+    
+            var cantonIdParameter = cantonId.HasValue ?
+                new ObjectParameter("CantonId", cantonId) :
+                new ObjectParameter("CantonId", typeof(int));
+    
+            var districtIdParameter = districtId.HasValue ?
+                new ObjectParameter("DistrictId", districtId) :
+                new ObjectParameter("DistrictId", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateStudent1", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, studentCardParameter, studentNameParameter, lastNameParameter, birthdayParameter, mailParameter, imageParameter, registrationStatusParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, actionParameter);
         }
     }
 }

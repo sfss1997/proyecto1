@@ -180,6 +180,9 @@
     <Compile Include="Models\GetAppointmentById_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAppointmentProfessor_Result.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetAppointment_Result.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

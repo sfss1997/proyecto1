@@ -30,7 +30,7 @@ namespace Proyecto.Models
         public string StudentCard { get; set; }
         public string StudentName { get; set; }
         public string LastName { get; set; }
-        public System.DateTime Birthday { get; set; }
+        public string Birthday { get; set; }
         public string Mail { get; set; }
         public string Image { get; set; }
         public Nullable<int> LocationId { get; set; }

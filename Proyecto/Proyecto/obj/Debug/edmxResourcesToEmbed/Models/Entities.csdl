@@ -117,7 +117,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CourseId" Type="Int32" />
     <Property Name="StudentId" Type="Int32" />
-    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="DateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Motive" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="CreateAt" Type="DateTime" Precision="0" />
@@ -1090,7 +1090,7 @@
       <Parameter Name="StudentCard" Mode="In" Type="String" />
       <Parameter Name="StudentName" Mode="In" Type="String" />
       <Parameter Name="LastName" Mode="In" Type="String" />
-      <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+      <Parameter Name="Birthday" Mode="In" Type="String" />
       <Parameter Name="Mail" Mode="In" Type="String" />
       <Parameter Name="Image" Mode="In" Type="String" />
       <Parameter Name="RegistrationStatus" Mode="In" Type="String" />
@@ -1347,7 +1347,7 @@
       <Parameter Name="StudentId" Mode="In" Type="Int32" />
       <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
       <Parameter Name="Motive" Mode="In" Type="String" />
-      <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTime" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertPublicConsultation">
       <Parameter Name="CourseId" Mode="In" Type="Int32" />
@@ -1417,7 +1417,7 @@
       <Parameter Name="StudentId" Mode="In" Type="Int32" />
       <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
       <Parameter Name="Motive" Mode="In" Type="String" />
-      <Parameter Name="DateTime" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTime" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SPGetRepliesPrivateMessage" ReturnType="Collection(IF4101PICESModel.GetRepliesPrivateMessage_Result)">
       <Parameter Name="PrivateMessageId" Mode="In" Type="Int32" />
@@ -1461,6 +1461,32 @@
     </FunctionImport>
     <FunctionImport Name="SPGetAppointmentById" ReturnType="Collection(IF4101PICESModel.GetAppointmentById_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAppointmentProfessor" ReturnType="Collection(IF4101PICESModel.GetAppointmentProfessor_Result)">
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetAppointmentProfessor" ReturnType="Collection(IF4101PICESModel.GetAppointmentProfessor_Result)">
+      <Parameter Name="ProfessorId" Mode="In" Type="Int32" />
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertUpdateStudent1">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IsAdministrator" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="StudentCard" Mode="In" Type="String" />
+      <Parameter Name="StudentName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Birthday" Mode="In" Type="String" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="RegistrationStatus" Mode="In" Type="String" />
+      <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+      <Parameter Name="CantonId" Mode="In" Type="Int32" />
+      <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
@@ -1527,7 +1553,7 @@
     <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="Birthday" Nullable="false" />
+    <Property Type="String" Name="Birthday" Nullable="false" />
     <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
     <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
@@ -1566,7 +1592,7 @@
     <Property Name="StudentCard" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="StudentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Birthday" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Image" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="LocationId" Type="Int32" />
@@ -1701,7 +1727,7 @@
     <Property Type="String" Name="StudentCard" Nullable="false" MaxLength="10" />
     <Property Type="String" Name="StudentName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="Birthday" Nullable="false" />
+    <Property Type="String" Name="Birthday" Nullable="false" />
     <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
     <Property Type="String" Name="RegistrationStatus" Nullable="true" MaxLength="20" />
@@ -1973,7 +1999,7 @@
     <Property Name="PrivateMessageId" Type="Int32" />
     <Property Name="StudentId" Type="Int32" />
     <Property Name="ProfessorId" Type="Int32" />
-    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="DateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Motive" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PrivateMessage" Relationship="IF4101PICESModel.FK__RepliesPr__Priva__7BE56230" FromRole="RepliesPrivateMessage" ToRole="PrivateMessage" />
     <NavigationProperty Name="Professor" Relationship="IF4101PICESModel.FK__RepliesPr__Profe__7DCDAAA2" FromRole="RepliesPrivateMessage" ToRole="Professor" />
@@ -2019,7 +2045,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="Int32" Name="PrivateMessageId" Nullable="true" />
     <Property Type="Int32" Name="StudentId" Nullable="true" />
-    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="DateTime" Nullable="true" />
     <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
     <Property Type="Int32" Name="ProfessorId" Nullable="true" />
   </ComplexType>
@@ -2027,7 +2053,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="Int32" Name="CourseId" Nullable="true" />
     <Property Type="Int32" Name="StudentId" Nullable="true" />
-    <Property Type="DateTime" Name="DateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="DateTime" Nullable="true" />
     <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
     <Property Type="Int32" Name="ProfessorId" Nullable="true" />
   </ComplexType>
@@ -2053,6 +2079,15 @@
     <Property Type="Int32" Name="Accepted" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetAppointmentById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="CourseId" Nullable="true" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="String" Name="DateTime" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Motive" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="ProfessorId" Nullable="true" />
+    <Property Type="Int32" Name="Accepted" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetAppointmentProfessor_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="Int32" Name="CourseId" Nullable="true" />
     <Property Type="Int32" Name="StudentId" Nullable="true" />

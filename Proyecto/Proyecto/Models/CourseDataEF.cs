@@ -270,5 +270,16 @@ namespace Proyecto.Models
 
             }
         }
+
+        public List<GetAppointmentProfessor_Result> GetAppointmentProfessor(int professorId, int courseId)
+        {
+            using (var context = new Entities())
+            {
+                var appointment = context.SPGetAppointmentProfessor(professorId, courseId).ToList();
+
+                return appointment;
+
+            }
+        }
     }
 }

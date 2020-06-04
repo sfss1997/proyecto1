@@ -138,5 +138,12 @@ namespace Proyecto.Controllers
 
             return Json(appointment, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetAppointmentProfessor(int professorId, int courseId)
+        {
+            var appointment = CourseDataEF.GetAppointmentProfessor(professorId, courseId);
+
+            return Json(appointment, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -251,7 +251,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertUpdateCourse" FunctionName="IF4101PICESModel.Store.InsertUpdateCourse" />
     <FunctionImportMapping FunctionImportName="InsertUpdateProfessor" FunctionName="IF4101PICESModel.Store.InsertUpdateProfessor" />
-    <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101PICESModel.Store.InsertUpdateStudent" />
     <FunctionImportMapping FunctionImportName="SelectCourse" FunctionName="IF4101PICESModel.Store.SelectCourse">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IF4101PICESModel.SelectCourse_Result">
@@ -874,5 +873,32 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAppointmentProfessor" FunctionName="IF4101PICESModel.Store.GetAppointmentProfessor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointmentProfessor_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetAppointmentProfessor" FunctionName="IF4101PICESModel.Store.GetAppointmentProfessor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101PICESModel.GetAppointmentProfessor_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Motive" ColumnName="Motive" />
+          <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+          <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertUpdateStudent1" FunctionName="IF4101PICESModel.Store.InsertUpdateStudent" />
   </EntityContainerMapping>
 </Mapping>

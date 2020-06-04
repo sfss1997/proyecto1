@@ -86,7 +86,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseId" Type="int" />
     <Property Name="StudentId" Type="int" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
     <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreateAt" Type="date" />
@@ -156,7 +156,7 @@
     <Property Name="PrivateMessageId" Type="int" />
     <Property Name="StudentId" Type="int" />
     <Property Name="ProfessorId" Type="int" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
     <Property Name="Motive" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="RepliesPublicConsultation">
@@ -211,7 +211,7 @@
     <Property Name="StudentCard" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Birthday" Type="varchar" MaxLength="50" />
     <Property Name="Mail" Type="varchar" MaxLength="50" />
     <Property Name="Image" Type="varchar" MaxLength="200" />
     <Property Name="LocationId" Type="int" />
@@ -1016,6 +1016,10 @@
   <Function Name="GetAppointmentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetAppointmentProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProfessorId" Type="int" Mode="In" />
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetCantonsByIdProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -1075,7 +1079,7 @@
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Motive" Type="varchar" Mode="In" />
-    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <Parameter Name="DateTime" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertProfessorCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
@@ -1093,7 +1097,7 @@
     <Parameter Name="StudentId" Type="int" Mode="In" />
     <Parameter Name="ProfessorId" Type="int" Mode="In" />
     <Parameter Name="Motive" Type="varchar" Mode="In" />
-    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <Parameter Name="DateTime" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertRepliesPublicConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PublicConsultationId" Type="int" Mode="In" />
@@ -1154,7 +1158,7 @@
     <Parameter Name="StudentCard" Type="varchar" Mode="In" />
     <Parameter Name="StudentName" Type="varchar" Mode="In" />
     <Parameter Name="LastName" Type="varchar" Mode="In" />
-    <Parameter Name="Birthday" Type="date" Mode="In" />
+    <Parameter Name="Birthday" Type="varchar" Mode="In" />
     <Parameter Name="Mail" Type="varchar" Mode="In" />
     <Parameter Name="Image" Type="varchar" Mode="In" />
     <Parameter Name="RegistrationStatus" Type="varchar" Mode="In" />
