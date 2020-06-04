@@ -900,5 +900,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertUpdateStudent1" FunctionName="IF4101PICESModel.Store.InsertUpdateStudent" />
+    <FunctionImportMapping FunctionImportName="SPInsertUpdateStudent" FunctionName="IF4101PICESModel.Store.InsertUpdateStudent" />
   </EntityContainerMapping>
 </Mapping>

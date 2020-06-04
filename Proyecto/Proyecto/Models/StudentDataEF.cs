@@ -13,7 +13,7 @@ namespace Proyecto.Models
 
             using (var context = new Entities())
             {
-                resultToReturn = context.InsertUpdateStudent(student.Id,
+                resultToReturn = context.SPInsertUpdateStudent(student.Id,
                                        user.Username,
                                        user.Password,
                                        user.IsAdministrator,
@@ -39,7 +39,7 @@ namespace Proyecto.Models
 
             using (var context = new Entities())
             {
-                resultToReturn = context.InsertUpdateStudent(student.Id,
+                resultToReturn = context.SPInsertUpdateStudent(student.Id,
                                        user.Username,
                                        user.Password,
                                        user.IsAdministrator,

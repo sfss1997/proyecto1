@@ -1240,5 +1240,74 @@ namespace Proyecto.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateStudent1", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, studentCardParameter, studentNameParameter, lastNameParameter, birthdayParameter, mailParameter, imageParameter, registrationStatusParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, actionParameter);
         }
+    
+        public virtual int SPInsertUpdateStudent(Nullable<int> id, string username, string password, Nullable<int> isAdministrator, string status, string studentCard, string studentName, string lastName, string birthday, string mail, string image, string registrationStatus, Nullable<int> provinceId, Nullable<int> cantonId, Nullable<int> districtId, string action)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var isAdministratorParameter = isAdministrator.HasValue ?
+                new ObjectParameter("IsAdministrator", isAdministrator) :
+                new ObjectParameter("IsAdministrator", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            var studentCardParameter = studentCard != null ?
+                new ObjectParameter("StudentCard", studentCard) :
+                new ObjectParameter("StudentCard", typeof(string));
+    
+            var studentNameParameter = studentName != null ?
+                new ObjectParameter("StudentName", studentName) :
+                new ObjectParameter("StudentName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var birthdayParameter = birthday != null ?
+                new ObjectParameter("Birthday", birthday) :
+                new ObjectParameter("Birthday", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(string));
+    
+            var registrationStatusParameter = registrationStatus != null ?
+                new ObjectParameter("RegistrationStatus", registrationStatus) :
+                new ObjectParameter("RegistrationStatus", typeof(string));
+    
+            var provinceIdParameter = provinceId.HasValue ?
+                new ObjectParameter("ProvinceId", provinceId) :
+                new ObjectParameter("ProvinceId", typeof(int));
+    
+            var cantonIdParameter = cantonId.HasValue ?
+                new ObjectParameter("CantonId", cantonId) :
+                new ObjectParameter("CantonId", typeof(int));
+    
+            var districtIdParameter = districtId.HasValue ?
+                new ObjectParameter("DistrictId", districtId) :
+                new ObjectParameter("DistrictId", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateStudent", idParameter, usernameParameter, passwordParameter, isAdministratorParameter, statusParameter, studentCardParameter, studentNameParameter, lastNameParameter, birthdayParameter, mailParameter, imageParameter, registrationStatusParameter, provinceIdParameter, cantonIdParameter, districtIdParameter, actionParameter);
+        }
     }
 }

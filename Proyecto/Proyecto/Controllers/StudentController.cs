@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 using Microsoft.VisualBasic.Devices;
+using System.Windows.Forms;
 
 namespace Proyecto.Controllers
 {
@@ -25,12 +26,12 @@ namespace Proyecto.Controllers
 
         public JsonResult Add(Student student, Location location, Users user)
         {
-            //var path = Path.Combine(Server.MapPath("~/images/"), student.Image);
-            //Computer.FileSystem.CopyFile(student.Image, path);
             Email.SendEmail(student.Mail,"Nuevo Usuario", student.StudentName + " " + student.LastName +
               ", ha sido añadido satisfactoriamente, su aprobación se encuentra en espera. ");
             return Json(StudentDataEF.Add(student, location, user), JsonRequestBehavior.AllowGet);
         }
+
+       
 
         public JsonResult Update(Student student, Location location, Users user)
         {
@@ -44,7 +45,7 @@ namespace Proyecto.Controllers
             return Json(student, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ListAllStudents()
+    public JsonResult ListAllStudents()
         {
             var students = StudentDataEF.ListAllStudents();
 
@@ -108,6 +109,11 @@ namespace Proyecto.Controllers
         public JsonResult UpdateImage(Student student)
         {
             return Json(StudentDataEF.UpdateImage(student), JsonRequestBehavior.AllowGet);
+        }
+
+        public void emailAppointment(String email)
+        {
+            Email.SendEmail(email, "Nueva cita de atención", "Se le informa que usted posee una nueva cita de atención por parte de un estudiante.");
         }
     }
 }

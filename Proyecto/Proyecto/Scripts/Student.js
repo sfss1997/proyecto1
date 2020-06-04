@@ -171,7 +171,7 @@ function Add() {
 
 function fakePathStudent(fakepath) {
     var splits = fakepath.split('fakepath\\');
-    var path = splits[1];
+    var path = '../images/' + splits[1];
     return path;
 }
 
@@ -643,6 +643,7 @@ function editProfileStudent() {
         success: function (result) {
             loadStudents();
             $('#myModal').modal('hide');
+            studentInformation($('#StudentId').val());
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -672,7 +673,7 @@ function getImageStudent() {
 
 function updateImageStudent() {
 
-    var imagePath = fakePath($('#imgStudent').val());
+    var imagePath = fakePathStudent($('#imgStudent').val());
 
     var student = {
         Id: $('#idStudent').val(),
@@ -688,6 +689,7 @@ function updateImageStudent() {
         success: function (result) {
             loadStudents();
             $('#modalUpdateImageStudent').modal('hide');
+            setProfileImageStudent($('#idStudent').val());
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -1115,6 +1117,7 @@ function appointment(courseId, professorId, studentId) {
 }
 
 function sendAppointment() {
+    var id = $('#professorIdAppointment').val();
     var appointment = {
         CourseId: $('#courseIdAppointment').val(),
         StudentId: $('#studentIdAppointment').val(),
@@ -1123,6 +1126,25 @@ function sendAppointment() {
         DateTime: $('#dateAppointment').val(),
         Accepted: 0
     };
+
+    $.getJSON('/Professor/GetById/', { id }, function (professor, textStatus, jqXHR) {
+
+
+        $.ajax({
+            url: "/Student/emailAppointment",
+            data: {'email': professor.Mail},
+            type: "POST",
+            success: function (result) {
+
+
+
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+        });
+
+    });
 
     $.ajax({
         url: "/Course/AddAppointment",

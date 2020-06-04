@@ -31,6 +31,54 @@
     color: white;
 }
 
+#btnAcceptApointment {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnAcceptApointment:hover {
+    background: #a9cce3;
+    color: white;
+ }
+
+#btnDenyApointment {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 5px;
+}
+
+#btnDenyApointment:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnViewAppointment {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 5px;
+}
+
+#btnViewAppointment:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnRepliesPublicConsult {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+#btnRepliesPublicConsult:hover {
+    background: #a9cce3;
+    color: white;
+}
+
 #btnAdd:hover {
     background: #a9cce3;
     color: white;

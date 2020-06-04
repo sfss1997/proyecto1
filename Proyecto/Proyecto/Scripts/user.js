@@ -298,7 +298,7 @@ function addSocialNetworkStudent() {
     var socialNetworkDropDown = {
         SocialNetworksNameId: $("#SocialNetworkStudentDropdown option:selected").val()
     };
-
+    var id = document.getElementById("labelStudentId").innerHTML;
     $.ajax({
         url: "/Student/ListAllStudents",
         type: "GET",
@@ -323,6 +323,7 @@ function addSocialNetworkStudent() {
                         success: function (result) {
                             $('#myModalSocialNetworkStudent').modal('hide');
                             $('.modal-backdrop').hide();
+                            getSocialNetworksByIdStudent(id);
                         },
                         error: function (errorMessage) {
                             alert(errorMessage.responseText);
@@ -344,6 +345,7 @@ function addSocialNetworkProfessor() {
     var socialNetworkDropDown = {
         SocialNetworksNameId: $("#SocialNetworkProfessorDropdown option:selected").val()
     };
+
 
     $.ajax({
         url: "/Professor/ListAllProfessors",
@@ -369,6 +371,7 @@ function addSocialNetworkProfessor() {
                         success: function (result) {
                             $('#myModalSocialNetworkProfessor').modal('hide');
                             $('.modal-backdrop').hide();
+                            getSocialNetworksByIdProdessor(professorId);
                         },
                         error: function (errorMessage) {
                             alert(errorMessage.responseText);

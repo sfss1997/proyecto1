@@ -1488,6 +1488,24 @@
       <Parameter Name="DistrictId" Mode="In" Type="Int32" />
       <Parameter Name="Action" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="SPInsertUpdateStudent">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IsAdministrator" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="StudentCard" Mode="In" Type="String" />
+      <Parameter Name="StudentName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Birthday" Mode="In" Type="String" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="String" />
+      <Parameter Name="RegistrationStatus" Mode="In" Type="String" />
+      <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+      <Parameter Name="CantonId" Mode="In" Type="Int32" />
+      <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCantonsByIdProvince_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />

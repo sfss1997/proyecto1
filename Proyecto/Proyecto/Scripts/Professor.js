@@ -201,7 +201,7 @@ function AddProfessor() {
 
 function fakePath(fakepath) {
     var splits = fakepath.split('fakepath\\');
-    var path = splits[1];
+    var path = '../images/' + splits[1];
     return path;
 }
 
@@ -446,6 +446,8 @@ function EditProfessor() {
         success: function (result) {
             loadProfessors();
             $('#myModalProfessor').modal('hide');
+            professorInformation($('#ProfessorId').val());
+
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -583,6 +585,7 @@ function updateImageProfessor() {
         success: function (result) {
             loadProfessors();
             $('#modalUpdateImageProfessor').modal('hide');
+            setProfileImageProfessor($('#idProfessor').val());
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -679,7 +682,7 @@ function loadAppointmentProfessor(courseId, professorId) {
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha cita: " + '</span>';
                     contenido += '<span>' + item.DateTime + '</span>';
-                    contenido += '<button type="button" class="btn" onclick="viewAppointmentProfessor(' + item.Id + ')">Ver</button>';
+                    contenido += '<button type="button" id=btnViewAppointment class="btn" onclick="viewAppointmentProfessor(' + item.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulAppointment').append(contenido);
                 },
@@ -722,8 +725,8 @@ function viewAppointmentProfessor(id) {
                 content += '<span>' + "Estado: " + '</span>';
                 content += '<span>' + status + '</span>';
                 content += '</br>';
-                content += '<button type="button" class="btn" onclick="acceptAppointment(' + appointment.Id + ')">Aceptar</button>';
-                content += '<button type="button" class="btn" onclick="denyAppointment(' + appointment.Id + ')">Rechazar</button>';
+                content += '<button type="button" id="btnAcceptApointment" class="btn" onclick="acceptAppointment(' + appointment.Id + ')">Aceptar</button>';
+                content += '<button type="button" id="btnDenyApointment" class="btn" onclick="denyAppointment(' + appointment.Id + ')">Rechazar</button>';
                 content += '</li>';
                 $('#ulStatusAppointment').append(content);
             },
