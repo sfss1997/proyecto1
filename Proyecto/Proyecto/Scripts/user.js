@@ -443,9 +443,8 @@ function getSocialNetworksByIdStudent(id) {
                             if (socialNetwork.Id == item.SocialNetworksNameId) {
                                 var contenido = '';
                                 contenido += '<li class="list-group-item">';
-                                contenido += '<span>' + socialNetwork.Name + ':</span>';
-                                contenido += ' <a href="' + item.Url + '">';
-                                contenido += '<span>' + item.Url + '</span>';
+                                contenido += ' <a target="_blank" rel="noopener noreferrer" href="' + item.Url + '">';
+                                contenido += '<span>' + socialNetwork.Name + '</span>';
                                 contenido += ' </a>';
                                 contenido += '</li>';
                                 $('#ulSocialNetworksStudent').append(contenido);
@@ -476,9 +475,8 @@ function getSocialNetworksByIdProdessor(id) {
                             if (socialNetwork.Id == item.SocialNetworksNameId) {
                                 var contenido = '';
                                 contenido += '<li class="list-group-item">';
-                                contenido += '<span>' + socialNetwork.Name + ':</span>';
-                                contenido += ' <a href="' + item.Url + '">';
-                                contenido += '<span>' + item.Url + '</span>';
+                                contenido += ' <a target="_blank" rel="noopener noreferrer" href="'+ item.Url + '">';
+                                contenido += '<span>' + socialNetwork.Name + '</span>';
                                 contenido += ' </a>';
                                 contenido += '</li>';
                                 $('#ulSocialNetworksProfessor').append(contenido);

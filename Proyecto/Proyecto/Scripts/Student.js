@@ -804,7 +804,7 @@ function loadPublicConsultationStudent(courseId, professorId) {
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha publicación: " + '</span>';
                     contenido += '<span>' + consultation.DateTime + '</span>';
-                    contenido += '<button type="button" class="btn" onclick="viewConsultation(' + consultation.Id + ')">Ver</button>';
+                    contenido += '<button type="button" id="btnPublicConsultation" class="btn" onclick="viewConsultation(' + consultation.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulConsultationspublic').append(contenido);
                 },
@@ -984,7 +984,7 @@ function loadPrivateMessage(courseId, professorId, studentId) {
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha publicación: " + '</span>';
                     contenido += '<span>' + message.DateTime + '</span>';
-                    contenido += '<button type="button" class="btn" onclick="viewMessage(' + message.Id + ')">Ver</button>';
+                    contenido += '<button type="button" id=btnPrivateConsultation class="btn" onclick="viewMessage(' + message.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulPrivateMessage').append(contenido);
                 },
@@ -1158,7 +1158,7 @@ function loadAppointmentStudent(studentId, professorId, courseId) {
                     contenido += '</br>';
                     contenido += '<span>' + "Fecha cita: " + '</span>';
                     contenido += '<span>' + item.DateTime + '</span>';
-                    contenido += '<button type="button" class="btn" onclick="viewAppointment(' + item.Id + ')">Ver</button>';
+                    contenido += '<button type="button" class="btn" id="btnViewAppointment" onclick="viewAppointment(' + item.Id + ')">Ver</button>';
                     contenido += '</li>';
                     $('#ulAppointment').append(contenido);
                 },

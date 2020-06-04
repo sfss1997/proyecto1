@@ -188,7 +188,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn" onclick="addNews();" id="btnAddNews">Añadir</button>
+                        <button type="button" class="btn" onclick="addNews();" id="btnAddNews">Insertar</button>
                         <button type="button" class="btn" onclick="updateNews();" id="btnUpdateNews">Actualizar</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
                     </div>
@@ -368,6 +368,7 @@
                         <button type="button" class="btn" id="btnAddStudent" onclick="return Add();">Registrarse</button>
                         <button type="button" class="btn" id="btnUpdateStudent" style="display:none" onclick="EditStudent();">Actualizar</button>
                         <button type="button" class="btn" id="btnUpdateProfileStudent" style="display:none" onclick="editProfileStudent();">Actualizar</button>
+                        <button type="button" class="btn" id="btnDeleteStudent" onclick="DeleteStudent();">Borrar Perfil</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
 
                     </div>
@@ -422,8 +423,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="ProfessorMail">Correo eléctronico</label>
-                                        <input type="text" class="form-control" id="ProfessorMail" placeholder="Correo eléctronico" autocomplete="off">
+                                        <label for="ProfessorMail">Correo electrónico</label>
+                                        <input type="text" class="form-control" id="ProfessorMail" placeholder="Correo electrónico" autocomplete="off">
                                     </div>
                                 </form>
                             </div>
@@ -478,6 +479,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn" id="btnAddProfessor" onclick="return AddProfessor();">Registrar</button>
                         <button type="button" class="btn" id="btnUpdateProfessor" onclick="EditProfessor();">Actualizar</button>
+                        <button type="button" class="btn" id="btnDeleteProfessor" onclick="DeleteProfessor();">Borrar perfil</button>
                         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Cerrar</button>
 
                     </div>
@@ -881,7 +883,7 @@
 
                                     <div class="form-group">
                                         <label for="studentSocialNetwork">Red Social</label>
-                                        <input type="text" class="form-control" id="studentSocialNetwork" placeholder="Ejemplo: facebook.com/UniversidadCostaRica" autocomplete="off">
+                                        <input type="text" class="form-control" id="studentSocialNetwork" placeholder="Ejemplo: https://www.facebook.com/UniversidadCostaRica" autocomplete="off">
                                     </div>
 
                                 </form>
@@ -993,7 +995,7 @@
 
                                     <div class="form-group">
                                         <label for="professorSocialNetwork">Red Social</label>
-                                        <input type="text" class="form-control" id="professorSocialNetwork" placeholder="Ejemplo: facebook.com/UniversidadCostaRica" autocomplete="off">
+                                        <input type="text" class="form-control" id="professorSocialNetwork" placeholder="Ejemplo: https://www.facebook.com/UniversidadCostaRica" autocomplete="off">
                                     </div>
 
 
@@ -1305,7 +1307,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="addPrivateMessage" placeholder="Mensaje" autocomplete="off">
                                     </br>
-                                    <button type="button" class="btn" onclick="sendPrivateMessage();">Enviar</button>
+                                    <button type="button" class="btn" id="btnSendPrivateMessage" onclick="sendPrivateMessage();">Enviar</button>
                                     <div class="form-group">
                                         </br>
                                         <ul id="ulPrivateMessage" class="list-group"></ul>

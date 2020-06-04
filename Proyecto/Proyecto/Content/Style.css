@@ -18,6 +18,208 @@
     border-color: black;
 }
 
+#btnPublicConsultation {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 260px;
+    margin-bottom: 7px
+}
+
+#btnPublicConsultation:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAdd:hover {
+    background: #a9cce3;
+    color: white;
+}
+#btnClose:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddCourse:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnEnrollNewCourse {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnEnrollNewCourse:hover {
+    background: #a9cce3;
+    color: white;
+ }
+
+#btnNews {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnNews:hover {
+    background: #a9cce3;
+    color: white;
+ }
+
+#btnEnrollNewCourseProfessor {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnEnrollNewCourseProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnConsultationPublicStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnSendPrivateMessage {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnSendPrivateMessage:hover {
+    background: #a9cce3;
+    color: white;
+ }
+
+#btnSendAppointment {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnSendAppointment:hover {
+    background: #a9cce3;
+    color: white;
+ }
+
+#btnViewAppointment {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 170px;
+    margin-bottom: 7px
+}
+
+#btnViewAppointment:hover {
+     background: #a9cce3;
+     color: white;
+ }
+
+#btnDeleteProfessor {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnDeleteProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnDeleteStudent {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnDeleteStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnRepliesPrivateMessage {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-bottom: 7px
+}
+
+#btnRepliesPrivateMessage:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddSocialNetworkProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnUpdateProfessor:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddComment:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddSocialNetworkStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnUpdateProfileStudent:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+
+
+#btnNews:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnAddNews {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+}
+
+#btnAddNews:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+#btnPrivateConsultation {
+    position: inherit;
+    background: #a9cce3;
+    border-color: black;
+    margin-left: 70px;
+    margin-bottom: 7px
+}
+
+#btnPrivateConsultation:hover {
+    background: #a9cce3;
+    color: white;
+}
+
+
+
 #btnAddComment {
     position: inherit;
     background: #a9cce3;
