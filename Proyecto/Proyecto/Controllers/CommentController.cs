@@ -23,7 +23,8 @@ namespace Proyecto.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/comment/");         
                 var responseTask = client.GetAsync("GetCommentsByIdNews/" + id);
                 responseTask.Wait();
 
@@ -49,7 +50,8 @@ namespace Proyecto.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/comment/");
                 try
                 {
                     var responseTask = client.PostAsJsonAsync<Comment>("PostComment", comment);
@@ -77,7 +79,8 @@ namespace Proyecto.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/comment/");
                 try
                 {
                     var responseTask = client.GetAsync("DeleteComment/" + id);
@@ -97,7 +100,8 @@ namespace Proyecto.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/comment/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/comment/");
                 var responseTask = client.GetAsync("GetComments");
                 responseTask.Wait();
 

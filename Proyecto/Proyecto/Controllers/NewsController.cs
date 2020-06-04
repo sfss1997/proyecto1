@@ -24,7 +24,8 @@ namespace Proyecto.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 var responseTask = client.GetAsync("GetNews");
                 responseTask.Wait();
 
@@ -52,7 +53,8 @@ namespace Proyecto.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 var responseTask = client.GetAsync("GetNewsByTitle/"+title);
                 responseTask.Wait();
 
@@ -80,7 +82,8 @@ namespace Proyecto.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 var responseTask = client.GetAsync("GetNewsById/" + id);
                 responseTask.Wait();
 
@@ -107,7 +110,8 @@ namespace Proyecto.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 try
                 {
                     var responseTask = client.PostAsJsonAsync<News>("PostNews", news);
@@ -135,7 +139,8 @@ namespace Proyecto.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 try
                 {
                     var responseTask = client.PutAsJsonAsync("PutNews", news);
@@ -153,7 +158,8 @@ namespace Proyecto.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                //client.BaseAddress = new Uri("https://localhost:44352/api/news/");
+                client.BaseAddress = new Uri("https://apinews.azurewebsites.net/api/news/");
                 try
                 {
                     var responseTask = client.GetAsync("DeleteNews/" + id);
